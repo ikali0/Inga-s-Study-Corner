@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
+import { z } from 'zod';
 
 const subjects = ['Math', 'Physics', 'Chemistry', 'Engineering'];
 
@@ -13,21 +14,88 @@ const EMAILJS_SERVICE_ID = 'service_knx8thk';
 const EMAILJS_TEMPLATE_ID = 'template_16tlqcu';
 const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
 
+// Validation schema
+const bookingSchema = z.object({
+  parentName: z.string()
+    .trim()
+    .min(1, 'Parent name is required')
+    .max(100, 'Name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Name can only contain letters, spaces, hyphens and apostrophes'),
+  childName: z.string()
+    .trim()
+    .min(1, 'Child name is required')
+    .max(100, 'Name must be less than 100 characters'),
+  email: z.string()
+    .trim()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  phone: z.string()
+    .trim()
+    .max(20, 'Phone must be less than 20 characters')
+    .regex(/^[\d\s()+-]*$/, 'Phone can only contain numbers, spaces, and ()+-')
+    .optional()
+    .or(z.literal('')),
+  subject: z.enum(['Math', 'Physics', 'Chemistry', 'Engineering']),
+  message: z.string()
+    .trim()
+    .max(1000, 'Message must be less than 1000 characters')
+    .optional()
+    .or(z.literal(''))
+});
+
+type FormErrors = Partial<Record<keyof z.infer<typeof bookingSchema>, string>>;
+
+// Sanitize input to prevent XSS
+const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/[<>]/g, '') // Remove angle brackets
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+=/gi, '') // Remove event handlers
+    .trim();
+};
+
 const BookingSection = () => {
   const { toast } = useToast();
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
   const [formData, setFormData] = useState({
     parentName: '',
     childName: '',
     email: '',
     phone: '',
-    subject: 'Math',
+    subject: 'Math' as const,
     message: ''
   });
 
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    const sanitized = sanitizeInput(value);
+    setFormData(prev => ({ ...prev, [field]: sanitized }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validate form data
+    const result = bookingSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: FormErrors = {};
+      result.error.errors.forEach(err => {
+        const field = err.path[0] as keyof FormErrors;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -35,12 +103,12 @@ const BookingSection = () => {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          parent_name: formData.parentName,
-          child_name: formData.childName,
-          from_email: formData.email,
-          phone: formData.phone || 'Not provided',
-          subject: formData.subject,
-          message: formData.message || 'No additional message',
+          parent_name: result.data.parentName,
+          child_name: result.data.childName,
+          from_email: result.data.email,
+          phone: result.data.phone || 'Not provided',
+          subject: result.data.subject,
+          message: result.data.message || 'No additional message',
         },
         EMAILJS_PUBLIC_KEY
       );
@@ -62,7 +130,6 @@ const BookingSection = () => {
         });
       }, 3000);
     } catch (error) {
-      console.error('EmailJS error:', error);
       toast({
         title: "Oops! Something went wrong",
         description: "Please try again or contact us directly via email.",
@@ -100,9 +167,11 @@ const BookingSection = () => {
                     type="text" 
                     placeholder="Jane Doe"
                     value={formData.parentName}
-                    onChange={(e) => setFormData({...formData, parentName: e.target.value})}
-                    className="bg-muted border-border"
+                    onChange={(e) => handleInputChange('parentName', e.target.value)}
+                    className={`bg-muted border-border ${errors.parentName ? 'border-destructive' : ''}`}
+                    maxLength={100}
                   />
+                  {errors.parentName && <p className="text-destructive text-xs ml-1">{errors.parentName}</p>}
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-foreground ml-1">Child's Name & Age</label>
@@ -111,9 +180,11 @@ const BookingSection = () => {
                     type="text" 
                     placeholder="Leo, Age 10"
                     value={formData.childName}
-                    onChange={(e) => setFormData({...formData, childName: e.target.value})}
-                    className="bg-muted border-border"
+                    onChange={(e) => handleInputChange('childName', e.target.value)}
+                    className={`bg-muted border-border ${errors.childName ? 'border-destructive' : ''}`}
+                    maxLength={100}
                   />
+                  {errors.childName && <p className="text-destructive text-xs ml-1">{errors.childName}</p>}
                 </div>
               </div>
 
@@ -125,9 +196,11 @@ const BookingSection = () => {
                     type="email" 
                     placeholder="hello@family.com"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="bg-muted border-border"
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className={`bg-muted border-border ${errors.email ? 'border-destructive' : ''}`}
+                    maxLength={255}
                   />
+                  {errors.email && <p className="text-destructive text-xs ml-1">{errors.email}</p>}
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-foreground ml-1">Phone (Optional)</label>
@@ -135,9 +208,11 @@ const BookingSection = () => {
                     type="tel" 
                     placeholder="(215) 555-0123"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="bg-muted border-border"
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className={`bg-muted border-border ${errors.phone ? 'border-destructive' : ''}`}
+                    maxLength={20}
                   />
+                  {errors.phone && <p className="text-destructive text-xs ml-1">{errors.phone}</p>}
                 </div>
               </div>
 
@@ -148,7 +223,7 @@ const BookingSection = () => {
                     <button
                       type="button"
                       key={sub}
-                      onClick={() => setFormData({...formData, subject: sub})}
+                      onClick={() => setFormData({...formData, subject: sub as typeof formData.subject})}
                       className={`p-3 rounded-xl border-2 font-bold transition-all ${formData.subject === sub ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:border-primary/50'}`}
                     >
                       {sub}
@@ -162,9 +237,11 @@ const BookingSection = () => {
                 <Textarea 
                   placeholder="Tell me a bit about what your child is working on or struggling with..."
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="bg-muted border-border min-h-[120px] resize-none"
+                  onChange={(e) => handleInputChange('message', e.target.value)}
+                  className={`bg-muted border-border min-h-[120px] resize-none ${errors.message ? 'border-destructive' : ''}`}
+                  maxLength={1000}
                 />
+                {errors.message && <p className="text-destructive text-xs ml-1">{errors.message}</p>}
               </div>
 
               <Button 
