@@ -1,15 +1,22 @@
 import { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const subjects = ['Math', 'Physics', 'Chemistry', 'Engineering'];
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = 'service_knx8thk';
+const EMAILJS_TEMPLATE_ID = 'template_16tlqcu';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
 
 const BookingSection = () => {
   const { toast } = useToast();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     parentName: '',
     childName: '',
@@ -19,24 +26,51 @@ const BookingSection = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          parent_name: formData.parentName,
+          child_name: formData.childName,
+          from_email: formData.email,
+          phone: formData.phone || 'Not provided',
+          subject: formData.subject,
+          message: formData.message || 'No additional message',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        toast({
+          title: "Request Received! 🎉",
+          description: "I'll be in touch shortly to confirm your consultation.",
+        });
+        setFormData({
+          parentName: '',
+          childName: '',
+          email: '',
+          phone: '',
+          subject: 'Math',
+          message: ''
+        });
+      }, 3000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
       toast({
-        title: "Request Received! 🎉",
-        description: "I'll be in touch shortly to confirm your consultation.",
+        title: "Oops! Something went wrong",
+        description: "Please try again or contact us directly via email.",
+        variant: "destructive",
       });
-      setFormData({
-        parentName: '',
-        childName: '',
-        email: '',
-        phone: '',
-        subject: 'Math',
-        message: ''
-      });
-    }, 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -136,9 +170,17 @@ const BookingSection = () => {
               <Button 
                 type="submit"
                 size="lg"
-                className="w-full bg-gradient-to-r from-blue to-accent hover:opacity-90 text-primary-foreground font-bold py-4 rounded-xl shadow-lg transform transition-transform hover:scale-[1.01] active:scale-[0.98]"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue to-accent hover:opacity-90 text-primary-foreground font-bold py-4 rounded-xl shadow-lg transform transition-transform hover:scale-[1.01] active:scale-[0.98] disabled:opacity-70"
               >
-                Schedule Free Consultation
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  'Schedule Free Consultation'
+                )}
               </Button>
             </form>
           )}
