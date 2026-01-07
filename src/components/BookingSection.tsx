@@ -12,7 +12,7 @@ const subjects = ['Math', 'Physics', 'Chemistry', 'Engineering'];
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_knx8thk';
 const EMAILJS_TEMPLATE_ID = 'template_16tlqcu';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+const EMAILJS_PUBLIC_KEY = 'hBuUzJCwLRky_JftD';
 
 // Validation schema
 const bookingSchema = z.object({
