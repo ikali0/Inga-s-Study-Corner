@@ -6,6 +6,35 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { z } from 'zod';
+import confetti from 'canvas-confetti';
+
+const fireConfetti = () => {
+  const duration = 3000;
+  const end = Date.now() + duration;
+
+  const colors = ['#FF9F1C', '#2EC4B6', '#E71D36', '#FFD700', '#7B68EE'];
+
+  (function frame() {
+    confetti({
+      particleCount: 3,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: colors
+    });
+    confetti({
+      particleCount: 3,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: colors
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  }());
+};
 
 const subjects = ['Math', 'Physics', 'Chemistry', 'Engineering'];
 
@@ -114,6 +143,7 @@ const BookingSection = () => {
       );
 
       setShowSuccess(true);
+      fireConfetti();
       setTimeout(() => {
         setShowSuccess(false);
         toast({
