@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { CheckCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -60,10 +60,8 @@ const sanitizeInput = (input: string): string => {
   .replace(/on\w+=/gi, '') // Remove event handlers
   .trim();
 };
-const BookingSection = () => {
-  const {
-    toast
-  } = useToast();
+const BookingSection = forwardRef<HTMLElement>((_, ref) => {
+  const { toast } = useToast();
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -143,14 +141,14 @@ const BookingSection = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="book" className="py-16 md:py-20 pb-24 md:pb-32 relative z-10">
-      <div className="max-w-3xl mx-auto px-4">
-        <div className="text-center mb-8 md:mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Ready to Get Started? 🚀</h2>
-          <p className="text-muted-foreground">Book a free consultation. Let's chat about your child's goals.</p>
+  return <section ref={ref} id="book" className="py-12 md:py-20 pb-20 md:pb-32 relative z-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-6 md:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">Ready to Get Started? 🚀</h2>
+          <p className="text-muted-foreground text-sm md:text-base">Book a free consultation. Let's chat about your child's goals.</p>
         </div>
 
-        <div className="bg-card rounded-3xl shadow-2xl p-6 md:p-10 lg:p-12 border border-border px-[40px] py-[40px]">
+        <div className="bg-card rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-10 lg:p-12 border border-border">
           {showSuccess ? <div className="text-center py-12 animate-in zoom-in">
               <div className="w-20 h-20 bg-green-light text-green rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={40} />
@@ -212,5 +210,7 @@ const BookingSection = () => {
         </div>
       </div>
     </section>;
-};
+});
+
+BookingSection.displayName = 'BookingSection';
 export default BookingSection;
