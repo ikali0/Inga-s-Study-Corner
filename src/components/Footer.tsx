@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import React from 'react';
 import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 interface FooterProps {
@@ -12,9 +12,9 @@ const tutorInfo = {
   location: "Huntington Valley Library"
 };
 
-const Footer = forwardRef<HTMLElement, FooterProps>(({ onNavigate }, ref) => {
+const Footer = ({ onNavigate }: FooterProps) => {
   return (
-    <footer ref={ref} className="bg-secondary text-secondary-foreground relative z-10 overflow-hidden py-10 md:py-14">
+    <footer className="bg-secondary text-secondary-foreground relative z-10 overflow-hidden py-10 md:py-14">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
@@ -111,7 +111,6 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ onNavigate }, ref) => {
       </div>
     </footer>
   );
-});
+};
 
-Footer.displayName = 'Footer';
 export default Footer;
