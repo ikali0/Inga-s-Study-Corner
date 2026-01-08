@@ -16,7 +16,7 @@ const HeroSection = ({
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-  return <section id="hero" className="relative pt-24 pb-12 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  return <section id="hero" className="relative pt-24 pb-12 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-purple-100">
       {/* Decorative Blobs - Hidden on mobile for cleaner look */}
       <div className="hidden sm:block blob-shape -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl" />
       <div className="hidden sm:block blob-shape bottom-10 -right-10 w-56 h-56 md:w-72 md:h-72 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl" />

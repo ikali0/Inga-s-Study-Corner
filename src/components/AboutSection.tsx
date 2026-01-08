@@ -1,6 +1,6 @@
 import { Smile, Zap, Heart, Star, Users, Clock, MapPin } from "lucide-react";
 const AboutSection = () => {
-  return <section id="about" className="py-12 md:py-20 relative z-10">
+  return <section id="about" className="py-12 md:py-20 relative z-10 bg-blue-light">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="bg-secondary rounded-2xl md:rounded-3xl text-secondary-foreground p-5 sm:p-8 md:p-12 lg:p-16 relative overflow-hidden">
           {/* Background patterns */}
