@@ -30,7 +30,7 @@ const HeroSection = ({
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
             Build <span className="text-primary underline decoration-wavy decoration-accent">Confidence</span>. Strengthen <span className="text-blue">Skills</span>.
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-lg">
+          <p className="text-base sm:text-lg text-muted-foreground font-medium max-w-lg md:text-lg">
             Inga's Study Corner is a supportive after-school learning space where students strengthen their understanding of <strong className="text-foreground">math, english and science</strong> through clear explanations, guided practice, and curiosity-driven learning.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -43,7 +43,7 @@ const HeroSection = ({
               Read Success Stories
             </Button>
           </div>
-          <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-muted-foreground justify-start sm:justify-center">
+          <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-muted-foreground justify-start sm:flex sm:items-start sm:justify-start">
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Ages 8-14</span>
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Tue-Fri 3-9 PM</span>
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Small Groups</span>
