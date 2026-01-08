@@ -2,7 +2,8 @@
 
 ## Project info
 
-**URL**: https://studycorner.lovable.app
+**URL**: <https://studycorner.lovable.app>
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
