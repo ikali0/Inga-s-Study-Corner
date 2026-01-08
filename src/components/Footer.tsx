@@ -11,7 +11,7 @@ const tutorInfo = {
 const Footer = ({
   onNavigate
 }: FooterProps) => {
-  return <footer className="bg-secondary text-secondary-foreground py-12 relative z-10 overflow-hidden md:py-[48px]">
+  return <footer className="bg-secondary text-secondary-foreground py-12 md:py-16 relative z-10 overflow-hidden">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
@@ -19,7 +19,7 @@ const Footer = ({
         
         {/* Brand & Mission */}
         <div className="lg:col-span-1">
-          <h3 className="text-primary-foreground font-bold text-xl mb-4 flex items-center gap-2 md:text-sm">
+          <h3 className="text-primary-foreground font-bold text-xl mb-4 flex items-center gap-2 md:text-base">
             <Rocket className="text-primary" size={24} />
             Inga's Study Corner
           </h3>
@@ -34,7 +34,7 @@ const Footer = ({
 
         {/* Parent Trust Column */}
         <div className="lg:col-span-1">
-          <h4 className="text-primary-foreground font-bold mb-4 text-sm">Parent Peace of Mind</h4>
+          <h4 className="text-primary-foreground font-bold mb-4 text-base">Parent Peace of Mind</h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
               <ShieldCheck className="text-green shrink-0" size={20} />
@@ -53,7 +53,7 @@ const Footer = ({
 
         {/* Quick Links */}
         <div className="lg:col-span-1">
-          <h4 className="text-primary-foreground font-bold mb-4 text-sm">Explore</h4>
+          <h4 className="text-primary-foreground font-bold mb-4 text-base">Explore</h4>
           <ul className="space-y-2 text-sm">
             <li className="text-xs">
               <button onClick={() => onNavigate('services')} className="text-secondary-foreground/70 hover:text-primary transition-colors">
@@ -80,7 +80,7 @@ const Footer = ({
 
         {/* Contact Info */}
         <div className="lg:col-span-1" id="contact">
-          <h4 className="text-primary-foreground font-bold mb-4 text-sm">Get in Touch</h4>
+          <h4 className="text-primary-foreground font-bold mb-4 text-lg">Get in Touch</h4>
           <div className="bg-secondary/50 p-4 space-y-3 border border-secondary-foreground/10 px-[12px] py-[12px] rounded-sm">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-3 text-sm text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-2 rounded-lg"><Mail size={16} className="text-pink" /></div>
@@ -92,7 +92,7 @@ const Footer = ({
             </a>
             <div className="flex items-start gap-3 text-sm text-secondary-foreground/80">
               <div className="bg-secondary p-2 rounded-lg shrink-0"><MapPin size={16} className="text-blue" /></div>
-              <span className="text-xs text-center">{tutorInfo.location}<br /><span className="text-xs text-secondary-foreground/60">{tutorInfo.address}</span></span>
+              <span className="text-xs">{tutorInfo.location}<br /><span className="text-xs text-secondary-foreground/60">{tutorInfo.address}</span></span>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const Footer = ({
       
       {/* Copyright */}
       <div className="max-w-6xl mx-auto px-4 mt-10 md:mt-12 pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-xs text-secondary-foreground/50">
-        <p className="text-xs">&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
+        <p>&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
       </div>
     </footer>;
 };

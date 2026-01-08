@@ -2,21 +2,30 @@ import { useState, useEffect } from 'react';
 import { Zap, Star, CheckCircle, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-kids-learning.jpg';
+
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
 }
-const quotes = ["Learning should feel like play.", "Mistakes are proof you are trying.", "Every expert was once a beginner.", "Small steps lead to big jumps."];
-const HeroSection = ({
-  onNavigate
-}: HeroSectionProps) => {
+
+const quotes = [
+  "Learning should feel like play.",
+  "Mistakes are proof you are trying.",
+  "Every expert was once a beginner.",
+  "Small steps lead to big jumps."
+];
+
+const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentQuoteIndex(prev => (prev + 1) % quotes.length);
+      setCurrentQuoteIndex((prev) => (prev + 1) % quotes.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-  return <section id="hero" className="relative pt-28 pb-16 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+
+  return (
+    <section id="hero" className="relative pt-28 pb-16 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Decorative Blobs */}
       <div className="blob-shape -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl" />
       <div className="blob-shape bottom-10 -right-10 w-56 h-56 md:w-72 md:h-72 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl" />
@@ -30,19 +39,29 @@ const HeroSection = ({
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
             Build <span className="text-primary underline decoration-wavy decoration-accent">Confidence</span>. Strengthen <span className="text-blue">Skills</span>.
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-lg">​Inga’s Study Corner is a supportive after-school program that helps students grow in Math, English, and science through clear guidance and curiosity-driven learning.<strong className="text-foreground">math, english and science</strong> ​Inga’s Study Corner is a supportive after-school program that helps students grow in math, English, and science through clear guidance and curiosity-driven learning.
+          <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-lg">
+            Inga's Study Corner is a supportive after-school learning space where students strengthen their understanding of <strong className="text-foreground">math and science</strong> through clear explanations, guided practice, and curiosity-driven learning.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button onClick={() => onNavigate('book')} size="lg" className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-8 py-4 rounded-2xl font-bold text-lg shadow-xl flex items-center justify-center gap-2 transition-all">
+            <Button 
+              onClick={() => onNavigate('book')}
+              size="lg"
+              className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-8 py-4 rounded-2xl font-bold text-lg shadow-xl flex items-center justify-center gap-2 transition-all"
+            >
               <Zap size={20} className="fill-current" />
               Book Your First Session
             </Button>
-            <Button onClick={() => onNavigate('reviews')} variant="outline" size="lg" className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-8 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all">
+            <Button 
+              onClick={() => onNavigate('reviews')}
+              variant="outline"
+              size="lg"
+              className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-8 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all"
+            >
               <Star size={20} className="text-primary fill-current" />
               Read Success Stories
             </Button>
           </div>
-          <div className="flex-wrap gap-4 text-sm font-semibold text-muted-foreground flex items-center justify-center">
+          <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-muted-foreground">
             <span className="flex items-center gap-1"><CheckCircle size={16} className="text-green" /> Ages 8-14</span>
             <span className="flex items-center gap-1"><CheckCircle size={16} className="text-green" /> Tue-Fri 3-9 PM</span>
             <span className="flex items-center gap-1"><CheckCircle size={16} className="text-green" /> Small Groups</span>
@@ -57,7 +76,11 @@ const HeroSection = ({
             {/* Main Image Frame */}
             <div className="relative bg-card p-3 rounded-3xl shadow-xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500">
               <div className="rounded-2xl overflow-hidden aspect-[4/3] relative group">
-                <img src={heroImage} alt="Kids learning together at Inga's Study Corner" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <img 
+                  src={heroImage}
+                  alt="Kids learning together at Inga's Study Corner" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
                 
                 {/* Overlay Text */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/90 via-secondary/60 to-transparent p-4 md:p-6 text-primary-foreground text-center">
@@ -83,6 +106,8 @@ const HeroSection = ({
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
