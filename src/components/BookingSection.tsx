@@ -61,9 +61,7 @@ const sanitizeInput = (input: string): string => {
   .trim();
 };
 const BookingSection = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -150,7 +148,7 @@ const BookingSection = () => {
           <p className="text-muted-foreground text-sm md:text-base">Book a free consultation. Let's chat about your child's goals.</p>
         </div>
 
-        <div className="bg-card rounded-2xl shadow-2xl p-4 sm:p-6 md:p-10 lg:p-12 border border-border md:rounded-sm px-[30px] py-[30px]">
+        <div className="bg-card rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-10 lg:p-12 border border-border">
           {showSuccess ? <div className="text-center py-12 animate-in zoom-in">
               <div className="w-20 h-20 bg-green-light text-green rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={40} />
@@ -213,4 +211,5 @@ const BookingSection = () => {
       </div>
     </section>;
 };
+
 export default BookingSection;

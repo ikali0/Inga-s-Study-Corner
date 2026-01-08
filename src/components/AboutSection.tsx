@@ -52,23 +52,23 @@ const AboutSection = () => {
             </div>
 
             {/* Stats Card */}
-            <div className="bg-card/10 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 border border-secondary-foreground/20 mt-4 md:mt-0 py-[8px] px-[8px]">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:gap-4 text-center">
+            <div className="bg-card/10 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 border border-secondary-foreground/20 mt-4 md:mt-0">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center">
                 <div>
                   <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1">
                     <Users className="text-primary w-5 h-5 sm:w-6 sm:h-6" />
-                    <span className="text-2xl sm:text-3xl font-bold text-primary md:text-2xl">8-14</span>
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">8-14</span>
                   </div>
                   <div className="text-xs sm:text-sm font-medium text-secondary-foreground/70">Ages Welcome</div>
                 </div>
                 <div>
                   <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1">
                     <Clock className="text-primary w-5 h-5 sm:w-6 sm:h-6" />
-                    <span className="text-2xl sm:text-3xl font-bold text-primary md:text-2xl">6</span>
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">6</span>
                   </div>
                   <div className="text-xs sm:text-sm font-medium text-secondary-foreground/70">Hours Daily</div>
                 </div>
-                <div className="col-span-2 pt-4 sm:pt-6 md:pt-8 border-t border-secondary-foreground/10 py-[8px]">
+                <div className="col-span-2 pt-4 sm:pt-6 md:pt-8 border-t border-secondary-foreground/10">
                   <div className="flex justify-center mb-2">
                     {[1, 2, 3, 4, 5].map(i => <Star key={i} className="text-primary fill-current w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />)}
                   </div>
