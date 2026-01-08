@@ -19,7 +19,7 @@ const Footer = ({
         
         {/* Brand & Mission */}
         <div className="lg:col-span-1">
-          <h3 className="text-primary-foreground font-bold text-xl mb-4 flex items-center gap-2 md:text-base">
+          <h3 className="text-primary-foreground font-bold text-xl mb-4 flex items-center gap-2 md:text-sm">
             <Rocket className="text-primary" size={24} />
             Inga's Study Corner
           </h3>
@@ -34,7 +34,7 @@ const Footer = ({
 
         {/* Parent Trust Column */}
         <div className="lg:col-span-1">
-          <h4 className="text-primary-foreground font-bold mb-4 text-base">Parent Peace of Mind</h4>
+          <h4 className="text-primary-foreground font-bold mb-4 text-sm">Parent Peace of Mind</h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
               <ShieldCheck className="text-green shrink-0" size={20} />
@@ -92,7 +92,7 @@ const Footer = ({
             </a>
             <div className="flex items-start gap-3 text-sm text-secondary-foreground/80">
               <div className="bg-secondary p-2 rounded-lg shrink-0"><MapPin size={16} className="text-blue" /></div>
-              <span className="text-xs">{tutorInfo.location}<br /><span className="text-xs text-secondary-foreground/60">{tutorInfo.address}</span></span>
+              <span className="text-xs text-center">{tutorInfo.location}<br /><span className="text-xs text-secondary-foreground/60">{tutorInfo.address}</span></span>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const Footer = ({
       
       {/* Copyright */}
       <div className="max-w-6xl mx-auto px-4 mt-10 md:mt-12 pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-xs text-secondary-foreground/50">
-        <p>&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
+        <p className="text-xs">&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
       </div>
     </footer>;
 };
