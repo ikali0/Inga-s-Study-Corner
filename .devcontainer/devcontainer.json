@@ -1,0 +1,22 @@
+{
+  "name": "studycorner",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "if [ -f package-lock.json ]; then npm ci; elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm i; elif [ -f yarn.lock ]; then yarn install --frozen-lockfile; elif [ -f package.json ]; then npm install; fi",
+  "forwardPorts": [3000, 5173, 4321],
+  "portsAttributes": {
+    "3000": { "label": "Dev Server (3000)", "onAutoForward": "openPreview" },
+    "5173": { "label": "Vite (5173)", "onAutoForward": "openPreview" },
+    "4321": { "label": "Astro (4321)", "onAutoForward": "openPreview" }
+  }
+}
