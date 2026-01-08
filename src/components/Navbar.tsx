@@ -21,7 +21,7 @@ const Navbar = ({
             <div className="bg-primary p-2 rotate-3 rounded shadow-sm">
               <Rocket className="text-primary-foreground w-6 h-6" />
             </div>
-            <span className="text-xl font-bold gradient-text md:text-lg">Inga's Study Corner</span>
+            <span className="text-xl font-bold gradient-text md:text-base">Inga's Study Corner</span>
           </button>
 
           {/* Desktop Menu */}
