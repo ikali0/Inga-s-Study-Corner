@@ -15,27 +15,27 @@ const Footer = ({
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 px-[10px]">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 px-[10px] bg-lime-200 text-blue-900 border-blue-400">
         
         {/* Brand & Mission */}
         <div className="lg:col-span-1">
-          <h3 className="text-primary-foreground font-bold text-xl mb-4 flex items-center gap-2 md:text-base">
+          <h3 className="font-bold text-xl mb-4 flex items-center gap-2 md:text-base text-purple-800">
             <Rocket className="text-primary" size={24} />
             Inga's Study Corner
           </h3>
-          <p className="text-secondary-foreground/70 leading-relaxed mb-4 text-xs">
+          <p className="leading-relaxed mb-4 text-xs bg-transparent text-black">
             More than just tutoring. We build the confidence and skills your child needs to thrive in school and beyond.
           </p>
           <div className="flex items-center gap-2 text-sm text-secondary-foreground/70">
             <Calendar size={16} className="text-primary" />
-            <span className="text-xs">Tue-Fri • 3:00-9:00 PM</span>
+            <span className="text-xs text-black">Tue-Fri • 3:00-9:00 PM</span>
           </div>
         </div>
 
         {/* Parent Trust Column */}
         <div className="lg:col-span-1">
-          <h4 className="text-primary-foreground font-bold mb-4 text-base">Parent Peace of Mind</h4>
-          <ul className="space-y-3">
+          <h4 className="font-bold mb-4 text-base text-purple-900">Parent Peace of Mind</h4>
+          <ul className="space-y-3 bg-purple-600 border-blue-400">
             <li className="flex items-start gap-3">
               <ShieldCheck className="text-green shrink-0" size={20} />
               <span className="text-secondary-foreground/80 text-xs">Safe & Vetted Environment</span>
@@ -52,9 +52,9 @@ const Footer = ({
         </div>
 
         {/* Quick Links */}
-        <div className="lg:col-span-1">
-          <h4 className="text-primary-foreground font-bold mb-4 text-base">Explore</h4>
-          <ul className="space-y-2 text-sm">
+        <div className="lg:col-span-1 text-purple-800">
+          <h4 className="font-bold mb-4 text-base text-purple-800">Explore</h4>
+          <ul className="space-y-2 text-sm bg-purple-600 border-blue-400">
             <li className="text-xs">
               <button onClick={() => onNavigate('services')} className="text-secondary-foreground/70 hover:text-primary transition-colors">
                 Tutoring Services
@@ -80,19 +80,19 @@ const Footer = ({
 
         {/* Contact Info */}
         <div className="lg:col-span-1" id="contact">
-          <h4 className="text-primary-foreground font-bold mb-4 text-lg">Get in Touch</h4>
-          <div className="bg-secondary/50 p-4 space-y-3 border border-secondary-foreground/10 py-[10px] px-[10px] rounded-none">
-            <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-3 text-sm text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
+          <h4 className="font-bold mb-4 text-purple-800 text-base">Get in Touch</h4>
+          <div className="p-4 space-y-3 border py-[10px] px-[10px] rounded-none bg-transparent border-blue-300">
+            <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-3 text-sm transition-colors text-black">
               <div className="bg-secondary p-2 rounded-lg"><Mail size={16} className="text-pink" /></div>
               <span className="break-all text-xs">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-3 text-sm text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-2 rounded-lg"><Phone size={16} className="text-green" /></div>
-              <span className="text-xs">{tutorInfo.phone}</span>
+              <span className="text-xs text-black/[0.93]">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-3 text-sm text-secondary-foreground/80">
               <div className="bg-secondary p-2 rounded-lg shrink-0"><MapPin size={16} className="text-blue" /></div>
-              <span className="text-xs">{tutorInfo.location}<br /><span className="text-xs text-secondary-foreground/60">{tutorInfo.address}</span></span>
+              <span className="text-xs text-black">{tutorInfo.location}<br /><span className="text-xs text-secondary-foreground/60">{tutorInfo.address}</span></span>
             </div>
           </div>
         </div>
