@@ -36,7 +36,7 @@ const fireConfetti = () => {
   }());
 };
 
-const subjects = ['Math', 'Physics', 'Chemistry', 'Engineering'];
+const subjects = ['Math', 'English', 'Social Studies', 'Extra Curriculars'];
 
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_knx8thk';
@@ -65,7 +65,7 @@ const bookingSchema = z.object({
     .regex(/^[\d\s()+-]*$/, 'Phone can only contain numbers, spaces, and ()+-')
     .optional()
     .or(z.literal('')),
-  subject: z.enum(['Math', 'Physics', 'Chemistry', 'Engineering']),
+  subject: z.enum(['Math', 'English', 'Social Studies', 'Extra Curriculars']),
   message: z.string()
     .trim()
     .max(1000, 'Message must be less than 1000 characters')
@@ -248,13 +248,13 @@ const BookingSection = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-bold text-foreground ml-1">Interested Subject</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {subjects.map(sub => (
                     <button
                       type="button"
                       key={sub}
                       onClick={() => setFormData({...formData, subject: sub as typeof formData.subject})}
-                      className={`p-3 rounded-xl border-2 font-bold transition-all ${formData.subject === sub ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:border-primary/50'}`}
+                      className={`p-2.5 md:p-3 rounded-xl border-2 font-bold text-sm md:text-base transition-all ${formData.subject === sub ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:border-primary/50'}`}
                     >
                       {sub}
                     </button>
