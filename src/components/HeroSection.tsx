@@ -16,7 +16,7 @@ const HeroSection = ({
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-  return <section id="hero" className="relative pt-24 pb-12 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-purple-100">
+  return <section id="hero" className="relative pt-24 pb-12 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Decorative Blobs - Hidden on mobile for cleaner look */}
       <div className="hidden sm:block blob-shape -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl" />
       <div className="hidden sm:block blob-shape bottom-10 -right-10 w-56 h-56 md:w-72 md:h-72 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl" />
@@ -24,7 +24,7 @@ const HeroSection = ({
 
       <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
         <div className="space-y-4 md:space-y-8 z-10 order-2 md:order-1">
-          <div className="inline-block bg-primary/10 text-primary py-1 font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 rounded-sm px-[4px]">
+          <div className="inline-block bg-primary/10 text-primary px-3 py-1 font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 rounded-sm">
             ✨ Interactive Learning for Ages 8–14
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
@@ -43,7 +43,7 @@ const HeroSection = ({
               Read Success Stories
             </Button>
           </div>
-          <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold text-muted-foreground justify-start sm:flex sm:items-start sm:justify-start sm:gap-[10px]">
+          <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-muted-foreground justify-start sm:flex sm:items-start sm:justify-start">
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Ages 8-14</span>
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Tue-Fri 3-9 PM</span>
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Small Groups</span>

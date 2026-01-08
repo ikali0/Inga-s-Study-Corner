@@ -143,7 +143,7 @@ const BookingSection = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="book" className="py-12 md:py-20 pb-20 md:pb-32 relative z-10 bg-pink-300">
+  return <section id="book" className="py-12 md:py-20 pb-20 md:pb-32 relative z-10">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">Ready to Get Started? 🚀</h2>

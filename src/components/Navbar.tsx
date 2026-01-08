@@ -13,15 +13,15 @@ const Navbar = ({
     setIsMenuOpen(false);
   };
   const navItems = ["About", "Services", "Reviews", "Contact"];
-  return <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-border bg-transparent">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-[26px]">
-        <div className="flex justify-between items-center h-20 bg-transparent">
+  return <nav className="fixed top-0 w-full z-50 bg-card/80 backdrop-blur-md border-b border-border">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <button onClick={() => handleNavClick("hero")} className="flex items-center space-x-2 cursor-pointer">
-            <div className="sm-primary p-2 rotate-3 rounded shadow-sm sm-purple-300">
-              <Rocket className="text-primary-foreground w-6 h-6 bg-pink-400" />
+            <div className="sm-primary p-2 rotate-3 rounded shadow-sm">
+              <Rocket className="text-primary-foreground w-6 h-6" />
             </div>
-            <span className="text-xl font-bold gradient-text bg-white md:text-sm">Inga's Study Corner</span>
+            <span className="text-xl font-bold gradient-text md:text-base">Inga's Study Corner</span>
           </button>
 
           {/* Desktop Menu */}

@@ -16,7 +16,7 @@ const reviews = [{
   initial: "J"
 }];
 const ReviewsSection = () => {
-  return <section id="reviews" className="py-12 md:py-20 relative z-10 bg-purple-100">
+  return <section id="reviews" className="py-12 md:py-20 bg-primary/5 relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-center text-2xl sm:text-3xl font-bold text-foreground mb-8 md:mb-16 md:text-2xl">
           Happy Parents & Kids 💛

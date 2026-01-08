@@ -39,7 +39,7 @@ const colorClasses = {
   }
 };
 const ServicesSection = () => {
-  return <section id="services" className="py-12 md:py-20 backdrop-blur-sm relative z-10 bg-purple-50">
+  return <section id="services" className="py-12 md:py-20 bg-card/50 backdrop-blur-sm relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">What We Offer</h2>
