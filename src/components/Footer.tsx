@@ -35,7 +35,7 @@ const Footer = ({
         {/* Parent Trust Column */}
         <div className="lg:col-span-1">
           <h4 className="font-bold mb-4 text-base text-purple-900">Parent Peace of Mind</h4>
-          <ul className="space-y-3 bg-purple-600 border-blue-400">
+          <ul className="space-y-3 bg-purple-600 border-black border">
             <li className="flex items-start gap-3">
               <ShieldCheck className="text-green shrink-0" size={20} />
               <span className="text-secondary-foreground/80 text-xs">Safe & Vetted Environment</span>
@@ -54,7 +54,7 @@ const Footer = ({
         {/* Quick Links */}
         <div className="lg:col-span-1 text-purple-800">
           <h4 className="font-bold mb-4 text-base text-purple-800">Explore</h4>
-          <ul className="space-y-2 text-sm bg-purple-600 border-blue-400">
+          <ul className="space-y-2 text-sm bg-purple-600 border-black border">
             <li className="text-xs">
               <button onClick={() => onNavigate('services')} className="text-secondary-foreground/70 hover:text-primary transition-colors">
                 Tutoring Services
