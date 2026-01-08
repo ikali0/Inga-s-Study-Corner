@@ -21,12 +21,12 @@ const Navbar = ({
             <div className="sm-primary p-2 rotate-3 rounded shadow-sm">
               <Rocket className="text-primary-foreground w-6 h-6" />
             </div>
-            <span className="text-xl font-bold gradient-text md:text-lg">Inga's Study Corner</span>
+            <span className="text-xl font-bold gradient-text md:text-base">Inga's Study Corner</span>
           </button>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 items-center">
-            {navItems.map(item => <button key={item} onClick={() => handleNavClick(item.toLowerCase())} className="text-muted-foreground hover:text-primary font-semibold transition-colors">
+            {navItems.map(item => <button key={item} onClick={() => handleNavClick(item.toLowerCase())} className="text-muted-foreground hover:text-primary font-semibold transition-colors text-sm">
                 {item}
               </button>)}
             <Button onClick={() => handleNavClick("book")} className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
