@@ -30,7 +30,7 @@ const HeroSection = ({
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
             Build <span className="text-primary underline decoration-wavy decoration-accent">Confidence</span>. Strengthen <span className="text-blue">Skills</span>.
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-lg">Inga’s Study Corner is a supportive after-school program that helps students grow in math, English, and science through clear guidance and curiosity-driven learning.<strong className="text-foreground">math, english and science</strong> ​Inga’s Study Corner is a supportive after-school program that helps students grow in math, English, and science through clear guidance and curiosity-driven learning.
+          <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-lg">​Inga’s Study Corner is a supportive after-school program that helps students grow in Math, English, and science through clear guidance and curiosity-driven learning.<strong className="text-foreground">math, english and science</strong> ​Inga’s Study Corner is a supportive after-school program that helps students grow in math, English, and science through clear guidance and curiosity-driven learning.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button onClick={() => onNavigate('book')} size="lg" className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-8 py-4 rounded-2xl font-bold text-lg shadow-xl flex items-center justify-center gap-2 transition-all">
@@ -42,7 +42,7 @@ const HeroSection = ({
               Read Success Stories
             </Button>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-muted-foreground">
+          <div className="flex-wrap gap-4 text-sm font-semibold text-muted-foreground flex items-center justify-center">
             <span className="flex items-center gap-1"><CheckCircle size={16} className="text-green" /> Ages 8-14</span>
             <span className="flex items-center gap-1"><CheckCircle size={16} className="text-green" /> Tue-Fri 3-9 PM</span>
             <span className="flex items-center gap-1"><CheckCircle size={16} className="text-green" /> Small Groups</span>
