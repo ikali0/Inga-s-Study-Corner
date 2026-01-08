@@ -11,7 +11,7 @@ const tutorInfo = {
 const Footer = ({
   onNavigate
 }: FooterProps) => {
-  return <footer className="bg-secondary text-secondary-foreground py-12 relative z-10 overflow-hidden md:py-[58px]">
+  return <footer className="med-secondary text-secondary-foreground py-12 relative z-10 overflow-hidden md:py-[58px]">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
