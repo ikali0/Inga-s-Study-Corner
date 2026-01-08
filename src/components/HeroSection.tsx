@@ -34,7 +34,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div className="space-y-6 md:space-y-8 z-10 order-2 md:order-1">
           <div className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full font-bold text-sm tracking-wide shadow-sm transform -rotate-1">
-            ✨ Making Learning Magical Again
+            ✨ Interactive Learning for Ages 8–14
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
             Build <span className="text-primary underline decoration-wavy decoration-accent">Confidence</span>. Strengthen <span className="text-blue">Skills</span>.
