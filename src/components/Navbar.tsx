@@ -18,10 +18,10 @@ const Navbar = ({
         <div className="flex justify-between items-center h-20 bg-transparent">
           {/* Logo */}
           <button onClick={() => handleNavClick("hero")} className="flex items-center space-x-2 cursor-pointer">
-            <div className="sm-primary p-2 rotate-3 rounded shadow-sm">
+            <div className="sm-primary p-2 rotate-3 rounded shadow-sm sm-purple-300">
               <Rocket className="text-primary-foreground w-6 h-6 bg-pink-400" />
             </div>
-            <span className="text-xl font-bold gradient-text md:text-base">Inga's Study Corner</span>
+            <span className="text-xl font-bold gradient-text bg-white md:text-sm">Inga's Study Corner</span>
           </button>
 
           {/* Desktop Menu */}
