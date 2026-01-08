@@ -24,7 +24,7 @@ const HeroSection = ({
 
       <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
         <div className="space-y-4 md:space-y-8 z-10 order-2 md:order-1">
-          <div className="inline-block bg-primary/10 text-primary px-3 py-1 font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 rounded-sm">
+          <div className="inline-block bg-primary/10 text-primary py-1 font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 rounded-sm px-[4px]">
             ✨ Interactive Learning for Ages 8–14
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
@@ -43,7 +43,7 @@ const HeroSection = ({
               Read Success Stories
             </Button>
           </div>
-          <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-muted-foreground justify-start sm:flex sm:items-start sm:justify-start">
+          <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold text-muted-foreground justify-start sm:flex sm:items-start sm:justify-start sm:gap-[10px]">
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Ages 8-14</span>
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Tue-Fri 3-9 PM</span>
             <span className="flex items-center gap-1"><CheckCircle size={14} className="text-green" /> Small Groups</span>
