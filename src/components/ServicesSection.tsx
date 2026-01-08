@@ -43,7 +43,7 @@ const ServicesSection = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What We Offer</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Math • Chemistry • English — Patient, age-appropriate guidance in a small-group, focused learning environment.</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Patient, age-appropriate guidance in a small-group, focused learning environment.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
