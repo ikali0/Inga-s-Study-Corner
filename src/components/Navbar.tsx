@@ -15,7 +15,7 @@ const Navbar = ({
   const navItems = ["About", "Services", "Reviews", "Contact"];
   return <nav className="fixed top-0 w-full z-50 bg-card/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="h-20 flex items-center justify-between">
           {/* Logo */}
           <button onClick={() => handleNavClick("hero")} className="flex items-center space-x-2 cursor-pointer">
             <div className="bg-primary p-2 rotate-3 rounded shadow-sm">

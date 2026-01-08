@@ -1,20 +1,18 @@
 import React from 'react';
 import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from 'lucide-react';
-
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
-
 const tutorInfo = {
   email: "ingakaltak7@gmail.com",
   phone: "215-791-5906",
   address: "625 Red Lion Rd, Huntingdon Valley, PA 19006",
   location: "Huntington Valley Library"
 };
-
-const Footer = ({ onNavigate }: FooterProps) => {
-  return (
-    <footer className="bg-secondary text-secondary-foreground relative z-10 overflow-hidden py-10 md:py-14">
+const Footer = ({
+  onNavigate
+}: FooterProps) => {
+  return <footer className="bg-secondary text-secondary-foreground relative z-10 overflow-hidden py-10 md:py-14">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
@@ -22,7 +20,7 @@ const Footer = ({ onNavigate }: FooterProps) => {
         
         {/* Brand & Mission */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 flex items-center gap-2">
+          <h3 className="font-bold text-lg mb-3 md:mb-4 flex items-center gap-2 md:text-base">
             <Rocket className="text-primary" size={22} />
             Inga's Study Corner
           </h3>
@@ -109,8 +107,6 @@ const Footer = ({ onNavigate }: FooterProps) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-xs text-secondary-foreground/60">
         <p>&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
