@@ -1,4 +1,4 @@
-import { BookOpen, Rocket, CheckCircle, FlaskConical, Cog } from "lucide-react";
+import { BookOpen, CheckCircle, Globe } from "lucide-react";
 const services = [
   {
     icon: <span className="font-bold text-2xl">∑</span>,
@@ -9,20 +9,20 @@ const services = [
     features: ["Elementary → Middle School", "Homework Help", "Test Prep"],
   },
   {
-    icon: <FlaskConical size={24} />,
-    title: "Physics & Chemistry",
+    icon: <BookOpen size={24} />,
+    title: "Reading & English",
     description:
-      "Building strong foundations in physical sciences. Understanding how the world works through hands-on experiments.",
+      "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
     color: "purple",
-    features: ["Science Foundations", "Lab Concepts", "Curiosity-Driven"],
+    features: ["Reading Comprehension", "Essay Writing", "Vocabulary"],
   },
   {
-    icon: <Cog size={24} />,
-    title: "Engineering Intro",
+    icon: <Globe size={24} />,
+    title: "Social Studies",
     description:
-      "Introductory engineering concepts that spark creativity. Problem-solving skills that last a lifetime.",
+      "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
     color: "green",
-    features: ["STEM Projects", "Critical Thinking", "Design Basics"],
+    features: ["History & Geography", "Current Events", "Critical Thinking"],
   },
 ];
 const colorClasses = {
