@@ -1,4 +1,4 @@
-import { Smile, Zap, Heart, Star, Users, Clock, MapPin } from 'lucide-react';
+import { Smile, Zap, Heart, Star, Users, Clock, MapPin } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -6,8 +6,14 @@ const AboutSection = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="bg-secondary rounded-3xl text-secondary-foreground p-6 md:p-12 lg:p-16 relative overflow-hidden">
           {/* Background patterns */}
-          <div className="absolute top-0 left-0 w-full h-full opacity-10" style={{backgroundImage: 'radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
-          
+          <div
+            className="absolute top-0 left-0 w-full h-full opacity-10"
+            style={{
+              backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
+              backgroundSize: "20px 20px",
+            }}
+          ></div>
+
           <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
@@ -20,7 +26,9 @@ const AboutSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg md:text-xl font-bold mb-2">Builds Confidence, Not Pressure</h4>
-                    <p className="text-secondary-foreground/80">A calm, encouraging space to grow. We tackle anxiety before algebra.</p>
+                    <p className="text-secondary-foreground/80">
+                      A calm, encouraging space to grow. We tackle anxiety before algebra.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -29,7 +37,9 @@ const AboutSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg md:text-xl font-bold mb-2">Encourages Thinking, Not Memorization</h4>
-                    <p className="text-secondary-foreground/80">Visual learner? We draw. Kinesthetic? We build. Adapted to YOUR child.</p>
+                    <p className="text-secondary-foreground/80">
+                      Visual learner? We draw. Kinesthetic? We build. Adapted to YOUR child.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -38,12 +48,14 @@ const AboutSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg md:text-xl font-bold mb-2">Supports School Success</h4>
-                    <p className="text-secondary-foreground/80">Library-based, distraction-free environment supporting success across STEM subjects.</p>
+                    <p className="text-secondary-foreground/80">
+                      Library-based, distraction-free environment supporting success across STEM subjects.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             {/* Stats Card */}
             <div className="bg-card/10 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-secondary-foreground/20">
               <div className="grid grid-cols-2 gap-6 md:gap-8 text-center">
@@ -63,9 +75,13 @@ const AboutSection = () => {
                 </div>
                 <div className="col-span-2 pt-6 md:pt-8 border-t border-secondary-foreground/10">
                   <div className="flex justify-center mb-2">
-                    {[1,2,3,4,5].map(i => <Star key={i} className="text-primary fill-current w-5 h-5 md:w-6 md:h-6" />)}
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="text-primary fill-current w-5 h-5 md:w-6 md:h-6" />
+                    ))}
                   </div>
-                  <p className="text-secondary-foreground/80 text-sm md:text-base">"The best investment we've made for our son's education."</p>
+                  <p className="text-secondary-foreground/80 text-sm md:text-base">
+                    "The best investment we've made for our son's education."
+                  </p>
                 </div>
               </div>
               <div className="mt-6 pt-6 border-t border-secondary-foreground/10">
