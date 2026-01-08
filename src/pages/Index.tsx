@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
+import QuestionOfTheDay from '@/components/QuestionOfTheDay';
 import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import BookingSection from '@/components/BookingSection';
@@ -20,6 +21,7 @@ const Index = () => {
       <main>
         <HeroSection onNavigate={handleNavigate} />
         <ServicesSection />
+        <QuestionOfTheDay />
         <AboutSection />
         <ReviewsSection />
         <BookingSection />
