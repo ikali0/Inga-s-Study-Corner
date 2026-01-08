@@ -81,7 +81,7 @@ const Footer = ({
         {/* Contact Info */}
         <div className="lg:col-span-1" id="contact">
           <h4 className="text-primary-foreground font-bold mb-4 text-lg">Get in Touch</h4>
-          <div className="bg-secondary/50 p-4 rounded-xl space-y-3 border border-secondary-foreground/10">
+          <div className="bg-secondary/50 p-4 space-y-3 border border-secondary-foreground/10 px-[12px] py-[12px] rounded-sm">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-3 text-sm text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-2 rounded-lg"><Mail size={16} className="text-pink" /></div>
               <span className="break-all text-xs">{tutorInfo.email}</span>
