@@ -145,7 +145,7 @@ export default {
   				'Noto Color Emoji'
   			],
   			serif: [
-  				'Source Serif Pro',
+  				'EB Garamond',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -154,7 +154,7 @@ export default {
   				'serif'
   			],
   			mono: [
-  				'Space Mono',
+  				'Geist Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
