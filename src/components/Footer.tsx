@@ -11,7 +11,7 @@ const tutorInfo = {
 const Footer = ({
   onNavigate
 }: FooterProps) => {
-  return <footer className="med-secondary text-secondary-foreground py-12 relative z-10 overflow-hidden md:py-[58px]">
+  return <footer className="med-secondary text-secondary-foreground relative z-10 overflow-hidden md:py-[58px] py-[44px]">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
@@ -81,7 +81,7 @@ const Footer = ({
         {/* Contact Info */}
         <div className="lg:col-span-1" id="contact">
           <h4 className="font-bold mb-4 text-purple-800 text-base">Get in Touch</h4>
-          <div className="p-4 space-y-3 border py-[10px] px-[10px] rounded-none bg-transparent border-blue-300">
+          <div className="p-4 space-y-3 border rounded-none bg-transparent border-blue-300 px-[8px] py-[8px]">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-3 text-sm transition-colors text-black">
               <div className="bg-secondary p-2 rounded-lg"><Mail size={16} className="text-pink" /></div>
               <span className="break-all text-xs">{tutorInfo.email}</span>
@@ -100,7 +100,7 @@ const Footer = ({
       
       {/* Copyright */}
       <div className="max-w-6xl mx-auto px-4 mt-10 md:mt-12 pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-xs text-secondary-foreground/50">
-        <p>&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
+        <p className="text-black">&copy; {new Date().getFullYear()} Inga's Study Corner. Passionately teaching since 2018. ✨</p>
       </div>
     </footer>;
 };
