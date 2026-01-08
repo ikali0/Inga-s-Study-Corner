@@ -53,7 +53,7 @@ const Footer = ({
 
         {/* Quick Links */}
         <div className="lg:col-span-1">
-          <h4 className="text-primary-foreground font-bold mb-4 text-base">Explore</h4>
+          <h4 className="text-primary-foreground font-bold mb-4 text-sm">Explore</h4>
           <ul className="space-y-2 text-sm">
             <li className="text-xs">
               <button onClick={() => onNavigate('services')} className="text-secondary-foreground/70 hover:text-primary transition-colors">
