@@ -15,7 +15,7 @@ const Footer = ({
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"></div>
       
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 px-[10px] bg-lime-200 text-blue-900 border-blue-400">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 px-[10px] bg-lime-200 text-blue-900 border-black border">
         
         {/* Brand & Mission */}
         <div className="lg:col-span-1">
@@ -71,7 +71,7 @@ const Footer = ({
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('book')} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs border-black border">
+              <button onClick={() => onNavigate('book')} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs border border-transparent">
                 Book Consultation
               </button>
             </li>
