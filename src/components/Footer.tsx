@@ -71,7 +71,7 @@ const Footer = ({
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('book')} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs">
+              <button onClick={() => onNavigate('book')} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs border-black border">
                 Book Consultation
               </button>
             </li>
