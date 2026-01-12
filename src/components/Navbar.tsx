@@ -21,14 +21,14 @@ const Navbar = ({
             <div className="p-1.5 sm:p-2 rotate-3 rounded shadow-sm bg-orange-300 border-purple-400 border border-solid py-[6px] px-[6px]">
               <Rocket className="text-primary-foreground w-5 h-5 sm:w-6 sm:h-6 bg-pink-500" />
             </div>
-            <span className="text-base font-bold text-foreground sm:text-base">
+            <span className="text-base font-bold text-foreground sm:text-base font-serif">
               Inga's Study Corner
             </span>
           </button>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main navigation">
-            {navItems.map(item => <button type="button" key={item} onClick={() => handleNavClick(item.toLowerCase())} className="text-muted-foreground hover:text-primary font-semibold transition-colors text-sm lg:text-base focus:outline-none focus-visible:text-primary">
+            {navItems.map(item => <button type="button" key={item} onClick={() => handleNavClick(item.toLowerCase())} className="text-muted-foreground hover:text-primary font-semibold transition-colors text-sm lg:text-base focus:outline-none focus-visible:text-primary font-serif">
                 {item}
               </button>)}
             <Button onClick={() => handleNavClick("book")} className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 lg:px-6 py-2 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm lg:text-base">

@@ -64,14 +64,14 @@ const ServicesSection = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-xs font-semibold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-slate-600 text-xs font-semibold uppercase tracking-wider mb-4 bg-orange-200 opacity-85 border-solid border-purple-400">
             <Sparkles className="w-3 h-3 text-orange-500 fill-orange-500" />
             Our Programs
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4 font-serif">
             Academic Excellence for Every Student
           </h2>
-          <p className="text-lg text-slate-600 leading-relaxed">
+          <p className="text-lg text-slate-600 leading-relaxed font-serif">
             We provide patient, age-appropriate guidance in a focused learning
             environment designed to build confidence and mastery.
           </p>
@@ -90,14 +90,14 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="font-bold mb-3 text-xl">{service.title}</h3>
-                <p className="text-slate-600 mb-6 leading-relaxed text-sm">
+                <h3 className="font-bold mb-3 text-xl text-center font-serif">{service.title}</h3>
+                <p className="text-slate-600 mb-6 leading-relaxed text-sm font-serif text-right">
                   {service.description}
                 </p>
 
                 {/* Features List */}
                 <ul className="space-y-2">
-                  {service.features.map((feature, i) => <li key={i} className="flex items-start gap-3 text-xs">
+                  {service.features.map((feature, i) => <li key={i} className="flex items-start gap-3 text-xs font-serif">
                       <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${checkTheme}`} />
                       <span className="font-medium text-slate-700 text-xs">
                         {feature}

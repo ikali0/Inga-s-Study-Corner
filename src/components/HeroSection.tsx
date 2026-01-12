@@ -60,13 +60,13 @@ const HeroSection = ({
           </div>
 
           <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold text-muted-foreground justify-center md:justify-start pt-1 py-[2px] sm:gap-[14px]">
-            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
+            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full font-serif">
               <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Ages 8-14
             </span>
-            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
+            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full font-serif">
               <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Tue-Fri 3-9 PM
             </span>
-            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
+            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full font-serif text-right">
               <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Small Groups
             </span>
           </div>

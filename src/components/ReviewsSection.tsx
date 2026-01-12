@@ -41,7 +41,7 @@ const ReviewsSection = () => {
                   {review.initial}
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-xs sm:text-sm">
+                  <p className="font-bold text-foreground text-xs sm:text-sm font-serif">
                     {review.parent}
                   </p>
                 </div>
