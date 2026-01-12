@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import QuestionOfTheDay from '@/components/QuestionOfTheDay';
+import AIStudyHelper from '@/components/AIStudyHelper';
 import ServicesSection from '@/components/ServicesSection';
 import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
@@ -21,6 +22,7 @@ const Index = () => {
       <main>
         <HeroSection onNavigate={handleNavigate} />
         <QuestionOfTheDay />
+        <AIStudyHelper />
         <ServicesSection />
         <AboutSection />
         <ReviewsSection />

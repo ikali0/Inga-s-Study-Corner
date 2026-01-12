@@ -37,11 +37,10 @@ const fireConfetti = () => {
 };
 const subjects = ["Math", "English", "Social Studies", "Extra Curriculars"];
 
-// EmailJS configuration
+// EmailJS configuration (public keys only - safe for client-side)
 const EMAILJS_SERVICE_ID = "service_knx8thk";
 const EMAILJS_TEMPLATE_ID = "template_16tlqcu";
 const EMAILJS_PUBLIC_KEY = "j673bQmepWx0echbf";
-const EMAIL_JS_PRIVATE_KEY = "WR3M7peqnITwk4eXwAxGn";
 
 // Validation schema
 const bookingSchema = z.object({
