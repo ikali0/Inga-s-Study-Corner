@@ -90,16 +90,16 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                <h3 className="font-bold mb-3 text-xl">{service.title}</h3>
                 <p className="text-slate-600 mb-6 leading-relaxed text-sm">
                   {service.description}
                 </p>
 
                 {/* Features List */}
                 <ul className="space-y-2">
-                  {service.features.map((feature, i) => <li key={i} className="flex items-start gap-3">
+                  {service.features.map((feature, i) => <li key={i} className="flex items-start gap-3 text-xs">
                       <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${checkTheme}`} />
-                      <span className="text-sm font-medium text-slate-700">
+                      <span className="font-medium text-slate-700 text-xs">
                         {feature}
                       </span>
                     </li>)}
