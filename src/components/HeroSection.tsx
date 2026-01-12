@@ -28,7 +28,7 @@ const HeroSection = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
         {/* Text Content */}
         <div className="space-y-5 sm:space-y-6 md:space-y-7 lg:space-y-8 z-10 order-2 md:order-1 text-center md:text-left">
-          <div className="inline-block bg-primary/10 text-primary px-3 py-1.5 rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+          <div className="inline-block text-primary font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300 px-[10px] py-[8px] sm-lime-100 border-pink-400 border border-solid rounded-sm">
             ✨ Interactive Learning for Ages 8–14
           </div>
 
@@ -48,7 +48,7 @@ const HeroSection = ({
             learning.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+          <div className="smal">
             <Button onClick={() => handleNavigate("book")} size="lg" className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-xl shadow-blue/20 flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
               <Zap size={18} className="fill-current" aria-hidden="true" />
               Book Your First Session
