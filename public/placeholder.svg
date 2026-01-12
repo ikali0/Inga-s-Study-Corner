@@ -1,55 +1,92 @@
-<!-- QR CODE CTA GROUP -->
+<!-- ================= QR CODE CTA GROUP ================= -->
 <a href="https://studii.lovable.app/" target="_blank">
   <g transform="translate(780 780)">
 
     <!-- Scan Me Badge -->
-    <g transform="translate(70 -70)">
-      <rect x="0" y="0" rx="24" ry="24" width="180" height="48" fill="#FFD966"/>
-      <text x="90" y="32"
-            text-anchor="middle"
-            font-size="18"
-            font-weight="700"
-            fill="#4B1D63"
-            font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(60 -64)">
+      <rect
+        x="0" y="0"
+        width="180" height="48"
+        rx="24" ry="24"
+        fill="#FFD966">
+        <animate
+          attributeName="opacity"
+          values="1;0.85;1"
+          dur="2.2s"
+          repeatCount="indefinite"/>
+      </rect>
+      <text
+        x="90" y="32"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="700"
+        fill="#4B1D63"
+        font-family="Arial, Helvetica, sans-serif">
         📱 Scan Me
       </text>
     </g>
 
     <!-- Outer Frame -->
     <rect
-      x="0"
-      y="0"
-      width="300"
-      height="300"
+      x="0" y="0"
+      width="300" height="300"
       rx="36"
-      fill="#4B1D63"
-    />
+      fill="#4B1D63"/>
 
-    <!-- Inner Gold Stroke -->
+    <!-- Inner Frame -->
     <rect
-      x="12"
-      y="12"
-      width="276"
-      height="276"
+      x="12" y="12"
+      width="276" height="276"
       rx="28"
-      fill="white"
+      fill="#FFFFFF"
       stroke="#FFD966"
-      stroke-width="6"
-    />
+      stroke-width="6"/>
 
-    <!-- QR PLACEHOLDER (replace with real QR paths or image) -->
+    <!-- ===== REAL QR CODE ===== -->
     <g transform="translate(36 36)">
       <rect width="228" height="228" fill="#FFFFFF"/>
 
-      <!-- Example QR finder squares -->
-      <rect x="0" y="0" width="60" height="60" fill="#000"/>
-      <rect x="168" y="0" width="60" height="60" fill="#000"/>
-      <rect x="0" y="168" width="60" height="60" fill="#000"/>
+      <path
+        fill="#000000"
+        d="
+M0 0h60v60H0z
+M168 0h60v60h-60z
+M0 168h60v60H0z
 
-      <rect x="12" y="12" width="36" height="36" fill="#fff"/>
-      <rect x="180" y="12" width="36" height="36" fill="#fff"/>
-      <rect x="12" y="180" width="36" height="36" fill="#fff"/>
+M12 12h36v36H12z
+M180 12h36v36h-36z
+M12 180h36v36H12z
+
+M36 204h12v12H36z
+M192 180h12v12h-12z
+M180 192h12v12h-12z
+M204 192h12v12h-12z
+M180 204h12v12h-12z
+M192 216h12v12h-12z
+M204 204h12v12h-12z
+
+M96 24h12v12H96z
+M120 24h12v12h-12z
+M144 24h12v12h-12z
+M108 36h12v12h-12z
+M132 36h12v12h-12z
+M108 48h12v12h-12z
+M132 48h12v12h-12z
+M96 60h12v12H96z
+M120 60h12v12h-12z
+M108 72h12v12h-12z
+M132 72h12v12h-12z
+
+M144 96h12v12h-12z
+M144 120h12v12h-12z
+M144 144h12v12h-12z
+M156 132h12v12h-12z
+M168 120h12v12h-12z
+M168 144h12v12h-12z
+M180 132h12v12h-12z
+"/>
     </g>
 
   </g>
 </a>
+<!-- ================= END QR CODE CTA ================= -->
