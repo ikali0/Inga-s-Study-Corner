@@ -72,20 +72,20 @@ const Footer = ({
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border" />
               </div>
-              <span className="break-all text-xs sm:text-sm text-black">{tutorInfo.email}</span>
+              <span className="break-all text-xs text-black sm:text-xs">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid" />
               </div>
-              <span className="text-xs sm:text-sm text-black">{tutorInfo.phone}</span>
+              <span className="text-xs text-black sm:text-xs">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
               </div>
               <div className="text-xs sm:text-sm">
-                <span className="text-black">{tutorInfo.location}</span>
+                <span className="text-black text-xs">{tutorInfo.location}</span>
                 <br />
                 <span className="text-[10px] sm:text-xs text-black">
                   {tutorInfo.address}

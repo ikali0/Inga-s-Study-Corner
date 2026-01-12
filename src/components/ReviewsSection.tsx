@@ -37,11 +37,11 @@ const ReviewsSection = () => {
                 "{review.quote}"
               </blockquote>
               <footer className="flex items-center gap-2 sm:gap-3">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-muted rounded-full flex items-center justify-center font-bold text-muted-foreground text-xs sm:text-sm">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-muted-foreground text-xs sm:text-sm bg-purple-300">
                   {review.initial}
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-xs sm:text-sm">
+                  <p className="font-bold text-foreground text-xs sm:text-xs">
                     {review.parent}
                   </p>
                 </div>
