@@ -19,25 +19,11 @@ const HeroSection = ({
   const handleNavigate = useCallback((id: string) => {
     onNavigate(id);
   }, [onNavigate]);
-  return (
-    <section 
-      id="hero" 
-      className="relative pt-24 pb-10 sm:pt-28 sm:pb-14 md:pt-32 md:pb-18 lg:pt-36 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
-      aria-labelledby="hero-heading"
-    >
+  return <section id="hero" className="relative pt-24 pb-10 sm:pt-28 sm:pb-14 md:pt-32 md:pb-18 lg:pt-36 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden" aria-labelledby="hero-heading">
       {/* Decorative Blobs - Hidden on mobile for cleaner look */}
-      <div 
-        className="hidden md:block blob-shape -top-24 -left-24 w-80 h-80 lg:w-[28rem] lg:h-[28rem] bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl opacity-60" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="hidden md:block blob-shape bottom-0 -right-16 w-64 h-64 lg:w-80 lg:h-80 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl opacity-60" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="hidden lg:block blob-shape top-1/3 left-1/4 w-48 h-48 bg-green-light rounded-[30%_70%_70%_30%/30%_30%_70%_70%] blur-3xl opacity-50" 
-        aria-hidden="true" 
-      />
+      <div aria-hidden="true" className="hidden md:block blob-shape -top-24 -left-24 w-80 h-80 lg:w-[28rem] lg:h-[28rem] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl opacity-60 bg-lime-50" />
+      <div className="hidden md:block blob-shape bottom-0 -right-16 w-64 h-64 lg:w-80 lg:h-80 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl opacity-60" aria-hidden="true" />
+      <div className="hidden lg:block blob-shape top-1/3 left-1/4 w-48 h-48 bg-green-light rounded-[30%_70%_70%_30%/30%_30%_70%_70%] blur-3xl opacity-50" aria-hidden="true" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
         {/* Text Content */}
@@ -46,10 +32,7 @@ const HeroSection = ({
             ✨ Interactive Learning for Ages 8–14
           </div>
 
-          <h1 
-            id="hero-heading"
-            className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.15] text-foreground"
-          >
+          <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.15] text-foreground">
             Build{" "}
             <span className="text-primary underline decoration-wavy decoration-accent underline-offset-4 decoration-2">
               Confidence
@@ -66,20 +49,11 @@ const HeroSection = ({
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
-            <Button 
-              onClick={() => handleNavigate("book")} 
-              size="lg" 
-              className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-xl shadow-blue/20 flex items-center justify-center gap-2 transition-all w-full sm:w-auto"
-            >
+            <Button onClick={() => handleNavigate("book")} size="lg" className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-xl shadow-blue/20 flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
               <Zap size={18} className="fill-current" aria-hidden="true" />
               Book Your First Session
             </Button>
-            <Button 
-              onClick={() => handleNavigate("reviews")} 
-              variant="outline" 
-              size="lg" 
-              className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all w-full sm:w-auto"
-            >
+            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="lg" className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
               <Star size={18} className="text-primary fill-current" aria-hidden="true" />
               Read Success Stories
             </Button>
@@ -102,20 +76,12 @@ const HeroSection = ({
         <div className="relative z-10 order-1 md:order-2 flex justify-center md:justify-end">
           <div className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[400px]">
             {/* Background accent blob */}
-            <div 
-              className="absolute inset-0 bg-gradient-to-br from-primary/25 to-orange/20 rounded-2xl md:rounded-3xl transform rotate-3 scale-105 z-0" 
-              aria-hidden="true" 
-            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/25 to-orange/20 rounded-2xl md:rounded-3xl transform rotate-3 scale-105 z-0" aria-hidden="true" />
 
             {/* Main Image Frame */}
             <div className="relative bg-card p-2 sm:p-2.5 md:p-3 rounded-2xl md:rounded-3xl shadow-2xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500 border border-border/50">
               <div className="rounded-xl md:rounded-2xl overflow-hidden aspect-[4/3] relative group">
-                <img 
-                  alt="Kids learning together at Inga's Study Corner" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                  loading="eager" 
-                  src="/lovable-uploads/a0aa8e09-8040-4729-8a5d-2f83fdeda30d.png" 
-                />
+                <img alt="Kids learning together at Inga's Study Corner" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" src="/lovable-uploads/a0aa8e09-8040-4729-8a5d-2f83fdeda30d.png" />
 
                 {/* Overlay Text */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/70 to-transparent p-3 sm:p-4 md:p-5 text-primary-foreground text-center">
@@ -147,7 +113,6 @@ const HeroSection = ({
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 export default HeroSection;
