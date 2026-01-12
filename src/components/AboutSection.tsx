@@ -36,7 +36,7 @@ const AboutSection = () => {
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
                 Why Parents Choose Us
               </h2>
-              <p className="text-secondary-foreground/80 text-sm sm:text-base max-w-2xl mx-auto">
+              <p className="text-secondary-foreground/80 text-sm max-w-2xl mx-auto sm:text-sm">
                 A learning environment designed with care, patience, and proven results.
               </p>
             </header>
@@ -47,10 +47,10 @@ const AboutSection = () => {
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold mb-1 md:mb-2">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 lg:text-lg">
                       {feature.title}
                     </h3>
-                    <p className="text-secondary-foreground/80 text-xs sm:text-sm md:text-base leading-relaxed">
+                    <p className="text-secondary-foreground/80 text-xs sm:text-sm leading-relaxed md:text-sm">
                       {feature.description}
                     </p>
                   </div>
