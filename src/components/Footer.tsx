@@ -68,13 +68,13 @@ const Footer = ({
           <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic border-solid sm:rounded border-pink-500 sm-orange-100">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
-                <Mail size={14} className="text-pink border-blue-300 border-solid border" />
+                <Mail size={14} className="text-pink border-blue-300 border-solid border shadow-sm rounded-sm" />
               </div>
               <span className="break-all text-xs sm:text-xs">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
-                <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid" />
+                <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid rounded-sm shadow-sm" />
               </div>
               <span className="text-xs sm:text-xs">{tutorInfo.phone}</span>
             </a>
