@@ -20,7 +20,7 @@ const Footer = ({
         <div className="sm:col-span-2 lg:col-span-1">
           <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
             <Rocket size={20} className="bg-orange-300 text-pink-600 border rounded-sm shadow-sm opacity-70 border-solid border-pink-600" />
-            <span className="text-sm font-serif text-center font-semibold">Inga's Study Corner</span>
+            <span className="font-serif text-center font-bold text-sm">Inga's Study Corner</span>
           </h3>
           <p className="text-secondary-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-xs font-serif font-normal">
             More than just tutoring. We build the confidence and skills your child
@@ -70,22 +70,22 @@ const Footer = ({
               <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border shadow-sm rounded-sm" />
               </div>
-              <span className="break-all text-xs sm:text-xs">{tutorInfo.email}</span>
+              <span className="break-all text-xs sm:text-xs font-serif">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
                 <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid rounded-sm shadow-sm" />
               </div>
-              <span className="text-xs sm:text-xs">{tutorInfo.phone}</span>
+              <span className="text-xs sm:text-xs font-serif text-center">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
               <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
                 <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
               </div>
               <div className="text-xs sm:text-sm">
-                <span className="text-xs">{tutorInfo.location}</span>
+                <span className="text-xs font-serif">{tutorInfo.location}</span>
                 <br />
-                <span className="text-[10px] sm:text-xs text-secondary-foreground/60">
+                <span className="text-[10px] sm:text-xs text-secondary-foreground/60 font-serif">
                   {tutorInfo.address}
                 </span>
               </div>
