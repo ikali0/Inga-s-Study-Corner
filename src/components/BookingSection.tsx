@@ -147,11 +147,9 @@ const BookingSection = () => {
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <header className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3 md:mb-4">
-            Ready to Get Started? 🚀
+            Book a free consultion.   
           </h2>
-          <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
-            Book a free consultation. Let's chat about your child's goals.
-          </p>
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base">Let's chat about your child's goals.</p>
         </header>
 
         <div className="rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-5 md:p-8 lg:p-10 xl:p-12 border border-border px-[40px] py-[40px] border-solid bg-orange-100">
