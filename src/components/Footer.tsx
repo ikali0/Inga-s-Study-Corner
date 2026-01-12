@@ -11,7 +11,7 @@ const tutorInfo = {
 const Footer = ({
   onNavigate
 }: FooterProps) => {
-  return <footer className="text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 lg:py-14 bg-lime-50">
+  return <footer className="text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 bg-lime-50 border-pink-500 border-solid border lg:py-[50px]">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
@@ -90,7 +90,7 @@ const Footer = ({
           <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
             Get in Touch
           </h4>
-          <address className="p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border not-italic bg-orange-100 border-blue-300 border-solid">
+          <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic bg-orange-100 border-solid sm:rounded border-pink-500">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border" />
