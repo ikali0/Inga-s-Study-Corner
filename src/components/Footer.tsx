@@ -28,7 +28,7 @@ const Footer = ({
           </p>
           <div className="flex items-center gap-2 text-secondary-foreground/70">
             <Calendar size={14} className="text-primary shrink-0" />
-            <span className="text-xs sm:text-sm">Tue-Fri • 3:00-9:00 PM</span>
+            <span className="text-xs sm:text-xs font-medium">Tue-Fri • 3:00-9:00 PM</span>
           </div>
         </div>
 
@@ -90,7 +90,7 @@ const Footer = ({
           <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
             Get in Touch
           </h4>
-          <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic bg-orange-100 border-solid sm:rounded border-pink-500">
+          <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic border-solid sm:rounded border-pink-500 bg-orange-100">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border" />
