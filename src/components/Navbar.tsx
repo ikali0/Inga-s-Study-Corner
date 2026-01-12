@@ -15,7 +15,7 @@ const Navbar = ({
   const navItems = ["About", "Services", "Reviews", "Contact"];
   return <nav className="fixed top-0 w-full z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-16 sm:h-20 flex items-center justify-between">
+        <div className="h-14 sm:h-18 flex items-center justify-between">
           {/* Logo */}
           <button type="button" onClick={() => handleNavClick("hero")} className="flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Go to homepage">
             <div className="p-1.5 sm:p-2 rotate-3 rounded shadow-sm bg-orange-300 border-purple-400 border border-solid">
