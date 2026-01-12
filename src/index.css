@@ -24,7 +24,7 @@
     --primary: 321 49% 11%;
     --primary-foreground: 321 34% 96%;
 
-    --secondary: 81 31% 93%;
+    --secondary: 271 91.0112% 65.098%;
     --secondary-foreground: 321 49% 20%;
 
     --muted: 81 21% 93%;
@@ -74,10 +74,10 @@
     --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0px 1px 1.5px 0px hsla(271, 91%, 65%, 0.46);
-    --shadow: 0px 1px 3px 0px hsla(271, 91%, 65%, 0.46);
-    --shadow-md: 0px 1px 4.5px 0px hsla(271, 91%, 65%, 0.46);
-    --shadow-lg: 0px 1px 7.5px 0px hsla(271, 91%, 65%, 0.46);
+    --shadow-sm: 0px 1px 4.5px 0px hsla(271, 91%, 65%, 0.56);
+    --shadow: 0px 1px 9px 0px hsla(271, 91%, 65%, 0.56);
+    --shadow-md: 0px 1px 13.5px 0px hsla(271, 91%, 65%, 0.56);
+    --shadow-lg: 0px 1px 22.5px 0px hsla(271, 91%, 65%, 0.56);
     --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
     --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
     --tracking-normal: 0em;
@@ -141,10 +141,10 @@
     --sidebar: 266 4% 20.8%;
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-sm: 0px 1px 4.5px 0px hsla(271, 91%, 65%, 0.56);
+    --shadow: 0px 1px 9px 0px hsla(271, 91%, 65%, 0.56);
+    --shadow-md: 0px 1px 13.5px 0px hsla(271, 91%, 65%, 0.56);
+    --shadow-lg: 0px 1px 22.5px 0px hsla(271, 91%, 65%, 0.56);
     --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
     --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
     --radius: 0.75rem;
