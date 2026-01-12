@@ -38,7 +38,7 @@ const Footer = ({
           <ul className="space-y-2 sm:space-y-3 border-pink-400 border-solid border-0 rounded-sm">
             <li className="flex items-start gap-2 sm:gap-3">
               <ShieldCheck size={16} className="text-green shrink-0 bg-blue-100 border-orange-300 border-solid border" />
-              <span className="text-secondary-foreground/80 text-xs sm:text-xs font-serif text-center">
+              <span className="text-secondary-foreground/80 text-xs sm:text-xs font-serif text-left">
                 Safe & Vetted Environment
               </span>
             </li>
@@ -62,7 +62,7 @@ const Footer = ({
 
         {/* Contact Info */}
         <div id="contact">
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm">
+          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm font-serif text-right">
             Get in Touch
           </h4>
           <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic border-solid sm:rounded border-pink-500 sm-orange-100">
