@@ -1,16 +1,24 @@
-import { BookOpen, CheckCircle, Globe } from "lucide-react";
+import React from "react";
+import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles } from "lucide-react";
+
+// --- Types & Data ---
+
+type ThemeColor = "blue" | "purple" | "green";
 
 interface Service {
+  id: string; // Added ID for better React keys
   icon: React.ReactNode;
   title: string;
   description: string;
-  color: "blue" | "purple" | "green";
+  color: ThemeColor;
   features: string[];
 }
 
 const services: Service[] = [
   {
-    icon: <span className="font-bold text-xl sm:text-2xl">∑</span>,
+    id: "math",
+    // Fixed: Swapped text character for Lucide icon for visual consistency
+    icon: <Sigma className="w-6 h-6 sm:w-7 sm:h-7" />,
     title: "Math Mastery",
     description:
       'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
@@ -18,7 +26,8 @@ const services: Service[] = [
     features: ["Elementary → Middle School", "Homework Help", "Test Prep"],
   },
   {
-    icon: <BookOpen size={22} />,
+    id: "english",
+    icon: <BookOpen className="w-6 h-6 sm:w-7 sm:h-7" />,
     title: "Reading & English",
     description:
       "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
@@ -26,7 +35,8 @@ const services: Service[] = [
     features: ["Reading Comprehension", "Essay Writing", "Vocabulary"],
   },
   {
-    icon: <Globe size={22} />,
+    id: "social",
+    icon: <Globe className="w-6 h-6 sm:w-7 sm:h-7" />,
     title: "Social Studies",
     description:
       "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
@@ -35,84 +45,98 @@ const services: Service[] = [
   },
 ];
 
-const colorClasses = {
-  blue: {
-    bg: "bg-blue",
-    light: "bg-blue-light",
-    border: "border-blue-light",
-    check: "text-blue",
-  },
-  purple: {
-    bg: "bg-purple",
-    light: "bg-purple-light",
-    border: "border-purple-light",
-    check: "text-purple",
-  },
-  green: {
-    bg: "bg-green",
-    light: "bg-green-light",
-    border: "border-green-light",
-    check: "text-green",
-  },
-} as const;
+// --- Theme Configuration ---
+// Fixed: Used standard Tailwind shades (50, 100, 500, 600) to guarantee rendering
+const themeStyles: Record<ThemeColor, string> = {
+  blue: "bg-blue-50 border-blue-100 text-blue-900 group-hover:border-blue-300",
+  purple: "bg-purple-50 border-purple-100 text-purple-900 group-hover:border-purple-300",
+  green: "bg-green-50 border-green-100 text-green-900 group-hover:border-green-300",
+};
+
+const iconStyles: Record<ThemeColor, string> = {
+  blue: "bg-blue-500 text-white shadow-blue-200",
+  purple: "bg-purple-500 text-white shadow-purple-200",
+  green: "bg-green-500 text-white shadow-green-200",
+};
+
+const featureStyles: Record<ThemeColor, string> = {
+  blue: "text-blue-600",
+  purple: "text-purple-600",
+  green: "text-green-600",
+};
+
+// --- Main Component ---
 
 const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="py-10 sm:py-12 md:py-16 lg:py-20 bg-card/50 backdrop-blur-sm relative z-10"
+      className="py-16 sm:py-24 bg-white relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <header className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3 md:mb-4">
-            What We Offer
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
-            Patient, age-appropriate guidance in a small-group, focused learning
-            environment.
-          </p>
-        </header>
+      {/* Background Decor (Optional Subtle Gradient) */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-50 via-white to-white -z-10" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          {services.map((service, index) => {
-            const colors = colorClasses[service.color];
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-xs font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3 h-3 text-orange-500 fill-orange-500" />
+            Our Programs
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Academic Excellence for Every Student
+          </h2>
+          <p className="text-lg text-slate-600 leading-relaxed">
+            We provide patient, age-appropriate guidance in a focused learning
+            environment designed to build confidence and mastery.
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => {
+            const cardTheme = themeStyles[service.color];
+            const iconTheme = iconStyles[service.color];
+            const checkTheme = featureStyles[service.color];
+
             return (
               <article
-                key={index}
-                className={`card-hover bg-card p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl border-2 ${colors.border} shadow-lg relative overflow-hidden group`}
+                key={service.id}
+                className={`group relative p-8 rounded-3xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${cardTheme}`}
               >
+                {/* Icon Box */}
                 <div
-                  className={`absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 ${colors.light} rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[100px] -mr-4 -mt-4 sm:-mr-6 sm:-mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-500`}
-                  aria-hidden="true"
-                />
-                <div className="relative z-10">
-                  <div
-                    className={`${colors.bg} w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-primary-foreground shadow-lg`}
-                  >
-                    {service.icon}
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-1.5 sm:mb-2 md:mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-xs sm:text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-1 sm:space-y-1.5 md:space-y-2 text-xs sm:text-sm text-muted-foreground">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-1.5 sm:gap-2">
-                        <CheckCircle
-                          size={12}
-                          className={`${colors.check} shrink-0`}
-                        />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 group-hover:scale-110 ${iconTheme}`}
+                >
+                  {service.icon}
                 </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  {service.description}
+                </p>
+
+                {/* Features List */}
+                <ul className="space-y-3">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <CheckCircle2
+                        className={`w-5 h-5 shrink-0 mt-0.5 ${checkTheme}`}
+                      />
+                      <span className="text-sm font-medium text-slate-700">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             );
           })}
         </div>
+        
+        
+
       </div>
     </section>
   );
