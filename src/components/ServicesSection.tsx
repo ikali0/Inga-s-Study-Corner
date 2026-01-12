@@ -14,7 +14,7 @@ interface Service {
 }
 const services: Service[] = [{
   id: "math",
-  icon: <Sigma className="w-6 h-6" />,
+  icon: <Sigma className="w-[18px] h-[18px]" />,
   title: "Math Mastery",
   description: 'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
   color: "blue",
