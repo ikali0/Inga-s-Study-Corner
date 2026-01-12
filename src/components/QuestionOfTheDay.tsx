@@ -18,10 +18,21 @@ import {
 } from "lucide-react";
 
 // ==========================================
-// 1. DATA & CONFIGURATION
+// 1. TYPES & CONFIGURATION
 // ==========================================
 
 type Subject = "math" | "science" | "english" | "social-studies";
+
+// This interface fixes the TS2304 error
+interface Question {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  hint: string;
+  funFact: string;
+  subject: Subject;
+}
 
 const SUBJECT_CONFIG = {
   math: { badge: "bg-blue-100 text-blue-700 border-blue-200", icon: <Calculator className="w-4 h-4" />, label: "Math" },
@@ -43,12 +54,106 @@ const SUBJECT_CONFIG = {
 };
 
 // ==========================================
-// 2. ADAPTIVE GENERATORS (AI-LOGIC)
+// 2. ADAPTIVE GENERATORS
 // ==========================================
+
+// Helper to format question objects with proper typing
+function createQuestionObj(
+  id: string,
+  q: string,
+  a: string,
+  meta: [string, Subject],
+  level: number,
+  distractors?: string[],
+): Question {
+  const options = distractors
+    ? [a, ...distractors]
+    : [a, (parseFloat(a) + 2).toString(), (parseFloat(a) - 1).toString(), (parseFloat(a) * 2).toString()];
+
+  const shuffled = [...options].sort(() => Math.random() - 0.5);
+
+  return {
+    id,
+    question: q,
+    options: shuffled,
+    correctIndex: shuffled.indexOf(a),
+    funFact: meta[0],
+    subject: meta[1],
+    hint: "Think carefully about the options!",
+  };
+}
+
+const generateMath = (seed: number, level: number): Question => {
+  const type = seed % 2;
+  const range = level * 10;
+  let a = (seed % range) + 2;
+  let b = (seed % (level + 5)) + 2;
+
+  const question = type === 0 ? `Solve: ${a} × ${b} + ${level}` : `What is ${level * 5}% of ${a * 20}?`;
+  const answer = type === 0 ? a * b + level : (a * 20 * (level * 5)) / 100;
+
+  return createQuestionObj(
+    `math-${seed}`,
+    question,
+    answer.toString(),
+    ["Zero is the only number that cannot be represented by Roman numerals.", "math"],
+    level,
+  );
+};
+
+const generateEnglish = (seed: number, level: number): Question => {
+  const bank = [
+    { q: "Which is a NOUN?", a: "Happiness", d: ["Quickly", "Beautiful", "Run"] },
+    { q: "Antonym of 'Vivid'?", a: "Dull", d: ["Bright", "Shiny", "Clear"] },
+    { q: "Identify the 'Oxymoron'.", a: "Deafening Silence", d: ["Big House", "Fast Car", "Sweet Jam"] },
+  ];
+  const item = bank[seed % bank.length];
+  return createQuestionObj(
+    `eng-${seed}`,
+    item.q,
+    item.a,
+    ["The word 'set' has the most definitions in English.", "english"],
+    level,
+    item.d,
+  );
+};
+
+const generateScience = (seed: number, level: number): Question => {
+  const bank = [
+    { q: "Planet closest to the Sun?", a: "Mercury", d: ["Venus", "Mars", "Earth"] },
+    { q: "Symbol for Gold?", a: "Au", d: ["Ag", "Fe", "Gd"] },
+    { q: "Powerhouse of the cell?", a: "Mitochondria", d: ["Nucleus", "Ribosome", "Vacuole"] },
+  ];
+  const item = bank[seed % bank.length];
+  return createQuestionObj(
+    `sci-${seed}`,
+    item.q,
+    item.a,
+    ["Bananas are slightly radioactive!", "science"],
+    level,
+    item.d,
+  );
+};
+
+const generateSocialStudies = (seed: number, level: number): Question => {
+  const bank = [
+    { q: "Largest continent?", a: "Asia", d: ["Africa", "Europe", "NA"] },
+    { q: "Year of Magna Carta?", a: "1215", d: ["1066", "1492", "1776"] },
+    { q: "Smallest country?", a: "Vatican City", d: ["Monaco", "Malta", "San Marino"] },
+  ];
+  const item = bank[seed % bank.length];
+  return createQuestionObj(
+    `ss-${seed}`,
+    item.q,
+    item.a,
+    ["Russia has more surface area than Pluto.", "social-studies"],
+    level,
+    item.d,
+  );
+};
 
 const generateQuestion = (seed: number, level: number, subject: Subject): Question => {
   const hash = Math.abs(seed);
-
   switch (subject) {
     case "math":
       return generateMath(hash, level);
@@ -63,107 +168,12 @@ const generateQuestion = (seed: number, level: number, subject: Subject): Questi
   }
 };
 
-// --- SUBJECT ENGINES ---
-
-function generateMath(seed: number, level: number) {
-  const type = seed % 2;
-  const range = level * 10;
-  let a = (seed % range) + 2;
-  let b = (seed % (level + 5)) + 2;
-
-  const question = type === 0 ? `Solve: ${a} × ${b} + ${level}` : `What is ${level * 5}% of ${a * 20}?`;
-  const answer = type === 0 ? a * b + level : (a * 20 * (level * 5)) / 100;
-
-  return createQuestionObj(
-    `math-${seed}`,
-    question,
-    answer.toString(),
-    ["Math fact: Zero is the only number that cannot be represented by Roman numerals.", "math"],
-    level,
-  );
-}
-
-function generateEnglish(seed: number, level: number) {
-  const bank = [
-    { q: "Which is a NOUN?", a: "Happiness", d: ["Quickly", "Beautiful", "Run"], lv: 1 },
-    { q: "Antonym of 'Vivid'?", a: "Dull", d: ["Bright", "Shiny", "Clear"], lv: 3 },
-    { q: "Identify the 'Oxymoron'.", a: "Deafening Silence", d: ["Big House", "Fast Car", "Sweet Jam"], lv: 5 },
-  ];
-  const item = bank[seed % bank.length];
-  return createQuestionObj(
-    `eng-${seed}`,
-    item.q,
-    item.a,
-    ["The word 'set' has the most definitions in English.", "english"],
-    level,
-    item.d,
-  );
-}
-
-function generateScience(seed: number, level: number) {
-  const bank = [
-    { q: "Planet closest to the Sun?", a: "Mercury", d: ["Venus", "Mars", "Earth"], lv: 1 },
-    { q: "Symbol for Gold?", a: "Au", d: ["Ag", "Fe", "Gd"], lv: 3 },
-    { q: "Powerhouse of the cell?", a: "Mitochondria", d: ["Nucleus", "Ribosome", "Vacuole"], lv: 2 },
-  ];
-  const item = bank[seed % bank.length];
-  return createQuestionObj(
-    `sci-${seed}`,
-    item.q,
-    item.a,
-    ["Bananas are slightly radioactive!", "science"],
-    level,
-    item.d,
-  );
-}
-
-function generateSocialStudies(seed: number, level: number) {
-  const bank = [
-    { q: "Largest continent?", a: "Asia", d: ["Africa", "Europe", "NA"], lv: 1 },
-    { q: "Year of Magna Carta?", a: "1215", d: ["1066", "1492", "1776"], lv: 5 },
-    { q: "Smallest country?", a: "Vatican City", d: ["Monaco", "Malta", "San Marino"], lv: 3 },
-  ];
-  const item = bank[seed % bank.length];
-  return createQuestionObj(
-    `ss-${seed}`,
-    item.q,
-    item.a,
-    ["Russia has more surface area than Pluto.", "social-studies"],
-    level,
-    item.d,
-  );
-}
-
-// Helper to format question objects
-function createQuestionObj(
-  id: string,
-  q: string,
-  a: string,
-  meta: [string, Subject],
-  level: number,
-  distractors?: string[],
-) {
-  const options = distractors
-    ? [a, ...distractors]
-    : [a, (parseFloat(a) + 2).toString(), (parseFloat(a) - 1).toString(), (parseFloat(a) * 2).toString()];
-  const shuffled = options.sort(() => Math.random() - 0.5);
-  return {
-    id,
-    question: q,
-    options: shuffled,
-    correctIndex: shuffled.indexOf(a),
-    funFact: meta[0],
-    subject: meta[1],
-    hint: "Think carefully about the options!",
-  };
-}
-
 // ==========================================
 // 3. MAIN COMPONENT
 // ==========================================
 
 export default function QuestionOfTheDay() {
-  const [activeQuestion, setActiveQuestion] = useState<any>(null);
+  const [activeQuestion, setActiveQuestion] = useState<Question | null>(null);
   const [status, setStatus] = useState<"unanswered" | "correct" | "wrong">("unanswered");
   const [level, setLevel] = useState(1);
   const [streak, setStreak] = useState(0);
@@ -186,12 +196,12 @@ export default function QuestionOfTheDay() {
   }, [loadQuestion]);
 
   const handleAnswer = (idx: number) => {
-    if (status !== "unanswered") return;
+    if (status !== "unanswered" || !activeQuestion) return;
     const isCorrect = idx === activeQuestion.correctIndex;
     setStatus(isCorrect ? "correct" : "wrong");
 
     if (isCorrect) {
-      const newLevel = level < 5 ? level + 1 : 5;
+      const newLevel = Math.min(level + 1, 5);
       setLevel(newLevel);
       setStreak((s) => s + 1);
       localStorage.setItem("edu-level", newLevel.toString());
@@ -205,7 +215,7 @@ export default function QuestionOfTheDay() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
-      {/* Skill Progression Header */}
+      {/* Level Header */}
       <div className="flex items-center justify-between bg-white p-4 rounded-2xl shadow-sm border">
         <div className="flex flex-col">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Skill Level</span>
@@ -224,9 +234,10 @@ export default function QuestionOfTheDay() {
         </div>
       </div>
 
+      {/* Question Card */}
       <div
         className={cn(
-          "bg-white rounded-3xl border-2 p-8 shadow-xl transition-all",
+          "bg-white rounded-3xl border-2 p-8 shadow-xl transition-all duration-300",
           status === "correct" ? "border-green-500" : status === "wrong" ? "border-red-500" : "border-slate-100",
         )}
       >
@@ -251,7 +262,7 @@ export default function QuestionOfTheDay() {
               className={cn(
                 "p-4 rounded-xl border-2 text-left font-semibold transition-all flex justify-between items-center",
                 status === "unanswered"
-                  ? "hover:border-indigo-500 bg-slate-50 border-transparent"
+                  ? "hover:border-indigo-500 bg-slate-50 border-transparent active:scale-[0.98]"
                   : i === activeQuestion.correctIndex
                     ? "bg-green-50 border-green-500 text-green-700"
                     : "bg-red-50 border-red-200 text-red-400 opacity-60",
@@ -264,13 +275,16 @@ export default function QuestionOfTheDay() {
         </div>
 
         {status !== "unanswered" && (
-          <div className="mt-8 pt-8 border-t animate-in fade-in slide-in-from-bottom-4">
+          <div className="mt-8 pt-8 border-t animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-indigo-50 p-4 rounded-2xl mb-6">
-              <p className="text-sm text-indigo-900 leading-relaxed">
-                <span className="font-bold mr-2">Fun Fact:</span> {activeQuestion.funFact}
+              <p className="text-sm text-indigo-900">
+                <span className="font-bold mr-2">Did you know?</span> {activeQuestion.funFact}
               </p>
             </div>
-            <Button onClick={() => loadQuestion(true)} className="w-full bg-slate-900 text-white h-12 rounded-xl">
+            <Button
+              onClick={() => loadQuestion(true)}
+              className="w-full bg-slate-900 text-white h-12 rounded-xl hover:bg-slate-800"
+            >
               Next Challenge <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
