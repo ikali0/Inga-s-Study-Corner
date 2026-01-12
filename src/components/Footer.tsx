@@ -1,33 +1,19 @@
-import {
-  Rocket,
-  ShieldCheck,
-  GraduationCap,
-  Clock,
-  Mail,
-  Phone,
-  MapPin,
-  Calendar,
-} from "lucide-react";
-
+import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from "lucide-react";
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
-
 const tutorInfo = {
   email: "ingakaltak7@gmail.com",
   phone: "215-791-5906",
   address: "625 Red Lion Rd, Huntingdon Valley, PA 19006",
-  location: "Huntington Valley Library",
+  location: "Huntington Valley Library"
 };
-
-const Footer = ({ onNavigate }: FooterProps) => {
-  return (
-    <footer className="bg-secondary text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 lg:py-14">
+const Footer = ({
+  onNavigate
+}: FooterProps) => {
+  return <footer className="text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 lg:py-14 bg-lime-50">
       {/* Top gradient bar */}
-      <div
-        className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink"
-        aria-hidden="true"
-      />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6">
         {/* Brand & Mission */}
@@ -79,22 +65,23 @@ const Footer = ({ onNavigate }: FooterProps) => {
             Explore
           </h4>
           <ul className="space-y-1.5 sm:space-y-2">
-            {[
-              { id: "services", label: "Tutoring Services" },
-              { id: "about", label: "Why Parents Love It" },
-              { id: "reviews", label: "Parent Reviews" },
-              { id: "book", label: "Book Consultation" },
-            ].map((item) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => onNavigate(item.id)}
-                  className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs sm:text-sm focus:outline-none focus-visible:text-primary"
-                >
+            {[{
+            id: "services",
+            label: "Tutoring Services"
+          }, {
+            id: "about",
+            label: "Why Parents Love It"
+          }, {
+            id: "reviews",
+            label: "Parent Reviews"
+          }, {
+            id: "book",
+            label: "Book Consultation"
+          }].map(item => <li key={item.id}>
+                <button type="button" onClick={() => onNavigate(item.id)} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs sm:text-sm focus:outline-none focus-visible:text-primary">
                   {item.label}
                 </button>
-              </li>
-            ))}
+              </li>)}
           </ul>
         </nav>
 
@@ -104,19 +91,13 @@ const Footer = ({ onNavigate }: FooterProps) => {
             Get in Touch
           </h4>
           <address className="bg-secondary-foreground/5 p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border border-secondary-foreground/10 not-italic">
-            <a
-              href={`mailto:${tutorInfo.email}`}
-              className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors"
-            >
+            <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Mail size={14} className="text-pink" />
               </div>
               <span className="break-all text-xs sm:text-sm">{tutorInfo.email}</span>
             </a>
-            <a
-              href={`tel:${tutorInfo.phone}`}
-              className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors"
-            >
+            <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Phone size={14} className="text-green" />
               </div>
@@ -145,8 +126,6 @@ const Footer = ({ onNavigate }: FooterProps) => {
           teaching since 2018. ✨
         </p>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
