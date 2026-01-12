@@ -6,17 +6,17 @@ interface Feature {
   description: string;
 }
 const features: Feature[] = [{
-  icon: <Smile className="text-blue w-5 h-5 md:h-[20px] md:w-[20px]" />,
+  icon: <Smile className="text-blue w-5 h-5 md:w-6 md:h-6" />,
   iconBg: "bg-blue/20",
   title: "Builds Confidence, Not Pressure",
   description: "A calm, encouraging space to grow. We tackle anxiety before algebra."
 }, {
-  icon: <Zap className="text-purple w-5 h-5 md:h-[20px] md:w-[20px]" />,
+  icon: <Zap className="text-purple w-5 h-5 md:w-6 md:h-6" />,
   iconBg: "bg-purple/20",
   title: "Encourages Thinking, Not Memorization",
   description: "Visual learner? We draw. Kinesthetic? We build. Adapted to YOUR child."
 }, {
-  icon: <Heart className="text-pink w-5 h-5 md:h-[20px] md:w-[20px]" />,
+  icon: <Heart className="text-pink w-5 h-5 md:w-6 md:h-6" />,
   iconBg: "bg-pink/20",
   title: "Supports School Success",
   description: "Library-based, distraction-free environment supporting success across STEM subjects."
@@ -36,21 +36,21 @@ const AboutSection = () => {
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
                 Why Parents Choose Us
               </h2>
-              <p className="text-sm max-w-2xl mx-auto sm:text-sm font-serif font-normal text-orange-950 bg-lime-50 text-center">
+              <p className="text-secondary-foreground/80 text-sm max-w-2xl mx-auto sm:text-sm">
                 A learning environment designed with care, patience, and proven results.
               </p>
             </header>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-              {features.map((feature, index) => <article key={index} className="flex gap-3 p-3 sm:p-4 rounded-lg border sm:rounded-sm opacity-90 border-solid md:gap-[14px] border-blue-300 bg-lime-50">
+              {features.map((feature, index) => <article key={index} className="flex gap-3 p-3 sm:p-4 rounded-lg border bg-lime-50 sm:rounded-sm opacity-90 border-solid md:gap-[14px] border-blue-300">
                   <div className={`${feature.iconBg} p-2 sm:p-2.5 md:p-3 rounded-lg md:rounded-xl h-fit shrink-0`}>
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 font-serif lg:text-sm">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 lg:text-base">
                       {feature.title}
                     </h3>
-                    <p className="text-secondary-foreground/80 text-xs sm:text-sm leading-relaxed md:text-xs font-serif">
+                    <p className="text-secondary-foreground/80 text-xs sm:text-sm leading-relaxed md:text-sm">
                       {feature.description}
                     </p>
                   </div>
