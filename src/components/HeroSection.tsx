@@ -28,7 +28,7 @@ const HeroSection = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
         {/* Text Content */}
         <div className="space-y-5 sm:space-y-6 md:space-y-7 lg:space-y-8 z-10 order-2 md:order-1 text-center md:text-left">
-          <div className="inline-block bg-primary/10 text-primary px-3 py-1.5 rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+          <div className="inline-block bg-primary/10 text-primary rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300 px-[10px] py-[4px]">
             ✨ Interactive Learning for Ages 8–14
           </div>
 
@@ -43,7 +43,7 @@ const HeroSection = ({
           <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted-foreground font-medium max-w-lg leading-relaxed mx-auto md:mx-0">
             Inga's Study Corner is a supportive after-school learning space where
             students strengthen their understanding of{" "}
-            <strong className="text-foreground">math, english and science</strong>{" "}
+            <strong className="text-foreground">Math, English and Science</strong>{" "}
             through clear explanations, guided practice, and curiosity-driven
             learning.
           </p>
