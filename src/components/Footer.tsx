@@ -20,9 +20,9 @@ const Footer = ({
         <div className="sm:col-span-2 lg:col-span-1">
           <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
             <Rocket className="text-primary" size={20} />
-            <span>Inga's Study Corner</span>
+            <span className="text-sm">Inga's Study Corner</span>
           </h3>
-          <p className="text-secondary-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm">
+          <p className="text-secondary-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-xs">
             More than just tutoring. We build the confidence and skills your child
             needs to thrive in school and beyond.
           </p>
@@ -34,25 +34,25 @@ const Footer = ({
 
         {/* Parent Trust Column */}
         <div>
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
+          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm">
             Parent Peace of Mind
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             <li className="flex items-start gap-2 sm:gap-3">
               <ShieldCheck className="text-green shrink-0" size={16} />
-              <span className="text-secondary-foreground/80 text-xs sm:text-sm">
+              <span className="text-secondary-foreground/80 text-xs sm:text-xs">
                 Safe & Vetted Environment
               </span>
             </li>
             <li className="flex items-start gap-2 sm:gap-3">
               <GraduationCap className="text-blue shrink-0" size={16} />
-              <span className="text-secondary-foreground/80 text-xs sm:text-sm">
+              <span className="text-secondary-foreground/80 text-xs sm:text-xs">
                 Patient, Expert Guidance
               </span>
             </li>
             <li className="flex items-start gap-2 sm:gap-3">
               <Clock className="text-purple shrink-0" size={16} />
-              <span className="text-secondary-foreground/80 text-xs sm:text-sm">
+              <span className="text-secondary-foreground/80 text-xs sm:text-xs">
                 Flexible After-School Hours
               </span>
             </li>
@@ -61,7 +61,7 @@ const Footer = ({
 
         {/* Quick Links */}
         <nav aria-label="Footer navigation">
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
+          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm">
             Explore
           </h4>
           <ul className="space-y-1.5 sm:space-y-2">
@@ -78,7 +78,7 @@ const Footer = ({
             id: "book",
             label: "Book Consultation"
           }].map(item => <li key={item.id}>
-                <button type="button" onClick={() => onNavigate(item.id)} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs sm:text-sm focus:outline-none focus-visible:text-primary">
+                <button type="button" onClick={() => onNavigate(item.id)} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs focus:outline-none focus-visible:text-primary sm:text-xs">
                   {item.label}
                 </button>
               </li>)}
@@ -87,7 +87,7 @@ const Footer = ({
 
         {/* Contact Info */}
         <div id="contact">
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
+          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm">
             Get in Touch
           </h4>
           <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic border-solid sm:rounded border-pink-500 bg-orange-100">
@@ -95,20 +95,20 @@ const Footer = ({
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border" />
               </div>
-              <span className="break-all text-xs sm:text-sm">{tutorInfo.email}</span>
+              <span className="break-all text-xs sm:text-xs">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid" />
               </div>
-              <span className="text-xs sm:text-sm">{tutorInfo.phone}</span>
+              <span className="text-xs sm:text-xs">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
               </div>
               <div className="text-xs sm:text-sm">
-                <span>{tutorInfo.location}</span>
+                <span className="text-xs">{tutorInfo.location}</span>
                 <br />
                 <span className="text-[10px] sm:text-xs text-secondary-foreground/60">
                   {tutorInfo.address}
