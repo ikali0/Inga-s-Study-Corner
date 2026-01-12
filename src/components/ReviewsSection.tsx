@@ -33,7 +33,7 @@ const ReviewsSection = () => {
               <div className="flex text-primary mb-2 sm:mb-3 md:mb-4" aria-label="5 star rating">
                 {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} className="sm:w-3.5 sm:h-3.5" fill="currentColor" />)}
               </div>
-              <blockquote className="text-muted-foreground mb-3 sm:mb-4 md:mb-5 lg:mb-6 italic text-xs sm:text-sm leading-relaxed">
+              <blockquote className="text-muted-foreground mb-3 sm:mb-4 md:mb-5 lg:mb-6 italic text-xs sm:text-sm leading-relaxed border border-orange-500 border-dashed">
                 "{review.quote}"
               </blockquote>
               <footer className="flex items-center gap-2 sm:gap-3">
