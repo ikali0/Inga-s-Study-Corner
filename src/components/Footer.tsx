@@ -90,22 +90,22 @@ const Footer = ({
           <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
             Get in Touch
           </h4>
-          <address className="bg-secondary-foreground/5 p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border border-secondary-foreground/10 not-italic">
+          <address className="p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border not-italic bg-orange-100 border-blue-300 border-solid">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <Mail size={14} className="text-pink" />
+                <Mail size={14} className="text-pink border-blue-300 border-solid border" />
               </div>
               <span className="break-all text-xs sm:text-sm">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <Phone size={14} className="text-green" />
+                <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid" />
               </div>
               <span className="text-xs sm:text-sm">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <MapPin size={14} className="text-blue" />
+                <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
               </div>
               <div className="text-xs sm:text-sm">
                 <span>{tutorInfo.location}</span>
