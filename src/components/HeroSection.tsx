@@ -81,7 +81,7 @@ const HeroSection = ({
             {/* Main Image Frame */}
             <div className="relative bg-card p-2 sm:p-2.5 md:p-3 rounded-2xl shadow-2xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500 border border-border/50 md:rounded-xl py-[10px] px-[10px]">
               <div className="rounded-xl md:rounded-2xl overflow-hidden aspect-[4/3] relative group">
-                <img alt="Kids learning together at Inga's Study Corner" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" src="/lovable-uploads/a0aa8e09-8040-4729-8a5d-2f83fdeda30d.png" />
+                <img alt="Kids learning together at Inga's Study Corner" loading="eager" src="/lovable-uploads/5fafd3c0-0a69-4f4c-a005-67c9a1b8929d.png" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 border border-purple-400 rounded-sm shadow-sm opacity-90" />
 
                 {/* Overlay Text */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/70 to-transparent p-3 sm:p-4 md:p-5 text-primary-foreground text-center">
