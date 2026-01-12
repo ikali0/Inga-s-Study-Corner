@@ -35,21 +35,21 @@ const Footer = ({
         {/* Parent Trust Column */}
         <div>
           
-          <ul className="space-y-2 sm:space-y-3">
+          <ul className="space-y-2 sm:space-y-3 border-pink-400 border-solid border-0 rounded-sm">
             <li className="flex items-start gap-2 sm:gap-3">
-              <ShieldCheck className="text-green shrink-0" size={16} />
+              <ShieldCheck size={16} className="text-green shrink-0 bg-blue-100 border-orange-300 border-solid border" />
               <span className="text-secondary-foreground/80 text-xs sm:text-xs font-serif text-center">
                 Safe & Vetted Environment
               </span>
             </li>
             <li className="flex items-start gap-2 sm:gap-3">
-              <GraduationCap className="text-blue shrink-0" size={16} />
+              <GraduationCap size={16} className="text-blue shrink-0 border-orange-300 border border-solid" />
               <span className="text-secondary-foreground/80 text-xs sm:text-xs font-serif">
                 Patient, Expert Guidance
               </span>
             </li>
             <li className="flex items-start gap-2 sm:gap-3">
-              <Clock className="text-purple shrink-0" size={16} />
+              <Clock size={16} className="text-purple shrink-0 border-solid border-orange-300 border" />
               <span className="text-secondary-foreground/80 text-xs sm:text-xs font-serif text-right">
                 Flexible After-School Hours
               </span>
@@ -79,7 +79,7 @@ const Footer = ({
               <span className="text-xs sm:text-xs">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
-              <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
+              <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
                 <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
               </div>
               <div className="text-xs sm:text-sm">
