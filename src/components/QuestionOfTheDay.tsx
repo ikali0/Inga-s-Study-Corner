@@ -256,7 +256,7 @@ const QuestionOfTheDay = () => {
   };
   if (!mounted || !activeQuestion) return null;
   const style = subjectStyles[activeQuestion.subject];
-  return <section className="py-6 sm:py-12 px-4 font-sans w-full max-w-4xl mx-auto">
+  return <section className="py-6 font-sans w-full max-w-4xl mx-auto px-[14px] sm:py-[40px]">
       <style>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
@@ -289,7 +289,7 @@ const QuestionOfTheDay = () => {
 
           <CardContent className="space-y-6">
             {/* Question Display */}
-            <div className="bg-slate-50 rounded-xl p-5 sm:p-6 border border-slate-100 min-h-[100px] flex items-center justify-center text-center py-[20px] px-[20px]">
+            <div className="bg-slate-50 rounded-xl p-5 sm:p-6 border border-slate-100 min-h-[100px] flex items-center justify-center text-center py-[12px] px-[12px]">
               <p className="text-lg sm:text-xl font-medium text-slate-800 leading-relaxed">
                 {activeQuestion.question}
               </p>
