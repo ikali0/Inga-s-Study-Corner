@@ -29,7 +29,7 @@ const AboutSection = () => {
           <div style={{
           backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
           backgroundSize: "20px 20px"
-        }} aria-hidden="true" className="absolute top-0 left-0 w-full h-full opacity-20 border-solid border border-transparent" />
+        }} aria-hidden="true" className="absolute top-0 left-0 w-full h-full opacity-20 border-solid border border-transparent med-purple-188" />
 
           <div className="relative z-10">
             <header className="text-center mb-6 sm:mb-8 md:mb-10">
@@ -47,7 +47,7 @@ const AboutSection = () => {
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 lg:text-lg">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 lg:text-base">
                       {feature.title}
                     </h3>
                     <p className="text-secondary-foreground/80 text-xs sm:text-sm leading-relaxed md:text-sm">
