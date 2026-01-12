@@ -1,32 +1,82 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
-import { Lightbulb, CheckCircle, XCircle, Sparkles, RotateCcw, Brain } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import * as React from "react";
+import { useState, useEffect, useCallback } from "react";
+import { cn } from "@/lib/utils"; // Ensure you have this utility or a simple class merger
+import { Button } from "@/components/ui/button"; // Assuming Button is still in its own file
+import {
+  Lightbulb,
+  CheckCircle,
+  XCircle,
+  Sparkles,
+  RotateCcw,
+  Brain,
+  ArrowRight,
+  Dna,
+  Calculator,
+  BookOpen,
+} from "lucide-react";
 
-// --- Types ---
+// ==========================================
+// 1. UI COMPONENTS (Card System)
+// ==========================================
+
+const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)} {...props} />
+));
+Card.displayName = "Card";
+
+const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("flex flex-col space-y-1.5 p-6", className)} {...props} />
+  ),
+);
+CardHeader.displayName = "CardHeader";
+
+const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h3 ref={ref} className={cn("text-2xl font-semibold leading-none tracking-tight", className)} {...props} />
+  ),
+);
+CardTitle.displayName = "CardTitle";
+
+const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  ({ className, ...props }, ref) => (
+    <p ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
+  ),
+);
+CardDescription.displayName = "CardDescription";
+
+const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />,
+);
+CardContent.displayName = "CardContent";
+
+const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("flex items-center p-6 pt-0", className)} {...props} />
+  ),
+);
+CardFooter.displayName = "CardFooter";
+
+// ==========================================
+// 2. GAME LOGIC & DATA
+// ==========================================
+
+type Subject = "math" | "science" | "english";
+
 interface Question {
-  id: number;
+  id: string | number;
   question: string;
   options: string[];
   correctIndex: number;
   hint: string;
   funFact: string;
-  subject: "math" | "science" | "english";
+  subject: Subject;
 }
 
-// --- Data ---
-const questions: Question[] = [
+// --- Static Database (Science & English) ---
+const staticQuestions: Question[] = [
   {
-    id: 1,
-    question: "If you have 3 pizzas and each pizza has 8 slices, how many slices do you have in total?",
-    options: ["24 slices", "21 slices", "11 slices", "32 slices"],
-    correctIndex: 0,
-    hint: "Try multiplying the number of pizzas by the slices per pizza! 🍕",
-    funFact: "The largest pizza ever made was 131 feet wide!",
-    subject: "math",
-  },
-  {
-    id: 2,
+    id: "s1",
     question: "What is the largest planet in our solar system?",
     options: ["Earth", "Saturn", "Jupiter", "Neptune"],
     correctIndex: 2,
@@ -35,7 +85,7 @@ const questions: Question[] = [
     subject: "science",
   },
   {
-    id: 3,
+    id: "e1",
     question: "Which word is a noun: 'quickly', 'happiness', 'beautiful', or 'run'?",
     options: ["quickly", "happiness", "beautiful", "run"],
     correctIndex: 1,
@@ -44,16 +94,7 @@ const questions: Question[] = [
     subject: "english",
   },
   {
-    id: 4,
-    question: "What is 25% of 80?",
-    options: ["15", "20", "25", "40"],
-    correctIndex: 1,
-    hint: "25% means one quarter. Try dividing by 4! ✨",
-    funFact: "The word 'percent' comes from Latin meaning 'per hundred'!",
-    subject: "math",
-  },
-  {
-    id: 5,
+    id: "s2",
     question: "Which part of the plant makes food using sunlight?",
     options: ["Roots", "Stem", "Leaves", "Flowers"],
     correctIndex: 2,
@@ -62,7 +103,7 @@ const questions: Question[] = [
     subject: "science",
   },
   {
-    id: 6,
+    id: "e2",
     question: "What is the past tense of 'swim'?",
     options: ["swimmed", "swam", "swum", "swimming"],
     correctIndex: 1,
@@ -71,283 +112,351 @@ const questions: Question[] = [
     subject: "english",
   },
   {
-    id: 7,
-    question: "If a rectangle has a length of 6 and width of 4, what is its area?",
-    options: ["10", "20", "24", "28"],
+    id: "s3",
+    question: "What gas do humans need to breathe in to survive?",
+    options: ["Carbon Dioxide", "Helium", "Oxygen", "Nitrogen"],
     correctIndex: 2,
-    hint: "Area = length × width 📐",
-    funFact: "Ancient Egyptians used geometry to rebuild field boundaries after the Nile flooded!",
-    subject: "math",
+    hint: "Trees release this gas, and we take it in! 🌬️",
+    funFact: "The air we breathe is actually 78% Nitrogen and only 21% Oxygen.",
+    subject: "science",
+  },
+  {
+    id: "e3",
+    question: "Identify the antonym of 'Artificial'.",
+    options: ["Fake", "Natural", "Constructed", "Man-made"],
+    correctIndex: 1,
+    hint: "An antonym means the opposite. Think of something found in nature.",
+    funFact: "Antonyms are words with opposite meanings, like 'hot' and 'cold'.",
+    subject: "english",
   },
 ];
 
-// Normalized Tailwind Colors (using standard palette steps)
+// --- Procedural Math Generator (AI Logic) ---
+const generateMathQuestion = (seed: number): Question => {
+  // Use the seed to deterministically choose a type of math problem
+  const type = seed % 3; // 0: Arithmetic, 1: Geometry, 2: Percentage
+
+  if (type === 0) {
+    // Arithmetic: (A x B) + C
+    const a = (seed % 9) + 2; // 2 to 10
+    const b = (seed % 8) + 3; // 3 to 10
+    const c = (seed % 15) + 5; // 5 to 20
+    const ans = a * b + c;
+
+    // Generate smart distractors (close to the real answer)
+    const options = [`${ans}`, `${ans + a}`, `${ans - b}`, `${(a + c) * b}`].sort(() => Math.random() - 0.5);
+
+    return {
+      id: `m-${seed}`,
+      question: `Solve: (${a} × ${b}) + ${c} = ?`,
+      options: options,
+      correctIndex: options.indexOf(`${ans}`),
+      hint: `Remember Order of Operations (PEMDAS): Multiply first, then add!`,
+      funFact:
+        "The equal sign (=) was invented in 1557 by a Welsh mathematician who was tired of writing 'is equal to'.",
+      subject: "math",
+    };
+  } else if (type === 1) {
+    // Geometry: Area of Rectangle
+    const w = (seed % 8) + 3;
+    const l = w + (seed % 5) + 2;
+    const area = w * l;
+
+    const options = [
+      `${area}`,
+      `${2 * (w + l)}`, // Perimeter (common mistake)
+      `${area + w}`,
+      `${w * w}`,
+    ].sort(() => Math.random() - 0.5);
+
+    return {
+      id: `m-${seed}`,
+      question: `A rectangle has a width of ${w} and a length of ${l}. What is its area?`,
+      options: options,
+      correctIndex: options.indexOf(`${area}`),
+      hint: "Area = Length × Width 📐",
+      funFact: "Geometry means 'Earth Measurement' in Greek!",
+      subject: "math",
+    };
+  } else {
+    // Percentage
+    const pct = [10, 20, 25, 50][seed % 4];
+    const whole = ((seed % 10) + 1) * 100; // 100, 200, ... 1000
+    const ans = (whole * pct) / 100;
+
+    const options = [`${ans}`, `${ans / 2}`, `${ans * 2}`, `${whole - pct}`].sort(() => Math.random() - 0.5);
+
+    return {
+      id: `m-${seed}`,
+      question: `What is ${pct}% of ${whole}?`,
+      options: options,
+      correctIndex: options.indexOf(`${ans}`),
+      hint: `Try converting ${pct}% to a decimal (${pct / 100}) and multiplying!`,
+      funFact: "Percentages are reversible! 8% of 25 is the same as 25% of 8.",
+      subject: "math",
+    };
+  }
+};
+
+// --- Styles ---
 const subjectStyles = {
   math: {
     badge: "bg-blue-100 text-blue-700 border-blue-200",
-    icon: "text-blue-600",
+    icon: <Calculator className="w-4 h-4" />,
+    label: "Math",
   },
   science: {
     badge: "bg-green-100 text-green-700 border-green-200",
-    icon: "text-green-600",
+    icon: <Dna className="w-4 h-4" />,
+    label: "Science",
   },
   english: {
     badge: "bg-purple-100 text-purple-700 border-purple-200",
-    icon: "text-purple-600",
+    icon: <BookOpen className="w-4 h-4" />,
+    label: "English",
   },
 };
 
-const subjectLabels = {
-  math: "🧮 Math",
-  science: "🔬 Science",
-  english: "📚 English",
-};
+// ==========================================
+// 3. MAIN COMPONENT
+// ==========================================
 
 const QuestionOfTheDay = () => {
   const [mounted, setMounted] = useState(false);
+  const [activeQuestion, setActiveQuestion] = useState<Question | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showHint, setShowHint] = useState(false);
-  const [hasAnswered, setHasAnswered] = useState(false);
-  const [isWrongAnimation, setIsWrongAnimation] = useState(false);
+  const [status, setStatus] = useState<"unanswered" | "correct" | "wrong">("unanswered");
+  const [isDaily, setIsDaily] = useState(true); // Is this the official "Question of the Day"?
 
-  // 1. Determine Question of the Day based on Date
-  // We use useMemo so this is stable, but we allow it to re-calc if the date changes
-  const todayQuestion = useMemo(() => {
+  // 1. Core Logic: Get the "Question of the Day"
+  const getDailyQuestion = useCallback(() => {
     const now = new Date();
-    // Create a stable seed from the date string (e.g., "Mon Jan 01 2024")
-    // This ensures everyone sees the same question on the same day
-    const seed = now.toDateString();
+    const seedString = now.toDateString(); // "Mon Jan 01 2024"
+
+    // Create a numeric hash from the date
     let hash = 0;
-    for (let i = 0; i < seed.length; i++) {
-      hash = seed.charCodeAt(i) + ((hash << 5) - hash);
+    for (let i = 0; i < seedString.length; i++) {
+      hash = seedString.charCodeAt(i) + ((hash << 5) - hash);
     }
-    const index = Math.abs(hash) % questions.length;
-    return questions[index];
+    const positiveHash = Math.abs(hash);
+
+    // Logic:
+    // - Even days: Math (Generated)
+    // - Odd days: Static (Science/English)
+    if (positiveHash % 2 === 0) {
+      return generateMathQuestion(positiveHash);
+    } else {
+      const index = positiveHash % staticQuestions.length;
+      return staticQuestions[index];
+    }
   }, []);
 
-  // 2. Hydration Fix & LocalStorage Check
+  // 2. Logic: Generate a random "Next" question (Practice Mode)
+  const getNextRandomQuestion = useCallback(() => {
+    const randomSeed = Math.floor(Math.random() * 10000);
+    // 50% chance of Math, 50% chance of Static
+    if (Math.random() > 0.5) {
+      return generateMathQuestion(randomSeed);
+    } else {
+      const index = randomSeed % staticQuestions.length;
+      return staticQuestions[index];
+    }
+  }, []);
+
+  // 3. Initialize
   useEffect(() => {
     setMounted(true);
+    const dailyQ = getDailyQuestion();
+    setActiveQuestion(dailyQ);
 
-    // Check localStorage
+    // Check LocalStorage only for the DAILY question
     const savedData = localStorage.getItem("qotd-answer");
     if (savedData) {
       try {
-        const { date, answered, answer } = JSON.parse(savedData);
-        const today = new Date().toDateString();
-        // Only restore if it's actually from today
-        if (date === today && answered) {
-          setHasAnswered(true);
+        const { date, answered, answer, questionId } = JSON.parse(savedData);
+        if (date === new Date().toDateString() && questionId === dailyQ.id) {
           setSelectedAnswer(answer);
+          setStatus(answer === dailyQ.correctIndex ? "correct" : "wrong");
         } else {
-          // Clear old data if it's a new day
           localStorage.removeItem("qotd-answer");
         }
       } catch (e) {
-        console.error("Failed to parse QOTD data", e);
+        console.error(e);
       }
     }
-  }, []);
+  }, [getDailyQuestion]);
 
-  const handleAnswerSelect = useCallback(
-    (index: number) => {
-      if (hasAnswered) return;
+  const handleAnswerSelect = (index: number) => {
+    if (status !== "unanswered" || !activeQuestion) return;
 
-      setSelectedAnswer(index);
-      setHasAnswered(true);
+    setSelectedAnswer(index);
+    const isCorrect = index === activeQuestion.correctIndex;
+    setStatus(isCorrect ? "correct" : "wrong");
 
-      const isCorrect = index === todayQuestion.correctIndex;
-
-      // Trigger visual feedback
-      if (!isCorrect) {
-        setIsWrongAnimation(true);
-        setTimeout(() => setIsWrongAnimation(false), 500); // Reset animation class
-      }
-
-      // Save to localStorage
-      const today = new Date().toDateString();
+    // Only save to localStorage if it's the official daily question
+    if (isDaily) {
       localStorage.setItem(
         "qotd-answer",
         JSON.stringify({
-          date: today,
+          date: new Date().toDateString(),
           answered: true,
           answer: index,
+          questionId: activeQuestion.id,
         }),
       );
-    },
-    [hasAnswered, todayQuestion.correctIndex],
-  );
+    }
+  };
 
-  const handleTryAgain = useCallback(() => {
+  const handleNextQuestion = () => {
+    // Reset state for new question
+    setIsDaily(false);
     setSelectedAnswer(null);
-    setHasAnswered(false);
     setShowHint(false);
-    // We don't remove the localStorage item here immediately to prevent
-    // accidental refresh-cheating, but for UI flow we reset state.
-    // If you want to allow infinite retries on refresh, keep removeItem.
-    localStorage.removeItem("qotd-answer");
-  }, []);
+    setStatus("unanswered");
+    setActiveQuestion(getNextRandomQuestion());
+  };
 
-  // Prevent Hydration Mismatch
-  if (!mounted) return null;
+  if (!mounted || !activeQuestion) return null;
 
-  const isCorrect = selectedAnswer === todayQuestion.correctIndex;
-  const currentSubjectStyle = subjectStyles[todayQuestion.subject];
+  const style = subjectStyles[activeQuestion.subject];
 
   return (
-    <section
-      id="question-of-the-day"
-      className="py-8 sm:py-12 px-4 sm:px-6 relative z-10 font-sans"
-      aria-labelledby="qotd-heading"
-    >
+    <section className="py-8 sm:py-12 px-4 font-sans">
       <style>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
           25% { transform: translateX(-5px); }
           75% { transform: translateX(5px); }
         }
-        .animate-shake {
-          animation: shake 0.4s ease-in-out;
-        }
+        .animate-shake { animation: shake 0.4s ease-in-out; }
       `}</style>
 
       <div className="max-w-3xl mx-auto">
-        <Card className="overflow-hidden border-2 border-slate-200 shadow-xl bg-white">
-          {/* Decorative header bar */}
-          <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-2" aria-hidden="true" />
+        <Card className="overflow-hidden border-2 border-slate-200 shadow-xl bg-white transition-all duration-300">
+          <div
+            className={`h-2 w-full transition-colors duration-500 ${
+              status === "correct"
+                ? "bg-green-500"
+                : status === "wrong"
+                  ? "bg-red-500"
+                  : "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+            }`}
+          />
 
-          <CardHeader className="pb-2 sm:pb-4">
+          <CardHeader className="pb-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              <CardTitle
-                id="qotd-heading"
-                className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-slate-800"
-              >
-                <Sparkles className="w-6 h-6 text-yellow-500 fill-yellow-500" aria-hidden="true" />
-                Question of the Day
+              <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-slate-800">
+                <Sparkles className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                {isDaily ? "Question of the Day" : "Practice Mode"}
               </CardTitle>
-              <span
-                className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border ${currentSubjectStyle.badge}`}
+              <div
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold border ${style.badge}`}
               >
-                {subjectLabels[todayQuestion.subject]}
-              </span>
+                {style.icon}
+                {style.label}
+              </div>
             </div>
-            <p className="text-sm text-slate-500 mt-1 flex items-center gap-2">
-              <Brain className="w-4 h-4" />
-              Challenge your brain daily!
-            </p>
           </CardHeader>
 
           <CardContent className="space-y-6">
-            {/* Question Box */}
-            <div className="bg-slate-50 rounded-xl p-4 sm:p-6 border border-slate-100">
-              <p className="text-lg sm:text-xl font-medium text-slate-800 leading-relaxed">{todayQuestion.question}</p>
+            {/* Question Display */}
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-100 min-h-[100px] flex items-center">
+              <p className="text-lg sm:text-xl font-medium text-slate-800 leading-relaxed w-full">
+                {activeQuestion.question}
+              </p>
             </div>
 
             {/* Options Grid */}
-            <div
-              className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${isWrongAnimation ? "animate-shake" : ""}`}
-              role="radiogroup"
-              aria-label="Answer options"
-            >
-              {todayQuestion.options.map((option, index) => {
+            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${status === "wrong" ? "animate-shake" : ""}`}>
+              {activeQuestion.options.map((option, index) => {
                 const isSelected = selectedAnswer === index;
-                const isCorrectAnswer = index === todayQuestion.correctIndex;
+                const isCorrect = index === activeQuestion.correctIndex;
 
-                let optionClasses =
-                  "relative p-4 rounded-xl border-2 transition-all duration-200 text-left font-medium text-base ";
+                // Dynamic styling based on game state
+                let classes = "relative p-4 rounded-xl border-2 text-left font-medium transition-all duration-200 ";
 
-                if (hasAnswered) {
-                  if (isCorrectAnswer) {
-                    optionClasses +=
-                      "bg-green-50 border-green-500 text-green-700 shadow-[0_0_10px_rgba(34,197,94,0.2)]";
-                  } else if (isSelected && !isCorrectAnswer) {
-                    optionClasses += "bg-red-50 border-red-500 text-red-700 opacity-80";
-                  } else {
-                    optionClasses += "bg-slate-50 border-transparent text-slate-400 opacity-50";
-                  }
+                if (status !== "unanswered") {
+                  // Game Over State
+                  if (isCorrect) classes += "bg-green-50 border-green-500 text-green-700 ";
+                  else if (isSelected) classes += "bg-red-50 border-red-500 text-red-700 ";
+                  else classes += "bg-slate-50 border-transparent text-slate-400 opacity-60 ";
                 } else {
-                  optionClasses +=
-                    "bg-white border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 hover:shadow-md cursor-pointer text-slate-700";
+                  // Active Play State
+                  classes +=
+                    "bg-white border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:shadow-md cursor-pointer text-slate-700 ";
                 }
 
                 return (
                   <button
                     key={index}
                     onClick={() => handleAnswerSelect(index)}
-                    disabled={hasAnswered}
-                    className={optionClasses}
-                    role="radio"
-                    aria-checked={isSelected}
-                    aria-disabled={hasAnswered}
+                    disabled={status !== "unanswered"}
+                    className={classes}
                   >
-                    <span className="flex items-center justify-between w-full">
+                    <div className="flex items-center justify-between">
                       <span>{option}</span>
-                      {hasAnswered && isCorrectAnswer && <CheckCircle className="w-5 h-5 text-green-600" />}
-                      {hasAnswered && isSelected && !isCorrectAnswer && <XCircle className="w-5 h-5 text-red-500" />}
-                    </span>
+                      {status !== "unanswered" && isCorrect && <CheckCircle className="w-5 h-5 text-green-600" />}
+                      {status !== "unanswered" && isSelected && !isCorrect && (
+                        <XCircle className="w-5 h-5 text-red-500" />
+                      )}
+                    </div>
                   </button>
                 );
               })}
             </div>
 
-            {/* Hint Section */}
-            {!hasAnswered && (
-              <div className="flex justify-center pt-2">
+            {/* Controls: Hint & Next */}
+            <div className="flex flex-col items-center gap-4 pt-2">
+              {/* Hint Button (Only if active) */}
+              {status === "unanswered" && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowHint(!showHint)}
-                  className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                  className="text-blue-600 hover:bg-blue-50"
                 >
                   <Lightbulb className={`w-4 h-4 mr-2 ${showHint ? "fill-blue-600" : ""}`} />
                   {showHint ? "Hide Hint" : "Need a Hint?"}
                 </Button>
-              </div>
-            )}
+              )}
 
-            {showHint && !hasAnswered && (
-              <div
-                className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center animate-in fade-in slide-in-from-top-2"
-                role="note"
-              >
-                <p className="text-sm text-yellow-800 font-medium">💡 Hint: {todayQuestion.hint}</p>
-              </div>
-            )}
+              {/* Hint Text */}
+              {showHint && status === "unanswered" && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800 animate-in fade-in slide-in-from-top-2">
+                  💡 {activeQuestion.hint}
+                </div>
+              )}
 
-            {/* Results & Fun Fact */}
-            {hasAnswered && (
-              <div
-                className={`rounded-xl p-6 text-center space-y-4 animate-in zoom-in-95 duration-300 ${
-                  isCorrect
-                    ? "bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200"
-                    : "bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200"
-                }`}
-                role="status"
-                aria-live="polite"
-              >
-                <div className="text-4xl animate-bounce">{isCorrect ? "🎉" : "🤔"}</div>
+              {/* Result & Next Button */}
+              {status !== "unanswered" && (
+                <div className="w-full text-center space-y-4 animate-in zoom-in-95 duration-300">
+                  <div className={`p-4 rounded-xl ${status === "correct" ? "bg-green-50" : "bg-red-50"}`}>
+                    <h3 className={`text-lg font-bold ${status === "correct" ? "text-green-800" : "text-red-800"}`}>
+                      {status === "correct" ? "🎉 Correct!" : "💪 Good try!"}
+                    </h3>
+                    <p className="text-sm text-slate-600 mt-1">
+                      {status === "correct" ? activeQuestion.funFact : "Don't give up, try another one!"}
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className={`text-lg font-bold ${isCorrect ? "text-green-800" : "text-orange-800"}`}>
-                    {isCorrect ? "Brilliant! That is correct!" : "Not quite, but good thinking!"}
-                  </h3>
-                  <div className="mt-2 text-sm text-slate-600 max-w-md mx-auto bg-white/60 p-3 rounded-lg">
-                    <span className="font-bold text-slate-800">Did you know?</span> {todayQuestion.funFact}
+                  <div className="flex gap-2 justify-center">
+                    {/* "Retry" only if wrong and it was a daily question they might want to re-read */}
+                    {!isDaily && status === "wrong" && (
+                      <Button variant="outline" onClick={() => setStatus("unanswered")} className="border-slate-300">
+                        <RotateCcw className="w-4 h-4 mr-2" /> Retry
+                      </Button>
+                    )}
+
+                    <Button onClick={handleNextQuestion} className="bg-slate-900 text-white hover:bg-slate-800">
+                      <Brain className="w-4 h-4 mr-2" />
+                      {status === "correct" ? "Next Question" : "Try Another"}
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
                   </div>
                 </div>
-
-                {!isCorrect && (
-                  <Button
-                    variant="outline"
-                    onClick={handleTryAgain}
-                    className="border-orange-200 text-orange-700 hover:bg-orange-100 hover:text-orange-800"
-                  >
-                    <RotateCcw className="w-4 h-4 mr-2" />
-                    Try Again
-                  </Button>
-                )}
-              </div>
-            )}
+              )}
+            </div>
           </CardContent>
         </Card>
       </div>
