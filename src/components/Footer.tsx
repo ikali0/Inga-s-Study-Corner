@@ -15,12 +15,12 @@ const Footer = ({
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 px-4 sm:px-0">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 px-4 sm:px-0 shadow-sm rounded-sm opacity-70 border-pink-500 border-solid border">
         {/* Brand & Mission */}
         <div className="sm:col-span-2 lg:col-span-1">
           <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
             <Rocket size={20} className="bg-orange-300 text-pink-600 border rounded-sm shadow-sm opacity-70 border-solid border-pink-600" />
-            <span className="font-serif text-center font-bold text-sm">Inga's Study Corner</span>
+            <span className="font-serif font-bold text-sm text-left">Inga's Study Corner</span>
           </h3>
           <p className="text-secondary-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-xs font-serif font-normal">
             More than just tutoring. We build the confidence and skills your child
@@ -62,10 +62,8 @@ const Footer = ({
 
         {/* Contact Info */}
         <div id="contact">
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm font-serif text-right">
-            Get in Touch
-          </h4>
-          <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic border-solid sm:rounded border-pink-500 sm-orange-100">
+          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-sm font-serif text-left">Contact In</h4>
+          <address className="p-3 md:p-4 rounded-lg space-y-2 sm:space-y-3 border not-italic sm-orange-100 border-orange-300 sm:rounded-sm border-dashed">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 shrink-0 rounded-sm">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border shadow-sm rounded-sm" />
