@@ -11,22 +11,22 @@ const tutorInfo = {
 const Footer = ({
   onNavigate
 }: FooterProps) => {
-  return <footer className="text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 lg:py-14 bg-lime-50">
+  return <footer className="text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 lg:py-[40px] bg-purple-100">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 px-4 border-purple-600 bg-pink-400 sm:px-[14px] py-[14px] border-solid border rounded-sm shadow-sm opacity-85">
         {/* Brand & Mission */}
         <div className="sm:col-span-2 lg:col-span-1">
           <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
             <Rocket className="text-primary" size={20} />
-            <span>Inga's Study Corner</span>
+            <span className="text-white">Inga's Study Corner</span>
           </h3>
           <p className="text-secondary-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm">
             More than just tutoring. We build the confidence and skills your child
             needs to thrive in school and beyond.
           </p>
-          <div className="flex items-center gap-2 text-secondary-foreground/70">
+          <div className="flex items-center gap-2 text-secondary-foreground/70 border-blue-500 border border-dashed">
             <Calendar size={14} className="text-primary shrink-0" />
             <span className="text-xs sm:text-sm">Tue-Fri • 3:00-9:00 PM</span>
           </div>
@@ -37,7 +37,7 @@ const Footer = ({
           <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
             Parent Peace of Mind
           </h4>
-          <ul className="space-y-2 sm:space-y-3">
+          <ul className="space-y-2 sm:space-y-3 border border-blue-500 border-dashed">
             <li className="flex items-start gap-2 sm:gap-3">
               <ShieldCheck className="text-green shrink-0" size={16} />
               <span className="text-secondary-foreground/80 text-xs sm:text-sm">
@@ -60,57 +60,34 @@ const Footer = ({
         </div>
 
         {/* Quick Links */}
-        <nav aria-label="Footer navigation">
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
-            Explore
-          </h4>
-          <ul className="space-y-1.5 sm:space-y-2">
-            {[{
-            id: "services",
-            label: "Tutoring Services"
-          }, {
-            id: "about",
-            label: "Why Parents Love It"
-          }, {
-            id: "reviews",
-            label: "Parent Reviews"
-          }, {
-            id: "book",
-            label: "Book Consultation"
-          }].map(item => <li key={item.id}>
-                <button type="button" onClick={() => onNavigate(item.id)} className="text-secondary-foreground/70 hover:text-primary transition-colors text-xs sm:text-sm focus:outline-none focus-visible:text-primary">
-                  {item.label}
-                </button>
-              </li>)}
-          </ul>
-        </nav>
+        
 
         {/* Contact Info */}
         <div id="contact">
           <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
             Get in Touch
           </h4>
-          <address className="p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border not-italic bg-orange-100 border-blue-300 border-solid">
+          <address className="p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border not-italic border-blue-300 border-solid py-[10px] px-[10px] bg-orange-200">
             <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Mail size={14} className="text-pink border-blue-300 border-solid border" />
               </div>
-              <span className="break-all text-xs sm:text-sm">{tutorInfo.email}</span>
+              <span className="break-all text-xs sm:text-sm text-black">{tutorInfo.email}</span>
             </a>
             <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid" />
               </div>
-              <span className="text-xs sm:text-sm">{tutorInfo.phone}</span>
+              <span className="text-xs sm:text-sm text-black">{tutorInfo.phone}</span>
             </a>
             <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
               <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
                 <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
               </div>
               <div className="text-xs sm:text-sm">
-                <span>{tutorInfo.location}</span>
+                <span className="text-black">{tutorInfo.location}</span>
                 <br />
-                <span className="text-[10px] sm:text-xs text-secondary-foreground/60">
+                <span className="text-[10px] sm:text-xs text-black">
                   {tutorInfo.address}
                 </span>
               </div>
@@ -120,7 +97,7 @@ const Footer = ({
       </div>
 
       {/* Copyright */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8 md:mt-10 lg:mt-12 pt-4 sm:pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-[10px] sm:text-xs text-secondary-foreground/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8 md:mt-10 lg:mt-12 pt-4 sm:pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-[10px] sm:text-xs text-purple-950">
         <p>
           &copy; {new Date().getFullYear()} Inga's Study Corner. Passionately
           teaching since 2018. ✨

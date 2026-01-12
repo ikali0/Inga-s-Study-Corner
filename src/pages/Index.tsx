@@ -7,19 +7,18 @@ import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import BookingSection from '@/components/BookingSection';
 import Footer from '@/components/Footer';
-
 const Index = () => {
   const handleNavigate = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
-  return (
-    <div className="relative min-h-screen selection:bg-primary/20">
+  return <div className="relative min-h-screen selection:bg-primary/20">
       <Navbar onNavigate={handleNavigate} />
-      <main>
+      <main className="px-[38px] py-[38px]">
         <HeroSection onNavigate={handleNavigate} />
         <QuestionOfTheDay />
         <AIStudyHelper />
@@ -29,8 +28,6 @@ const Index = () => {
         <BookingSection />
       </main>
       <Footer onNavigate={handleNavigate} />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

@@ -19,11 +19,11 @@ const HeroSection = ({
   const handleNavigate = useCallback((id: string) => {
     onNavigate(id);
   }, [onNavigate]);
-  return <section id="hero" className="relative pt-24 pb-10 sm:pt-28 sm:pb-14 md:pt-32 md:pb-18 lg:pt-36 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden" aria-labelledby="hero-heading">
+  return <section id="hero" aria-labelledby="hero-heading" className="relative pt-24 pb-10 sm:pt-28 sm:pb-14 md:pt-32 md:pb-18 lg:pt-36 lg:pb-24 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden px-[3px] py-[14px]">
       {/* Decorative Blobs - Hidden on mobile for cleaner look */}
-      <div className="hidden md:block blob-shape -top-24 -left-24 w-80 h-80 lg:w-[28rem] lg:h-[28rem] bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl opacity-60" aria-hidden="true" />
-      <div className="hidden md:block blob-shape bottom-0 -right-16 w-64 h-64 lg:w-80 lg:h-80 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl opacity-60" aria-hidden="true" />
-      <div className="hidden lg:block blob-shape top-1/3 left-1/4 w-48 h-48 bg-green-light rounded-[30%_70%_70%_30%/30%_30%_70%_70%] blur-3xl opacity-50" aria-hidden="true" />
+      
+      
+      
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
         {/* Text Content */}

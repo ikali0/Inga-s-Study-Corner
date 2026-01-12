@@ -289,7 +289,7 @@ const QuestionOfTheDay = () => {
 
           <CardContent className="space-y-6">
             {/* Question Display */}
-            <div className="bg-slate-50 rounded-xl p-5 sm:p-6 border border-slate-100 min-h-[100px] flex items-center justify-center text-center py-[20px] px-[20px]">
+            <div className="bg-slate-50 rounded-xl p-5 sm:p-6 border border-slate-100 min-h-[100px] flex items-center justify-center text-center py-[8px] px-[8px]">
               <p className="text-lg sm:text-xl font-medium text-slate-800 leading-relaxed">
                 {activeQuestion.question}
               </p>

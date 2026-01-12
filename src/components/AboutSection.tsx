@@ -47,10 +47,10 @@ const AboutSection = () => {
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 lg:text-base">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1 md:mb-2 lg:text-base text-blue-950">
                       {feature.title}
                     </h3>
-                    <p className="text-secondary-foreground/80 text-xs sm:text-sm leading-relaxed md:text-sm">
+                    <p className="text-xs sm:text-sm leading-relaxed md:text-sm text-card-foreground font-normal">
                       {feature.description}
                     </p>
                   </div>
