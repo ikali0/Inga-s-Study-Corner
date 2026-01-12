@@ -165,88 +165,122 @@ const BookingSection = () => {
     }
   };
   return (
-    <section id="book" className="py-12 md:py-20 pb-20 md:pb-32 relative z-10">
+    <section id="book" className="py-10 sm:py-12 md:py-16 lg:py-20 pb-16 sm:pb-20 md:pb-24 lg:pb-32 relative z-10">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-6 md:mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">
+        <header className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3 md:mb-4">
             Ready to Get Started? 🚀
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
             Book a free consultation. Let's chat about your child's goals.
           </p>
-        </div>
+        </header>
 
-        <div className="bg-card rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-10 lg:p-12 border border-border">
+        <div className="bg-card rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-5 md:p-8 lg:p-10 xl:p-12 border border-border">
           {showSuccess ? (
-            <div className="text-center py-12 animate-in zoom-in">
-              <div className="w-20 h-20 bg-green-light text-green rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle size={40} />
+            <div className="text-center py-8 sm:py-10 md:py-12 animate-in zoom-in">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-green-light text-green rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6">
+                <CheckCircle size={32} className="sm:w-9 sm:h-9 md:w-10 md:h-10" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">Request Received!</h3>
-              <p className="text-muted-foreground">I'll be in touch shortly to confirm your slot.</p>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-2">
+                Request Received!
+              </h3>
+              <p className="text-muted-foreground text-sm sm:text-base">
+                I'll be in touch shortly to confirm your slot.
+              </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-foreground ml-1">Parent's Name</label>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="parentName" className="text-xs sm:text-sm font-bold text-foreground ml-1">
+                    Parent's Name
+                  </label>
                   <Input
+                    id="parentName"
                     required
                     type="text"
                     placeholder="Jane Doe"
                     value={formData.parentName}
                     onChange={(e) => handleInputChange("parentName", e.target.value)}
-                    className={`bg-muted border-border ${errors.parentName ? "border-destructive" : ""}`}
+                    className={`bg-muted border-border text-sm ${errors.parentName ? "border-destructive" : ""}`}
                     maxLength={100}
                   />
-                  {errors.parentName && <p className="text-destructive text-xs ml-1">{errors.parentName}</p>}
+                  {errors.parentName && (
+                    <p className="text-destructive text-[10px] sm:text-xs ml-1" role="alert">
+                      {errors.parentName}
+                    </p>
+                  )}
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-foreground ml-1">Child's Name & Age</label>
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="childName" className="text-xs sm:text-sm font-bold text-foreground ml-1">
+                    Child's Name & Age
+                  </label>
                   <Input
+                    id="childName"
                     required
                     type="text"
                     placeholder="Leo, Age 10"
                     value={formData.childName}
                     onChange={(e) => handleInputChange("childName", e.target.value)}
-                    className={`bg-muted border-border ${errors.childName ? "border-destructive" : ""}`}
+                    className={`bg-muted border-border text-sm ${errors.childName ? "border-destructive" : ""}`}
                     maxLength={100}
                   />
-                  {errors.childName && <p className="text-destructive text-xs ml-1">{errors.childName}</p>}
+                  {errors.childName && (
+                    <p className="text-destructive text-[10px] sm:text-xs ml-1" role="alert">
+                      {errors.childName}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-foreground ml-1">Email Address</label>
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="email" className="text-xs sm:text-sm font-bold text-foreground ml-1">
+                    Email Address
+                  </label>
                   <Input
+                    id="email"
                     required
                     type="email"
                     placeholder="hello@family.com"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className={`bg-muted border-border ${errors.email ? "border-destructive" : ""}`}
+                    className={`bg-muted border-border text-sm ${errors.email ? "border-destructive" : ""}`}
                     maxLength={255}
                   />
-                  {errors.email && <p className="text-destructive text-xs ml-1">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-destructive text-[10px] sm:text-xs ml-1" role="alert">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-foreground ml-1">Phone (Optional)</label>
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="phone" className="text-xs sm:text-sm font-bold text-foreground ml-1">
+                    Phone (Optional)
+                  </label>
                   <Input
+                    id="phone"
                     type="tel"
                     placeholder="(215) 555-0123"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className={`bg-muted border-border ${errors.phone ? "border-destructive" : ""}`}
+                    className={`bg-muted border-border text-sm ${errors.phone ? "border-destructive" : ""}`}
                     maxLength={20}
                   />
-                  {errors.phone && <p className="text-destructive text-xs ml-1">{errors.phone}</p>}
+                  {errors.phone && (
+                    <p className="text-destructive text-[10px] sm:text-xs ml-1" role="alert">
+                      {errors.phone}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-foreground ml-1">Interested Subject</label>
-                <div className="grid grid-cols-2 gap-2">
+              <fieldset className="space-y-1.5 sm:space-y-2">
+                <legend className="text-xs sm:text-sm font-bold text-foreground ml-1 mb-1.5 sm:mb-2">
+                  Interested Subject
+                </legend>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {subjects.map((sub) => (
                     <button
                       type="button"
@@ -257,31 +291,45 @@ const BookingSection = () => {
                           subject: sub as typeof formData.subject,
                         })
                       }
-                      className={`p-2.5 md:p-3 rounded-xl border-2 font-bold text-sm md:text-base transition-all ${formData.subject === sub ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary/50"}`}
+                      className={`p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border-2 font-bold text-xs sm:text-sm md:text-base transition-all ${
+                        formData.subject === sub
+                          ? "border-primary bg-primary/10 text-primary"
+                          : "border-border text-muted-foreground hover:border-primary/50"
+                      }`}
+                      aria-pressed={formData.subject === sub}
                     >
                       {sub}
                     </button>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-foreground ml-1">How can I help?</label>
+              <div className="space-y-1.5 sm:space-y-2">
+                <label htmlFor="message" className="text-xs sm:text-sm font-bold text-foreground ml-1">
+                  How can I help?
+                </label>
                 <Textarea
+                  id="message"
                   placeholder="Tell me a bit about what your child is working on or struggling with..."
                   value={formData.message}
                   onChange={(e) => handleInputChange("message", e.target.value)}
-                  className={`bg-muted border-border min-h-[120px] resize-none ${errors.message ? "border-destructive" : ""}`}
+                  className={`bg-muted border-border min-h-[100px] sm:min-h-[110px] md:min-h-[120px] resize-none text-sm ${
+                    errors.message ? "border-destructive" : ""
+                  }`}
                   maxLength={1000}
                 />
-                {errors.message && <p className="text-destructive text-xs ml-1">{errors.message}</p>}
+                {errors.message && (
+                  <p className="text-destructive text-[10px] sm:text-xs ml-1" role="alert">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
               <Button
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue to-accent hover:opacity-90 text-primary-foreground font-bold py-4 rounded-xl shadow-lg transform transition-transform hover:scale-[1.01] active:scale-[0.98] disabled:opacity-70"
+                className="w-full bg-gradient-to-r from-blue to-accent hover:opacity-90 text-primary-foreground font-bold py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-lg transform transition-transform hover:scale-[1.01] active:scale-[0.98] disabled:opacity-70 text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   <>
