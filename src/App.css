@@ -1,42 +1,89 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* 1. DEFINE VARIABLES (Easy to change theme later) */
+:root {
+  --primary: #646cff;
+  --secondary: #61dafb;
+  --text-main: #213547;
+  --text-muted: #888;
+  --bg-body: #ffffff;
+  
+  --max-width: 1280px;
 }
 
+/* 2. GLOBAL RESET */
+/* Ensures the app takes up the full screen height */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* 3. ROOT CONTAINER FIX */
+/* Removed text-align: center so you can build normal layouts */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content, but allow full width children */
+}
+
+/* 4. MAIN CONTENT CONTAINER */
+/* Use this class for your main page content instead of forcing it on #root */
+.container {
+  max-width: var(--max-width);
+  width: 100%;
+  padding: 2rem;
+  text-align: center; /* Keep centering only for the demo/landing part */
+}
+
+/* 5. LOGO ENHANCEMENTS */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 300ms ease-in-out; /* Smoother transition */
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em var(--primary));
 }
+
+/* Specific class for React logo instead of "nth-of-type" */
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em var(--secondary));
 }
 
+/* 6. ANIMATION LOGIC */
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Apply animation via a class, not a brittle selector */
+.logo.spin {
+  animation: logo-spin infinite 20s linear;
+}
+
+/* Accessibility: Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .logo.spin {
+    animation: none;
   }
 }
 
 .card {
   padding: 2em;
+  border-radius: 8px; /* Added polish */
+  background: #f9f9f9; /* Added subtle separation */
+  margin-top: 1rem;
 }
 
 .read-the-docs {
-  color: #888;
+  color: var(--text-muted);
+  font-size: 0.9em;
 }
