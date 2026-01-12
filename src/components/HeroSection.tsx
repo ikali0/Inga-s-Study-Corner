@@ -2,50 +2,28 @@ import { useState, useEffect, useCallback } from 'react';
 import { Zap, Star, CheckCircle, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-kids-learning.jpg';
-
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
 }
-
-const quotes = [
-  "Learning should feel like play.",
-  "Mistakes are proof you are trying.",
-  "Every expert was once a beginner.",
-  "Small steps lead to big jumps.",
-];
-
-const HeroSection = ({ onNavigate }: HeroSectionProps) => {
+const quotes = ["Learning should feel like play.", "Mistakes are proof you are trying.", "Every expert was once a beginner.", "Small steps lead to big jumps."];
+const HeroSection = ({
+  onNavigate
+}: HeroSectionProps) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentQuoteIndex((prev) => (prev + 1) % quotes.length);
+      setCurrentQuoteIndex(prev => (prev + 1) % quotes.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-
   const handleNavigate = useCallback((id: string) => {
     onNavigate(id);
   }, [onNavigate]);
-
-  return (
-    <section
-      id="hero"
-      className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16 lg:pt-32 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-    >
+  return <section id="hero" className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16 lg:pt-32 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Decorative Blobs - Hidden on mobile for cleaner look */}
-      <div
-        className="hidden sm:block blob-shape -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="hidden sm:block blob-shape bottom-10 -right-10 w-56 h-56 md:w-72 md:h-72 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="hidden sm:block blob-shape top-1/2 left-10 w-40 h-40 md:w-52 md:h-52 bg-green-light rounded-[30%_70%_70%_30%/30%_30%_70%_70%] blur-3xl"
-        aria-hidden="true"
-      />
+      <div className="hidden sm:block blob-shape -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-pink-light rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-3xl" aria-hidden="true" />
+      <div className="hidden sm:block blob-shape bottom-10 -right-10 w-56 h-56 md:w-72 md:h-72 bg-blue-light rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-3xl" aria-hidden="true" />
+      <div className="hidden sm:block blob-shape top-1/2 left-10 w-40 h-40 md:w-52 md:h-52 bg-green-light rounded-[30%_70%_70%_30%/30%_30%_70%_70%] blur-3xl" aria-hidden="true" />
 
       <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
         {/* Text Content */}
@@ -71,20 +49,11 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button
-              onClick={() => handleNavigate("book")}
-              size="lg"
-              className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 md:px-8 py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg shadow-xl flex items-center justify-center gap-2 transition-all w-full sm:w-auto"
-            >
+            <Button onClick={() => handleNavigate("book")} size="lg" className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 md:px-8 py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg shadow-xl flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
               <Zap size={18} className="fill-current" />
               Book Your First Session
             </Button>
-            <Button
-              onClick={() => handleNavigate("reviews")}
-              variant="outline"
-              size="lg"
-              className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-5 sm:px-6 md:px-8 py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 transition-all w-full sm:w-auto"
-            >
+            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="lg" className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-5 sm:px-6 md:px-8 py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
               <Star size={18} className="text-primary fill-current" />
               Read Success Stories
             </Button>
@@ -107,20 +76,12 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         <div className="relative z-10 order-1 md:order-2 flex justify-center md:justify-end">
           <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md">
             {/* Background accent blob */}
-            <div
-              className="absolute inset-0 bg-primary/20 rounded-2xl md:rounded-3xl transform rotate-3 scale-105 z-0"
-              aria-hidden="true"
-            />
+            <div className="absolute inset-0 bg-primary/20 rounded-2xl md:rounded-3xl transform rotate-3 scale-105 z-0" aria-hidden="true" />
 
             {/* Main Image Frame */}
             <div className="relative bg-card p-2 sm:p-3 rounded-2xl md:rounded-3xl shadow-xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500">
               <div className="rounded-xl md:rounded-2xl overflow-hidden aspect-[4/3] relative group">
-                <img
-                  src={heroImage}
-                  alt="Kids learning together at Inga's Study Corner"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="eager"
-                />
+                <img alt="Kids learning together at Inga's Study Corner" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" src="/lovable-uploads/a0aa8e09-8040-4729-8a5d-2f83fdeda30d.png" />
 
                 {/* Overlay Text */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/90 via-secondary/60 to-transparent p-3 sm:p-4 md:p-6 text-primary-foreground text-center">
@@ -152,8 +113,6 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
