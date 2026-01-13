@@ -1,108 +1,168 @@
 import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from "lucide-react";
+
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
+
 const tutorInfo = {
   email: "ingakaltak7@gmail.com",
   phone: "215-791-5906",
   address: "625 Red Lion Rd, Huntingdon Valley, PA 19006",
   location: "Huntington Valley Library"
 };
-const Footer = ({
-  onNavigate
-}: FooterProps) => {
-  return <footer className="text-secondary-foreground relative z-10 overflow-hidden py-8 sm:py-10 md:py-12 lg:py-[40px] bg-purple-100">
+
+const Footer = ({ onNavigate }: FooterProps) => {
+  return (
+    <footer className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 lg:py-12 bg-secondary/30">
       {/* Top gradient bar */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
+      <div 
+        className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" 
+        aria-hidden="true" 
+      />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 px-4 border-purple-600 bg-pink-400 sm:px-[14px] py-[14px] border-solid border rounded-sm shadow-sm opacity-85">
-        {/* Brand & Mission */}
-        <div className="sm:col-span-2 lg:col-span-1">
-          <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
-            <Rocket className="text-primary" size={20} />
-            <span className="text-white">Inga's Study Corner</span>
-          </h3>
-          <p className="text-secondary-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm">
-            More than just tutoring. We build the confidence and skills your child
-            needs to thrive in school and beyond.
-          </p>
-          <div className="flex items-center gap-2 text-secondary-foreground/70 border-blue-500 border border-dashed">
-            <Calendar size={14} className="text-primary shrink-0" />
-            <span className="text-xs sm:text-sm">Tue-Fri • 3:00-9:00 PM</span>
-          </div>
-        </div>
-
-        {/* Parent Trust Column */}
-        <div>
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
-            Parent Peace of Mind
-          </h4>
-          <ul className="space-y-2 sm:space-y-3 border border-blue-500 border-dashed">
-            <li className="flex items-start gap-2 sm:gap-3">
-              <ShieldCheck className="text-green shrink-0" size={16} />
-              <span className="text-secondary-foreground/80 text-xs sm:text-sm">
-                Safe & Vetted Environment
-              </span>
-            </li>
-            <li className="flex items-start gap-2 sm:gap-3">
-              <GraduationCap className="text-blue shrink-0" size={16} />
-              <span className="text-secondary-foreground/80 text-xs sm:text-sm">
-                Patient, Expert Guidance
-              </span>
-            </li>
-            <li className="flex items-start gap-2 sm:gap-3">
-              <Clock className="text-purple shrink-0" size={16} />
-              <span className="text-secondary-foreground/80 text-xs sm:text-sm">
-                Flexible After-School Hours
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Quick Links */}
-        
-
-        {/* Contact Info */}
-        <div id="contact">
-          <h4 className="font-bold mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
-            Get in Touch
-          </h4>
-          <address className="p-3 md:p-4 rounded-lg sm:rounded-xl space-y-2 sm:space-y-3 border not-italic border-blue-300 border-solid py-[10px] px-[10px] bg-orange-200">
-            <a href={`mailto:${tutorInfo.email}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
-              <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <Mail size={14} className="text-pink border-blue-300 border-solid border" />
+      {/* Main Footer Content - 3D Card Effect */}
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
+        <div 
+          className="
+            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+            gap-4 sm:gap-6 md:gap-8
+            p-4 sm:p-5 md:p-6
+            bg-card/80 backdrop-blur-sm
+            rounded-xl sm:rounded-2xl
+            border-2 border-primary/20
+            shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+            transform-gpu
+            hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)]
+            hover:-translate-y-0.5
+            transition-all duration-300
+          "
+          style={{
+            transformStyle: 'preserve-3d',
+            perspective: '1000px',
+          }}
+        >
+          {/* Brand & Mission */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="font-bold text-sm sm:text-base mb-2 flex items-center gap-2">
+              <div className="bg-primary/10 p-1.5 rounded-lg">
+                <Rocket className="text-primary w-4 h-4" />
               </div>
-              <span className="break-all text-xs sm:text-sm text-black">{tutorInfo.email}</span>
-            </a>
-            <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 sm:gap-3 text-secondary-foreground/80 hover:text-primary-foreground transition-colors">
-              <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <Phone size={14} className="text-green bg-orange-300 border-blue-200 border border-solid" />
-              </div>
-              <span className="text-xs sm:text-sm text-black">{tutorInfo.phone}</span>
-            </a>
-            <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
-              <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
-              </div>
-              <div className="text-xs sm:text-sm">
-                <span className="text-black">{tutorInfo.location}</span>
-                <br />
-                <span className="text-[10px] sm:text-xs text-black">
-                  {tutorInfo.address}
-                </span>
-              </div>
+              <span className="text-foreground">Inga's Study Corner</span>
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-2 sm:mb-3 text-[11px] sm:text-xs">
+              More than just tutoring. We build the confidence and skills your child
+              needs to thrive in school and beyond.
+            </p>
+            <div className="inline-flex items-center gap-2 text-muted-foreground bg-accent/30 px-2.5 py-1.5 rounded-lg">
+              <Calendar size={12} className="text-primary shrink-0" />
+              <span className="text-[10px] sm:text-xs font-medium">Tue-Fri • 3:00-9:00 PM</span>
             </div>
-          </address>
+          </div>
+
+          {/* Parent Trust Column - 3D Inner Card */}
+          <div 
+            className="
+              bg-accent/20 
+              p-3 sm:p-4 
+              rounded-lg sm:rounded-xl 
+              border border-accent/30
+              shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)]
+              transform-gpu hover:scale-[1.02]
+              transition-transform duration-200
+            "
+          >
+            <h4 className="font-bold mb-2 sm:mb-3 text-xs sm:text-sm text-foreground">
+              Parent Peace of Mind
+            </h4>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2">
+                <div className="bg-green/20 p-1 rounded-md">
+                  <ShieldCheck className="text-green w-3 h-3" />
+                </div>
+                <span className="text-muted-foreground text-[10px] sm:text-xs">
+                  Safe & Vetted Environment
+                </span>
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="bg-blue/20 p-1 rounded-md">
+                  <GraduationCap className="text-blue w-3 h-3" />
+                </div>
+                <span className="text-muted-foreground text-[10px] sm:text-xs">
+                  Patient, Expert Guidance
+                </span>
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="bg-purple/20 p-1 rounded-md">
+                  <Clock className="text-purple w-3 h-3" />
+                </div>
+                <span className="text-muted-foreground text-[10px] sm:text-xs">
+                  Flexible After-School Hours
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Info - 3D Inner Card */}
+          <div id="contact" className="sm:col-span-2 lg:col-span-1">
+            <h4 className="font-bold mb-2 sm:mb-3 text-xs sm:text-sm text-foreground">
+              Get in Touch
+            </h4>
+            <address 
+              className="
+                not-italic 
+                p-3 sm:p-4 
+                rounded-lg sm:rounded-xl 
+                space-y-2 sm:space-y-2.5
+                bg-primary/5 
+                border border-primary/15
+                shadow-[0_4px_12px_rgba(0,0,0,0.08)]
+                transform-gpu
+              "
+            >
+              <a 
+                href={`mailto:${tutorInfo.email}`} 
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+              >
+                <div className="bg-pink/20 p-1.5 rounded-md group-hover:bg-pink/30 transition-colors">
+                  <Mail size={12} className="text-pink" />
+                </div>
+                <span className="break-all text-[10px] sm:text-xs">{tutorInfo.email}</span>
+              </a>
+              <a 
+                href={`tel:${tutorInfo.phone}`} 
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+              >
+                <div className="bg-green/20 p-1.5 rounded-md group-hover:bg-green/30 transition-colors">
+                  <Phone size={12} className="text-green" />
+                </div>
+                <span className="text-[10px] sm:text-xs">{tutorInfo.phone}</span>
+              </a>
+              <div className="flex items-start gap-2 text-muted-foreground">
+                <div className="bg-blue/20 p-1.5 rounded-md shrink-0">
+                  <MapPin size={12} className="text-blue" />
+                </div>
+                <div className="text-[10px] sm:text-xs leading-relaxed">
+                  <span className="font-medium text-foreground">{tutorInfo.location}</span>
+                  <br />
+                  <span className="text-muted-foreground/80">
+                    {tutorInfo.address}
+                  </span>
+                </div>
+              </div>
+            </address>
+          </div>
         </div>
       </div>
 
       {/* Copyright */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8 md:mt-10 lg:mt-12 pt-4 sm:pt-6 md:pt-8 border-t border-secondary-foreground/10 text-center text-[10px] sm:text-xs text-purple-950">
-        <p>
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8 pt-3 sm:pt-4 border-t border-border/50 text-center">
+        <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Inga's Study Corner. Passionately
           teaching since 2018. ✨
         </p>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
