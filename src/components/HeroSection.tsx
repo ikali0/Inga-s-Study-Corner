@@ -77,21 +77,30 @@ const HeroSection = ({
             </Button>
           </div>
 
-          {/* Feature Pills */}
+          {/* Feature Pills - Clickable */}
           <div className="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
             {[{
-            icon: <CheckCircle size={14} className="text-green shrink-0" />,
-            text: "Ages 8-14"
-          }, {
-            icon: <CheckCircle size={14} className="text-green shrink-0" />,
-            text: "Tue-Fri 3-9 PM"
-          }, {
-            icon: <CheckCircle size={14} className="text-green shrink-0" />,
-            text: "Small Groups"
-          }].map((item, i) => <span key={i} className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 shadow-sm sm:px-[8px]">
+              icon: <CheckCircle size={14} className="text-green shrink-0" />,
+              text: "Ages 8-14",
+              target: "about"
+            }, {
+              icon: <CheckCircle size={14} className="text-green shrink-0" />,
+              text: "Tue-Fri 3-9 PM",
+              target: "book"
+            }, {
+              icon: <CheckCircle size={14} className="text-green shrink-0" />,
+              text: "Small Groups",
+              target: "services"
+            }].map((item, i) => (
+              <button
+                key={i}
+                onClick={() => handleNavigate(item.target)}
+                className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 shadow-sm hover:bg-muted hover:border-primary/30 hover:text-foreground transition-all duration-200 cursor-pointer active:scale-95"
+              >
                 {item.icon}
                 {item.text}
-              </span>)}
+              </button>
+            ))}
           </div>
         </div>
 
