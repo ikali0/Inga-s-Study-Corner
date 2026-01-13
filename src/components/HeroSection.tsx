@@ -66,13 +66,13 @@ const HeroSection = ({
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2">
-            <Button onClick={() => handleNavigate("book")} size="lg" className="btn-3d bg-blue hover:bg-blue/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-lg shadow-blue/25 flex items-center justify-center gap-2 w-full sm:w-auto border-2 border-blue/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue/30 hover:-translate-y-0.5">
-              <Zap size={18} className="fill-current" aria-hidden="true" />
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
+            <Button onClick={() => handleNavigate("book")} size="sm" className="btn-3d bg-blue hover:bg-blue/90 text-primary-foreground px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm shadow-md shadow-blue/20 flex items-center justify-center gap-1.5 w-full sm:w-auto border border-blue/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue/25 hover:-translate-y-0.5 active:translate-y-0">
+              <Zap size={14} className="fill-current" aria-hidden="true" />
               Book Your First Session
             </Button>
-            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="lg" className="bg-card hover:bg-muted text-foreground border-2 border-border hover:border-primary/30 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 w-full sm:w-auto transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-              <Star size={18} className="text-primary fill-current" aria-hidden="true" />
+            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="sm" className="btn-3d bg-card hover:bg-muted text-foreground border border-border hover:border-primary/30 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 w-full sm:w-auto transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0">
+              <Star size={14} className="text-primary fill-current" aria-hidden="true" />
               Read Success Stories
             </Button>
           </div>
