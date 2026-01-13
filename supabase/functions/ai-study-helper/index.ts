@@ -6,17 +6,16 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
     const body = await req.json();
-    // Support both naming conventions (topic/input, gradeLevel/grade)
     const topic = body.topic || body.input;
     const mode = body.mode;
     const gradeLevel = body.gradeLevel || body.grade;
+    const stream = body.stream ?? true;
     
     if (!topic || !mode) {
       return new Response(
@@ -40,35 +39,33 @@ serve(async (req) => {
 
     switch (mode) {
       case "explain":
-        systemPrompt = `You are Inga, a warm, encouraging, and fun tutor for ${grade} students. Your job is to explain complex topics in simple, engaging ways. Use:
-- Fun analogies and real-world examples kids can relate to
-- Emojis to make it friendly and visual
-- Short paragraphs (2-3 sentences max)
-- Encouraging language
-- Break down concepts step-by-step
-Keep explanations under 150 words. Make learning feel like an adventure!`;
-        userPrompt = `Please explain this topic to me in a fun and simple way: ${topic}`;
+        systemPrompt = `You are Inga, a warm, encouraging tutor for ${grade} students. Explain topics simply using:
+- Fun analogies kids relate to
+- Emojis for friendliness
+- Short paragraphs (2-3 sentences)
+- Step-by-step breakdowns
+Keep under 150 words. Make learning an adventure!`;
+        userPrompt = `Explain this in a fun, simple way: ${topic}`;
         break;
       
       case "practice":
-        systemPrompt = `You are Inga, a creative tutor who makes learning fun for ${grade} students. Create practice problems that are:
-- Engaging and use fun scenarios (animals, games, food, etc.)
-- Age-appropriate for ${grade}
-- Clear with step-by-step hints
-- Include the answer at the end marked clearly
-Create exactly 2 practice problems with solutions. Use emojis to make it fun!`;
+        systemPrompt = `You are Inga, a creative tutor for ${grade} students. Create practice problems that are:
+- Engaging with fun scenarios
+- Age-appropriate
+- Clear with hints
+- Include answers marked clearly
+Create exactly 2 problems with solutions. Use emojis!`;
         userPrompt = `Create 2 fun practice problems about: ${topic}`;
         break;
       
       case "quiz":
-        systemPrompt = `You are Inga, the Quiz Wizard for ${grade} students! Create a fun, interactive quiz that:
+        systemPrompt = `You are Inga, the Quiz Wizard for ${grade} students! Create a quiz that:
 - Has exactly 3 multiple choice questions
 - Uses emojis and encouraging language
-- Has 4 options per question (A, B, C, D)
-- Includes the correct answers at the very end
-- Is appropriate for ${grade}
-Make it feel like a game, not a test!`;
-        userPrompt = `Create a fun 3-question quiz about: ${topic}`;
+- Has 4 options (A, B, C, D)
+- Includes answers at the end
+Make it feel like a game!`;
+        userPrompt = `Create a 3-question quiz about: ${topic}`;
         break;
       
       default:
@@ -78,7 +75,7 @@ Make it feel like a game, not a test!`;
         );
     }
 
-    console.log(`AI Study Helper request - Mode: ${mode}, Topic: ${topic}, Grade: ${grade}`);
+    console.log(`AI Study Helper - Mode: ${mode}, Topic: ${topic}, Grade: ${grade}, Stream: ${stream}`);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -92,6 +89,7 @@ Make it feel like a game, not a test!`;
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },
         ],
+        stream: stream,
       }),
     });
 
@@ -101,14 +99,14 @@ Make it feel like a game, not a test!`;
       
       if (response.status === 429) {
         return new Response(
-          JSON.stringify({ error: "Too many requests. Please wait a moment and try again!" }),
+          JSON.stringify({ error: "Too many requests. Please wait a moment!" }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "AI service quota exceeded. Please try again later." }),
+          JSON.stringify({ error: "AI quota exceeded. Try again later." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -119,6 +117,15 @@ Make it feel like a game, not a test!`;
       );
     }
 
+    // If streaming, return the stream directly
+    if (stream) {
+      console.log("Returning streaming response");
+      return new Response(response.body, {
+        headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+      });
+    }
+
+    // Non-streaming fallback
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content;
     
@@ -129,8 +136,6 @@ Make it feel like a game, not a test!`;
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
-
-    console.log(`AI Study Helper response generated successfully for mode: ${mode}`);
 
     return new Response(
       JSON.stringify({ result: content, mode }),
