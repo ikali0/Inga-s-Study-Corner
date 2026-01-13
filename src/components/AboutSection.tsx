@@ -1,5 +1,4 @@
 import { Smile, Zap, Heart } from "lucide-react";
-
 interface Feature {
   icon: React.ReactNode;
   iconBg: string;
@@ -7,45 +6,34 @@ interface Feature {
   title: string;
   description: string;
 }
-
-const features: Feature[] = [
-  {
-    icon: <Smile className="w-5 h-5" />,
-    iconBg: "bg-blue-500/10 dark:bg-blue-400/15",
-    iconColor: "text-blue-600 dark:text-blue-400",
-    title: "Builds Confidence, Not Pressure",
-    description: "A calm, encouraging space to grow. We tackle anxiety before algebra.",
-  },
-  {
-    icon: <Zap className="w-5 h-5" />,
-    iconBg: "bg-purple-500/10 dark:bg-purple-400/15",
-    iconColor: "text-purple-600 dark:text-purple-400",
-    title: "Encourages Thinking, Not Memorization",
-    description: "Visual learner? We draw. Kinesthetic? We build. Adapted to YOUR child.",
-  },
-  {
-    icon: <Heart className="w-5 h-5" />,
-    iconBg: "bg-pink-500/10 dark:bg-pink-400/15",
-    iconColor: "text-pink-600 dark:text-pink-400",
-    title: "Supports School Success",
-    description: "Library-based, distraction-free environment supporting success across STEM subjects.",
-  },
-];
-
+const features: Feature[] = [{
+  icon: <Smile className="w-5 h-5" />,
+  iconBg: "bg-blue-500/10 dark:bg-blue-400/15",
+  iconColor: "text-blue-600 dark:text-blue-400",
+  title: "Builds Confidence, Not Pressure",
+  description: "A calm, encouraging space to grow. We tackle anxiety before algebra."
+}, {
+  icon: <Zap className="w-5 h-5" />,
+  iconBg: "bg-purple-500/10 dark:bg-purple-400/15",
+  iconColor: "text-purple-600 dark:text-purple-400",
+  title: "Encourages Thinking, Not Memorization",
+  description: "Visual learner? We draw. Kinesthetic? We build. Adapted to YOUR child."
+}, {
+  icon: <Heart className="w-5 h-5" />,
+  iconBg: "bg-pink-500/10 dark:bg-pink-400/15",
+  iconColor: "text-pink-600 dark:text-pink-400",
+  title: "Supports School Success",
+  description: "Library-based, distraction-free environment supporting success across STEM subjects."
+}];
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10" aria-labelledby="about-heading">
+  return <section id="about" className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10" aria-labelledby="about-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="bg-secondary rounded-xl sm:rounded-2xl text-secondary-foreground p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden shadow-sm">
+        <div className="bg-secondary rounded-xl sm:rounded-2xl text-secondary-foreground p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden shadow-sm py-[40px] px-[40px]">
           {/* Background pattern */}
-          <div
-            className="absolute inset-0 opacity-5 sm:opacity-10 pointer-events-none"
-            style={{
-              backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
-              backgroundSize: "16px 16px",
-            }}
-            aria-hidden="true"
-          />
+          <div className="absolute inset-0 opacity-5 sm:opacity-10 pointer-events-none" style={{
+          backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
+          backgroundSize: "16px 16px"
+        }} aria-hidden="true" />
 
           <div className="relative z-10">
             {/* Header */}
@@ -60,16 +48,9 @@ const AboutSection = () => {
 
             {/* Features Grid - Mobile First */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
-              {features.map((feature, index) => (
-                <article
-                  key={index}
-                  className="flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-lg sm:rounded-xl bg-card/95 border border-border/50 backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:border-border hover:-translate-y-0.5 active:translate-y-0"
-                >
+              {features.map((feature, index) => <article key={index} className="flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-lg sm:rounded-xl bg-card/95 border border-border/50 backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:border-border hover:-translate-y-0.5 active:translate-y-0">
                   {/* Icon Container */}
-                  <div
-                    className={`${feature.iconBg} ${feature.iconColor} p-2 sm:p-2.5 rounded-lg h-fit shrink-0 transition-transform duration-200 group-hover:scale-110`}
-                    aria-hidden="true"
-                  >
+                  <div className={`${feature.iconBg} ${feature.iconColor} p-2 sm:p-2.5 rounded-lg h-fit shrink-0 transition-transform duration-200 group-hover:scale-110`} aria-hidden="true">
                     {feature.icon}
                   </div>
 
@@ -80,14 +61,11 @@ const AboutSection = () => {
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
-                </article>
-              ))}
+                </article>)}
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
