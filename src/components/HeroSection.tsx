@@ -104,7 +104,7 @@ const HeroSection = ({
             <div className="absolute -inset-2 bg-gradient-to-tr from-blue/10 to-primary/10 rounded-2xl sm:rounded-3xl transform -rotate-2 scale-102 z-0" aria-hidden="true" />
 
             {/* Main Image Frame - 3D Card Effect */}
-            <div className="card-3d relative bg-card p-2 sm:p-3 rounded-2xl sm:rounded-3xl shadow-2xl z-10 transform -rotate-1 transition-all duration-500 hover:rotate-0 hover:scale-[1.02] border-2 sm:border-3 border-border/60 hover:border-primary/40 hover:shadow-primary/20">
+            <div className="card-3d relative bg-card p-2 sm:p-3 sm:rounded-3xl shadow-2xl z-10 transform -rotate-1 transition-all duration-500 hover:rotate-0 hover:scale-[1.02] border-2 sm:border-3 border-border/60 hover:border-primary/40 hover:shadow-primary/20 rounded-lg">
               <div className="rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] relative group shadow-inner">
                 <img alt="Kids learning together at Inga's Study Corner" loading="eager" src="/lovable-uploads/5fafd3c0-0a69-4f4c-a005-67c9a1b8929d.png" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                 
@@ -112,13 +112,7 @@ const HeroSection = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Quote Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/80 to-transparent p-3 sm:p-4 lg:p-5 text-primary-foreground text-center">
-                  <div key={currentQuoteIndex} className="animate-fade-in">
-                    <p className="font-bold text-xs sm:text-sm lg:text-base italic leading-snug drop-shadow-md">
-                      "{quotes[currentQuoteIndex]}"
-                    </p>
-                  </div>
-                </div>
+                
               </div>
             </div>
 
