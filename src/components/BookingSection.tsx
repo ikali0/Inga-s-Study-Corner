@@ -158,124 +158,242 @@ const BookingSection = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="book" className="py-8 sm:py-12 md:py-16 lg:py-20 pb-12 sm:pb-16 md:pb-20 lg:pb-24 relative z-10" aria-labelledby="booking-heading">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+  return (
+    <section
+      id="book"
+      className="py-8 sm:py-12 md:py-16 relative z-10"
+      aria-labelledby="booking-heading"
+    >
+      <div className="max-w-lg mx-auto px-4 sm:px-6">
         {/* Header */}
-        <header className="text-center mb-6 sm:mb-8 md:mb-10">
-          <h2 id="booking-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 sm:mb-3">
-            Ready to Get Started?  🚀
+        <header className="text-center mb-5 sm:mb-6">
+          <h2
+            id="booking-heading"
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-1.5"
+          >
+            Ready to Get Started? 🚀
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            Book a free consultation.  Let's chat about your child's goals. 
+          <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+            Book a free consultation. Let's chat about your child's goals.
           </p>
         </header>
 
         {/* Form Card */}
-        <div className="rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 border shadow-lg bg-muted/50 border-primary border-solid">
-          {showSuccess ?
-        // Success State
-        <div className="text-center py-10 sm:py-12 md:py-16 animate-in zoom-in duration-500" role="status" aria-live="polite">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 sm: mb-6">
-                <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+        <div className="card-3d rounded-xl p-4 sm:p-5 md:p-6">
+          {showSuccess ? (
+            // Success State
+            <div
+              className="text-center py-8 sm:py-10 animate-in zoom-in duration-500"
+              role="status"
+              aria-live="polite"
+            >
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xl sm:text-2xl md: text-3xl font-bold text-foreground mb-2 sm:mb-3">
-                Request Received! 
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1.5">
+                Request Received!
               </h3>
-              <p className="text-muted-foreground text-sm sm: text-base">
+              <p className="text-muted-foreground text-xs sm:text-sm">
                 I'll be in touch shortly to confirm your slot.
               </p>
-            </div> :
-        // Form
-        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" noValidate>
-              {/* Parent & Child Names */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                <div className="space-y-2">
-                  <label htmlFor="parentName" className="block text-sm font-semibold text-foreground">
-                    Parent's Name <span className="text-destructive">*</span>
-                  </label>
-                  <Input id="parentName" required type="text" placeholder="Jane Doe" value={formData.parentName} onChange={e => handleInputChange("parentName", e.target.value)} className={`text-sm ${errors.parentName ? "border-destructive focus-visible:ring-destructive" : ""}`} maxLength={100} aria-invalid={!!errors.parentName} aria-describedby={errors.parentName ? "parentName-error" : undefined} />
-                  {errors.parentName && <p id="parentName-error" className="text-destructive text-xs" role="alert">
-                      {errors.parentName}
-                    </p>}
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="childName" className="block text-sm font-semibold text-foreground">
-                    Child's Name & Age <span className="text-destructive">*</span>
-                  </label>
-                  <Input id="childName" required type="text" placeholder="Leo, Age 10" value={formData.childName} onChange={e => handleInputChange("childName", e.target.value)} className={`text-sm ${errors.childName ? "border-destructive focus-visible:ring-destructive" : ""}`} maxLength={100} aria-invalid={!!errors.childName} aria-describedby={errors.childName ? "childName-error" : undefined} />
-                  {errors.childName && <p id="childName-error" className="text-destructive text-xs" role="alert">
-                      {errors.childName}
-                    </p>}
-                </div>
+            </div>
+          ) : (
+            // Form
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" noValidate>
+              {/* Parent Name */}
+              <div className="space-y-1">
+                <label
+                  htmlFor="parentName"
+                  className="block text-xs font-semibold text-foreground"
+                >
+                  Parent's Name <span className="text-destructive">*</span>
+                </label>
+                <Input
+                  id="parentName"
+                  required
+                  type="text"
+                  placeholder="Jane Doe"
+                  value={formData.parentName}
+                  onChange={(e) => handleInputChange("parentName", e.target.value)}
+                  className={`h-9 text-sm ${
+                    errors.parentName ? "border-destructive focus-visible:ring-destructive" : ""
+                  }`}
+                  maxLength={100}
+                  aria-invalid={!!errors.parentName}
+                  aria-describedby={errors.parentName ? "parentName-error" : undefined}
+                />
+                {errors.parentName && (
+                  <p id="parentName-error" className="text-destructive text-[10px]" role="alert">
+                    {errors.parentName}
+                  </p>
+                )}
               </div>
 
-              {/* Email & Phone */}
-              <div className="grid grid-cols-1 sm: grid-cols-2 gap-4 sm:gap-5">
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-semibold text-foreground">
-                    Email Address <span className="text-destructive">*</span>
+              {/* Child Name */}
+              <div className="space-y-1">
+                <label
+                  htmlFor="childName"
+                  className="block text-xs font-semibold text-foreground"
+                >
+                  Child's Name & Age <span className="text-destructive">*</span>
+                </label>
+                <Input
+                  id="childName"
+                  required
+                  type="text"
+                  placeholder="Leo, Age 10"
+                  value={formData.childName}
+                  onChange={(e) => handleInputChange("childName", e.target.value)}
+                  className={`h-9 text-sm ${
+                    errors.childName ? "border-destructive focus-visible:ring-destructive" : ""
+                  }`}
+                  maxLength={100}
+                  aria-invalid={!!errors.childName}
+                  aria-describedby={errors.childName ? "childName-error" : undefined}
+                />
+                {errors.childName && (
+                  <p id="childName-error" className="text-destructive text-[10px]" role="alert">
+                    {errors.childName}
+                  </p>
+                )}
+              </div>
+
+              {/* Email & Phone - Stack on mobile */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-xs font-semibold text-foreground"
+                  >
+                    Email <span className="text-destructive">*</span>
                   </label>
-                  <Input id="email" required type="email" placeholder="hello@family.com" value={formData.email} onChange={e => handleInputChange("email", e.target.value)} className={`text-sm ${errors.email ? "border-destructive focus-visible: ring-destructive" : ""}`} maxLength={255} aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />
-                  {errors.email && <p id="email-error" className="text-destructive text-xs" role="alert">
+                  <Input
+                    id="email"
+                    required
+                    type="email"
+                    placeholder="hello@family.com"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    className={`h-9 text-sm ${
+                      errors.email ? "border-destructive focus-visible:ring-destructive" : ""
+                    }`}
+                    maxLength={255}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                  />
+                  {errors.email && (
+                    <p id="email-error" className="text-destructive text-[10px]" role="alert">
                       {errors.email}
-                    </p>}
+                    </p>
+                  )}
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="block text-sm font-semibold text-foreground">
-                    Phone{" "}
-                    <span className="text-muted-foreground font-normal">(Optional)</span>
+                <div className="space-y-1">
+                  <label
+                    htmlFor="phone"
+                    className="block text-xs font-semibold text-foreground"
+                  >
+                    Phone <span className="text-muted-foreground font-normal text-[10px]">(Optional)</span>
                   </label>
-                  <Input id="phone" type="tel" placeholder="(215) 555-0123" value={formData.phone} onChange={e => handleInputChange("phone", e.target.value)} className={`text-sm ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`} maxLength={20} aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined} />
-                  {errors.phone && <p id="phone-error" className="text-destructive text-xs" role="alert">
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="(215) 555-0123"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    className={`h-9 text-sm ${
+                      errors.phone ? "border-destructive focus-visible:ring-destructive" : ""
+                    }`}
+                    maxLength={20}
+                    aria-invalid={!!errors.phone}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
+                  />
+                  {errors.phone && (
+                    <p id="phone-error" className="text-destructive text-[10px]" role="alert">
                       {errors.phone}
-                    </p>}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              {/* Subject Selection */}
-              <fieldset className="space-y-2">
-                <legend className="block text-sm font-semibold text-foreground mb-3">
-                  Interested Subject <span className="text-destructive">*</span>
+              {/* Subject Selection - Compact */}
+              <fieldset className="space-y-1.5">
+                <legend className="block text-xs font-semibold text-foreground">
+                  Subject <span className="text-destructive">*</span>
                 </legend>
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                  {subjects.map(sub => <button type="button" key={sub} onClick={() => setFormData({
-                ...formData,
-                subject: sub
-              })} className={`p-3 sm:p-3. 5 rounded-lg border-2 font-semibold text-xs sm:text-sm transition-all ${formData.subject === sub ? "border-primary bg-primary/10 text-primary shadow-sm" : "border-border text-muted-foreground hover: border-primary/50 hover:text-foreground"}`} aria-pressed={formData.subject === sub}>
+                <div className="flex flex-wrap gap-1.5">
+                  {subjects.map((sub) => (
+                    <button
+                      type="button"
+                      key={sub}
+                      onClick={() => setFormData({ ...formData, subject: sub })}
+                      className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-all ${
+                        formData.subject === sub
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground border border-border/50"
+                      }`}
+                      aria-pressed={formData.subject === sub}
+                    >
                       {sub}
-                    </button>)}
+                    </button>
+                  ))}
                 </div>
               </fieldset>
 
-              {/* Message */}
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-sm font-semibold text-foreground">
-                  How can I help? {" "}
-                  <span className="text-muted-foreground font-normal">(Optional)</span>
+              {/* Message - Compact */}
+              <div className="space-y-1">
+                <label
+                  htmlFor="message"
+                  className="block text-xs font-semibold text-foreground"
+                >
+                  Message <span className="text-muted-foreground font-normal text-[10px]">(Optional)</span>
                 </label>
-                <Textarea id="message" placeholder="Tell me a bit about what your child is working on or struggling with..." value={formData.message} onChange={e => handleInputChange("message", e.target.value)} className={`min-h-[100px] sm:min-h-[120px] resize-none text-sm ${errors.message ? "border-destructive focus-visible: ring-destructive" : ""}`} maxLength={1000} aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} />
-                <div className="flex justify-between items-center">
-                  {errors.message ? <p id="message-error" className="text-destructive text-xs" role="alert">
+                <Textarea
+                  id="message"
+                  placeholder="What is your child working on?"
+                  value={formData.message}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  className={`min-h-[70px] resize-none text-sm ${
+                    errors.message ? "border-destructive focus-visible:ring-destructive" : ""
+                  }`}
+                  maxLength={1000}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                />
+                <div className="flex justify-end">
+                  {errors.message ? (
+                    <p id="message-error" className="text-destructive text-[10px]" role="alert">
                       {errors.message}
-                    </p> : <span className="text-xs text-muted-foreground">
+                    </p>
+                  ) : (
+                    <span className="text-[10px] text-muted-foreground">
                       {formData.message.length}/1000
-                    </span>}
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Submit Button */}
-              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold py-3 sm:py-4 rounded-lg shadow-lg transform transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base">
-                {isSubmitting ? <>
-                    <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-9 text-sm font-semibold btn-3d"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" />
                     Sending...
-                  </> : "Schedule Free Consultation"}
+                  </>
+                ) : (
+                  "Book Free Consultation"
+                )}
               </Button>
-            </form>}
+            </form>
+          )}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 
 export default BookingSection;
