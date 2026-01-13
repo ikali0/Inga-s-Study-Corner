@@ -44,9 +44,12 @@ const HeroSection = ({
         {/* Text Content */}
         <div className="space-y-4 sm:space-y-5 lg:space-y-6 z-10 order-2 lg:order-1 text-center lg:text-left">
           {/* Badge */}
-          <div className="inline-block bg-gradient-to-r from-primary/15 to-orange/10 text-primary py-2 rounded-full font-bold text-xs sm:text-sm tracking-wide border border-primary/20 shadow-sm px-[8px]">
-            ✨ 215-791-5906  
-          </div>
+          <a 
+            href="tel:215-791-5906" 
+            className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/15 to-orange/10 text-primary py-2 rounded-full font-bold text-xs sm:text-sm tracking-wide border border-primary/20 shadow-sm px-3 hover:from-primary/25 hover:to-orange/20 hover:shadow-md transition-all duration-200 active:scale-95"
+          >
+            📞 215-791-5906
+          </a>
 
           {/* Heading */}
           <h1 id="hero-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-foreground">
