@@ -235,7 +235,7 @@ const ServicesSection: React.FC = () => {
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
                     {service.icon}
                   </div>
-                  <div className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded ${theme.badge}`}>Grades K-8</div>
+                  
                 </div>
                 <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg group-hover:text-primary transition-colors">
                   {service.title}
