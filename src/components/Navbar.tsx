@@ -29,7 +29,6 @@ const Navbar = ({
               text="Inga's Study Corner" 
               textClassName="text-xs sm:text-sm text-foreground"
               underlineClassName="text-primary"
-              underlineDuration={1}
             />
           </button>
 
