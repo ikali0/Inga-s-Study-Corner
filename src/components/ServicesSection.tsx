@@ -10,7 +10,7 @@ type ThemeColor = "blue" | "purple" | "green" | "orange";
 
 interface Service {
   id: string;
-  icon: React.ReactElement;
+  icon: React.ReactNode;
   title: string;
   description: string;
   color: ThemeColor;
@@ -56,7 +56,207 @@ const themeConfig = {
   },
 };
 
-// --- Feature Components ---
+// --- Data ---
+const services: Service[] = [
+  {
+    id: "math",
+    icon: <Sigma className="w-5 h-5" />,
+    title: "Math Mastery",
+    description:
+      'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
+    color: "blue",
+    features: ["Elementary → Middle School", "Homework Help", "Test Prep"],
+    longDescription:
+      "Our Math Mastery program builds strong foundations from counting and number sense all the way through pre-algebra. We use visual manipulatives, real-world problems, and confidence-building techniques to help students truly understand—not just memorize.",
+    detailedFeatures: [
+      {
+        title: "K-2 Focus",
+        items: [
+          "Number sense and counting strategies",
+          "Addition & subtraction fluency",
+          "Introduction to place value",
+          "Basic geometry and patterns",
+        ],
+      },
+      {
+        title: "3-5 Focus",
+        items: [
+          "Multiplication & division mastery",
+          "Fractions, decimals, and percentages",
+          "Multi-step word problems",
+          "Area, perimeter, and volume",
+        ],
+      },
+      {
+        title: "6-8 Focus",
+        items: [
+          "Pre-algebra and variable expressions",
+          "Ratios, proportions, and rates",
+          "Geometry and coordinate planes",
+          "Data analysis and statistics",
+        ],
+      },
+    ],
+    approach:
+      "We use the 'I Do, We Do, You Do' method combined with visual learning tools like number lines, fraction tiles, and graph paper to make abstract concepts concrete.",
+    outcomes: [
+      "Master grade-level math facts with 90%+ accuracy",
+      "Solve multi-step word problems independently",
+      "Build confidence to ask questions in class",
+    ],
+  },
+  {
+    id: "english",
+    icon: <BookOpen className="w-5 h-5" />,
+    title: "Reading & English",
+    description:
+      "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
+    color: "purple",
+    features: ["Reading Comprehension", "Essay Writing", "Vocabulary"],
+    longDescription:
+      "From learning to read to reading to learn—our English program supports the full journey. We build fluent readers and confident writers through phonics, comprehension strategies, and engaging texts matched to each student's level and interests.",
+    detailedFeatures: [
+      {
+        title: "K-2 Focus",
+        items: [
+          "Phonics and letter-sound relationships",
+          "Sight word mastery",
+          "Blending and decoding strategies",
+          "Early comprehension skills",
+        ],
+      },
+      {
+        title: "3-5 Focus",
+        items: [
+          "Main idea and supporting details",
+          "Paragraph structure and organization",
+          "Vocabulary in context",
+          "Narrative and expository writing",
+        ],
+      },
+      {
+        title: "6-8 Focus",
+        items: [
+          "Literary analysis and theme identification",
+          "Argumentative essay writing",
+          "Advanced grammar and mechanics",
+          "Research skills and citation",
+        ],
+      },
+    ],
+    approach:
+      "We use graphic organizers, highlight-coding, and story maps to help students visualize text structure. Every session includes both reading and writing practice.",
+    outcomes: [
+      "Read grade-level texts with fluency and comprehension",
+      "Write organized paragraphs with clear topic sentences",
+      "Expand vocabulary by 20+ words per month",
+    ],
+  },
+  {
+    id: "social",
+    icon: <Globe className="w-5 h-5" />,
+    title: "Social Studies",
+    description: "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
+    color: "green",
+    features: ["History & Geography", "Current Events", "Critical Thinking"],
+    longDescription:
+      "Social Studies isn't just about memorizing dates—it's about understanding how the world works. We explore history, geography, civics, and current events through inquiry-based learning that connects the past to the present.",
+    detailedFeatures: [
+      {
+        title: "K-2 Focus",
+        items: [
+          "Community helpers and local government",
+          "Map skills and basic geography",
+          "Holidays and cultural traditions",
+          "Rules and responsibilities",
+        ],
+      },
+      {
+        title: "3-5 Focus",
+        items: [
+          "U.S. history and early civilizations",
+          "States, capitals, and regions",
+          "Primary source introduction",
+          "Government structure basics",
+        ],
+      },
+      {
+        title: "6-8 Focus",
+        items: [
+          "World history and ancient civilizations",
+          "Document analysis and research skills",
+          "Civics and constitutional principles",
+          "Current events and media literacy",
+        ],
+      },
+    ],
+    approach:
+      "We use timelines, maps, primary sources, and discussion-based learning to help students think like historians and engaged citizens.",
+    outcomes: [
+      "Analyze primary sources and form evidence-based opinions",
+      "Understand how local and federal government works",
+      "Connect historical events to modern issues",
+    ],
+  },
+  {
+    id: "science",
+    icon: <FlaskConical className="w-5 h-5" />,
+    title: "Science & STEM",
+    description:
+      "Fostering curiosity through the scientific method. From life cycles to simple machines and coding basics.",
+    color: "orange",
+    features: ["Scientific Method", "Hands-on Labs", "Digital Literacy"],
+    longDescription:
+      "Our STEM program focuses on inquiry-based learning. We don't just memorize facts—we ask 'why' and 'how'. Students engage in virtual labs and hands-on experiments that make abstract concepts tangible and spark lifelong curiosity.",
+    detailedFeatures: [
+      {
+        title: "Life Science",
+        items: [
+          "Ecosystems and food chains",
+          "Human body systems",
+          "Plant and animal life cycles",
+          "Cells and organisms",
+        ],
+      },
+      {
+        title: "Physical Science",
+        items: [
+          "Matter, energy, and states",
+          "Forces, motion, and simple machines",
+          "Sound, light, and electricity",
+          "Chemical reactions (safe demos)",
+        ],
+      },
+      {
+        title: "Earth & Space",
+        items: [
+          "Solar system and astronomy",
+          "Weather patterns and climate",
+          "Geology and natural resources",
+          "Environmental science",
+        ],
+      },
+      {
+        title: "Digital Literacy",
+        items: [
+          "Block-based coding (Scratch)",
+          "Logical sequencing and algorithms",
+          "Intro to robotics thinking",
+          "Science fair project support",
+        ],
+      },
+    ],
+    approach:
+      "The Scientific Method guides every lesson: observe, hypothesize, test, and conclude. Students keep lab notebooks and present their findings.",
+    outcomes: [
+      "Design and conduct simple experiments independently",
+      "Use scientific vocabulary accurately",
+      "Apply coding logic to solve problems",
+    ],
+  },
+];
+
+// --- Subcomponents ---
 const FeatureList = ({ features, checkClass }: { features: string[]; checkClass: string }) => (
   <ul className="space-y-2 mb-4">
     {features.map((f, i) => (
@@ -110,6 +310,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="py-10 sm:py-16 md:py-20 bg-muted/30 relative overflow-hidden">
+      {/* Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.02]"
         style={{
@@ -120,6 +321,7 @@ const ServicesSection = () => {
       />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header + Quiz */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
           <div className="text-center lg:text-left flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
@@ -144,6 +346,7 @@ const ServicesSection = () => {
           </div>
         </div>
 
+        {/* Cards */}
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service) => {
             const theme = themeConfig[service.color];
@@ -151,12 +354,9 @@ const ServicesSection = () => {
               <article
                 key={service.id}
                 onClick={() => setSelectedService(service)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") setSelectedService(service);
-                }}
                 tabIndex={0}
                 role="button"
-                className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${theme.card}`}
+                className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 ${theme.card}`}
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
@@ -182,6 +382,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
+      {/* Sheet */}
       <Sheet
         open={!!selectedService}
         onOpenChange={(open) => {
@@ -190,14 +391,15 @@ const ServicesSection = () => {
       >
         <SheetContent side="right" className="w-full sm:max-w-md p-0">
           {selectedService && (
-            <ScrollArea className="max-h-screen sm:h-auto">
+            <ScrollArea className="h-screen sm:h-auto">
               <div className="p-6 sm:p-8">
                 <SheetHeader className="mb-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div
                       className={`w-14 h-14 rounded-xl flex items-center justify-center ${themeConfig[selectedService.color].iconBg}`}
                     >
-                      {React.cloneElement(selectedService.icon, { className: "w-7 h-7" })}
+                      {selectedService.icon &&
+                        React.cloneElement(selectedService.icon as React.ReactElement, { className: "w-7 h-7" })}
                     </div>
                     <div
                       className={`px-3 py-1 text-xs font-bold uppercase rounded-full ${themeConfig[selectedService.color].badge}`}
@@ -239,8 +441,7 @@ const ServicesSection = () => {
 
                 <Button
                   onClick={handleBooking}
-                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
-                  aria-label={`Book a trial session for ${selectedService.title}`}
+                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-primary-foreground`}
                 >
                   Book a Trial Session
                 </Button>
