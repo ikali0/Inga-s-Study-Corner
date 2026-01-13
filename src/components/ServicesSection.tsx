@@ -262,6 +262,22 @@ const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
 // --- Main Component ---
 const ServicesSection: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [gradientPhase, setGradientPhase] = useState(0);
+
+  // Animated gradient effect
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setGradientPhase((prev) => (prev + 1) % 4);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const gradientClasses = [
+    "from-primary/10 via-blue/5 to-purple/10",
+    "from-purple/10 via-primary/5 to-orange/10",
+    "from-orange/10 via-green/5 to-blue/10",
+    "from-blue/10 via-purple/5 to-primary/10",
+  ];
 
   const handleBooking = () => {
     setSelectedService(null);
@@ -269,36 +285,52 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-muted/30 relative overflow-hidden" id="services">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" id="services">
+      {/* Animated gradient background */}
+      <div 
+        className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[gradientPhase]} transition-all duration-[2000ms] ease-in-out`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/30" />
+      
+      {/* Decorative elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-40 h-40 sm:w-64 sm:h-64 bg-purple/5 rounded-full blur-3xl" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header - Stack on mobile, side-by-side on desktop */}
-        <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12 mb-6 sm:mb-8 lg:mb-12">
-          <div className="text-center lg:text-left flex-1 max-w-xl lg:max-w-none">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-card border border-border text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 shadow-sm">
-              <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary fill-primary" /> Our Programs
+        {/* Header - Centered with quiz below on mobile, side-by-side on desktop */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 lg:gap-16 mb-8 sm:mb-10 lg:mb-14">
+          {/* Title section - Always centered on mobile */}
+          <div className="text-center lg:text-left flex-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 shadow-lg">
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" /> 
+              Our Programs
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-tight">
               Academic Excellence
-              <br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>
-              <span className="text-primary">For Every Student</span>
+              <br />
+              <span className="text-primary bg-gradient-to-r from-primary to-purple bg-clip-text text-transparent">
+                For Every Student
+              </span>
             </h2>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground max-w-md mx-auto lg:mx-0">
+              Personalized learning paths designed to unlock your child's full potential.
+            </p>
           </div>
           
-          {/* Quiz section - Full width on mobile, fixed width on desktop */}
-          <div className="w-full sm:max-w-sm lg:w-80 lg:shrink-0 mx-auto lg:mx-0">
+          {/* Quiz section - Centered on mobile, right-aligned on desktop */}
+          <div className="w-full max-w-sm lg:w-[340px] lg:shrink-0 mx-auto lg:mx-0">
             <QuestionOfTheDay />
           </div>
         </div>
 
         {/* Flipping Cards Grid - Responsive: 2 cols mobile, 4 cols desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
           {services.map((service) => {
             const theme = themeConfig[service.color];
             return (
               <FlippingCard
                 key={service.id}
-                className={theme.card}
+                className={`${theme.card} shadow-lg hover:shadow-xl transition-shadow duration-300`}
                 frontContent={<CardFront service={service} theme={theme} />}
                 backContent={
                   <CardBack
@@ -313,8 +345,8 @@ const ServicesSection: React.FC = () => {
         </div>
         
         {/* Mobile tap hint - Only show on small screens */}
-        <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground mt-3 sm:mt-4 md:hidden">
-          <Hand className="w-3 h-3" />
+        <div className="flex items-center justify-center gap-2 text-[10px] sm:text-xs text-muted-foreground/80 mt-4 sm:mt-6 md:hidden">
+          <Hand className="w-3.5 h-3.5" />
           <span>Tap cards to see more details</span>
         </div>
       </div>
