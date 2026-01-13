@@ -28,20 +28,20 @@ const ReviewsSection = () => {
           Happy Parents & Kids 💛
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-          {reviews.map((review, i) => <article key={i} className="bg-card p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl shadow-sm border relative card-hover sm:rounded-lg border-purple-600 border-solid">
+          {reviews.map((review, i) => <article key={i} className="bg-card p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-border relative card-hover">
               <MessageCircle className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 text-primary/20 w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" aria-hidden="true" />
               <div className="flex text-primary mb-2 sm:mb-3 md:mb-4" aria-label="5 star rating">
                 {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} className="sm:w-3.5 sm:h-3.5" fill="currentColor" />)}
               </div>
-              <blockquote className="text-muted-foreground mb-3 sm:mb-4 md:mb-5 lg:mb-6 italic text-xs sm:text-sm leading-relaxed border border-orange-500 border-dashed">
+              <blockquote className="text-muted-foreground mb-3 sm:mb-4 md:mb-5 lg:mb-6 italic text-xs sm:text-sm leading-relaxed">
                 "{review.quote}"
               </blockquote>
               <footer className="flex items-center gap-2 sm:gap-3">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center font-bold text-muted-foreground text-xs sm:text-sm bg-purple-300 rounded-sm">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-muted rounded-full flex items-center justify-center font-bold text-muted-foreground text-xs sm:text-sm">
                   {review.initial}
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-xs sm:text-xs">
+                  <p className="font-bold text-foreground text-xs sm:text-sm">
                     {review.parent}
                   </p>
                 </div>

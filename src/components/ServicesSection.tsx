@@ -4,6 +4,7 @@ import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles, ArrowRight } from "luci
 // --- Types & Data ---
 
 type ThemeColor = "blue" | "purple" | "green";
+
 interface Service {
   id: string;
   icon: React.ReactNode;
@@ -12,28 +13,33 @@ interface Service {
   color: ThemeColor;
   features: string[];
 }
-const services: Service[] = [{
-  id: "math",
-  icon: <Sigma className="w-[18px] h-[18px]" />,
-  title: "Math Mastery",
-  description: 'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
-  color: "blue",
-  features: ["Elementary → Middle School", "Homework Help", "Test Prep"]
-}, {
-  id: "english",
-  icon: <BookOpen className="w-6 h-6" />,
-  title: "Reading & English",
-  description: "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
-  color: "purple",
-  features: ["Reading Comprehension", "Essay Writing", "Vocabulary"]
-}, {
-  id: "social",
-  icon: <Globe className="w-6 h-6" />,
-  title: "Social Studies",
-  description: "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
-  color: "green",
-  features: ["History & Geography", "Current Events", "Critical Thinking"]
-}];
+
+const services: Service[] = [
+  {
+    id: "math",
+    icon: <Sigma className="w-6 h-6" />,
+    title: "Math Mastery",
+    description: 'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
+    color: "blue",
+    features: ["Elementary → Middle School", "Homework Help", "Test Prep"]
+  },
+  {
+    id: "english",
+    icon: <BookOpen className="w-6 h-6" />,
+    title: "Reading & English",
+    description: "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
+    color: "purple",
+    features: ["Reading Comprehension", "Essay Writing", "Vocabulary"]
+  },
+  {
+    id: "social",
+    icon: <Globe className="w-6 h-6" />,
+    title: "Social Studies",
+    description: "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
+    color: "green",
+    features: ["History & Geography", "Current Events", "Critical Thinking"]
+  }
+];
 
 // --- Theme Configuration (3D Style) ---
 // We use hard shadows and borders to create the pop effect.
@@ -61,12 +67,13 @@ const themeConfig = {
 // --- Main Component ---
 
 const ServicesSection = () => {
-  return <section id="services" className="py-16 sm:py-24 bg-[#fffdf5] relative overflow-hidden font-sans">
+  return (
+    <section id="services" className="py-16 sm:py-24 bg-[#fffdf5] relative overflow-hidden font-sans">
       {/* Background Decor: A simple grid pattern adds to the technical/academic feel */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" style={{
-      backgroundImage: 'radial-gradient(#000 1px, transparent 1px)',
-      backgroundSize: '24px 24px'
-    }} />
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.03]" 
+        style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} 
+      />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
@@ -84,7 +91,7 @@ const ServicesSection = () => {
             </span>
           </h2>
           
-          <p className="text-lg text-slate-600 leading-relaxed font-medium sm:text-lg">
+          <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
             We provide patient, age-appropriate guidance in a focused learning
             environment designed to build <span className="underline decoration-wavy decoration-orange-400 decoration-2">confidence</span> and mastery.
           </p>
@@ -95,14 +102,19 @@ const ServicesSection = () => {
 
         {/* 3D Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-          {services.map(service => {
-          const theme = themeConfig[service.color];
-          return <article key={service.id} className={`
+          {services.map((service) => {
+            const theme = themeConfig[service.color];
+            
+            return (
+              <article
+                key={service.id}
+                className={`
                   group relative p-8 rounded-2xl border-2 bg-white 
                   transition-all duration-200 ease-out
                   hover:translate-x-[4px] hover:translate-y-[4px]
                   ${theme.card}
-                `}>
+                `}
+              >
                 {/* Header: Icon & Badge */}
                 <div className="flex justify-between items-start mb-6">
                   <div className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-sm ${theme.iconBg}`}>
@@ -115,10 +127,10 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="font-extrabold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors text-xl">
+                <h3 className="text-2xl font-extrabold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 mb-6 leading-relaxed font-medium text-xs">
+                <p className="text-slate-600 mb-6 leading-relaxed text-sm font-medium">
                   {service.description}
                 </p>
 
@@ -127,22 +139,27 @@ const ServicesSection = () => {
 
                 {/* Features List */}
                 <ul className="space-y-3">
-                  {service.features.map((feature, i) => <li key={i} className="flex items-start gap-3">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className={`w-5 h-5 shrink-0 ${theme.check}`} />
-                      <span className="font-bold text-slate-700 text-xs">
+                      <span className="text-sm font-bold text-slate-700">
                         {feature}
                       </span>
-                    </li>)}
+                    </li>
+                  ))}
                 </ul>
 
                 {/* Hover Call to Action Indicator */}
                 <div className="absolute bottom-6 right-6 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                   <ArrowRight className="w-5 h-5 text-slate-400" />
                 </div>
-              </article>;
-        })}
+              </article>
+            );
+          })}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ServicesSection;
