@@ -1,38 +1,51 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Zap, Star, CheckCircle, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-kids-learning.jpg';
+
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
 }
-const quotes = ["Learning should feel like play.", "Mistakes are proof you are trying.", "Every expert was once a beginner.", "Small steps lead to big jumps."];
-const HeroSection = ({
-  onNavigate
-}: HeroSectionProps) => {
+
+const quotes = [
+  "Learning should feel like play.",
+  "Mistakes are proof you are trying.",
+  "Every expert was once a beginner.",
+  "Small steps lead to big jumps."
+];
+
+const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuoteIndex(prev => (prev + 1) % quotes.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
   const handleNavigate = useCallback((id: string) => {
     onNavigate(id);
   }, [onNavigate]);
-  return <section id="hero" aria-labelledby="hero-heading" className="relative pt-24 pb-10 sm:pt-28 sm:pb-14 md:pt-32 md:pb-18 lg:pt-36 lg:pb-24 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden px-[3px] py-[14px]">
-      {/* Decorative Blobs - Hidden on mobile for cleaner look */}
-      
-      
-      
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
+  return (
+    <section 
+      id="hero" 
+      aria-labelledby="hero-heading" 
+      className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16 lg:pt-32 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-center">
         {/* Text Content */}
-        <div className="space-y-5 sm:space-y-6 md:space-y-7 lg:space-y-8 z-10 order-2 md:order-1 text-center md:text-left">
-          <div className="inline-block bg-primary/10 text-primary rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300 py-[4px] px-[8px]">
+        <div className="space-y-4 sm:space-y-5 md:space-y-6 z-10 order-2 md:order-1 text-center md:text-left">
+          {/* Badge */}
+          <div className="inline-block bg-primary/10 text-primary px-3 py-1.5 rounded-full font-bold text-xs tracking-wide">
             ✨ Interactive Learning for Ages 8–14
           </div>
 
-          <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.15] text-foreground">
+          {/* Heading */}
+          <h1 
+            id="hero-heading" 
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground"
+          >
             Build{" "}
             <span className="text-primary underline decoration-wavy decoration-accent underline-offset-4 decoration-2">
               Confidence
@@ -40,53 +53,76 @@ const HeroSection = ({
             . Strengthen <span className="text-blue">Skills</span>.
           </h1>
 
-          <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted-foreground font-medium max-w-lg leading-relaxed mx-auto md:mx-0">
+          {/* Description */}
+          <p className="text-sm sm:text-base text-muted-foreground font-medium max-w-lg leading-relaxed mx-auto md:mx-0">
             Inga's Study Corner is a supportive after-school learning space where
             students strengthen their understanding of{" "}
             <strong className="text-foreground">Math, English and Science</strong>{" "}
-            through clear explanations, guided practice, and curiosity-driven
-            learning.
+            through clear explanations, guided practice, and curiosity-driven learning.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
-            <Button onClick={() => handleNavigate("book")} size="lg" className="btn-bounce bg-blue hover:bg-blue/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-xl shadow-blue/20 flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            <Button 
+              onClick={() => handleNavigate("book")} 
+              size="lg" 
+              className="bg-blue hover:bg-blue/90 text-primary-foreground px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-blue/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
               <Zap size={18} className="fill-current" aria-hidden="true" />
               Book Your First Session
             </Button>
-            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="lg" className="btn-bounce bg-card hover:bg-muted text-foreground border-2 border-border px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all w-full sm:w-auto">
+            <Button 
+              onClick={() => handleNavigate("reviews")} 
+              variant="outline" 
+              size="lg" 
+              className="bg-card hover:bg-muted text-foreground border-2 border-border px-6 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
               <Star size={18} className="text-primary fill-current" aria-hidden="true" />
               Read Success Stories
             </Button>
           </div>
 
-          <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold text-muted-foreground justify-center md:justify-start pt-1 sm:gap-[8px] py-[2px]">
-            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
-              <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Ages 8-14
-            </span>
-            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
-              <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Tue-Fri 3-9 PM
-            </span>
-            <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
-              <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Small Groups
-            </span>
+          {/* Feature Pills */}
+          <div className="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
+            {[
+              { icon: <CheckCircle size={14} className="text-green shrink-0" />, text: "Ages 8-14" },
+              { icon: <CheckCircle size={14} className="text-green shrink-0" />, text: "Tue-Fri 3-9 PM" },
+              { icon: <CheckCircle size={14} className="text-green shrink-0" />, text: "Small Groups" },
+            ].map((item, i) => (
+              <span 
+                key={i}
+                className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full text-xs font-semibold text-muted-foreground"
+              >
+                {item.icon}
+                {item.text}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Image Section */}
         <div className="relative z-10 order-1 md:order-2 flex justify-center md:justify-end">
-          <div className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[400px]">
-            {/* Background accent blob */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/25 to-orange/20 rounded-2xl md:rounded-3xl transform rotate-3 scale-105 z-0" aria-hidden="true" />
+          <div className="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[380px]">
+            {/* Background accent */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange/15 rounded-2xl transform rotate-3 scale-105 z-0" 
+              aria-hidden="true" 
+            />
 
             {/* Main Image Frame */}
-            <div className="relative bg-card p-2 sm:p-2.5 md:p-3 rounded-2xl shadow-2xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500 border border-border/50 md:rounded-xl py-[10px] px-[10px]">
-              <div className="rounded-xl md:rounded-2xl overflow-hidden aspect-[4/3] relative group">
-                <img alt="Kids learning together at Inga's Study Corner" loading="eager" src="/lovable-uploads/5fafd3c0-0a69-4f4c-a005-67c9a1b8929d.png" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 border border-purple-400 rounded-sm shadow-sm opacity-90" />
+            <div className="relative bg-card p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500 border border-border/50">
+              <div className="rounded-lg sm:rounded-xl overflow-hidden aspect-[4/3] relative group">
+                <img 
+                  alt="Kids learning together at Inga's Study Corner" 
+                  loading="eager" 
+                  src="/lovable-uploads/5fafd3c0-0a69-4f4c-a005-67c9a1b8929d.png" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
 
-                {/* Overlay Text */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/70 to-transparent p-3 sm:p-4 md:p-5 text-primary-foreground text-center">
-                  <div key={currentQuoteIndex} className="fade-in-text">
-                    <p className="font-bold text-xs sm:text-sm md:text-base italic leading-snug drop-shadow-sm">
+                {/* Quote Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/70 to-transparent p-3 sm:p-4 text-primary-foreground text-center">
+                  <div key={currentQuoteIndex} className="animate-fade-in">
+                    <p className="font-bold text-xs sm:text-sm italic leading-snug drop-shadow-sm">
                       "{quotes[currentQuoteIndex]}"
                     </p>
                   </div>
@@ -95,16 +131,16 @@ const HeroSection = ({
             </div>
 
             {/* Floating Badge */}
-            <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-3 md:-bottom-5 md:-right-4 bg-card p-2 sm:p-2.5 md:p-3 rounded-xl shadow-lg shadow-foreground/5 z-20 border border-border/50 animate-bounce-subtle">
+            <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-3 bg-card p-2 sm:p-2.5 rounded-lg shadow-lg z-20 border border-border/50">
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <div className="bg-green/15 p-1.5 sm:p-2 rounded-full">
-                  <ThumbsUp className="text-green w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" aria-hidden="true" />
+                <div className="bg-green/15 p-1.5 rounded-full">
+                  <ThumbsUp className="text-green w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-[10px] sm:text-xs md:text-sm leading-tight">
+                  <p className="font-bold text-foreground text-[10px] sm:text-xs leading-tight">
                     Parents Love It
                   </p>
-                  <p className="text-[8px] sm:text-[9px] md:text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
+                  <p className="text-[8px] sm:text-[9px] text-muted-foreground font-semibold uppercase tracking-wider">
                     100% Recommended
                   </p>
                 </div>
@@ -113,6 +149,8 @@ const HeroSection = ({
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;

@@ -16,17 +16,19 @@ const Index = () => {
       });
     }
   };
-  return <div className="relative min-h-screen selection:bg-primary/20">
+  return (
+    <div className="relative min-h-screen selection:bg-primary/20 bg-background">
       <Navbar onNavigate={handleNavigate} />
-      <main className="px-4 sm:px-6 lg:px-[38px] py-6 sm:py-[38px]">
+      <main>
         <HeroSection onNavigate={handleNavigate} />
-        <AIStudyHelper />
         <ServicesSection />
+        <AIStudyHelper />
         <AboutSection />
         <ReviewsSection />
         <BookingSection />
       </main>
       <Footer onNavigate={handleNavigate} />
-    </div>;
+    </div>
+  );
 };
 export default Index;
