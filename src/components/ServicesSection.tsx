@@ -58,7 +58,7 @@ const themeConfig = {
 };
 const services: Service[] = [{
   id: "math",
-  icon: <Sigma className="w-6 h-6" />,
+  icon: <Sigma className="h-[20px] w-[20px]" />,
   title: "Math Mastery",
   shortTitle: "Math",
   description: "From arithmetic to pre-algebra with real-world examples.",
