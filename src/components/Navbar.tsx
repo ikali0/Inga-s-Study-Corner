@@ -13,7 +13,7 @@ const Navbar = ({
     setIsMenuOpen(false);
   }, [onNavigate]);
   const navItems = ["About", "Services", "Reviews", "Contact"];
-  return <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-border med-lime-100">
+  return <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b med-lime-100 bg-lime-100 border-pink-600 border-dashed border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-16 sm:h-20 flex items-center justify-between">
           {/* Logo */}
@@ -21,7 +21,7 @@ const Navbar = ({
             <div className="p-1.5 sm:p-2 rotate-3 rounded shadow-sm bg-orange-300 border-purple-400 border border-solid py-[6px] px-[6px]">
               <Rocket className="text-primary-foreground w-5 h-5 sm:w-6 sm:h-6 bg-pink-500" />
             </div>
-            <span className="text-base font-bold text-foreground sm:text-lg">
+            <span className="text-base font-bold text-foreground sm:text-base">
               Inga's Study Corner
             </span>
           </button>
