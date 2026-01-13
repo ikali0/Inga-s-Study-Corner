@@ -48,12 +48,10 @@ const ReviewsSection = () => {
                   {review.initial}
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground text-xs sm:text-sm">
+                  <p className="font-semibold text-foreground text-xs sm:text-xs">
                     {review.parent}
                   </p>
-                  <p className="text-[10px] text-muted-foreground">
-                    {review.subject}
-                  </p>
+                  
                 </div>
               </footer>
             </article>)}
