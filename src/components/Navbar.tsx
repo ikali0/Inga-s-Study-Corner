@@ -1,9 +1,12 @@
 import { useState, useCallback } from "react";
 import { Rocket, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedText } from "@/components/ui/animated-underline-text";
+
 interface NavbarProps {
   onNavigate: (id: string) => void;
 }
+
 const Navbar = ({
   onNavigate
 }: NavbarProps) => {
@@ -13,17 +16,21 @@ const Navbar = ({
     setIsMenuOpen(false);
   }, [onNavigate]);
   const navItems = ["About", "Services", "Reviews", "Contact"];
-  return <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-border med-lime-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-16 sm:h-18 flex items-center justify-between">
+  
+  return <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-border">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="h-12 sm:h-14 flex items-center justify-between">
           {/* Logo */}
-          <button type="button" onClick={() => handleNavClick("hero")} className="flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Go to homepage">
-            <div className="p-1.5 sm:p-2 rotate-3 shadow-sm bg-orange-300 border-purple-400 border border-solid rounded-sm py-[4px] px-[4px]">
-              <Rocket className="text-primary-foreground w-5 h-5 bg-pink-500 sm:h-[20px] sm:w-[20px]" />
+          <button type="button" onClick={() => handleNavClick("hero")} className="flex items-center gap-1.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Go to homepage">
+            <div className="p-1 rotate-3 shadow-[0_2px_0_0_hsl(var(--orange)/0.6)] bg-gradient-to-br from-orange to-primary rounded-md">
+              <Rocket className="text-primary-foreground w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
-            <span className="text-base font-bold text-foreground sm:text-sm">
-              Inga's Study Corner
-            </span>
+            <AnimatedText 
+              text="Inga's Study Corner" 
+              textClassName="text-xs sm:text-sm text-foreground"
+              underlineClassName="text-primary"
+              underlineDuration={1}
+            />
           </button>
 
           {/* Desktop Menu */}
