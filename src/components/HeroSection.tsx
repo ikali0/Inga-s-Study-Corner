@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Zap, Star, CheckCircle, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useMultipleParallax } from '@/hooks/use-parallax';
 
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
@@ -15,6 +16,7 @@ const quotes = [
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const { getOffset, getRotation, getScale } = useMultipleParallax();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,7 +35,37 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       aria-labelledby="hero-heading" 
       className="relative pt-24 pb-10 sm:pt-28 sm:pb-14 md:pt-32 md:pb-18 lg:pt-36 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute top-10 left-5 sm:left-10 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full blur-3xl pointer-events-none"
+        style={{ 
+          transform: `translateY(${getOffset(0.3, 'down')}px) rotate(${getRotation(0.5)}deg) scale(${getScale(1, 0.5)})` 
+        }}
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute top-1/3 right-0 w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72 bg-gradient-to-bl from-orange/15 to-orange/5 rounded-full blur-3xl pointer-events-none"
+        style={{ 
+          transform: `translateY(${getOffset(0.2, 'up')}px) rotate(${getRotation(-0.3)}deg)` 
+        }}
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute bottom-20 left-1/4 w-24 h-24 sm:w-36 sm:h-36 lg:w-48 lg:h-48 bg-gradient-to-tr from-blue/15 to-blue/5 rounded-full blur-2xl pointer-events-none"
+        style={{ 
+          transform: `translateY(${getOffset(0.4, 'down')}px) scale(${getScale(1.1, 0.3)})` 
+        }}
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute top-1/2 left-0 w-20 h-20 sm:w-28 sm:h-28 bg-gradient-to-r from-green/10 to-green/5 rounded-full blur-2xl pointer-events-none"
+        style={{ 
+          transform: `translateY(${getOffset(0.25, 'up')}px)` 
+        }}
+        aria-hidden="true"
+      />
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center relative z-10">
         {/* Text Content */}
         <div className="space-y-4 sm:space-y-5 lg:space-y-6 z-10 order-2 lg:order-1 text-center lg:text-left">
           {/* Badge */}
