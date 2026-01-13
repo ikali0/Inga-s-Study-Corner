@@ -1,455 +1,238 @@
-// src/components/ServicesSection.tsx
-import React, { useState } from "react";
-import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
-import QuestionOfTheDay from "./QuestionOfTheDay";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { useState } from "react";
+import { Sparkles, Brain, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/integrations/supabase/client";
 
-// --- Types ---
-type ThemeColor = "blue" | "purple" | "green" | "orange";
+type AIMode = "explain" | "practice" | "quiz";
 
-interface Service {
-  id: string;
-  icon: React.ReactElement;
-  title: string;
+interface ModeConfig {
+  label: string;
+  icon: React.ReactNode;
+  placeholder: string;
   description: string;
-  color: ThemeColor;
-  features: string[];
-  longDescription: string;
-  detailedFeatures: { title: string; items: string[] }[];
-  approach: string;
-  outcomes: string[];
 }
 
-// --- Theme Config ---
-const themeConfig = {
-  blue: {
-    card: "border-blue/30 hover:border-blue/50 hover:shadow-lg hover:shadow-blue/10",
-    iconBg: "bg-blue/10 text-blue",
-    check: "text-blue",
-    badge: "bg-blue/10 text-blue",
-    button: "bg-blue hover:bg-blue/90",
+const modeConfigs: Record<AIMode, ModeConfig> = {
+  explain: {
+    label: "Explain",
+    icon: <Brain className="w-4 h-4" />,
+    placeholder: "e.g., How do fractions work? What is photosynthesis?",
+    description: "Get simple explanations for tricky topics",
   },
-  purple: {
-    card: "border-purple/30 hover:border-purple/50 hover:shadow-lg hover:shadow-purple/10",
-    iconBg: "bg-purple/10 text-purple",
-    check: "text-purple",
-    badge: "bg-purple/10 text-purple",
-    button: "bg-purple hover:bg-purple/90",
+  practice: {
+    label: "Practice",
+    icon: <Sparkles className="w-4 h-4" />,
+    placeholder: "e.g., Give me 3 multiplication problems for a 4th grader",
+    description: "Generate practice problems with answers",
   },
-  green: {
-    card: "border-green/30 hover:border-green/50 hover:shadow-lg hover:shadow-green/10",
-    iconBg: "bg-green/10 text-green",
-    check: "text-green",
-    badge: "bg-green/10 text-green",
-    button: "bg-green hover:bg-green/90",
-  },
-  orange: {
-    card: "border-orange/30 hover:border-orange/50 hover:shadow-lg hover:shadow-orange/10",
-    iconBg: "bg-orange/10 text-orange",
-    check: "text-orange",
-    badge: "bg-orange/10 text-orange",
-    button: "bg-orange hover:bg-orange/90",
+  quiz: {
+    label: "Quiz Me",
+    icon: <Send className="w-4 h-4" />,
+    placeholder: "e.g., Quiz me on the solar system",
+    description: "Test your knowledge with fun quizzes",
   },
 };
 
-// --- Services Data ---
-const services: Service[] = [
-  {
-    id: "math",
-    icon: <Sigma className="w-5 h-5" />,
-    title: "Math Mastery",
-    description:
-      'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
-    color: "blue",
-    features: ["Elementary → Middle School", "Homework Help", "Test Prep"],
-    longDescription:
-      "Our Math Mastery program builds strong foundations from counting and number sense all the way through pre-algebra. We use visual manipulatives, real-world problems, and confidence-building techniques to help students truly understand—not just memorize.",
-    detailedFeatures: [
-      {
-        title: "K-2 Focus",
-        items: [
-          "Number sense and counting strategies",
-          "Addition & subtraction fluency",
-          "Introduction to place value",
-          "Basic geometry and patterns",
-        ],
-      },
-      {
-        title: "3-5 Focus",
-        items: [
-          "Multiplication & division mastery",
-          "Fractions, decimals, and percentages",
-          "Multi-step word problems",
-          "Area, perimeter, and volume",
-        ],
-      },
-      {
-        title: "6-8 Focus",
-        items: [
-          "Pre-algebra and variable expressions",
-          "Ratios, proportions, and rates",
-          "Geometry and coordinate planes",
-          "Data analysis and statistics",
-        ],
-      },
-    ],
-    approach:
-      "We use the 'I Do, We Do, You Do' method combined with visual learning tools like number lines, fraction tiles, and graph paper to make abstract concepts concrete.",
-    outcomes: [
-      "Master grade-level math facts with 90%+ accuracy",
-      "Solve multi-step word problems independently",
-      "Build confidence to ask questions in class",
-    ],
-  },
-  {
-    id: "english",
-    icon: <BookOpen className="w-5 h-5" />,
-    title: "Reading & English",
-    description:
-      "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
-    color: "purple",
-    features: ["Reading Comprehension", "Essay Writing", "Vocabulary"],
-    longDescription:
-      "From learning to read to reading to learn—our English program supports the full journey. We build fluent readers and confident writers through phonics, comprehension strategies, and engaging texts matched to each student's level and interests.",
-    detailedFeatures: [
-      {
-        title: "K-2 Focus",
-        items: [
-          "Phonics and letter-sound relationships",
-          "Sight word mastery",
-          "Blending and decoding strategies",
-          "Early comprehension skills",
-        ],
-      },
-      {
-        title: "3-5 Focus",
-        items: [
-          "Main idea and supporting details",
-          "Paragraph structure and organization",
-          "Vocabulary in context",
-          "Narrative and expository writing",
-        ],
-      },
-      {
-        title: "6-8 Focus",
-        items: [
-          "Literary analysis and theme identification",
-          "Argumentative essay writing",
-          "Advanced grammar and mechanics",
-          "Research skills and citation",
-        ],
-      },
-    ],
-    approach:
-      "We use graphic organizers, highlight-coding, and story maps to help students visualize text structure. Every session includes both reading and writing practice.",
-    outcomes: [
-      "Read grade-level texts with fluency and comprehension",
-      "Write organized paragraphs with clear topic sentences",
-      "Expand vocabulary by 20+ words per month",
-    ],
-  },
-  {
-    id: "social",
-    icon: <Globe className="w-5 h-5" />,
-    title: "Social Studies",
-    description: "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
-    color: "green",
-    features: ["History & Geography", "Current Events", "Critical Thinking"],
-    longDescription:
-      "Social Studies isn't just about memorizing dates—it's about understanding how the world works. We explore history, geography, civics, and current events through inquiry-based learning that connects the past to the present.",
-    detailedFeatures: [
-      {
-        title: "K-2 Focus",
-        items: [
-          "Community helpers and local government",
-          "Map skills and basic geography",
-          "Holidays and cultural traditions",
-          "Rules and responsibilities",
-        ],
-      },
-      {
-        title: "3-5 Focus",
-        items: [
-          "U.S. history and early civilizations",
-          "States, capitals, and regions",
-          "Primary source introduction",
-          "Government structure basics",
-        ],
-      },
-      {
-        title: "6-8 Focus",
-        items: [
-          "World history and ancient civilizations",
-          "Document analysis and research skills",
-          "Civics and constitutional principles",
-          "Current events and media literacy",
-        ],
-      },
-    ],
-    approach:
-      "We use timelines, maps, primary sources, and discussion-based learning to help students think like historians and engaged citizens.",
-    outcomes: [
-      "Analyze primary sources and form evidence-based opinions",
-      "Understand how local and federal government works",
-      "Connect historical events to modern issues",
-    ],
-  },
-  {
-    id: "science",
-    icon: <FlaskConical className="w-5 h-5" />,
-    title: "Science & STEM",
-    description:
-      "Fostering curiosity through the scientific method. From life cycles to simple machines and coding basics.",
-    color: "orange",
-    features: ["Scientific Method", "Hands-on Labs", "Digital Literacy"],
-    longDescription:
-      "Our STEM program focuses on inquiry-based learning. We don't just memorize facts—we ask 'why' and 'how'. Students engage in virtual labs and hands-on experiments that make abstract concepts tangible and spark lifelong curiosity.",
-    detailedFeatures: [
-      {
-        title: "Life Science",
-        items: [
-          "Ecosystems and food chains",
-          "Human body systems",
-          "Plant and animal life cycles",
-          "Cells and organisms",
-        ],
-      },
-      {
-        title: "Physical Science",
-        items: [
-          "Matter, energy, and states",
-          "Forces, motion, and simple machines",
-          "Sound, light, and electricity",
-          "Chemical reactions (safe demos)",
-        ],
-      },
-      {
-        title: "Earth & Space",
-        items: [
-          "Solar system and astronomy",
-          "Weather patterns and climate",
-          "Geology and natural resources",
-          "Environmental science",
-        ],
-      },
-      {
-        title: "Digital Literacy",
-        items: [
-          "Block-based coding (Scratch)",
-          "Logical sequencing and algorithms",
-          "Intro to robotics thinking",
-          "Science fair project support",
-        ],
-      },
-    ],
-    approach:
-      "The Scientific Method guides every lesson: observe, hypothesize, test, and conclude. Students keep lab notebooks and present their findings.",
-    outcomes: [
-      "Design and conduct simple experiments independently",
-      "Use scientific vocabulary accurately",
-      "Apply coding logic to solve problems",
-    ],
-  },
-];
+const gradeOptions = ["K-2", "3-5", "6-8", "9-12"] as const;
 
-// --- Subcomponents ---
-const FeatureList = ({ features, checkClass }: { features: string[]; checkClass: string }) => (
-  <ul className="space-y-2 mb-4">
-    {features.map((f, i) => (
-      <li key={i} className="flex items-center gap-2">
-        <CheckCircle2 className={`w-4 h-4 shrink-0 ${checkClass}`} />
-        <span className="font-medium text-foreground text-xs sm:text-sm">{f}</span>
-      </li>
-    ))}
-  </ul>
-);
+const AIStudyHelper = () => {
+  const [mode, setMode] = useState<AIMode>("explain");
+  const [input, setInput] = useState("");
+  const [grade, setGrade] = useState<string>("3-5");
+  const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-const DetailedFeatures = ({ sections, checkClass }: { sections: Service["detailedFeatures"]; checkClass: string }) => (
-  <div className="space-y-4">
-    {sections.map((section, idx) => (
-      <div key={idx} className="p-4 rounded-lg bg-card border border-border">
-        <h5 className={`font-bold text-sm mb-3 ${checkClass}`}>{section.title}</h5>
-        <ul className="space-y-2">
-          {section.items.map((item, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${checkClass}`} />
-              <span className="text-sm text-foreground">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
-  </div>
-);
+  const handleSubmit = async () => {
+    const trimmedInput = input.trim();
 
-const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
-  <ul className="space-y-3">
-    {outcomes.map((outcome, i) => (
-      <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
-        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-          <span className="text-xs font-bold text-primary">{i + 1}</span>
-        </div>
-        <span className="text-sm font-medium text-foreground">{outcome}</span>
-      </li>
-    ))}
-  </ul>
-);
+    if (!trimmedInput) {
+      setError("Please enter a question or topic.");
+      return;
+    }
 
-// --- Main Component ---
-const ServicesSection: React.FC = () => {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+    setIsLoading(true);
+    setError("");
+    setResult("");
 
-  const handleBooking = () => {
-    setSelectedService(null);
-    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("ai-study-helper", {
+        body: {
+          mode,
+          input: trimmedInput,
+          grade,
+        },
+      });
+
+      if (fnError) {
+        throw new Error(fnError.message || "Failed to get AI response");
+      }
+
+      if (!data?.result) {
+        throw new Error("No response received from AI");
+      }
+
+      setResult(data.result);
+    } catch (err) {
+      console.error("AI Helper Error:", err);
+      const errorMessage = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Submit on Ctrl+Enter or Cmd+Enter
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  const handleModeChange = (newMode: AIMode) => {
+    setMode(newMode);
+    setError("");
+    setResult("");
+  };
+
+  const config = modeConfigs[mode];
+
   return (
-    <section id="services" className="py-10 sm:py-16 md:py-20 bg-muted/30 relative overflow-hidden">
-      <div
-        className="absolute inset-0 z-0 opacity-[0.02]"
-        style={{
-          backgroundImage: "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-        aria-hidden="true"
-      />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header + Quiz */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
-          <div className="text-center lg:text-left flex-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-              <Sparkles className="w-3 h-3 text-primary fill-primary" /> Our Programs
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-foreground tracking-tight mb-3 lg:mb-4">
-              Academic Excellence
-              <br />
-              <span className="text-primary">For Every Student</span>
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md mx-auto lg:mx-0">
-              Patient, age-appropriate guidance in a focused environment built for{" "}
-              <span className="underline decoration-wavy decoration-primary/50 decoration-2 underline-offset-2">
-                confidence & mastery
-              </span>
-              .
-            </p>
+    <section className="py-8 sm:py-12 md: py-16 relative z-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="text-center mb-6 sm: mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-3">
+            <Sparkles className="w-3 h-3" />
+            AI-Powered Learning
           </div>
-          <div className="w-full lg:w-80 lg:shrink-0">
-            <QuestionOfTheDay />
-          </div>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2">Study Helper</h2>
+          <p className="text-sm text-muted-foreground max-w-md mx-auto">
+            Get instant help with any topic. Ask questions, practice problems, or test yourself!
+          </p>
         </div>
 
-        {/* Dynamic Cards */}
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service) => {
-            const theme = themeConfig[service.color];
-            return (
-              <article
-                key={service.id}
-                onClick={() => setSelectedService(service)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") setSelectedService(service);
-                }}
-                tabIndex={0}
-                role="button"
-                className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${theme.card}`}
+        {/* Main Card */}
+        <div className="border rounded-xl sm:rounded-2xl shadow-sm overflow-hidden bg-card border-border">
+          {/* Mode Tabs */}
+          <div className="flex border-b border-border bg-muted/30">
+            {(Object.keys(modeConfigs) as AIMode[]).map((m) => (
+              <button
+                key={m}
+                onClick={() => handleModeChange(m)}
+                disabled={isLoading}
+                className={`flex-1 py-3 px-2 sm: px-4 text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed ${
+                  mode === m
+                    ? "bg-card text-primary border-b-2 border-primary shadow-sm"
+                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                }`}
+                aria-label={`${modeConfigs[m].label} mode`}
+                aria-current={mode === m ? "page" : undefined}
               >
-                <div className="flex justify-between items-start mb-4">
-                  <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
-                    {service.icon}
-                  </div>
-                  <div className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded ${theme.badge}`}>Grades K-8</div>
+                {modeConfigs[m].icon}
+                <span className="hidden sm:inline">{modeConfigs[m].label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="p-4 sm:p-6 space-y-4 bg-card">
+            {/* Mode Description */}
+            <p className="text-xs text-muted-foreground italic">{config.description}</p>
+
+            {/* Grade Selector */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-medium text-muted-foreground">Grade Level:</span>
+              {gradeOptions.map((g) => (
+                <button
+                  key={g}
+                  onClick={() => setGrade(g)}
+                  disabled={isLoading}
+                  className={`px-3 py-1 text-xs font-medium rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                    grade === g
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                  }`}
+                  aria-label={`Grade ${g}`}
+                  aria-pressed={grade === g}
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
+
+            {/* Input */}
+            <div>
+              <label htmlFor="study-input" className="sr-only">
+                {config.label} input
+              </label>
+              <Textarea
+                id="study-input"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={config.placeholder}
+                className="min-h-[80px] resize-none text-sm"
+                disabled={isLoading}
+                aria-describedby="input-hint"
+                maxLength={500}
+              />
+              <p id="input-hint" className="text-xs text-muted-foreground mt-1">
+                Press Ctrl+Enter to submit • {input.length}/500 characters
+              </p>
+            </div>
+
+            {/* Submit Button */}
+            <Button
+              onClick={handleSubmit}
+              disabled={isLoading || !input.trim()}
+              className="w-full h-10 text-sm font-semibold"
+              aria-label="Get AI help"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Thinking...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Get Help
+                </>
+              )}
+            </Button>
+
+            {/* Error */}
+            {error && (
+              <div
+                className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-sm text-destructive"
+                role="alert"
+                aria-live="polite"
+              >
+                <strong className="font-semibold">Error:</strong> {error}
+              </div>
+            )}
+
+            {/* Result */}
+            {result && (
+              <div
+                className="p-4 bg-muted/50 rounded-lg border border-border animate-in fade-in slide-in-from-bottom-2 duration-300"
+                role="region"
+                aria-label="AI response"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Brain className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-semibold text-foreground">AI Response</span>
                 </div>
-                <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-xs sm:text-sm line-clamp-3">
-                  {service.description}
-                </p>
-                <div className="h-px w-full bg-border mb-4" />
-                <FeatureList features={service.features} checkClass={theme.check} />
-                <div className="flex items-center gap-1 text-xs font-bold text-primary group-hover:gap-2 transition-all">
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </article>
-            );
-          })}
+                <div className="text-sm text-foreground whitespace-pre-wrap leading-relaxed">{result}</div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-
-      {/* Dynamic Sheet */}
-      <Sheet
-        open={!!selectedService}
-        onOpenChange={(open) => {
-          if (!open) setSelectedService(null);
-        }}
-      >
-        <SheetContent side="right" className="w-full sm:max-w-md p-0">
-          {selectedService && (
-            <ScrollArea className="max-h-screen sm:h-auto">
-              <div className="p-6 sm:p-8">
-                <SheetHeader className="mb-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div
-                      className={`w-14 h-14 rounded-xl flex items-center justify-center ${themeConfig[selectedService.color].iconBg}`}
-                    >
-                      {React.cloneElement(selectedService.icon, { className: "w-7 h-7" })}
-                    </div>
-                    <div
-                      className={`px-3 py-1 text-xs font-bold uppercase rounded-full ${themeConfig[selectedService.color].badge}`}
-                    >
-                      Grades K-8
-                    </div>
-                  </div>
-                  <SheetTitle className="text-2xl font-bold text-foreground">{selectedService.title}</SheetTitle>
-                  <SheetDescription className="text-muted-foreground leading-relaxed">
-                    {selectedService.longDescription}
-                  </SheetDescription>
-                </SheetHeader>
-
-                <section className="mb-6">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
-                    Our Approach
-                  </h4>
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <p className="text-sm text-foreground leading-relaxed">{selectedService.approach}</p>
-                  </div>
-                </section>
-
-                <section className="mb-6">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
-                    What We Cover
-                  </h4>
-                  <DetailedFeatures
-                    sections={selectedService.detailedFeatures}
-                    checkClass={themeConfig[selectedService.color].check}
-                  />
-                </section>
-
-                <section className="mb-8">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
-                    Expected Outcomes
-                  </h4>
-                  <OutcomesList outcomes={selectedService.outcomes} />
-                </section>
-
-                <Button
-                  onClick={handleBooking}
-                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
-                  aria-label={`Book a trial session for ${selectedService.title}`}
-                >
-                  Book a Trial Session
-                </Button>
-              </div>
-            </ScrollArea>
-          )}
-        </SheetContent>
-      </Sheet>
     </section>
   );
 };
 
-export default ServicesSection;
+export default AIStudyHelper;
