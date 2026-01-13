@@ -193,9 +193,7 @@ const ServicesSection = () => {
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
                     {service.icon}
                   </div>
-                  <div className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded ${theme.badge}`}>
-                    Grades K-8
-                  </div>
+                  
                 </div>
 
                 {/* Content */}
@@ -219,7 +217,7 @@ const ServicesSection = () => {
 
                 {/* Learn More CTA */}
                 <div className="flex items-center gap-1 text-xs font-bold text-primary group-hover:gap-2 transition-all">
-                  <span className="text-xs my-[2px]">​More Info </span>
+                  <span className="text-xs my-[2px] mx-[2px]">​More  </span>
                   <ArrowRight className="w-[10px] h-[10px] my-[2px]" />
                 </div>
               </article>;
