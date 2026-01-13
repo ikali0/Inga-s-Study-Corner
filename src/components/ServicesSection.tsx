@@ -1,22 +1,8 @@
 // src/components/ServicesSection.tsx
 import React, { useState } from "react";
-import {
-  Sigma,
-  BookOpen,
-  Globe,
-  FlaskConical,
-  Sparkles,
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
+import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 import QuestionOfTheDay from "./QuestionOfTheDay";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -170,8 +156,7 @@ const services: Service[] = [
     id: "social",
     icon: <Globe className="w-5 h-5" />,
     title: "Social Studies",
-    description:
-      "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
+    description: "Exploring history, geography, and civics. Understanding our world and the people who shaped it.",
     color: "green",
     features: ["History & Geography", "Current Events", "Critical Thinking"],
     longDescription:
@@ -272,13 +257,7 @@ const services: Service[] = [
 ];
 
 // --- Subcomponents ---
-const FeatureList = ({
-  features,
-  checkClass,
-}: {
-  features: string[];
-  checkClass: string;
-}) => (
+const FeatureList = ({ features, checkClass }: { features: string[]; checkClass: string }) => (
   <ul className="space-y-2 mb-4">
     {features.map((f, i) => (
       <li key={i} className="flex items-center gap-2">
@@ -288,14 +267,7 @@ const FeatureList = ({
     ))}
   </ul>
 );
-
-const DetailedFeatures = ({
-  sections,
-  checkClass,
-}: {
-  sections: Service["detailedFeatures"];
-  checkClass: string;
-}) => (
+const DetailedFeatures = ({ sections, checkClass }: { sections: Service["detailedFeatures"]; checkClass: string }) => (
   <div className="space-y-4">
     {sections.map((section, idx) => (
       <div key={idx} className="p-4 rounded-lg bg-card border border-border">
@@ -312,14 +284,10 @@ const DetailedFeatures = ({
     ))}
   </div>
 );
-
 const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
   <ul className="space-y-3">
     {outcomes.map((outcome, i) => (
-      <li
-        key={i}
-        className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20"
-      >
+      <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
         <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
           <span className="text-xs font-bold text-primary">{i + 1}</span>
         </div>
@@ -332,17 +300,14 @@ const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
 // --- Main Component ---
 const ServicesSection: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-
   const handleBooking = () => {
     setSelectedService(null);
-    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("booking")?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
-
   return (
-    <section
-      id="services"
-      className="py-10 sm:py-16 md:py-20 bg-muted/30 relative overflow-hidden"
-    >
+    <section id="services" className="py-10 sm:py-16 md:py-20 bg-muted/30 relative overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-[0.02]"
         style={{
@@ -351,7 +316,6 @@ const ServicesSection: React.FC = () => {
         }}
         aria-hidden="true"
       />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header + Quiz */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
@@ -422,68 +386,70 @@ const ServicesSection: React.FC = () => {
           if (!open) setSelectedService(null);
         }}
       >
-        <SheetContent side="right" className="w-full sm:max-w-md p-0 h-[100dvh] flex flex-col">
+        <SheetContent side="right" className="w-full sm:max-w-md p-0">
           {selectedService && (
-            <>
-              <ScrollArea className="flex-1 overflow-y-auto">
-                <div className="p-6 sm:p-8">
-                  <SheetHeader className="mb-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center ${themeConfig[selectedService.color].iconBg}`}
-                      >
-                        {React.cloneElement(selectedService.icon, { className: "w-7 h-7" })}
-                      </div>
-                      <div
-                        className={`px-3 py-1 text-xs font-bold uppercase rounded-full ${themeConfig[selectedService.color].badge}`}
-                      >
-                        Grades K-8
-                      </div>
+            <ScrollArea className="max-h-screen sm:h-auto">
+              <div className="p-6 sm:p-8">
+                <SheetHeader className="mb-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className={`w-14 h-14 rounded-xl flex items-center justify-center ${themeConfig[selectedService.color].iconBg}`}
+                    >
+                      {React.cloneElement(selectedService.icon, {
+                        className: "w-7 h-7",
+                      })}
                     </div>
-                    <SheetTitle className="text-2xl font-bold text-foreground">{selectedService.title}</SheetTitle>
-                    <SheetDescription className="text-muted-foreground leading-relaxed">
-                      {selectedService.longDescription}
-                    </SheetDescription>
-                  </SheetHeader>
-
-                  <section className="mb-6">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
-                      Our Approach
-                    </h4>
-                    <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                      <p className="text-sm text-foreground leading-relaxed">{selectedService.approach}</p>
+                    <div
+                      className={`px-3 py-1 text-xs font-bold uppercase rounded-full ${themeConfig[selectedService.color].badge}`}
+                    >
+                      Grades K-8
                     </div>
-                  </section>
+                  </div>
+                  <SheetTitle className="text-2xl font-bold text-foreground">{selectedService.title}</SheetTitle>
+                  <SheetDescription className="text-muted-foreground leading-relaxed">
+                    {selectedService.longDescription}
+                  </SheetDescription>
+                </SheetHeader>
 
-                  <section className="mb-6">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
-                      What We Cover
-                    </h4>
-                    <DetailedFeatures
-                      sections={selectedService.detailedFeatures}
-                      checkClass={themeConfig[selectedService.color].check}
-                    />
-                  </section>
+                <section className="mb-6">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                    Our Approach
+                  </h4>
+                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
+                    <p className="text-sm text-foreground leading-relaxed">{selectedService.approach}</p>
+                  </div>
+                </section>
 
-                  <section className="mb-8">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
-                      Expected Outcomes
-                    </h4>
-                    <OutcomesList outcomes={selectedService.outcomes} />
-                  </section>
+                <section className="mb-6">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
+                    What We Cover
+                  </h4>
+                  <DetailedFeatures
+                    sections={selectedService.detailedFeatures}
+                    checkClass={themeConfig[selectedService.color].check}
+                  />
+                </section>
 
-                  <Button
-                    onClick={handleBooking}
-                    className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
-                    aria-label={`Book a trial session for ${selectedService.title}`}
-                  >
-                    Book a Trial Session
-                  </Button>
-                </div>
-              </ScrollArea>
+                <section className="mb-8">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
+                    Expected Outcomes
+                  </h4>
+                  <OutcomesList outcomes={selectedService.outcomes} />
+                </section>
 
-              {/* Scroll Hint Button (desktop only) */}
-              <div className="hidden md:flex sticky bottom-0 border-t bg-background p-3">
                 <Button
-                  variant="ghost"
-                  className="w
+                  onClick={handleBooking}
+                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
+                  aria-label={`Book a trial session for ${selectedService.title}`}
+                >
+                  Book a Trial Session
+                </Button>
+              </div>
+            </ScrollArea>
+          )}
+        </SheetContent>
+      </Sheet>
+    </section>
+  );
+};
+export default ServicesSection;
