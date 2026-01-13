@@ -202,7 +202,7 @@ const ServicesSection = () => {
                 <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-xs line-clamp-3 sm:text-xs">
+                <p className="text-muted-foreground mb-3leading-relaxed text-xs line-clamp-3 xsm:text-xs">
                   {service.description}
                 </p>
 
@@ -219,7 +219,7 @@ const ServicesSection = () => {
 
                 {/* Learn More CTA */}
                 <div className="flex items-center gap-1 text-xs font-bold text-primary group-hover:gap-2 transition-all">
-                  <span>Learn More</span>
+                  <span className="text-xs">Learn More</span>
                   <ArrowRight className="w-3 h-3" />
                 </div>
               </article>;
