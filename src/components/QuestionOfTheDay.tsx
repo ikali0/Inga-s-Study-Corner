@@ -9,7 +9,6 @@ import { Lightbulb, CheckCircle, XCircle, Sparkles, RotateCcw, Brain, ArrowRight
 // ==========================================
 
 type Subject = "math" | "science" | "english";
-
 interface Question {
   id: string | number;
   question: string;
@@ -19,63 +18,55 @@ interface Question {
   funFact: string;
   subject: Subject;
 }
-
-const staticQuestions: Question[] = [
-  {
-    id: "s1",
-    question: "What is the largest planet in our solar system?",
-    options: ["Earth", "Saturn", "Jupiter", "Neptune"],
-    correctIndex: 2,
-    hint: "It's named after the king of Roman gods! 👑",
-    funFact: "Jupiter is so big that over 1,300 Earths could fit inside it!",
-    subject: "science"
-  },
-  {
-    id: "e1",
-    question: "Which word is a noun: 'quickly', 'happiness', 'beautiful', or 'run'?",
-    options: ["quickly", "happiness", "beautiful", "run"],
-    correctIndex: 1,
-    hint: "A noun is a person, place, thing, or feeling! 💭",
-    funFact: "The word 'set' has the most definitions of any English word!",
-    subject: "english"
-  },
-  {
-    id: "s2",
-    question: "Which part of the plant makes food using sunlight?",
-    options: ["Roots", "Stem", "Leaves", "Flowers"],
-    correctIndex: 2,
-    hint: "This process is called photosynthesis! 🌿",
-    funFact: "A single tree can produce enough oxygen for 2 people per year!",
-    subject: "science"
-  },
-  {
-    id: "e2",
-    question: "What is the past tense of 'swim'?",
-    options: ["swimmed", "swam", "swum", "swimming"],
-    correctIndex: 1,
-    hint: "It's an irregular verb - it doesn't follow the usual '-ed' rule! 🏊",
-    funFact: "English has about 200 irregular verbs!",
-    subject: "english"
-  },
-  {
-    id: "s3",
-    question: "What gas do humans need to breathe in to survive?",
-    options: ["Carbon Dioxide", "Helium", "Oxygen", "Nitrogen"],
-    correctIndex: 2,
-    hint: "Trees release this gas, and we take it in! 🌬️",
-    funFact: "The air we breathe is actually 78% Nitrogen and only 21% Oxygen.",
-    subject: "science"
-  },
-  {
-    id: "e3",
-    question: "Identify the antonym of 'Artificial'.",
-    options: ["Fake", "Natural", "Constructed", "Man-made"],
-    correctIndex: 1,
-    hint: "An antonym means the opposite. Think of something found in nature.",
-    funFact: "Antonyms are words with opposite meanings, like 'hot' and 'cold'.",
-    subject: "english"
-  }
-];
+const staticQuestions: Question[] = [{
+  id: "s1",
+  question: "What is the largest planet in our solar system?",
+  options: ["Earth", "Saturn", "Jupiter", "Neptune"],
+  correctIndex: 2,
+  hint: "It's named after the king of Roman gods! 👑",
+  funFact: "Jupiter is so big that over 1,300 Earths could fit inside it!",
+  subject: "science"
+}, {
+  id: "e1",
+  question: "Which word is a noun: 'quickly', 'happiness', 'beautiful', or 'run'?",
+  options: ["quickly", "happiness", "beautiful", "run"],
+  correctIndex: 1,
+  hint: "A noun is a person, place, thing, or feeling! 💭",
+  funFact: "The word 'set' has the most definitions of any English word!",
+  subject: "english"
+}, {
+  id: "s2",
+  question: "Which part of the plant makes food using sunlight?",
+  options: ["Roots", "Stem", "Leaves", "Flowers"],
+  correctIndex: 2,
+  hint: "This process is called photosynthesis! 🌿",
+  funFact: "A single tree can produce enough oxygen for 2 people per year!",
+  subject: "science"
+}, {
+  id: "e2",
+  question: "What is the past tense of 'swim'?",
+  options: ["swimmed", "swam", "swum", "swimming"],
+  correctIndex: 1,
+  hint: "It's an irregular verb - it doesn't follow the usual '-ed' rule! 🏊",
+  funFact: "English has about 200 irregular verbs!",
+  subject: "english"
+}, {
+  id: "s3",
+  question: "What gas do humans need to breathe in to survive?",
+  options: ["Carbon Dioxide", "Helium", "Oxygen", "Nitrogen"],
+  correctIndex: 2,
+  hint: "Trees release this gas, and we take it in! 🌬️",
+  funFact: "The air we breathe is actually 78% Nitrogen and only 21% Oxygen.",
+  subject: "science"
+}, {
+  id: "e3",
+  question: "Identify the antonym of 'Artificial'.",
+  options: ["Fake", "Natural", "Constructed", "Man-made"],
+  correctIndex: 1,
+  hint: "An antonym means the opposite. Think of something found in nature.",
+  funFact: "Antonyms are words with opposite meanings, like 'hot' and 'cold'.",
+  subject: "english"
+}];
 
 // Procedural Math Generator
 const generateMathQuestion = (seed: number): Question => {
@@ -125,7 +116,6 @@ const generateMathQuestion = (seed: number): Question => {
     };
   }
 };
-
 const subjectStyles = {
   math: {
     badge: "bg-blue/10 text-blue border-blue/20",
@@ -155,7 +145,6 @@ const QuestionOfTheDay = () => {
   const [showHint, setShowHint] = useState(false);
   const [status, setStatus] = useState<"unanswered" | "correct" | "wrong">("unanswered");
   const [isDaily, setIsDaily] = useState(true);
-
   const getDailyQuestion = useCallback(() => {
     const now = new Date();
     const seedString = now.toDateString();
@@ -170,7 +159,6 @@ const QuestionOfTheDay = () => {
       return staticQuestions[positiveHash % staticQuestions.length];
     }
   }, []);
-
   const getNextRandomQuestion = useCallback(() => {
     const randomSeed = Math.floor(Math.random() * 10000);
     if (Math.random() > 0.5) {
@@ -179,7 +167,6 @@ const QuestionOfTheDay = () => {
       return staticQuestions[randomSeed % staticQuestions.length];
     }
   }, []);
-
   useEffect(() => {
     setMounted(true);
     const dailyQ = getDailyQuestion();
@@ -187,7 +174,11 @@ const QuestionOfTheDay = () => {
     const savedData = localStorage.getItem("qotd-answer");
     if (savedData) {
       try {
-        const { date, answer, questionId } = JSON.parse(savedData);
+        const {
+          date,
+          answer,
+          questionId
+        } = JSON.parse(savedData);
         if (date === new Date().toDateString() && questionId === dailyQ.id) {
           setSelectedAnswer(answer);
           setStatus(answer === dailyQ.correctIndex ? "correct" : "wrong");
@@ -199,7 +190,6 @@ const QuestionOfTheDay = () => {
       }
     }
   }, [getDailyQuestion]);
-
   const handleAnswerSelect = (index: number) => {
     if (status !== "unanswered" || !activeQuestion) return;
     setSelectedAnswer(index);
@@ -214,7 +204,6 @@ const QuestionOfTheDay = () => {
       }));
     }
   };
-
   const handleNextQuestion = () => {
     setIsDaily(false);
     setSelectedAnswer(null);
@@ -222,13 +211,9 @@ const QuestionOfTheDay = () => {
     setStatus("unanswered");
     setActiveQuestion(getNextRandomQuestion());
   };
-
   if (!mounted || !activeQuestion) return null;
-
   const style = subjectStyles[activeQuestion.subject];
-
-  return (
-    <div className="w-full font-sans">
+  return <div className="w-full font-sans">
       <style>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
@@ -240,14 +225,9 @@ const QuestionOfTheDay = () => {
 
       <div className="bg-card rounded-xl border-2 border-foreground/80 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.8)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,0.2)] overflow-hidden">
         {/* Status Bar */}
-        <div className={cn(
-          "h-1 w-full transition-colors duration-300",
-          status === "correct" ? "bg-green" : 
-          status === "wrong" ? "bg-destructive" : 
-          "bg-gradient-to-r from-blue via-purple to-pink"
-        )} />
+        <div className={cn("h-1 w-full transition-colors duration-300", status === "correct" ? "bg-green" : status === "wrong" ? "bg-destructive" : "bg-gradient-to-r from-blue via-purple to-pink")} />
 
-        <div className="p-3 sm:p-4">
+        <div className="p-3 sm:p-4 bg-white">
           {/* Header */}
           <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
             <div className="flex items-center gap-1 sm:gap-1.5">
@@ -256,10 +236,7 @@ const QuestionOfTheDay = () => {
                 {isDaily ? "Daily Quiz" : "Practice"}
               </span>
             </div>
-            <div className={cn(
-              "inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold border",
-              style.badge
-            )}>
+            <div className={cn("inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold border", style.badge)}>
               {style.icon}
               {style.label}
             </div>
@@ -273,72 +250,34 @@ const QuestionOfTheDay = () => {
           </div>
 
           {/* Options - 2x2 Grid */}
-          <div className={cn(
-            "grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3",
-            status === "wrong" ? "animate-shake" : ""
-          )}>
+          <div className={cn("grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3", status === "wrong" ? "animate-shake" : "")}>
             {activeQuestion.options.map((option, index) => {
-              const isSelected = selectedAnswer === index;
-              const isCorrect = index === activeQuestion.correctIndex;
-              const isDisabled = status !== "unanswered";
-              
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleAnswerSelect(index)}
-                  disabled={isDisabled}
-                  className={cn(
-                    "relative p-2 sm:p-2.5 rounded-lg border-2 text-left text-[10px] sm:text-xs font-medium transition-all duration-150 flex items-center justify-between min-h-[36px] sm:min-h-[40px]",
-                    isDisabled
-                      ? isCorrect
-                        ? "bg-green/10 border-green text-green"
-                        : isSelected
-                          ? "bg-destructive/10 border-destructive text-destructive"
-                          : "bg-muted border-border text-muted-foreground opacity-50"
-                      : "bg-card border-border hover:border-primary hover:bg-primary/5 cursor-pointer text-foreground active:scale-[0.98]"
-                  )}
-                >
+            const isSelected = selectedAnswer === index;
+            const isCorrect = index === activeQuestion.correctIndex;
+            const isDisabled = status !== "unanswered";
+            return <button key={index} onClick={() => handleAnswerSelect(index)} disabled={isDisabled} className={cn("relative p-2 sm:p-2.5 rounded-lg border-2 text-left text-[10px] sm:text-xs font-medium transition-all duration-150 flex items-center justify-between min-h-[36px] sm:min-h-[40px]", isDisabled ? isCorrect ? "bg-green/10 border-green text-green" : isSelected ? "bg-destructive/10 border-destructive text-destructive" : "bg-muted border-border text-muted-foreground opacity-50" : "bg-card border-border hover:border-primary hover:bg-primary/5 cursor-pointer text-foreground active:scale-[0.98]")}>
                   <span className="mr-1 line-clamp-2">{option}</span>
                   {isDisabled && isCorrect && <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green shrink-0" />}
                   {isDisabled && isSelected && !isCorrect && <XCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-destructive shrink-0" />}
-                </button>
-              );
-            })}
+                </button>;
+          })}
           </div>
 
           {/* Actions */}
           <div className="flex flex-col gap-1.5 sm:gap-2">
-            {status === "unanswered" && (
-              <>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowHint(!showHint)}
-                  className="text-primary hover:bg-primary/10 h-7 sm:h-8 text-[10px] sm:text-xs w-full"
-                >
+            {status === "unanswered" && <>
+                <Button variant="ghost" size="sm" onClick={() => setShowHint(!showHint)} className="text-primary hover:bg-primary/10 h-7 sm:h-8 text-[10px] sm:text-xs w-full">
                   <Lightbulb className={cn("w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1", showHint && "fill-primary")} />
                   {showHint ? "Hide Hint" : "Need a Hint?"}
                 </Button>
-                {showHint && (
-                  <div className="bg-primary/10 border border-primary/20 rounded-lg p-2 text-[10px] sm:text-xs text-foreground text-center">
+                {showHint && <div className="bg-primary/10 border border-primary/20 rounded-lg p-2 text-[10px] sm:text-xs text-foreground text-center">
                     💡 {activeQuestion.hint}
-                  </div>
-                )}
-              </>
-            )}
+                  </div>}
+              </>}
 
-            {status !== "unanswered" && (
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className={cn(
-                  "p-2 sm:p-2.5 rounded-lg text-center",
-                  status === "correct" 
-                    ? "bg-green/10 border border-green/20" 
-                    : "bg-destructive/10 border border-destructive/20"
-                )}>
-                  <p className={cn(
-                    "text-xs sm:text-sm font-bold",
-                    status === "correct" ? "text-green" : "text-destructive"
-                  )}>
+            {status !== "unanswered" && <div className="space-y-1.5 sm:space-y-2">
+                <div className={cn("p-2 sm:p-2.5 rounded-lg text-center", status === "correct" ? "bg-green/10 border border-green/20" : "bg-destructive/10 border border-destructive/20")}>
+                  <p className={cn("text-xs sm:text-sm font-bold", status === "correct" ? "text-green" : "text-destructive")}>
                     {status === "correct" ? "🎉 Correct!" : "💪 Try again!"}
                   </p>
                   <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-1">
@@ -347,33 +286,19 @@ const QuestionOfTheDay = () => {
                 </div>
 
                 <div className="flex gap-1.5 sm:gap-2">
-                  {!isDaily && status === "wrong" && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setStatus("unanswered")}
-                      className="flex-1 h-7 sm:h-8 text-[10px] sm:text-xs"
-                    >
+                  {!isDaily && status === "wrong" && <Button variant="outline" size="sm" onClick={() => setStatus("unanswered")} className="flex-1 h-7 sm:h-8 text-[10px] sm:text-xs">
                       <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1" /> Retry
-                    </Button>
-                  )}
-                  <Button
-                    size="sm"
-                    onClick={handleNextQuestion}
-                    className="flex-1 bg-foreground text-background hover:bg-foreground/90 h-7 sm:h-8 text-[10px] sm:text-xs"
-                  >
+                    </Button>}
+                  <Button size="sm" onClick={handleNextQuestion} className="flex-1 bg-foreground text-background hover:bg-foreground/90 h-7 sm:h-8 text-[10px] sm:text-xs">
                     <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1" />
                     Next
                     <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1" />
                   </Button>
                 </div>
-              </div>
-            )}
+              </div>}
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default QuestionOfTheDay;
