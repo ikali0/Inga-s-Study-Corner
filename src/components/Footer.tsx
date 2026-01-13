@@ -99,12 +99,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({
                 </div>
                 <span className="break-all text-[10px] sm:text-xs">{tutorInfo.email}</span>
               </a>
-              <a href={`tel:${tutorInfo.phone}`} className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
-                <div className="bg-green/20 p-1.5 rounded-md group-hover:bg-green/30 transition-colors">
-                  <Phone size={12} className="text-green" />
-                </div>
-                <span className="text-[10px] sm:text-xs">{tutorInfo.phone}</span>
-              </a>
+              
               <div className="flex items-start gap-2 text-muted-foreground">
                 <div className="bg-blue/20 p-1.5 rounded-md shrink-0">
                   <MapPin size={12} className="text-blue" />
@@ -124,7 +119,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({
 
       {/* Copyright */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8 pt-3 sm:pt-4 border-t border-border/50 text-center">
-        <p className="text-[9px] sm:text-[10px] md:text-xs text-foreground/70">
+        <p className="text-[9px] sm:text-[10px] md:text-xs text-purple-950">
           &copy; {new Date().getFullYear()} Inga's Study Corner. Passionately
           teaching since 2018. ✨
         </p>
