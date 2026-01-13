@@ -33,30 +33,46 @@ const Navbar = ({
           </button>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main navigation">
-            {navItems.map(item => <button type="button" key={item} onClick={() => handleNavClick(item.toLowerCase())} className="text-muted-foreground hover:text-primary font-semibold transition-colors text-sm lg:text-base focus:outline-none focus-visible:text-primary">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6" aria-label="Main navigation">
+            {navItems.map(item => (
+              <button 
+                type="button" 
+                key={item} 
+                onClick={() => handleNavClick(item.toLowerCase())} 
+                className="relative text-muted-foreground hover:text-foreground font-semibold transition-colors text-xs lg:text-sm focus:outline-none focus-visible:text-primary group"
+              >
                 {item}
-              </button>)}
-            <Button onClick={() => handleNavClick("book")} className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 lg:px-6 py-2 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm lg:text-base">
-              Book a Free Trial
+                <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+              </button>
+            ))}
+            <Button onClick={() => handleNavClick("book")} size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground px-3 lg:px-4 py-1.5 rounded-full font-bold text-[10px] lg:text-xs shadow-[0_3px_0_0_hsl(var(--primary)/0.5)] hover:shadow-[0_1px_0_0_hsl(var(--primary)/0.5)] hover:translate-y-0.5 active:shadow-none active:translate-y-1 transition-all">
+              Book a Call
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button type="button" onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-foreground p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label={isMenuOpen ? "Close menu" : "Open menu"} aria-expanded={isMenuOpen}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button type="button" onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-foreground p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label={isMenuOpen ? "Close menu" : "Open menu"} aria-expanded={isMenuOpen}>
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMenuOpen && <div className="md:hidden bg-card border-b border-border p-4 absolute w-full shadow-xl animate-in slide-in-from-top-2 duration-200">
-          <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
-            {navItems.map(item => <button type="button" key={item} onClick={() => handleNavClick(item.toLowerCase())} className="text-foreground font-semibold text-left py-3 px-2 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+      {isMenuOpen && <div className="md:hidden bg-card border-b border-border p-3 absolute w-full shadow-xl animate-in slide-in-from-top-2 duration-200">
+          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+            {navItems.map(item => (
+              <button 
+                type="button" 
+                key={item} 
+                onClick={() => handleNavClick(item.toLowerCase())} 
+                className="relative text-foreground font-semibold text-left py-2 px-2 text-sm hover:text-primary hover:bg-primary/5 rounded-lg transition-colors group"
+              >
                 {item}
-              </button>)}
-            <Button onClick={() => handleNavClick("book")} className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold text-center shadow-md w-full mt-2">
-              Start Your Adventure ✨
+                <span className="absolute bottom-1.5 left-2 w-[calc(100%-16px)] h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+              </button>
+            ))}
+            <Button onClick={() => handleNavClick("book")} size="sm" className="bg-primary text-primary-foreground px-4 py-2 rounded-xl font-bold text-center text-xs shadow-[0_3px_0_0_hsl(var(--primary)/0.5)] w-full mt-2 active:shadow-none active:translate-y-1 transition-all">
+              Book a Call ✨
             </Button>
           </nav>
         </div>}
