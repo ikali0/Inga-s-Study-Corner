@@ -158,7 +158,7 @@ const ServicesSection = () => {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
           {/* Header */}
           <div className="text-center lg:text-left flex-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm rounded-sm">
               <Sparkles className="w-3 h-3 text-primary fill-primary" />
               Our Programs
             </div>
@@ -189,7 +189,7 @@ const ServicesSection = () => {
           const theme = themeConfig[service.color];
           return <article key={service.id} onClick={() => setSelectedService(service)} className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 ${theme.card}`}>
                 {/* Header */}
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-2">
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
                     {service.icon}
                   </div>
@@ -199,7 +199,7 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg group-hover:text-primary transition-colors">
+                <h3 className="font-bold text-foreground mb-2 text-base group-hover:text-primary transition-colors sm:text-base">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground mb-3leading-relaxed text-xs line-clamp-3 xsm:text-xs">
