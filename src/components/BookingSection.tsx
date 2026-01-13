@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,7 +64,7 @@ const sanitizeInput = (input: string): string => {
   .replace(/on\w+=/gi, "") // Remove event handlers
   .trim();
 };
-const BookingSection = () => {
+const BookingSection = forwardRef<HTMLElement>((_, ref) => {
   const {
     toast
   } = useToast();
@@ -158,7 +158,7 @@ const BookingSection = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="book" className="py-8 sm:py-12 md:py-16 lg:py-20 pb-12 sm:pb-16 md:pb-20 lg:pb-24 relative z-10" aria-labelledby="booking-heading">
+  return <section ref={ref} id="book" className="py-8 sm:py-12 md:py-16 lg:py-20 pb-12 sm:pb-16 md:pb-20 lg:pb-24 relative z-10" aria-labelledby="booking-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <header className="text-center mb-6 sm:mb-8 md:mb-10">
@@ -171,7 +171,7 @@ const BookingSection = () => {
         </header>
 
         {/* Form Card */}
-        <div className="rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 border shadow-lg bg-purple-100 border-primary border-solid">
+        <div className="rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 border shadow-lg bg-muted/50 border-primary border-solid">
           {showSuccess ?
         // Success State
         <div className="text-center py-10 sm:py-12 md:py-16 animate-in zoom-in duration-500" role="status" aria-live="polite">
@@ -276,5 +276,8 @@ const BookingSection = () => {
         </div>
       </div>
     </section>;
-};
+});
+
+BookingSection.displayName = 'BookingSection';
+
 export default BookingSection;

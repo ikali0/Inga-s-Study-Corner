@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, forwardRef } from 'react';
 import { Zap, Star, CheckCircle, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useMultipleParallax } from '@/hooks/use-parallax';
+import heroImage from '@/assets/hero-kids-learning.jpg';
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
 }
@@ -106,7 +107,7 @@ const HeroSection = ({
             {/* Main Image Frame - 3D Card Effect */}
             <div className="card-3d relative bg-card p-2 sm:p-3 rounded-2xl sm:rounded-3xl shadow-2xl z-10 transform -rotate-1 transition-all duration-500 hover:rotate-0 hover:scale-[1.02] border-2 sm:border-3 border-border/60 hover:border-primary/40 hover:shadow-primary/20">
               <div className="rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] relative group shadow-inner">
-                <img alt="Kids learning together at Inga's Study Corner" loading="eager" src="/lovable-uploads/5fafd3c0-0a69-4f4c-a005-67c9a1b8929d.png" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <img alt="Kids learning together at Inga's Study Corner" loading="eager" src={heroImage} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                 
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
