@@ -227,7 +227,7 @@ const QuestionOfTheDay = () => {
         {/* Status Bar */}
         <div className={cn("h-1 w-full transition-colors duration-300", status === "correct" ? "bg-green" : status === "wrong" ? "bg-destructive" : "bg-gradient-to-r from-blue via-purple to-pink")} />
 
-        <div className="p-3 sm:p-4 bg-white">
+        <div className="p-3 sm:p-4 bg-white py-[10px] px-[10px]">
           {/* Header */}
           <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
             <div className="flex items-center gap-1 sm:gap-1.5">
