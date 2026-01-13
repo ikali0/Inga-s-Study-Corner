@@ -189,7 +189,7 @@ const ServicesSection = () => {
           const theme = themeConfig[service.color];
           return <article key={service.id} onClick={() => setSelectedService(service)} className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 ${theme.card}`}>
                 {/* Header */}
-                <div className="flex justify-between items-start mb-2">
+                <div className="flex justify-between items-start mb-1.5">
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
                     {service.icon}
                   </div>
