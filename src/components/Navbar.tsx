@@ -13,7 +13,7 @@ const Navbar = ({
     setIsMenuOpen(false);
   }, [onNavigate]);
   const navItems = ["About", "Services", "Reviews", "Contact"];
-  return <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b med-lime-100 bg-lime-100 border-pink-600 border-dashed border">
+  return <nav className="fixed top-0 w-full z-44 backdrop-blur-md border-b med-lime-100 med-lime-100 border-pink-600 border-dashed border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-16 sm:h-20 flex items-center justify-between">
           {/* Logo */}

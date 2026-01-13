@@ -60,7 +60,7 @@ const HeroSection = ({
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground font-medium max-w-xl leading-relaxed mx-auto lg:mx-0">
             Inga's Study Corner is a supportive after-school learning space where
             students strengthen their understanding of{" "}
-            <strong className="text-foreground">Math, English and Science</strong>{" "}
+            <strong className="text-purple-700">Math, English and Science</strong>{" "}
             through clear explanations, guided practice, and curiosity-driven learning.
           </p>
 
