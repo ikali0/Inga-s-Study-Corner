@@ -270,28 +270,29 @@ const ServicesSection: React.FC = () => {
 
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-muted/30 relative overflow-hidden" id="services">
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header - Stack on mobile, side-by-side on desktop */}
-        <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10 mb-6 sm:mb-8 lg:mb-12">
-          <div className="text-center lg:text-left flex-1">
+        <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12 mb-6 sm:mb-8 lg:mb-12">
+          <div className="text-center lg:text-left flex-1 max-w-xl lg:max-w-none">
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-card border border-border text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 shadow-sm">
               <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary fill-primary" /> Our Programs
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4">
               Academic Excellence
-              <br />
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>
               <span className="text-primary">For Every Student</span>
             </h2>
           </div>
           
-          {/* Quiz section - Full width on mobile */}
-          <div className="w-full lg:w-80 lg:shrink-0">
+          {/* Quiz section - Full width on mobile, fixed width on desktop */}
+          <div className="w-full sm:max-w-sm lg:w-80 lg:shrink-0 mx-auto lg:mx-0">
             <QuestionOfTheDay />
           </div>
         </div>
 
-        {/* Flipping Cards Grid - 2 columns on all screens, 4 on large */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+        {/* Flipping Cards Grid - Responsive: 2 cols mobile, 4 cols desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-5">
           {services.map((service) => {
             const theme = themeConfig[service.color];
             return (
@@ -311,8 +312,8 @@ const ServicesSection: React.FC = () => {
           })}
         </div>
         
-        {/* Mobile tap hint */}
-        <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground mt-3 sm:mt-4 sm:hidden">
+        {/* Mobile tap hint - Only show on small screens */}
+        <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground mt-3 sm:mt-4 md:hidden">
           <Hand className="w-3 h-3" />
           <span>Tap cards to see more details</span>
         </div>
