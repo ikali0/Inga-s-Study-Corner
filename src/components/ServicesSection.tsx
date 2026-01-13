@@ -79,7 +79,7 @@ const services: Service[] = [{
   outcomes: ["Master grade-level math facts", "Solve multi-step problems independently", "Build confidence in class"]
 }, {
   id: "english",
-  icon: <BookOpen className="w-6 h-6" />,
+  icon: <BookOpen className="h-[20px] w-[20px]" />,
   title: "Reading & English",
   shortTitle: "English",
   description: "Fluent readers and confident writers from phonics to essays.",
@@ -100,7 +100,7 @@ const services: Service[] = [{
   outcomes: ["Read grade-level texts fluently", "Write organized paragraphs", "Expand vocabulary monthly"]
 }, {
   id: "social",
-  icon: <Globe className="w-6 h-6" />,
+  icon: <Globe className="h-[20px] w-[20px]" />,
   title: "Social Studies",
   shortTitle: "Social",
   description: "History, geography, civics – understanding our world.",
@@ -121,7 +121,7 @@ const services: Service[] = [{
   outcomes: ["Analyze primary sources", "Understand local and federal government", "Connect history to modern issues"]
 }, {
   id: "science",
-  icon: <FlaskConical className="w-6 h-6" />,
+  icon: <FlaskConical className="w-[20px] h-[20px]" />,
   title: "Science & STEM",
   shortTitle: "Science",
   description: "Curiosity through experiments and coding basics.",
@@ -213,7 +213,7 @@ const CardBack = ({
     </div>
     
     <h4 className="font-bold text-foreground text-center mb-1.5 sm:mb-2 text-xs sm:text-sm">
-      <span className="hidden sm:inline">{service.title}</span>
+      <span className="hidden sm:inline text-xs">{service.title}</span>
       <span className="sm:hidden">{service.shortTitle}</span>
     </h4>
     
@@ -298,7 +298,7 @@ const ServicesSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 lg:gap-16 mb-8 sm:mb-10 lg:mb-14">
           {/* Title section - Always centered on mobile */}
           <div className="text-center lg:text-left flex-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 shadow-lg">
+            <div className="inline-flex items-center gap-2 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 shadow-lg px-[6px]">
               <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" /> 
               Our Programs
             </div>
