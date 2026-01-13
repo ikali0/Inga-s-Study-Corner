@@ -28,7 +28,7 @@ const Footer = ({
           </p>
           <div className="flex items-center gap-2 text-secondary-foreground/70 border-blue-500 border border-dashed">
             <Calendar size={14} className="text-primary shrink-0" />
-            <span className="text-xs sm:text-sm">Tue-Fri • 3:00-9:00 PM</span>
+            <span className="text-xs sm:text-xs">Tue-Fri • 3:00-9:00 PM</span>
           </div>
         </div>
 
@@ -80,18 +80,7 @@ const Footer = ({
               </div>
               <span className="text-xs text-black sm:text-xs">{tutorInfo.phone}</span>
             </a>
-            <div className="flex items-start gap-2 sm:gap-3 text-secondary-foreground/80">
-              <div className="bg-secondary p-1.5 sm:p-2 rounded-lg shrink-0">
-                <MapPin size={14} className="text-blue bg-lime-100 border-solid border-blue-200 border" />
-              </div>
-              <div className="text-xs sm:text-sm">
-                <span className="text-black text-xs">{tutorInfo.location}</span>
-                <br />
-                <span className="text-[10px] sm:text-xs text-black">
-                  {tutorInfo.address}
-                </span>
-              </div>
-            </div>
+            
           </address>
         </div>
       </div>

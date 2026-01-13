@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles, ArrowRight } from "lucide-react";
+import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles } from "lucide-react";
 
 // --- Types & Data ---
 
@@ -137,7 +137,7 @@ const ServicesSection = () => {
 
                 {/* Hover Call to Action Indicator */}
                 <div className="absolute bottom-6 right-6 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                  <ArrowRight className="w-5 h-5 text-slate-400" />
+                  
                 </div>
               </article>;
         })}
