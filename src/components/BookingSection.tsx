@@ -154,7 +154,7 @@ const BookingSection = () => {
           </p>
         </header>
 
-        <div className="bg-card rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-5 md:p-8 lg:p-10 xl:p-12 border border-purple-400 border-solid">
+        <div className="bg-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-8 lg:p-10 xl:p-12 border border-purple-400 border-solid shadow-sm md:rounded-sm">
           {showSuccess ? <div className="text-center py-8 sm:py-10 md:py-12 animate-in zoom-in">
               <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-green-light text-green rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6">
                 <CheckCircle size={32} className="sm:w-9 sm:h-9 md:w-10 md:h-10" />
