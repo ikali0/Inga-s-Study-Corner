@@ -66,14 +66,14 @@ const HeroSection = ({
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex-col sm:flex-row gap-2 sm:gap-3 justify-center pt-2 flex items-start lg:justify-start py-[4px]">
-            <Button onClick={() => handleNavigate("book")} size="sm" className="btn-3d bg-blue hover:bg-blue/90 text-primary-foreground px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm shadow-md shadow-blue/20 flex items-center justify-center gap-1.5 w-full sm:w-auto border border-blue/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue/25 hover:-translate-y-0.5 active:translate-y-0">
+          <div className="flex-col sm:flex-row gap-2 sm:gap-3 justify-center pt-2 flex items-center lg:justify-start py-1">
+            <Button onClick={() => handleNavigate("book")} size="sm" className="bg-blue hover:bg-blue/90 text-primary-foreground px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm shadow-[0_4px_0_0_hsl(var(--blue)/0.6),0_6px_12px_-2px_hsl(var(--blue)/0.3)] flex items-center justify-center gap-1.5 w-full sm:w-auto border border-blue/40 transition-all duration-150 hover:shadow-[0_2px_0_0_hsl(var(--blue)/0.6),0_4px_8px_-2px_hsl(var(--blue)/0.3)] hover:translate-y-0.5 active:shadow-none active:translate-y-1">
               <Zap size={14} className="fill-current" aria-hidden="true" />
-              Book Your First Session
+              Contact
             </Button>
-            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="sm" className="btn-3d bg-card hover:bg-muted text-foreground border border-border hover:border-primary/30 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 w-full sm:w-auto transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0">
+            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="sm" className="bg-card hover:bg-muted text-foreground border-2 border-border px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 w-full sm:w-auto shadow-[0_4px_0_0_hsl(var(--border)),0_6px_12px_-2px_hsl(var(--muted)/0.4)] transition-all duration-150 hover:shadow-[0_2px_0_0_hsl(var(--border)),0_4px_8px_-2px_hsl(var(--muted)/0.3)] hover:translate-y-0.5 active:shadow-none active:translate-y-1">
               <Star size={14} className="text-primary fill-current" aria-hidden="true" />
-              Read Success Stories
+              Parent Reviews
             </Button>
           </div>
 
