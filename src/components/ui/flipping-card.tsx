@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
 interface FlippingCardProps {
@@ -6,6 +6,17 @@ interface FlippingCardProps {
   frontContent?: React.ReactNode;
   backContent?: React.ReactNode;
 }
+
+// Haptic feedback utility
+const triggerHaptic = (pattern: number | number[] = 10) => {
+  if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+    try {
+      navigator.vibrate(pattern);
+    } catch {
+      // Vibration API not supported or blocked
+    }
+  }
+};
 
 export function FlippingCard({
   className,
@@ -16,6 +27,13 @@ export function FlippingCard({
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
   const minSwipeDistance = 50;
+
+  const flipCard = useCallback((newFlippedState: boolean) => {
+    if (isFlipped !== newFlippedState) {
+      setIsFlipped(newFlippedState);
+      triggerHaptic(15); // Short vibration on flip
+    }
+  }, [isFlipped]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -36,9 +54,9 @@ export function FlippingCard({
       // Swipe left (positive distance) = flip to back
       // Swipe right (negative distance) = flip to front
       if (distance > 0 && !isFlipped) {
-        setIsFlipped(true);
+        flipCard(true);
       } else if (distance < 0 && isFlipped) {
-        setIsFlipped(false);
+        flipCard(false);
       }
     }
     
@@ -49,7 +67,7 @@ export function FlippingCard({
   const handleClick = () => {
     // Toggle flip on tap for touch devices
     if (window.matchMedia("(hover: none)").matches) {
-      setIsFlipped(!isFlipped);
+      flipCard(!isFlipped);
     }
   };
 
