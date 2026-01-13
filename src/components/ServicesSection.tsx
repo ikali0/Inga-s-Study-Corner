@@ -158,7 +158,7 @@ const ServicesSection = () => {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
           {/* Header */}
           <div className="text-center lg:text-left flex-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm rounded-sm">
+            <div className="inline-flex items-center gap-2 py-1.5 border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm rounded-sm bg-lime-200 px-[10px]">
               <Sparkles className="w-3 h-3 text-primary fill-primary" />
               Our Programs
             </div>
