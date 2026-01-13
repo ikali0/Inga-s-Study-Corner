@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Sparkles, Brain, BookOpen, HelpCircle, Loader2 } from "lucide-react";
+import { useState, useCallback, memo } from "react";
+import { Sparkles, Brain, BookOpen, HelpCircle, Loader2, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AIInput } from "@/components/ui/ai-input";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 type AIMode = "explain" | "practice" | "quiz";
 
@@ -11,34 +12,59 @@ interface ModeConfig {
   icon: React.ReactNode;
   placeholder: string;
   description: string;
-  color: string;
+  gradient: string;
+  suggestions: string[];
 }
 
 const modeConfigs: Record<AIMode, ModeConfig> = {
   explain: {
     label: "Explain",
-    icon: <Brain className="w-4 h-4" />,
-    placeholder: "e.g., How do fractions work? What is photosynthesis?",
-    description: "Get simple explanations for tricky topics",
-    color: "from-primary/20 to-primary/5",
+    icon: <Brain className="w-3.5 h-3.5" />,
+    placeholder: "How do fractions work?",
+    description: "Simple explanations for tricky topics",
+    gradient: "from-blue/15 to-blue/5",
+    suggestions: ["Photosynthesis", "Gravity", "Fractions"],
   },
   practice: {
     label: "Practice",
-    icon: <BookOpen className="w-4 h-4" />,
-    placeholder: "e.g., Give me 3 multiplication problems for a 4th grader",
-    description: "Generate practice problems with answers",
-    color: "from-secondary/20 to-secondary/5",
+    icon: <BookOpen className="w-3.5 h-3.5" />,
+    placeholder: "Multiplication for 4th graders",
+    description: "Fun problems with answers",
+    gradient: "from-green/15 to-green/5",
+    suggestions: ["Long division", "Algebra basics", "Word problems"],
   },
   quiz: {
-    label: "Quiz Me",
-    icon: <HelpCircle className="w-4 h-4" />,
-    placeholder: "e.g., Quiz me on the solar system",
-    description: "Test your knowledge with fun quizzes",
-    color: "from-accent/20 to-accent/5",
+    label: "Quiz",
+    icon: <HelpCircle className="w-3.5 h-3.5" />,
+    placeholder: "Quiz me on the solar system",
+    description: "Test your knowledge",
+    gradient: "from-orange/15 to-orange/5",
+    suggestions: ["US States", "Animal kingdom", "Chemistry"],
   },
 };
 
 const gradeOptions = ["K-2", "3-5", "6-8", "9-12"] as const;
+
+// Memoized suggestion chip
+const SuggestionChip = memo(({ 
+  text, 
+  onClick, 
+  disabled 
+}: { 
+  text: string; 
+  onClick: () => void; 
+  disabled: boolean;
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
+    disabled={disabled}
+    className="px-2 py-1 text-[10px] font-medium bg-card border border-border/50 rounded-full text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+  >
+    {text}
+  </button>
+));
+SuggestionChip.displayName = "SuggestionChip";
 
 const AIStudyHelper = () => {
   const [mode, setMode] = useState<AIMode>("explain");
@@ -46,124 +72,139 @@ const AIStudyHelper = () => {
   const [grade, setGrade] = useState<string>("3-5");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (value?: string) => {
+  const handleSubmit = useCallback(async (value?: string) => {
     const trimmedInput = (value ?? input).trim();
 
     if (!trimmedInput) {
-      setError("Please enter a question or topic.");
+      toast.error("Please enter a question or topic");
       return;
     }
 
     setIsLoading(true);
-    setError("");
     setResult("");
 
     try {
       const { data, error: fnError } = await supabase.functions.invoke("ai-study-helper", {
-        body: {
-          mode,
-          input: trimmedInput,
-          grade,
-        },
+        body: { mode, input: trimmedInput, grade },
       });
 
       if (fnError) {
         throw new Error(fnError.message || "Failed to get AI response");
       }
 
+      if (data?.error) {
+        // Handle specific error codes from edge function
+        if (data.error.includes("rate") || data.error.includes("429")) {
+          toast.error("Too many requests! Please wait a moment.");
+        } else if (data.error.includes("quota") || data.error.includes("402")) {
+          toast.error("AI service limit reached. Try again later.");
+        } else {
+          toast.error(data.error);
+        }
+        return;
+      }
+
       if (!data?.result) {
-        throw new Error("No response received from AI");
+        throw new Error("No response received");
       }
 
       setResult(data.result);
-      setInput(""); // Clear input on success
+      setInput("");
     } catch (err) {
       console.error("AI Helper Error:", err);
-      const errorMessage = err instanceof Error ? err.message : "Something went wrong. Please try again.";
-      setError(errorMessage);
+      toast.error(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [input, mode, grade]);
 
-  const handleModeChange = (newMode: AIMode) => {
+  const handleModeChange = useCallback((newMode: AIMode) => {
     setMode(newMode);
-    setError("");
     setResult("");
-  };
+  }, []);
+
+  const handleSuggestionClick = useCallback((suggestion: string) => {
+    setInput(suggestion);
+  }, []);
 
   const config = modeConfigs[mode];
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 relative z-10" id="tools">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/15 to-secondary/10 text-primary text-xs font-bold mb-3 border border-primary/20">
-            <Sparkles className="w-3.5 h-3.5" />
-            AI-Powered Learning
+    <section className="py-6 sm:py-10 md:py-14 relative z-10" id="tools">
+      <div className="max-w-md sm:max-w-lg mx-auto px-3 sm:px-4">
+        {/* Compact Header */}
+        <div className="text-center mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/15 to-secondary/10 text-primary text-[10px] font-bold mb-2 border border-primary/20">
+            <Sparkles className="w-3 h-3" />
+            AI Study Helper
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2">
-            Study Helper
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
+            Get Instant Help
           </h2>
-          <p className="text-sm text-muted-foreground max-w-md mx-auto">
-            Get instant help with any topic. Ask questions, practice problems, or test yourself!
-          </p>
         </div>
 
-        {/* Main Card */}
-        <div className="card-3d rounded-2xl overflow-hidden">
-          {/* Mode Tabs */}
-          <div className="flex border-b border-border/50 bg-muted/20">
+        {/* Main Card - Mobile-first */}
+        <div className="bg-card rounded-xl sm:rounded-2xl border border-border/60 shadow-lg overflow-hidden">
+          {/* Mode Tabs - Compact */}
+          <div className="flex border-b border-border/40 bg-muted/30">
             {(Object.keys(modeConfigs) as AIMode[]).map((m) => (
               <button
                 key={m}
                 onClick={() => handleModeChange(m)}
                 disabled={isLoading}
-                className={`flex-1 py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`flex-1 py-2.5 px-1 text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 disabled:opacity-50 ${
                   mode === m
-                    ? "bg-card text-primary border-b-2 border-primary"
-                    : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
+                    ? "bg-card text-primary border-b-2 border-primary -mb-px"
+                    : "text-muted-foreground hover:bg-card/50 hover:text-foreground"
                 }`}
-                aria-label={`${modeConfigs[m].label} mode`}
                 aria-current={mode === m ? "page" : undefined}
               >
                 {modeConfigs[m].icon}
-                <span className="hidden sm:inline">{modeConfigs[m].label}</span>
+                {modeConfigs[m].label}
               </button>
             ))}
           </div>
 
-          {/* Content Area */}
-          <div className={`p-4 sm:p-6 space-y-4 bg-gradient-to-b ${config.color}`}>
-            {/* Mode Description */}
-            <p className="text-xs text-muted-foreground italic text-center">
-              {config.description}
-            </p>
-
-            {/* Grade Selector */}
-            <div className="flex items-center gap-2 flex-wrap justify-center">
-              <span className="text-xs font-medium text-muted-foreground">Grade:</span>
-              <div className="flex gap-1.5">
+          {/* Content - Compact padding */}
+          <div className={`p-3 sm:p-4 space-y-3 bg-gradient-to-b ${config.gradient}`}>
+            {/* Description + Grade Row */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <p className="text-[10px] sm:text-xs text-muted-foreground italic flex items-center gap-1">
+                <Lightbulb className="w-3 h-3" />
+                {config.description}
+              </p>
+              
+              {/* Grade Pills - Inline */}
+              <div className="flex items-center gap-1">
                 {gradeOptions.map((g) => (
                   <button
                     key={g}
                     onClick={() => setGrade(g)}
                     disabled={isLoading}
-                    className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`px-2 py-0.5 text-[10px] font-medium rounded-full transition-all disabled:opacity-50 ${
                       grade === g
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted/60 text-muted-foreground hover:bg-muted"
                     }`}
-                    aria-label={`Grade ${g}`}
-                    aria-pressed={grade === g}
                   >
                     {g}
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Quick Suggestions */}
+            <div className="flex flex-wrap gap-1.5">
+              <span className="text-[9px] text-muted-foreground mr-1">Try:</span>
+              {config.suggestions.map((s) => (
+                <SuggestionChip 
+                  key={s} 
+                  text={s} 
+                  onClick={() => handleSuggestionClick(s)}
+                  disabled={isLoading}
+                />
+              ))}
             </div>
 
             {/* AI Input */}
@@ -174,56 +215,45 @@ const AIStudyHelper = () => {
               onChange={setInput}
               onSubmit={handleSubmit}
               isLoading={isLoading}
-              minHeight={60}
-              maxHeight={150}
-              maxLength={500}
+              minHeight={48}
+              maxHeight={120}
+              maxLength={400}
             />
 
-            {/* Submit Button */}
+            {/* Submit Button - Compact */}
             <Button
               onClick={() => handleSubmit()}
               disabled={isLoading || !input.trim()}
-              className="w-full h-10 text-sm font-semibold btn-3d"
-              aria-label="Get AI help"
+              size="sm"
+              className="w-full h-9 text-xs font-semibold shadow-[0_3px_0_0_hsl(var(--primary)/0.4)] active:shadow-none active:translate-y-0.5 transition-all"
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
                   Thinking...
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                   Get Help
                 </>
               )}
             </Button>
 
-            {/* Error */}
-            {error && (
-              <div
-                className="p-3 bg-destructive/10 border border-destructive/30 rounded-xl text-sm text-destructive"
-                role="alert"
-                aria-live="polite"
-              >
-                <strong className="font-semibold">Oops!</strong> {error}
-              </div>
-            )}
-
             {/* Result */}
             {result && (
               <div
-                className="p-4 bg-card rounded-xl border border-border/50 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300"
+                className="p-3 bg-card rounded-xl border border-border/50 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300"
                 role="region"
                 aria-label="AI response"
               >
-                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
-                  <div className="p-1.5 rounded-lg bg-primary/10">
-                    <Brain className="w-4 h-4 text-primary" />
+                <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-border/30">
+                  <div className="p-1 rounded-md bg-primary/10">
+                    <Brain className="w-3 h-3 text-primary" />
                   </div>
-                  <span className="text-xs font-semibold text-foreground">AI Response</span>
+                  <span className="text-[10px] font-semibold text-foreground">AI Response</span>
                 </div>
-                <div className="text-sm text-foreground whitespace-pre-wrap leading-relaxed">
+                <div className="text-xs sm:text-sm text-foreground whitespace-pre-wrap leading-relaxed">
                   {result}
                 </div>
               </div>
