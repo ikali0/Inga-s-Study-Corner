@@ -12,21 +12,41 @@ const tutorInfo = {
 const Footer = forwardRef<HTMLElement, FooterProps>(({
   onNavigate
 }, ref) => {
-  return <footer ref={ref} className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 lg:py-[40px] bg-purple-200">
+  return <footer ref={ref} className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 bg-muted/60 lg:py-[40px]">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
       {/* Main Footer Content - 3D Card Effect */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 p-4 sm:p-5 md:p-6 backdrop-blur-sm rounded-xl sm:rounded-2xl border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform-gpu hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-300 bg-white border" style={{
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 p-4 sm:p-5 md:p-6 backdrop-blur-sm rounded-xl sm:rounded-2xl border-2 border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform-gpu hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-300 bg-white" style={{
         transformStyle: 'preserve-3d',
         perspective: '1000px'
       }}>
           {/* Brand & Mission */}
-          
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="font-bold text-sm sm:text-base mb-2 flex items-center gap-2">
+              <div className="bg-primary/10 p-1.5 rounded-lg">
+                <Rocket className="text-primary w-4 h-4" />
+              </div>
+              <span className="text-foreground">Inga's Study Corner</span>
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-2 sm:mb-3 text-[11px] sm:text-xs">
+              More than just tutoring. We build the confidence and skills your child
+              needs to thrive in school and beyond.
+            </p>
+            
+          </div>
 
           {/* Parent Trust Column - 3D Inner Card */}
-          <div className="p-3 sm:p-4 rounded-lg sm:rounded-xl border border-accent/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] transform-gpu hover:scale-[1.02] transition-transform duration-200 bg-blue-100">
+          <div className="
+              bg-accent/20 
+              p-3 sm:p-4 
+              rounded-lg sm:rounded-xl 
+              border border-accent/30
+              shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)]
+              transform-gpu hover:scale-[1.02]
+              transition-transform duration-200
+            ">
             <h4 className="font-bold mb-2 sm:mb-3 text-xs sm:text-sm text-foreground">
               Parent Peace of Mind
             </h4>
