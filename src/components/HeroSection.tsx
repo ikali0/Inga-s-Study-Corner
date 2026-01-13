@@ -182,70 +182,111 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </div>
         </div>
 
-        {/* Image Section - Improved mobile sizing */}
-        <div className="relative z-10 order-1 lg:order-2 flex justify-center lg:justify-end perspective-1000">
-          <div className="relative w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]">
-            {/* Background accent blob */}
+        {/* Image Section - Enhanced 3D Design */}
+        <div className="relative z-10 order-1 lg:order-2 flex justify-center lg:justify-end" style={{ perspective: '1200px' }}>
+          <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] group/card">
+            {/* Deep shadow layer for 3D depth */}
             <div
-              className="absolute -inset-2 sm:-inset-3 bg-gradient-to-br from-primary/30 via-orange/25 to-blue/20 rounded-2xl sm:rounded-3xl transform rotate-3 scale-105 z-0 blur-sm"
+              className="absolute -inset-4 sm:-inset-5 lg:-inset-6 bg-gradient-to-br from-secondary/40 via-secondary/20 to-transparent rounded-3xl sm:rounded-[2rem] transform translate-y-4 translate-x-2 blur-xl z-0 transition-all duration-500 group-hover/card:translate-y-6 group-hover/card:translate-x-3"
+              aria-hidden="true"
+            />
+            
+            {/* Background accent blob - 3D layer 1 */}
+            <div
+              className="absolute -inset-3 sm:-inset-4 lg:-inset-5 bg-gradient-to-br from-primary/35 via-orange/30 to-blue/25 rounded-2xl sm:rounded-3xl transform rotate-3 scale-105 z-0 blur-sm transition-all duration-500 group-hover/card:rotate-1 group-hover/card:scale-107"
               aria-hidden="true"
             />
 
-            {/* Secondary glow */}
+            {/* Secondary glow - 3D layer 2 */}
             <div
-              className="absolute -inset-1.5 sm:-inset-2 bg-gradient-to-tr from-blue/15 to-primary/15 rounded-xl sm:rounded-2xl transform -rotate-2 scale-102 z-0"
+              className="absolute -inset-2 sm:-inset-3 bg-gradient-to-tr from-blue/20 to-primary/20 rounded-xl sm:rounded-2xl transform -rotate-2 z-0 transition-all duration-500 group-hover/card:rotate-0"
               aria-hidden="true"
             />
 
-            {/* Main Image Frame */}
-            <div className="card-3d relative bg-card p-1.5 sm:p-2 rounded-xl sm:rounded-2xl shadow-xl z-10 transform -rotate-1 transition-all duration-500 hover:rotate-0 hover:scale-[1.02] border-2 border-border/60 hover:border-primary/40 hover:shadow-primary/20">
-              <div className="rounded-lg sm:rounded-xl overflow-hidden aspect-[4/3] relative group shadow-inner">
+            {/* Main Image Frame - 3D Card */}
+            <div 
+              className="relative bg-card p-2 sm:p-2.5 lg:p-3 rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-2xl z-10 border-3 border-border/70 transition-all duration-500 ease-out group-hover/card:border-primary/50"
+              style={{
+                transform: 'rotateX(4deg) rotateY(-3deg)',
+                transformStyle: 'preserve-3d',
+                boxShadow: '0 25px 50px -12px hsl(var(--secondary)/0.5), 0 12px 24px -8px hsl(var(--primary)/0.15), inset 0 1px 0 hsl(var(--card)/0.8)'
+              }}
+            >
+              {/* Inner 3D frame */}
+              <div 
+                className="rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden aspect-[4/3] relative shadow-inner border border-border/30"
+                style={{ transform: 'translateZ(20px)' }}
+              >
                 <img
                   alt="Kids learning together at Inga's Study Corner"
                   loading="eager"
                   src={heroImage}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-110"
                 />
 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Glossy overlay for 3D effect */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"
+                  aria-hidden="true"
+                />
 
-                {/* Quote Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/80 to-transparent p-2 sm:p-3 lg:p-4 text-primary-foreground text-center">
+                {/* Overlay gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/30 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+
+                {/* Quote Overlay - Enhanced */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/85 to-transparent p-2.5 sm:p-3 lg:p-4 text-primary-foreground text-center">
                   <div key={currentQuoteIndex} className="animate-fade-in">
-                    <p className="font-bold text-[10px] sm:text-xs lg:text-sm italic leading-snug drop-shadow-md">
+                    <p className="font-bold text-[11px] sm:text-xs lg:text-sm italic leading-snug drop-shadow-lg">
                       "{quotes[currentQuoteIndex]}"
                     </p>
                   </div>
                 </div>
               </div>
+              
+              {/* 3D Edge highlight */}
+              <div 
+                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+                aria-hidden="true"
+              />
             </div>
 
-            {/* Floating Badge */}
-            <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-3 lg:-bottom-5 lg:-right-4 bg-card p-2 sm:p-2.5 lg:p-3 rounded-lg sm:rounded-xl shadow-lg z-20 border-2 border-border/60 hover:border-green/40 transition-all duration-300 hover:scale-105 hover:shadow-xl animate-float">
+            {/* Floating Badge - Enhanced 3D */}
+            <div 
+              className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 lg:-bottom-6 lg:-right-5 bg-card p-2 sm:p-2.5 lg:p-3 rounded-xl sm:rounded-2xl z-20 border-2 border-border/70 hover:border-green/50 transition-all duration-300 hover:scale-110 animate-float"
+              style={{
+                boxShadow: '0 15px 30px -8px hsl(var(--secondary)/0.4), 0 8px 16px -4px hsl(var(--green)/0.1)',
+                transform: 'translateZ(40px)'
+              }}
+            >
               <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-2.5">
-                <div className="bg-gradient-to-br from-green/25 to-green/10 p-1 sm:p-1.5 rounded-full border border-green/20">
-                  <ThumbsUp className="text-green w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" aria-hidden="true" />
+                <div className="bg-gradient-to-br from-green/30 to-green/10 p-1.5 sm:p-2 rounded-full border border-green/25 shadow-inner">
+                  <ThumbsUp className="text-green w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-[9px] sm:text-[10px] lg:text-xs leading-tight">
+                  <p className="font-bold text-foreground text-[10px] sm:text-xs lg:text-sm leading-tight">
                     Parents Love It
                   </p>
-                  <p className="text-[7px] sm:text-[8px] lg:text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
+                  <p className="text-[8px] sm:text-[9px] lg:text-[11px] text-muted-foreground font-semibold uppercase tracking-wider">
                     100% Recommended
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Decorative floating elements */}
+            {/* Decorative floating elements - Enhanced */}
             <div
-              className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 w-4 h-4 sm:w-6 sm:h-6 bg-primary/25 rounded-full blur-sm animate-pulse"
+              className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-primary/30 rounded-full blur-sm animate-pulse"
+              style={{ transform: 'translateZ(30px)' }}
               aria-hidden="true"
             />
             <div
-              className="absolute top-1/4 -right-3 sm:-right-4 w-3 h-3 sm:w-5 sm:h-5 bg-orange/35 rounded-full blur-sm animate-pulse"
-              style={{ animationDelay: '1s' }}
+              className="absolute top-1/4 -right-4 sm:-right-5 w-4 h-4 sm:w-6 sm:h-6 bg-orange/40 rounded-full blur-sm animate-pulse"
+              style={{ animationDelay: '1s', transform: 'translateZ(25px)' }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute bottom-1/3 -left-3 sm:-left-4 w-3 h-3 sm:w-5 sm:h-5 bg-blue/35 rounded-full blur-sm animate-pulse"
+              style={{ animationDelay: '2s', transform: 'translateZ(20px)' }}
               aria-hidden="true"
             />
           </div>
