@@ -1,4 +1,6 @@
+import { forwardRef } from "react";
 import { Smile, Zap, Heart } from "lucide-react";
+
 interface Feature {
   icon: React.ReactNode;
   iconBg: string;
@@ -25,8 +27,14 @@ const features: Feature[] = [{
   title: "Supports School Success",
   description: "Library-based, distraction-free environment supporting success across STEM subjects."
 }];
-const AboutSection = () => {
-  return <section id="about" className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10" aria-labelledby="about-heading">
+const AboutSection = forwardRef<HTMLElement>((_, ref) => {
+  return (
+    <section
+      ref={ref}
+      id="about"
+      className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10"
+      aria-labelledby="about-heading"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="bg-secondary rounded-xl sm:rounded-2xl text-secondary-foreground p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden shadow-sm py-[40px] px-[40px]">
           {/* Background pattern */}
@@ -66,6 +74,10 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>;
-};
+    </section>
+  );
+});
+
+AboutSection.displayName = "AboutSection";
+
 export default AboutSection;

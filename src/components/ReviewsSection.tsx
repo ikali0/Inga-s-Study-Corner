@@ -1,7 +1,7 @@
+import { forwardRef, useRef } from "react";
 import { MessageCircle, Star } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
 interface Review {
   quote: string;
   parent: string;
@@ -59,13 +59,19 @@ const reviews: Review[] = [{
   outcome: "Confident in class"
 }];
 const avatarColors = ["bg-primary text-primary-foreground", "bg-blue-500 text-white", "bg-green-500 text-white", "bg-purple-500 text-white", "bg-orange-500 text-white", "bg-pink-500 text-white", "bg-blue-600 text-white", "bg-green-600 text-white"];
-const ReviewsSection = () => {
+const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
   const plugin = useRef(Autoplay({
     delay: 4000,
     stopOnInteraction: false,
     stopOnMouseEnter: true
   }));
-  return <section id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
+
+  return (
+    <section
+      ref={ref}
+      id="reviews"
+      className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 sm:mb-8 md:mb-12">
           Happy Parents & Kids 💛
@@ -121,6 +127,10 @@ const ReviewsSection = () => {
           {[0, 1, 2].map((_, i) => <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/30" />)}
         </div>
       </div>
-    </section>;
-};
+    </section>
+  );
+});
+
+ReviewsSection.displayName = "ReviewsSection";
+
 export default ReviewsSection;
