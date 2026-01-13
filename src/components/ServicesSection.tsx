@@ -1,5 +1,6 @@
+// src/components/ServicesSection.tsx
 import React, { useState } from "react";
-import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles, FlaskConical, ArrowRight } from "lucide-react";
+import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 import QuestionOfTheDay from "./QuestionOfTheDay";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -10,16 +11,13 @@ type ThemeColor = "blue" | "purple" | "green" | "orange";
 
 interface Service {
   id: string;
-  icon: React.ReactNode;
+  icon: React.ReactElement;
   title: string;
   description: string;
   color: ThemeColor;
   features: string[];
   longDescription: string;
-  detailedFeatures: {
-    title: string;
-    items: string[];
-  }[];
+  detailedFeatures: { title: string; items: string[] }[];
   approach: string;
   outcomes: string[];
 }
@@ -56,7 +54,7 @@ const themeConfig = {
   },
 };
 
-// --- Data ---
+// --- Services Data ---
 const services: Service[] = [
   {
     id: "math",
@@ -300,7 +298,7 @@ const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
 );
 
 // --- Main Component ---
-const ServicesSection = () => {
+const ServicesSection: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const handleBooking = () => {
@@ -310,7 +308,6 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="py-10 sm:py-16 md:py-20 bg-muted/30 relative overflow-hidden">
-      {/* Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.02]"
         style={{
@@ -319,14 +316,12 @@ const ServicesSection = () => {
         }}
         aria-hidden="true"
       />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header + Quiz */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
           <div className="text-center lg:text-left flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-              <Sparkles className="w-3 h-3 text-primary fill-primary" />
-              Our Programs
+              <Sparkles className="w-3 h-3 text-primary fill-primary" /> Our Programs
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-foreground tracking-tight mb-3 lg:mb-4">
               Academic Excellence
@@ -346,7 +341,7 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        {/* Cards */}
+        {/* Dynamic Cards */}
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service) => {
             const theme = themeConfig[service.color];
@@ -354,9 +349,12 @@ const ServicesSection = () => {
               <article
                 key={service.id}
                 onClick={() => setSelectedService(service)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setSelectedService(service);
+                }}
                 tabIndex={0}
                 role="button"
-                className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 ${theme.card}`}
+                className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${theme.card}`}
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
@@ -382,7 +380,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Sheet */}
+      {/* Dynamic Sheet */}
       <Sheet
         open={!!selectedService}
         onOpenChange={(open) => {
@@ -391,15 +389,14 @@ const ServicesSection = () => {
       >
         <SheetContent side="right" className="w-full sm:max-w-md p-0">
           {selectedService && (
-            <ScrollArea className="h-screen sm:h-auto">
+            <ScrollArea className="max-h-screen sm:h-auto">
               <div className="p-6 sm:p-8">
                 <SheetHeader className="mb-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div
                       className={`w-14 h-14 rounded-xl flex items-center justify-center ${themeConfig[selectedService.color].iconBg}`}
                     >
-                      {selectedService.icon &&
-                        React.cloneElement(selectedService.icon as React.ReactElement, { className: "w-7 h-7" })}
+                      {React.cloneElement(selectedService.icon, { className: "w-7 h-7" })}
                     </div>
                     <div
                       className={`px-3 py-1 text-xs font-bold uppercase rounded-full ${themeConfig[selectedService.color].badge}`}
@@ -441,7 +438,8 @@ const ServicesSection = () => {
 
                 <Button
                   onClick={handleBooking}
-                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-primary-foreground`}
+                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
+                  aria-label={`Book a trial session for ${selectedService.title}`}
                 >
                   Book a Trial Session
                 </Button>
