@@ -18,10 +18,10 @@ const Navbar = ({
         <div className="h-16 sm:h-18 flex items-center justify-between">
           {/* Logo */}
           <button type="button" onClick={() => handleNavClick("hero")} className="flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Go to homepage">
-            <div className="p-1.5 sm:p-2 rotate-3 rounded shadow-sm bg-orange-300 border-purple-400 border border-solid py-[6px] px-[6px]">
-              <Rocket className="text-primary-foreground w-5 h-5 sm:w-6 sm:h-6 bg-pink-500" />
+            <div className="p-1.5 sm:p-2 rotate-3 shadow-sm bg-orange-300 border-purple-400 border border-solid rounded-sm py-[4px] px-[4px]">
+              <Rocket className="text-primary-foreground w-5 h-5 bg-pink-500 sm:h-[20px] sm:w-[20px]" />
             </div>
-            <span className="text-base font-bold text-foreground sm:text-base">
+            <span className="text-base font-bold text-foreground sm:text-sm">
               Inga's Study Corner
             </span>
           </button>
