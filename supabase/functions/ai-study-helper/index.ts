@@ -12,11 +12,15 @@ serve(async (req) => {
   }
 
   try {
-    const { topic, mode, gradeLevel } = await req.json();
+    const body = await req.json();
+    // Support both naming conventions (topic/input, gradeLevel/grade)
+    const topic = body.topic || body.input;
+    const mode = body.mode;
+    const gradeLevel = body.gradeLevel || body.grade;
     
     if (!topic || !mode) {
       return new Response(
-        JSON.stringify({ error: "Topic and mode are required" }),
+        JSON.stringify({ error: "Topic/input and mode are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
