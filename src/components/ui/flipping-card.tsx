@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface FlippingCardProps {
@@ -13,9 +13,41 @@ export function FlippingCard({
   backContent,
 }: FlippingCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    
+    const distance = touchStartX.current - touchEndX.current;
+    const isSwipe = Math.abs(distance) > minSwipeDistance;
+    
+    if (isSwipe) {
+      // Swipe left (positive distance) = flip to back
+      // Swipe right (negative distance) = flip to front
+      if (distance > 0 && !isFlipped) {
+        setIsFlipped(true);
+      } else if (distance < 0 && isFlipped) {
+        setIsFlipped(false);
+      }
+    }
+    
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
   const handleClick = () => {
-    // Only flip on click for touch devices
+    // Toggle flip on tap for touch devices
     if (window.matchMedia("(hover: none)").matches) {
       setIsFlipped(!isFlipped);
     }
@@ -23,8 +55,11 @@ export function FlippingCard({
 
   return (
     <div 
-      className="group/flipping-card [perspective:1000px] w-full cursor-pointer"
+      className="group/flipping-card [perspective:1000px] w-full cursor-pointer touch-pan-y"
       onClick={handleClick}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div
         className={cn(
