@@ -1,4 +1,6 @@
+import { forwardRef } from "react";
 import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from "lucide-react";
+
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
@@ -8,10 +10,8 @@ const tutorInfo = {
   address: "625 Red Lion Rd, Huntingdon Valley, PA 19006",
   location: "Huntington Valley Library"
 };
-const Footer = ({
-  onNavigate
-}: FooterProps) => {
-  return <footer className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 bg-purple-100 lg:py-[40px] opacity-70">
+const Footer = forwardRef<HTMLElement, FooterProps>(({ onNavigate }, ref) => {
+  return <footer ref={ref} className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 bg-muted/60 lg:py-[40px]">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
@@ -138,11 +138,14 @@ const Footer = ({
 
       {/* Copyright */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8 pt-3 sm:pt-4 border-t border-border/50 text-center">
-        <p className="text-[9px] sm:text-[10px] md:text-xs text-purple-950">
+        <p className="text-[9px] sm:text-[10px] md:text-xs text-foreground/70">
           &copy; {new Date().getFullYear()} Inga's Study Corner. Passionately
           teaching since 2018. ✨
         </p>
       </div>
     </footer>;
-};
+});
+
+Footer.displayName = 'Footer';
+
 export default Footer;
