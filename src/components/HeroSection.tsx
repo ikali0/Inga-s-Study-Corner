@@ -28,7 +28,7 @@ const HeroSection = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
         {/* Text Content */}
         <div className="space-y-5 sm:space-y-6 md:space-y-7 lg:space-y-8 z-10 order-2 md:order-1 text-center md:text-left">
-          <div className="inline-block bg-primary/10 text-primary rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300 px-[10px] py-[4px]">
+          <div className="inline-block bg-primary/10 text-primary rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-sm transform -rotate-1 hover:rotate-0 transition-transform duration-300 py-[4px] px-[8px]">
             ✨ Interactive Learning for Ages 8–14
           </div>
 
@@ -59,7 +59,7 @@ const HeroSection = ({
             </Button>
           </div>
 
-          <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold text-muted-foreground justify-center md:justify-start pt-1 py-[2px] sm:gap-[14px]">
+          <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold text-muted-foreground justify-center md:justify-start pt-1 sm:gap-[8px] py-[2px]">
             <span className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full">
               <CheckCircle size={14} className="text-green shrink-0" aria-hidden="true" /> Ages 8-14
             </span>
@@ -81,7 +81,7 @@ const HeroSection = ({
             {/* Main Image Frame */}
             <div className="relative bg-card p-2 sm:p-2.5 md:p-3 rounded-2xl shadow-2xl z-10 transform -rotate-1 transition-transform hover:rotate-0 duration-500 border border-border/50 md:rounded-xl py-[10px] px-[10px]">
               <div className="rounded-xl md:rounded-2xl overflow-hidden aspect-[4/3] relative group">
-                <img alt="Kids learning together at Inga's Study Corner" loading="eager" src="/lovable-uploads/018d0564-4d52-4b0b-91eb-362bb823ce12.png" className="min-w-full h-full object-cover group-hover:scale-100 transition-transform duration-700" />
+                <img alt="Kids learning together at Inga's Study Corner" loading="eager" src="/lovable-uploads/5fafd3c0-0a69-4f4c-a005-67c9a1b8929d.png" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 border border-purple-400 rounded-sm shadow-sm opacity-90" />
 
                 {/* Overlay Text */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-secondary/95 via-secondary/70 to-transparent p-3 sm:p-4 md:p-5 text-primary-foreground text-center">
