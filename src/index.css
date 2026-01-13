@@ -1,11 +1,9 @@
 /* =========================================
-   1. FONTS (Optimized)
-   Only importing what is strictly necessary for performance.
-   Fredoka = Headings (Fun, Rounded)
-   Quicksand = Body (Clean, Legible)
-   JetBrains Mono = Code/Numbers (Optional)
+   1. FONTS
+   Poppins = Body (Modern, Clean)
+   Lora = Headings (Elegant Serif)
+   Fira Code = Code/Numbers
    ========================================= */
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -13,109 +11,135 @@
 
 /* =========================================
    2. THEME VARIABLES
-   "Inga's Study Corner" - Vibrant & Fun
+   "Inga's Study Corner" - Soft Pink & Teal
    ========================================= */
 @layer base {
   :root {
-    /* --- Core Palette (Pink/Purple/Green Base) --- */
-    --background: 321 34% 98%;    /* Softer white/pink */
-    --foreground: 321 49% 20%;    /* Dark Purple Text */
+    /* --- Core Palette --- */
+    --background: 330 50% 95%;      /* #f6e6ee - Soft pink */
+    --foreground: 0 0% 36%;         /* #5b5b5b - Neutral gray */
 
-    --card: 0 0% 100%;            /* Pure White cards for better contrast */
-    --card-foreground: 321 49% 20%;
+    --card: 42 89% 89%;             /* #fdedc9 - Warm cream */
+    --card-foreground: 0 0% 36%;    /* #5b5b5b */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 321 49% 20%;
+    --popover: 0 0% 100%;           /* #ffffff */
+    --popover-foreground: 0 0% 36%; /* #5b5b5b */
 
-    --primary: 321 80% 60%;       /* Vibrant Pink */
-    --primary-foreground: 0 0% 100%;
+    --primary: 326 58% 56%;         /* #d04f99 - Vibrant Pink */
+    --primary-foreground: 0 0% 100%;/* #ffffff */
 
-    --secondary: 260 90% 65%;     /* Vibrant Purple */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 181 45% 68%;       /* #8acfd1 - Soft Teal */
+    --secondary-foreground: 0 0% 20%;/* #333333 */
 
-    --muted: 321 20% 92%;
-    --muted-foreground: 321 20% 40%;
+    --muted: 188 56% 80%;           /* #b2e1eb - Light Teal */
+    --muted-foreground: 0 0% 48%;   /* #7a7a7a */
 
-    --accent: 180 60% 50%;        /* Teal Accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 45 92% 82%;           /* #fbe2a7 - Warm Yellow */
+    --accent-foreground: 0 0% 20%;  /* #333333 */
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 92% 71%;       /* #f96f70 - Coral Red */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 321 30% 85%;
-    --input: 321 30% 90%;
-    --ring: 321 80% 60%;
+    --border: 326 58% 47%;          /* #d04f99 - Pink border */
+    --input: 0 0% 89%;              /* #e4e4e4 */
+    --ring: 330 72% 68%;            /* #e670ab - Bright Pink */
 
-    --radius: 1rem; /* More rounded for friendly vibe */
+    --radius: 0.4rem;
 
-    /* --- Service Card Colors (High Saturation) --- */
-    --blue: 210 90% 55%;
-    --blue-light: 210 90% 96%;
-    --orange: 35 95% 60%;
-    --orange-light: 35 95% 96%;
-    --green: 150 70% 45%;
-    --green-light: 150 70% 96%;
-    --purple: 270 80% 60%;
-    --purple-light: 270 80% 97%;
-    
-    /* --- Shadcn Sidebar / Chart Compat --- */
-    --sidebar-background: 321 34% 98%;
-    --sidebar-foreground: 321 49% 25%;
-    --sidebar-primary: 321 80% 60%;
+    /* --- Service Card Colors --- */
+    --blue: 188 56% 70%;            /* Soft teal-blue */
+    --blue-light: 188 56% 92%;
+    --orange: 45 92% 75%;           /* Warm orange/yellow */
+    --orange-light: 45 92% 94%;
+    --green: 181 45% 60%;           /* Teal-green */
+    --green-light: 181 45% 92%;
+    --purple: 326 58% 60%;          /* Pink-purple */
+    --purple-light: 326 58% 94%;
+
+    /* --- Chart Colors --- */
+    --chart-1: 330 72% 68%;         /* #e670ab */
+    --chart-2: 188 56% 70%;         /* #84d2e2 */
+    --chart-3: 45 92% 82%;          /* #fbe2a7 */
+    --chart-4: 338 76% 79%;         /* #f3a0ca */
+    --chart-5: 330 72% 55%;         /* #d7488e */
+
+    /* --- Sidebar --- */
+    --sidebar-background: 330 62% 95%;  /* #f8d8ea */
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 330 82% 60%;     /* #ec4899 */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 321 20% 92%;
-    --sidebar-accent-foreground: 321 49% 20%;
-    --sidebar-border: 321 30% 90%;
-    --sidebar-ring: 321 80% 60%;
+    --sidebar-accent: 330 90% 83%;      /* #f9a8d4 */
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 270 100% 95%;     /* #f3e8ff */
+    --sidebar-ring: 330 82% 60%;
+
+    /* --- Shadow Variables --- */
+    --shadow-color: 326 58% 57%;
+    --shadow-offset-x: 3px;
+    --shadow-offset-y: 3px;
+    --shadow-blur: 0px;
+    --shadow-spread: 0px;
   }
 
   .dark {
-    --background: 321 40% 10%;    /* Deep Plum */
-    --foreground: 321 20% 90%;
+    /* --- Dark Mode Core Palette --- */
+    --background: 195 43% 12%;      /* #12242e - Deep teal */
+    --foreground: 330 30% 94%;      /* #f3e3ea - Light pink */
 
-    --card: 321 35% 12%;
-    --card-foreground: 321 20% 90%;
+    --card: 195 35% 16%;            /* #1c2e38 - Dark teal card */
+    --card-foreground: 330 30% 94%;
 
-    --popover: 321 35% 12%;
-    --popover-foreground: 321 20% 90%;
+    --popover: 195 35% 16%;
+    --popover-foreground: 330 30% 94%;
 
-    --primary: 321 70% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 45 92% 82%;          /* #fbe2a7 - Warm Yellow */
+    --primary-foreground: 195 43% 12%;
 
-    --secondary: 260 70% 65%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 348 56% 76%;       /* #e4a2b1 - Soft Pink */
+    --secondary-foreground: 195 43% 12%;
 
-    --muted: 321 30% 20%;
-    --muted-foreground: 321 20% 70%;
+    --muted: 220 12% 16%;           /* #24272b - Dark gray */
+    --muted-foreground: 348 56% 76%;
 
-    --accent: 180 50% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 340 40% 54%;          /* #c67b96 - Dusty Rose */
+    --accent-foreground: 330 30% 94%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 85% 90%;
+    --destructive: 330 74% 63%;     /* #e35ea4 - Hot Pink */
+    --destructive-foreground: 195 43% 12%;
 
-    --border: 321 30% 20%;
-    --input: 321 30% 20%;
-    --ring: 321 70% 60%;
+    --border: 200 30% 27%;          /* #324859 - Slate blue */
+    --input: 195 35% 18%;           /* #20333d */
+    --ring: 181 45% 51%;            /* #50afb6 - Teal */
 
     /* Dark Mode Service Variations */
-    --blue: 210 80% 65%;
-    --blue-light: 210 50% 15%;
-    --orange: 35 90% 65%;
-    --orange-light: 35 50% 15%;
-    --green: 150 60% 55%;
-    --green-light: 150 50% 15%;
-    --purple: 270 70% 65%;
-    --purple-light: 270 50% 15%;
-    
-    --sidebar-background: 321 40% 10%;
-    --sidebar-foreground: 321 20% 90%;
-    --sidebar-primary: 321 70% 60%;
+    --blue: 181 45% 51%;
+    --blue-light: 181 45% 20%;
+    --orange: 45 70% 70%;
+    --orange-light: 45 50% 18%;
+    --green: 181 60% 45%;
+    --green-light: 181 50% 18%;
+    --purple: 340 40% 54%;
+    --purple-light: 340 40% 18%;
+
+    /* --- Dark Chart Colors --- */
+    --chart-1: 181 45% 51%;         /* #50afb6 */
+    --chart-2: 348 56% 76%;         /* #e4a2b1 */
+    --chart-3: 340 40% 54%;         /* #c67b96 */
+    --chart-4: 186 70% 26%;         /* #175c6c */
+    --chart-5: 220 12% 16%;         /* #24272b */
+
+    /* --- Dark Sidebar --- */
+    --sidebar-background: 195 43% 11%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 330 82% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 321 30% 20%;
-    --sidebar-accent-foreground: 321 20% 90%;
-    --sidebar-border: 321 30% 20%;
-    --sidebar-ring: 321 70% 60%;
+    --sidebar-accent: 330 90% 83%;
+    --sidebar-accent-foreground: 220 12% 18%;
+    --sidebar-border: 220 13% 26%;
+    --sidebar-ring: 330 82% 60%;
+
+    /* --- Shadow Variables (Dark) --- */
+    --shadow-color: 200 30% 27%;
   }
 }
 
@@ -133,13 +157,17 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500; /* Slightly bolder for readability */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fredoka', sans-serif;
-    @apply tracking-tight;
+    font-family: 'Lora', serif;
+    @apply tracking-tight font-semibold;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'Fira Code', monospace;
   }
 
   /* Custom Text Selection Color */
