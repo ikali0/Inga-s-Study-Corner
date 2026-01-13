@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,7 +64,8 @@ const sanitizeInput = (input: string): string => {
   .replace(/on\w+=/gi, "") // Remove event handlers
   .trim();
 };
-const BookingSection = () => {
+
+const BookingSection = forwardRef<HTMLElement>((_, ref) => {
   const {
     toast
   } = useToast();
@@ -160,6 +161,7 @@ const BookingSection = () => {
   };
   return (
     <section
+      ref={ref}
       id="book"
       className="py-8 sm:py-12 md:py-16 relative z-10"
       aria-labelledby="booking-heading"
@@ -394,6 +396,8 @@ const BookingSection = () => {
       </div>
     </section>
   );
-};
+});
+
+BookingSection.displayName = "BookingSection";
 
 export default BookingSection;
