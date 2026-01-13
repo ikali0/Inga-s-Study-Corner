@@ -77,7 +77,7 @@ const HeroSection = ({
           </div>
 
           {/* Feature Pills */}
-          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-2 sm:gap-[8px]">
             {[{
             icon: <CheckCircle size={14} className="text-green shrink-0" />,
             text: "Ages 8-14"
@@ -87,7 +87,7 @@ const HeroSection = ({
           }, {
             icon: <CheckCircle size={14} className="text-green shrink-0" />,
             text: "Small Groups"
-          }].map((item, i) => <span key={i} className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 shadow-sm">
+          }].map((item, i) => <span key={i} className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 py-1.5 sm:py-2 rounded-full text-xs font-semibold text-muted-foreground border border-border/50 shadow-sm sm:text-xs sm:px-[8px]">
                 {item.icon}
                 {item.text}
               </span>)}
