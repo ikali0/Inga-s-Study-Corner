@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface FlippingCardProps {
@@ -12,12 +12,28 @@ export function FlippingCard({
   frontContent,
   backContent,
 }: FlippingCardProps) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleClick = () => {
+    // Only flip on click for touch devices
+    if (window.matchMedia("(hover: none)").matches) {
+      setIsFlipped(!isFlipped);
+    }
+  };
+
   return (
-    <div className="group/flipping-card [perspective:1000px] w-full">
+    <div 
+      className="group/flipping-card [perspective:1000px] w-full cursor-pointer"
+      onClick={handleClick}
+    >
       <div
         className={cn(
-          "relative rounded-xl border border-border bg-card shadow-lg transition-all duration-700 [transform-style:preserve-3d] group-hover/flipping-card:[transform:rotateY(180deg)]",
-          "h-[240px] sm:h-[260px] w-full mx-auto",
+          "relative rounded-xl border border-border bg-card shadow-lg transition-all duration-500 [transform-style:preserve-3d]",
+          // Hover flip for desktop, state-based flip for mobile
+          "group-hover/flipping-card:md:[transform:rotateY(180deg)]",
+          isFlipped && "[transform:rotateY(180deg)]",
+          // Responsive heights - smaller on mobile
+          "h-[180px] xs:h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full mx-auto",
           className
         )}
       >
