@@ -30,7 +30,7 @@ const ReviewsSection = () => {
         
         <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review, i) => <article key={i} className="bg-card p-4 sm:p-5 md:p-6 rounded-xl border relative transition-shadow hover:shadow-md border-pink-700 border-solid">
-              <MessageCircle aria-hidden="true" className="absolute top-4 right-4 w-6 h-6 border-purple-500 sm:h-[28px] sm:w-[28px] text-purple-500" />
+              <MessageCircle aria-hidden="true" className="absolute top-4 right-4 w-6 h-6 border-purple-500 text-purple-500 sm:h-[20px] sm:w-[20px]" />
               
               {/* Stars */}
               <div className="flex text-primary mb-3" aria-label="5 star rating">
