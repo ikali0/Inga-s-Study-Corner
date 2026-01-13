@@ -202,7 +202,7 @@ const ServicesSection = () => {
                 <h3 className="font-bold text-foreground mb-2 text-base group-hover:text-primary transition-colors sm:text-base">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground mb-3leading-relaxed text-xs line-clamp-3 xsm:text-xs">
+                <p className="text-muted-foreground mb-3leading-relaxed text-xs line-clamp-3 xsm:text-xs bg-transparent">
                   {service.description}
                 </p>
 
@@ -210,7 +210,7 @@ const ServicesSection = () => {
                 <div className="h-px w-full bg-border mb-4" />
 
                 {/* Features */}
-                <ul className="space-y-2 mb-2">
+                <ul className="space-y-2 mb-2 border-pink-600 border-solid border">
                   {service.features.map((feature, i) => <li key={i} className="flex items-center gap-2">
                       <CheckCircle2 className={`w-4 h-4 shrink-0 ${theme.check}`} />
                       <span className="font-medium text-foreground text-xs sm:text-xs">{feature}</span>
@@ -219,8 +219,8 @@ const ServicesSection = () => {
 
                 {/* Learn More CTA */}
                 <div className="flex items-center gap-1 text-xs font-bold text-primary group-hover:gap-2 transition-all">
-                  <span className="text-xs">Learn More</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <span className="text-xs my-[2px]">​More Info </span>
+                  <ArrowRight className="w-[10px] h-[10px] my-[2px]" />
                 </div>
               </article>;
         })}
