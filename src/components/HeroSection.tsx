@@ -78,20 +78,23 @@ const HeroSection = ({
           </div>
 
           {/* Feature Pills - Clickable */}
-          <div className="flex-wrap gap-2 sm:gap-3 justify-center pt-2 flex items-start lg:justify-start">
+          <div className="flex-wrap gap-1.5 justify-center pt-2 flex items-center lg:justify-start">
             {[{
-            icon: <CheckCircle size={14} className="text-green shrink-0" />,
+            icon: <CheckCircle size={10} className="text-green shrink-0" />,
             text: "Ages 8-14",
-            target: "about"
+            target: "about",
+            color: "from-green/20 to-green/10 border-green/30"
           }, {
-            icon: <CheckCircle size={14} className="text-green shrink-0" />,
+            icon: <CheckCircle size={10} className="text-blue shrink-0" />,
             text: "Tue-Fri 3-9 PM",
-            target: "book"
+            target: "book",
+            color: "from-blue/20 to-blue/10 border-blue/30"
           }, {
-            icon: <CheckCircle size={14} className="text-green shrink-0" />,
+            icon: <CheckCircle size={10} className="text-orange shrink-0" />,
             text: "Small Groups",
-            target: "services"
-          }].map((item, i) => <button key={i} onClick={() => handleNavigate(item.target)} className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 shadow-sm hover:bg-muted hover:border-primary/30 hover:text-foreground transition-all duration-200 cursor-pointer active:scale-95">
+            target: "services",
+            color: "from-orange/20 to-orange/10 border-orange/30"
+          }].map((item, i) => <button key={i} onClick={() => handleNavigate(item.target)} className={`flex items-center gap-1 bg-gradient-to-r ${item.color} px-2 py-1 rounded-full text-[10px] font-bold text-foreground border shadow-[0_2px_0_0_hsl(var(--border)),0_3px_6px_-2px_hsl(var(--muted)/0.4)] transition-all duration-150 cursor-pointer hover:translate-y-0.5 hover:shadow-[0_1px_0_0_hsl(var(--border))] active:shadow-none active:translate-y-1`}>
                 {item.icon}
                 {item.text}
               </button>)}
