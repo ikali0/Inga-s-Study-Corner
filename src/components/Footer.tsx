@@ -1,41 +1,24 @@
 import { forwardRef } from "react";
 import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from "lucide-react";
-
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
-
 const tutorInfo = {
   email: "ingakaltak7@gmail.com",
   phone: "215-791-5906",
   address: "625 Red Lion Rd, Huntingdon Valley, PA 19006",
   location: "Huntington Valley Library"
 };
-
-const Footer = forwardRef<HTMLElement, FooterProps>(({ onNavigate }, ref) => {
-  return (
-    <footer
-      ref={ref}
-      className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 bg-muted/60 lg:py-[40px]"
-    >
+const Footer = forwardRef<HTMLElement, FooterProps>(({
+  onNavigate
+}, ref) => {
+  return <footer ref={ref} className="relative z-10 overflow-hidden py-6 sm:py-8 md:py-10 bg-muted/60 lg:py-[40px]">
       {/* Top gradient bar */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-pink" aria-hidden="true" />
 
       {/* Main Footer Content - 3D Card Effect */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
-        <div className="
-            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
-            gap-4 sm:gap-6 md:gap-8
-            p-4 sm:p-5 md:p-6
-            bg-card/80 backdrop-blur-sm
-            rounded-xl sm:rounded-2xl
-            border-2 border-primary/20
-            shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-            transform-gpu
-            hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)]
-            hover:-translate-y-0.5
-            transition-all duration-300
-          " style={{
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 p-4 sm:p-5 md:p-6 backdrop-blur-sm rounded-xl sm:rounded-2xl border-2 border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform-gpu hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-300 bg-white" style={{
         transformStyle: 'preserve-3d',
         perspective: '1000px'
       }}>
@@ -51,10 +34,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ onNavigate }, ref) => {
               More than just tutoring. We build the confidence and skills your child
               needs to thrive in school and beyond.
             </p>
-            <div className="inline-flex items-center gap-2 text-muted-foreground bg-accent/30 px-2.5 py-1.5 rounded-lg">
-              <Calendar size={12} className="text-primary shrink-0" />
-              <span className="text-[10px] sm:text-xs font-medium">Tue-Fri • 3:00-9:00 PM</span>
-            </div>
+            
           </div>
 
           {/* Parent Trust Column - 3D Inner Card */}
@@ -149,10 +129,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({ onNavigate }, ref) => {
           teaching since 2018. ✨
         </p>
       </div>
-    </footer>
-  );
+    </footer>;
 });
-
 Footer.displayName = "Footer";
-
 export default Footer;
