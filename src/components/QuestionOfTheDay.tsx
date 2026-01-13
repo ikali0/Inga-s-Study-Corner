@@ -232,9 +232,7 @@ const QuestionOfTheDay = () => {
           <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
             <div className="flex items-center gap-1 sm:gap-1.5">
               <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-primary fill-primary" />
-              <span className="font-bold text-foreground text-[10px] sm:text-xs">
-                {isDaily ? "Daily Quiz" : "Practice"}
-              </span>
+              
             </div>
             <div className={cn("inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold border", style.badge)}>
               {style.icon}
