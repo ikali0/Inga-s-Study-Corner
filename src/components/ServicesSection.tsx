@@ -1,10 +1,10 @@
-// src/components/ServicesSection.tsx
 import React, { useState } from "react";
-import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import QuestionOfTheDay from "./QuestionOfTheDay";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
+import { FlippingCard } from "./ui/flipping-card";
 
 type ThemeColor = "blue" | "purple" | "green" | "orange";
 
@@ -26,40 +26,43 @@ interface Service {
 
 const themeConfig = {
   blue: {
-    card: "border-blue/30 hover:border-blue/50 hover:shadow-lg hover:shadow-blue/10",
+    card: "border-blue/30",
     iconBg: "bg-blue/10 text-blue",
     check: "text-blue",
     badge: "bg-blue/10 text-blue",
     button: "bg-blue hover:bg-blue/90",
+    gradient: "from-blue/20 to-blue/5",
   },
   purple: {
-    card: "border-purple/30 hover:border-purple/50 hover:shadow-lg hover:shadow-purple/10",
+    card: "border-purple/30",
     iconBg: "bg-purple/10 text-purple",
     check: "text-purple",
     badge: "bg-purple/10 text-purple",
     button: "bg-purple hover:bg-purple/90",
+    gradient: "from-purple/20 to-purple/5",
   },
   green: {
-    card: "border-green/30 hover:border-green/50 hover:shadow-lg hover:shadow-green/10",
+    card: "border-green/30",
     iconBg: "bg-green/10 text-green",
     check: "text-green",
     badge: "bg-green/10 text-green",
     button: "bg-green hover:bg-green/90",
+    gradient: "from-green/20 to-green/5",
   },
   orange: {
-    card: "border-orange/30 hover:border-orange/50 hover:shadow-lg hover:shadow-orange/10",
+    card: "border-orange/30",
     iconBg: "bg-orange/10 text-orange",
     check: "text-orange",
     badge: "bg-orange/10 text-orange",
     button: "bg-orange hover:bg-orange/90",
+    gradient: "from-orange/20 to-orange/5",
   },
 };
 
-// --- Services Data ---
 const services: Service[] = [
   {
     id: "math",
-    icon: <Sigma className="w-5 h-5" />,
+    icon: <Sigma className="w-6 h-6" />,
     title: "Math Mastery",
     description: "From arithmetic to pre-algebra with real-world examples.",
     color: "blue",
@@ -76,7 +79,7 @@ const services: Service[] = [
   },
   {
     id: "english",
-    icon: <BookOpen className="w-5 h-5" />,
+    icon: <BookOpen className="w-6 h-6" />,
     title: "Reading & English",
     description: "Fluent readers and confident writers from phonics to essays.",
     color: "purple",
@@ -93,7 +96,7 @@ const services: Service[] = [
   },
   {
     id: "social",
-    icon: <Globe className="w-5 h-5" />,
+    icon: <Globe className="w-6 h-6" />,
     title: "Social Studies",
     description: "History, geography, civics – understanding our world.",
     color: "green",
@@ -113,7 +116,7 @@ const services: Service[] = [
   },
   {
     id: "science",
-    icon: <FlaskConical className="w-5 h-5" />,
+    icon: <FlaskConical className="w-6 h-6" />,
     title: "Science & STEM",
     description: "Curiosity through experiments and coding basics.",
     color: "orange",
@@ -130,18 +133,89 @@ const services: Service[] = [
   },
 ];
 
-// --- Subcomponents ---
-const FeatureList = ({ features, checkClass }: { features: string[]; checkClass: string }) => (
-  <ul className="space-y-2 mb-4">
-    {features.map((f, i) => (
-      <li key={i} className="flex items-center gap-2">
-        <CheckCircle2 className={`w-4 h-4 shrink-0 ${checkClass}`} />
-        <span className="font-medium text-foreground text-xs sm:text-sm">{f}</span>
-      </li>
-    ))}
-  </ul>
+// --- Card Front Content ---
+interface CardFrontProps {
+  service: Service;
+  theme: typeof themeConfig.blue;
+}
+
+const CardFront = ({ service, theme }: CardFrontProps) => (
+  <div className="flex flex-col h-full p-4 sm:p-5">
+    {/* Header with icon */}
+    <div className="flex items-center gap-3 mb-3">
+      <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${theme.iconBg}`}>
+        {service.icon}
+      </div>
+      <span className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded-full ${theme.badge}`}>
+        K-8
+      </span>
+    </div>
+    
+    {/* Title & Description */}
+    <h3 className="font-bold text-foreground text-base sm:text-lg mb-2">
+      {service.title}
+    </h3>
+    <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 flex-grow">
+      {service.description}
+    </p>
+    
+    {/* Features */}
+    <ul className="space-y-1.5 mb-3">
+      {service.features.slice(0, 3).map((f, i) => (
+        <li key={i} className="flex items-center gap-2">
+          <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${theme.check}`} />
+          <span className="text-foreground text-xs font-medium">{f}</span>
+        </li>
+      ))}
+    </ul>
+    
+    {/* Hover hint */}
+    <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground mt-auto pt-2 border-t border-border/50">
+      <span>Hover to learn more</span>
+      <ArrowRight className="w-3 h-3" />
+    </div>
+  </div>
 );
 
+// --- Card Back Content ---
+interface CardBackProps {
+  service: Service;
+  theme: typeof themeConfig.blue;
+  onLearnMore: () => void;
+}
+
+const CardBack = ({ service, theme, onLearnMore }: CardBackProps) => (
+  <div className={`flex flex-col items-center justify-center h-full p-4 sm:p-5 bg-gradient-to-br ${theme.gradient} rounded-xl`}>
+    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${theme.iconBg} mb-4`}>
+      {React.cloneElement(service.icon, { className: "w-6 h-6" })}
+    </div>
+    
+    <h4 className="font-bold text-foreground text-center mb-3 text-base">
+      {service.title}
+    </h4>
+    
+    <p className="text-muted-foreground text-xs sm:text-sm text-center leading-relaxed mb-4 line-clamp-4">
+      {service.longDescription}
+    </p>
+    
+    <div className="text-center mb-4">
+      <p className="text-xs font-semibold text-foreground mb-1">Our Approach:</p>
+      <p className="text-xs text-muted-foreground">{service.approach}</p>
+    </div>
+    
+    <Button
+      onClick={(e) => {
+        e.stopPropagation();
+        onLearnMore();
+      }}
+      className={`${theme.button} text-primary-foreground font-bold text-xs px-4 py-2 h-8`}
+    >
+      View Full Details
+    </Button>
+  </div>
+);
+
+// --- Detailed Features (Sheet) ---
 const DetailedFeatures = ({ sections, checkClass }: { sections: Service["detailedFeatures"]; checkClass: string }) => (
   <div className="space-y-4">
     {sections.map((section, idx) => (
@@ -179,12 +253,13 @@ const ServicesSection: React.FC = () => {
 
   const handleBooking = () => {
     setSelectedService(null);
-    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("book")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="py-10 sm:py-16 md:py-20 bg-muted/30 relative overflow-hidden" id="services">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
           <div className="text-center lg:text-left flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
@@ -201,39 +276,36 @@ const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+        {/* Flipping Cards Grid - Mobile First */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
           {services.map((service) => {
             const theme = themeConfig[service.color];
             return (
-              <article
+              <FlippingCard
                 key={service.id}
-                onClick={() => setSelectedService(service)}
-                tabIndex={0}
-                role="button"
-                className={`group cursor-pointer relative p-5 sm:p-6 rounded-xl border-2 bg-card transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${theme.card}`}
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
-                    {service.icon}
-                  </div>
-                </div>
-                <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-xs sm:text-sm line-clamp-3">
-                  {service.description}
-                </p>
-                <FeatureList features={service.features} checkClass={theme.check} />
-                <div className="flex items-center gap-1 text-xs font-bold text-primary group-hover:gap-2 transition-all">
-                  <span>​More</span>
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </article>
+                height={280}
+                width={300}
+                className={theme.card}
+                frontContent={<CardFront service={service} theme={theme} />}
+                backContent={
+                  <CardBack
+                    service={service}
+                    theme={theme}
+                    onLearnMore={() => setSelectedService(service)}
+                  />
+                }
+              />
             );
           })}
         </div>
+        
+        {/* Mobile tap hint */}
+        <p className="text-center text-xs text-muted-foreground mt-4 sm:hidden">
+          Tap and hold on cards to see more details
+        </p>
       </div>
 
+      {/* Detail Sheet */}
       <Sheet open={!!selectedService} onOpenChange={(open) => !open && setSelectedService(null)}>
         <SheetContent side="right" className="w-full sm:max-w-md p-0 h-[100dvh] flex flex-col">
           {selectedService && (
@@ -286,7 +358,7 @@ const ServicesSection: React.FC = () => {
 
                 <Button
                   onClick={handleBooking}
-                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
+                  className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-primary-foreground`}
                 >
                   Book a Trial Session
                 </Button>
