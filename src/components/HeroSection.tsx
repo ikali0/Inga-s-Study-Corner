@@ -45,7 +45,7 @@ const HeroSection = ({
         <div className="space-y-4 sm:space-y-5 lg:space-y-6 z-10 order-2 lg:order-1 text-center lg:text-left">
           {/* Badge */}
           <div className="inline-block bg-gradient-to-r from-primary/15 to-orange/10 text-primary py-2 rounded-full font-bold text-xs sm:text-sm tracking-wide border border-primary/20 shadow-sm px-[8px]">
-            ✨ Interactive Learning for Ages 8–14
+            ✨ 215-791-5906  
           </div>
 
           {/* Heading */}
@@ -66,7 +66,7 @@ const HeroSection = ({
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
+          <div className="flex-col sm:flex-row gap-2 sm:gap-3 justify-center pt-2 flex items-start lg:justify-start py-[4px]">
             <Button onClick={() => handleNavigate("book")} size="sm" className="btn-3d bg-blue hover:bg-blue/90 text-primary-foreground px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm shadow-md shadow-blue/20 flex items-center justify-center gap-1.5 w-full sm:w-auto border border-blue/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue/25 hover:-translate-y-0.5 active:translate-y-0">
               <Zap size={14} className="fill-current" aria-hidden="true" />
               Book Your First Session
@@ -78,29 +78,23 @@ const HeroSection = ({
           </div>
 
           {/* Feature Pills - Clickable */}
-          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
+          <div className="flex-wrap gap-2 sm:gap-3 justify-center pt-2 flex items-start lg:justify-start">
             {[{
-              icon: <CheckCircle size={14} className="text-green shrink-0" />,
-              text: "Ages 8-14",
-              target: "about"
-            }, {
-              icon: <CheckCircle size={14} className="text-green shrink-0" />,
-              text: "Tue-Fri 3-9 PM",
-              target: "book"
-            }, {
-              icon: <CheckCircle size={14} className="text-green shrink-0" />,
-              text: "Small Groups",
-              target: "services"
-            }].map((item, i) => (
-              <button
-                key={i}
-                onClick={() => handleNavigate(item.target)}
-                className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 shadow-sm hover:bg-muted hover:border-primary/30 hover:text-foreground transition-all duration-200 cursor-pointer active:scale-95"
-              >
+            icon: <CheckCircle size={14} className="text-green shrink-0" />,
+            text: "Ages 8-14",
+            target: "about"
+          }, {
+            icon: <CheckCircle size={14} className="text-green shrink-0" />,
+            text: "Tue-Fri 3-9 PM",
+            target: "book"
+          }, {
+            icon: <CheckCircle size={14} className="text-green shrink-0" />,
+            text: "Small Groups",
+            target: "services"
+          }].map((item, i) => <button key={i} onClick={() => handleNavigate(item.target)} className="flex items-center gap-1.5 bg-muted/60 backdrop-blur-sm px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 shadow-sm hover:bg-muted hover:border-primary/30 hover:text-foreground transition-all duration-200 cursor-pointer active:scale-95">
                 {item.icon}
                 {item.text}
-              </button>
-            ))}
+              </button>)}
           </div>
         </div>
 
