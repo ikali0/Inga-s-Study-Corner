@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
 import { Smile, Zap, Heart } from "lucide-react";
-
 interface Feature {
   icon: React.ReactNode;
   iconBg: string;
@@ -28,15 +27,9 @@ const features: Feature[] = [{
   description: "Library-based, distraction-free environment supporting success across STEM subjects."
 }];
 const AboutSection = forwardRef<HTMLElement>((_, ref) => {
-  return (
-    <section
-      ref={ref}
-      id="about"
-      className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10"
-      aria-labelledby="about-heading"
-    >
+  return <section ref={ref} id="about" className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10" aria-labelledby="about-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="bg-secondary rounded-xl sm:rounded-2xl text-secondary-foreground p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden shadow-sm py-[40px] px-[40px]">
+        <div className="bg-secondary rounded-xl sm:rounded-2xl text-secondary-foreground p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden shadow-sm px-[28px] py-[28px]">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-5 sm:opacity-10 pointer-events-none" style={{
           backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
@@ -64,20 +57,17 @@ const AboutSection = forwardRef<HTMLElement>((_, ref) => {
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm sm:text-base font-bold mb-1 sm:mb-1.5 text-card-foreground leading-snug">
+                    <h3 className="text-sm font-bold mb-1 sm:mb-1.5 text-card-foreground leading-snug sm:text-sm">
                       {feature.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed sm:text-xs">{feature.description}</p>
                   </div>
                 </article>)}
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 });
-
 AboutSection.displayName = "AboutSection";
-
 export default AboutSection;
