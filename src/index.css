@@ -1,8 +1,7 @@
 /* =========================================
    1. FONTS
-   Poppins = Body (Modern, Clean)
-   Lora = Headings (Elegant Serif)
-   Fira Code = Code/Numbers
+   Outfit = Body (Modern, Clean)
+   Space Mono = Code/Numbers
    ========================================= */
 
 @tailwind base;
@@ -11,135 +10,140 @@
 
 /* =========================================
    2. THEME VARIABLES
-   "Inga's Study Corner" - Soft Pink & Teal
+   Solarized Theme - Warm & Professional
    ========================================= */
 @layer base {
   :root {
-    /* --- Core Palette --- */
-    --background: 330 50% 95%;      /* #f6e6ee - Soft pink */
-    --foreground: 0 0% 36%;         /* #5b5b5b - Neutral gray */
+    /* --- Core Palette (Solarized Light) --- */
+    --background: 44 87% 98%;        /* #fdf6e3 - Solarized Base3 */
+    --foreground: 192 100% 14%;      /* #073642 - Solarized Base02 */
 
-    --card: 42 89% 89%;             /* #fdedc9 - Warm cream */
-    --card-foreground: 0 0% 36%;    /* #5b5b5b */
+    --card: 44 27% 92%;              /* #eee8d5 - Solarized Base2 */
+    --card-foreground: 192 100% 14%; /* #073642 */
 
-    --popover: 0 0% 100%;           /* #ffffff */
-    --popover-foreground: 0 0% 36%; /* #5b5b5b */
+    --popover: 44 27% 92%;           /* #eee8d5 */
+    --popover-foreground: 192 100% 14%;
 
-    --primary: 326 58% 56%;         /* #d04f99 - Vibrant Pink */
-    --primary-foreground: 0 0% 100%;/* #ffffff */
+    --primary: 331 64% 52%;          /* #d33682 - Solarized Magenta */
+    --primary-foreground: 0 0% 100%; /* #ffffff */
 
-    --secondary: 181 45% 68%;       /* #8acfd1 - Soft Teal */
-    --secondary-foreground: 0 0% 20%;/* #333333 */
+    --secondary: 175 59% 40%;        /* #2aa198 - Solarized Cyan */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 188 56% 80%;           /* #b2e1eb - Light Teal */
-    --muted-foreground: 0 0% 48%;   /* #7a7a7a */
+    --muted: 186 8% 60%;             /* #93a1a1 - Solarized Base1 */
+    --muted-foreground: 192 100% 14%;
 
-    --accent: 45 92% 82%;           /* #fbe2a7 - Warm Yellow */
-    --accent-foreground: 0 0% 20%;  /* #333333 */
+    --accent: 18 89% 44%;            /* #cb4b16 - Solarized Orange */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 92% 71%;       /* #f96f70 - Coral Red */
+    --destructive: 1 79% 52%;        /* #dc322f - Solarized Red */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 326 58% 47%;          /* #d04f99 - Pink border */
-    --input: 0 0% 89%;              /* #e4e4e4 */
-    --ring: 330 72% 68%;            /* #e670ab - Bright Pink */
+    --border: 186 13% 55%;           /* #839496 - Solarized Base0 */
+    --input: 186 13% 55%;            /* #839496 */
+    --ring: 331 64% 52%;             /* #d33682 - Magenta */
 
-    --radius: 0.4rem;
+    --radius: 0.25rem;
 
     /* --- Service Card Colors --- */
-    --blue: 188 56% 70%;            /* Soft teal-blue */
-    --blue-light: 188 56% 92%;
-    --orange: 45 92% 75%;           /* Warm orange/yellow */
-    --orange-light: 45 92% 94%;
-    --green: 181 45% 60%;           /* Teal-green */
-    --green-light: 181 45% 92%;
-    --purple: 326 58% 60%;          /* Pink-purple */
-    --purple-light: 326 58% 94%;
+    --blue: 205 82% 49%;             /* #268bd2 - Solarized Blue */
+    --blue-light: 205 82% 90%;
+    --orange: 18 89% 44%;            /* #cb4b16 - Solarized Orange */
+    --orange-light: 18 89% 92%;
+    --green: 175 59% 40%;            /* #2aa198 - Solarized Cyan/Green */
+    --green-light: 175 59% 90%;
+    --purple: 331 64% 52%;           /* #d33682 - Solarized Magenta */
+    --purple-light: 331 64% 92%;
+    --pink: 331 64% 52%;             /* Same as magenta */
+    --pink-light: 331 64% 92%;
 
     /* --- Chart Colors --- */
-    --chart-1: 330 72% 68%;         /* #e670ab */
-    --chart-2: 188 56% 70%;         /* #84d2e2 */
-    --chart-3: 45 92% 82%;          /* #fbe2a7 */
-    --chart-4: 338 76% 79%;         /* #f3a0ca */
-    --chart-5: 330 72% 55%;         /* #d7488e */
+    --chart-1: 205 82% 49%;          /* #268bd2 */
+    --chart-2: 175 59% 40%;          /* #2aa198 */
+    --chart-3: 331 64% 52%;          /* #d33682 */
+    --chart-4: 18 89% 44%;           /* #cb4b16 */
+    --chart-5: 1 79% 52%;            /* #dc322f */
 
     /* --- Sidebar --- */
-    --sidebar-background: 330 62% 95%;  /* #f8d8ea */
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 330 82% 60%;     /* #ec4899 */
+    --sidebar-background: 44 87% 98%;    /* #fdf6e3 */
+    --sidebar-foreground: 192 100% 14%;
+    --sidebar-primary: 331 64% 52%;      /* #d33682 */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 330 90% 83%;      /* #f9a8d4 */
-    --sidebar-accent-foreground: 0 0% 20%;
-    --sidebar-border: 270 100% 95%;     /* #f3e8ff */
-    --sidebar-ring: 330 82% 60%;
+    --sidebar-accent: 175 59% 40%;       /* #2aa198 */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 186 13% 55%;       /* #839496 */
+    --sidebar-ring: 331 64% 52%;
 
     /* --- Shadow Variables --- */
-    --shadow-color: 326 58% 57%;
-    --shadow-offset-x: 3px;
-    --shadow-offset-y: 3px;
-    --shadow-blur: 0px;
+    --shadow-color: 192 100% 14%;
+    --shadow-offset-x: 2px;
+    --shadow-offset-y: 2px;
+    --shadow-blur: 4px;
     --shadow-spread: 0px;
+    --shadow-opacity: 0.15;
   }
 
   .dark {
-    /* --- Dark Mode Core Palette --- */
-    --background: 195 43% 12%;      /* #12242e - Deep teal */
-    --foreground: 330 30% 94%;      /* #f3e3ea - Light pink */
+    /* --- Dark Mode Core Palette (Solarized Dark) --- */
+    --background: 192 100% 11%;      /* #002b36 - Solarized Base03 */
+    --foreground: 186 8% 60%;        /* #93a1a1 - Solarized Base1 */
 
-    --card: 195 35% 16%;            /* #1c2e38 - Dark teal card */
-    --card-foreground: 330 30% 94%;
+    --card: 192 100% 14%;            /* #073642 - Solarized Base02 */
+    --card-foreground: 186 8% 60%;
 
-    --popover: 195 35% 16%;
-    --popover-foreground: 330 30% 94%;
+    --popover: 192 100% 14%;
+    --popover-foreground: 186 8% 60%;
 
-    --primary: 45 92% 82%;          /* #fbe2a7 - Warm Yellow */
-    --primary-foreground: 195 43% 12%;
+    --primary: 331 64% 52%;          /* #d33682 - Magenta */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 348 56% 76%;       /* #e4a2b1 - Soft Pink */
-    --secondary-foreground: 195 43% 12%;
+    --secondary: 175 59% 40%;        /* #2aa198 - Cyan */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 12% 16%;           /* #24272b - Dark gray */
-    --muted-foreground: 348 56% 76%;
+    --muted: 186 13% 43%;            /* #586e75 - Base01 */
+    --muted-foreground: 186 8% 60%;
 
-    --accent: 340 40% 54%;          /* #c67b96 - Dusty Rose */
-    --accent-foreground: 330 30% 94%;
+    --accent: 18 89% 44%;            /* #cb4b16 - Orange */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 330 74% 63%;     /* #e35ea4 - Hot Pink */
-    --destructive-foreground: 195 43% 12%;
+    --destructive: 1 79% 52%;        /* #dc322f - Red */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 200 30% 27%;          /* #324859 - Slate blue */
-    --input: 195 35% 18%;           /* #20333d */
-    --ring: 181 45% 51%;            /* #50afb6 - Teal */
+    --border: 186 13% 43%;           /* #586e75 */
+    --input: 186 13% 43%;
+    --ring: 331 64% 52%;
 
     /* Dark Mode Service Variations */
-    --blue: 181 45% 51%;
-    --blue-light: 181 45% 20%;
-    --orange: 45 70% 70%;
-    --orange-light: 45 50% 18%;
-    --green: 181 60% 45%;
-    --green-light: 181 50% 18%;
-    --purple: 340 40% 54%;
-    --purple-light: 340 40% 18%;
+    --blue: 205 82% 49%;
+    --blue-light: 205 50% 20%;
+    --orange: 18 70% 50%;
+    --orange-light: 18 50% 18%;
+    --green: 175 59% 40%;
+    --green-light: 175 50% 18%;
+    --purple: 331 64% 52%;
+    --purple-light: 331 40% 20%;
+    --pink: 331 64% 52%;
+    --pink-light: 331 40% 20%;
 
     /* --- Dark Chart Colors --- */
-    --chart-1: 181 45% 51%;         /* #50afb6 */
-    --chart-2: 348 56% 76%;         /* #e4a2b1 */
-    --chart-3: 340 40% 54%;         /* #c67b96 */
-    --chart-4: 186 70% 26%;         /* #175c6c */
-    --chart-5: 220 12% 16%;         /* #24272b */
+    --chart-1: 205 82% 49%;
+    --chart-2: 175 59% 40%;
+    --chart-3: 331 64% 52%;
+    --chart-4: 18 89% 44%;
+    --chart-5: 1 79% 52%;
 
     /* --- Dark Sidebar --- */
-    --sidebar-background: 195 43% 11%;
-    --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 330 82% 60%;
+    --sidebar-background: 192 100% 11%;
+    --sidebar-foreground: 186 8% 60%;
+    --sidebar-primary: 331 64% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 330 90% 83%;
-    --sidebar-accent-foreground: 220 12% 18%;
-    --sidebar-border: 220 13% 26%;
-    --sidebar-ring: 330 82% 60%;
+    --sidebar-accent: 175 59% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 186 13% 43%;
+    --sidebar-ring: 331 64% 52%;
 
     /* --- Shadow Variables (Dark) --- */
-    --shadow-color: 200 30% 27%;
+    --shadow-color: 192 100% 10%;
   }
 }
 
@@ -157,22 +161,22 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-weight: 400;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lora', serif;
+    font-family: 'Outfit', sans-serif;
     @apply tracking-tight font-semibold;
   }
 
   code, pre, .font-mono {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Space Mono', monospace;
   }
 
   /* Custom Text Selection Color */
   ::selection {
-    @apply bg-primary/30 text-primary-foreground;
+    @apply bg-primary/30 text-foreground;
   }
 }
 
@@ -183,19 +187,19 @@
   
   /* --- 3D / Neo-Brutalist Cards --- */
   .card-3d {
-    @apply rounded-xl border-2 border-primary/20 bg-card transition-all duration-200;
-    box-shadow: 6px 6px 0px 0px hsl(var(--primary) / 0.2);
+    @apply rounded-sm border-2 border-primary/20 bg-card transition-all duration-200;
+    box-shadow: 4px 4px 0px 0px hsl(var(--primary) / 0.2);
   }
   
   .card-3d:hover {
     @apply border-primary;
-    box-shadow: 8px 8px 0px 0px hsl(var(--primary));
+    box-shadow: 6px 6px 0px 0px hsl(var(--primary));
     transform: translate(-2px, -2px);
   }
 
   /* --- 3D Buttons --- */
   .btn-3d {
-    @apply relative overflow-hidden rounded-lg border-2 border-foreground bg-primary px-6 py-3 font-bold text-white transition-all duration-200;
+    @apply relative overflow-hidden rounded-sm border-2 border-foreground bg-primary px-6 py-3 font-bold text-primary-foreground transition-all duration-200;
     box-shadow: 4px 4px 0px 0px hsl(var(--foreground));
   }
 
@@ -250,15 +254,15 @@
    6. SCROLLBARS
    ========================================= */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted;
+  @apply bg-muted/30;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/50 rounded-full border-4 border-solid border-muted;
+  @apply bg-primary/50 rounded-sm border-2 border-solid border-muted/30;
 }
 
 ::-webkit-scrollbar-thumb:hover {
