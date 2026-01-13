@@ -1,5 +1,6 @@
 import React from "react";
 import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles, ArrowRight } from "lucide-react";
+import QuestionOfTheDay from "./QuestionOfTheDay";
 
 // --- Types & Data ---
 
@@ -79,28 +80,34 @@ const ServicesSection = () => {
       />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-slate-900 text-slate-900 text-xs font-bold uppercase tracking-wider mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-            <Sparkles className="w-3 h-3 text-orange-500 fill-orange-500" />
-            Our Programs
+        {/* Header + Daily Quiz Side by Side on Desktop */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-12 lg:mb-16">
+          {/* Header */}
+          <div className="text-center lg:text-left max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-slate-900 text-slate-900 text-xs font-bold uppercase tracking-wider mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <Sparkles className="w-3 h-3 text-orange-500 fill-orange-500" />
+              Our Programs
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 lg:mb-6">
+              Academic Excellence
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-700">
+                For Every Student
+              </span>
+            </h2>
+
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-medium">
+              Patient, age-appropriate guidance in a focused environment built for{" "}
+              <span className="underline decoration-wavy decoration-orange-400 decoration-2">confidence</span> and
+              mastery.
+            </p>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-6">
-            Academic Excellence
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-700">
-              For Every Student
-            </span>
-          </h2>
-
-          <p className="text-lg text-slate-600 leading-relaxed font-medium sm:text-lg">
-            Patient, age-appropriate guidance in a focused environment built for confidence and mastery.{" "}
-            <span className="underline decoration-wavy decoration-orange-400 decoration-2">confidence</span> and
-            mastery.
-          </p>
-
-          {/* Instructive value: Visualizing the educational goals */}
+          {/* Daily Quiz - Right Side */}
+          <div className="w-full lg:w-80 lg:shrink-0">
+            <QuestionOfTheDay />
+          </div>
         </div>
 
         {/* 3D Card Grid */}

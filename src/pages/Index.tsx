@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import QuestionOfTheDay from '@/components/QuestionOfTheDay';
+
 import AIStudyHelper from '@/components/AIStudyHelper';
 import ServicesSection from '@/components/ServicesSection';
 import AboutSection from '@/components/AboutSection';
@@ -18,9 +18,8 @@ const Index = () => {
   };
   return <div className="relative min-h-screen selection:bg-primary/20">
       <Navbar onNavigate={handleNavigate} />
-      <main className="px-[38px] py-[38px]">
+      <main className="px-4 sm:px-6 lg:px-[38px] py-6 sm:py-[38px]">
         <HeroSection onNavigate={handleNavigate} />
-        <QuestionOfTheDay />
         <AIStudyHelper />
         <ServicesSection />
         <AboutSection />
