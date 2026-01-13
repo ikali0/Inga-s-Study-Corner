@@ -3,16 +3,13 @@ import { Sparkles, Brain, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-
 type AIMode = "explain" | "practice" | "quiz";
-
 interface ModeConfig {
   label: string;
   icon: React.ReactNode;
   placeholder: string;
   description: string;
 }
-
 const modeConfigs: Record<AIMode, ModeConfig> = {
   explain: {
     label: "Explain",
@@ -33,9 +30,7 @@ const modeConfigs: Record<AIMode, ModeConfig> = {
     description: "Test your knowledge with fun quizzes"
   }
 };
-
 const gradeOptions = ["K-2", "3-5", "6-8"];
-
 const AIStudyHelper = () => {
   const [mode, setMode] = useState<AIMode>("explain");
   const [input, setInput] = useState("");
@@ -43,19 +38,22 @@ const AIStudyHelper = () => {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
   const handleSubmit = async () => {
     if (!input.trim()) return;
-    
     setIsLoading(true);
     setError("");
     setResult("");
-
     try {
-      const { data, error: fnError } = await supabase.functions.invoke("ai-study-helper", {
-        body: { mode, input, grade }
+      const {
+        data,
+        error: fnError
+      } = await supabase.functions.invoke("ai-study-helper", {
+        body: {
+          mode,
+          input,
+          grade
+        }
       });
-
       if (fnError) throw fnError;
       setResult(data?.result || "No response received.");
     } catch (err) {
@@ -65,11 +63,8 @@ const AIStudyHelper = () => {
       setIsLoading(false);
     }
   };
-
   const config = modeConfigs[mode];
-
-  return (
-    <section className="py-8 sm:py-12 md:py-16 relative z-10">
+  return <section className="py-8 sm:py-12 md:py-16 relative z-10">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
@@ -86,87 +81,48 @@ const AIStudyHelper = () => {
         </div>
 
         {/* Main Card */}
-        <div className="bg-card border border-border rounded-xl sm:rounded-2xl shadow-sm overflow-hidden">
+        <div className="border rounded-xl sm:rounded-2xl shadow-sm overflow-hidden bg-orange-50 border-purple-600 border-solid">
           {/* Mode Tabs */}
           <div className="flex border-b border-border">
-            {(Object.keys(modeConfigs) as AIMode[]).map((m) => (
-              <button
-                key={m}
-                onClick={() => setMode(m)}
-                className={`flex-1 py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-1.5 ${
-                  mode === m
-                    ? "bg-primary/10 text-primary border-b-2 border-primary"
-                    : "text-muted-foreground hover:bg-muted/50"
-                }`}
-              >
+            {(Object.keys(modeConfigs) as AIMode[]).map(m => <button key={m} onClick={() => setMode(m)} className={`flex-1 py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-1.5 ${mode === m ? "bg-primary/10 text-primary border-b-2 border-primary" : "text-muted-foreground hover:bg-muted/50"}`}>
                 {modeConfigs[m].icon}
                 <span className="hidden sm:inline">{modeConfigs[m].label}</span>
-              </button>
-            ))}
+              </button>)}
           </div>
 
-          <div className="p-4 sm:p-6 space-y-4">
+          <div className="p-4 sm:p-6 space-y-4 bg-blue-100">
             {/* Grade Selector */}
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs font-medium text-muted-foreground">Grade:</span>
-              {gradeOptions.map((g) => (
-                <button
-                  key={g}
-                  onClick={() => setGrade(g)}
-                  className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                    grade === g
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground hover:bg-muted/80"
-                  }`}
-                >
+              {gradeOptions.map(g => <button key={g} onClick={() => setGrade(g)} className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${grade === g ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>
                   {g}
-                </button>
-              ))}
+                </button>)}
             </div>
 
             {/* Input */}
             <div>
-              <Textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={config.placeholder}
-                className="min-h-[80px] resize-none text-sm"
-                disabled={isLoading}
-              />
-              <p className="text-[10px] text-muted-foreground mt-1.5">
-                {config.description}
-              </p>
+              <Textarea value={input} onChange={e => setInput(e.target.value)} placeholder={config.placeholder} className="min-h-[80px] resize-none text-sm" disabled={isLoading} />
+              
             </div>
 
             {/* Submit Button */}
-            <Button
-              onClick={handleSubmit}
-              disabled={isLoading || !input.trim()}
-              className="w-full h-10 text-sm font-semibold"
-            >
-              {isLoading ? (
-                <>
+            <Button onClick={handleSubmit} disabled={isLoading || !input.trim()} className="w-full h-10 text-sm font-semibold">
+              {isLoading ? <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   Thinking...
-                </>
-              ) : (
-                <>
+                </> : <>
                   <Sparkles className="w-4 h-4 mr-2" />
                   Get Help
-                </>
-              )}
+                </>}
             </Button>
 
             {/* Error */}
-            {error && (
-              <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-sm text-destructive">
+            {error && <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-sm text-destructive">
                 {error}
-              </div>
-            )}
+              </div>}
 
             {/* Result */}
-            {result && (
-              <div className="p-4 bg-muted/50 rounded-lg border border-border">
+            {result && <div className="p-4 bg-muted/50 rounded-lg border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <Brain className="w-4 h-4 text-primary" />
                   <span className="text-xs font-semibold text-foreground">AI Response</span>
@@ -174,13 +130,10 @@ const AIStudyHelper = () => {
                 <div className="text-sm text-foreground whitespace-pre-wrap leading-relaxed">
                   {result}
                 </div>
-              </div>
-            )}
+              </div>}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AIStudyHelper;
