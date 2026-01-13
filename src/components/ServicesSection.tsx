@@ -19,7 +19,8 @@ const services: Service[] = [
     id: "math",
     icon: <Sigma className="w-5 h-5" />,
     title: "Math Mastery",
-    description: 'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
+    description:
+      'From basic arithmetic to middle school algebra. We turn "I can\'t" into "I solved it!" using visual aids and real-world examples.',
     color: "blue",
     features: ["Elementary → Middle School", "Homework Help", "Test Prep"],
   },
@@ -27,7 +28,8 @@ const services: Service[] = [
     id: "english",
     icon: <BookOpen className="w-5 h-5" />,
     title: "Reading & English",
-    description: "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
+    description:
+      "Unlocking the magic of stories. We focus on phonics, comprehension, and creative writing to build lifelong readers.",
     color: "purple",
     features: ["Reading Comprehension", "Essay Writing", "Vocabulary"],
   },
@@ -86,16 +88,16 @@ const ServicesSection = () => {
               Our Programs
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3 lg:mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-foreground tracking-tight mb-3 lg:mb-4">
               Academic Excellence
               <br />
               <span className="text-primary">For Every Student</span>
             </h2>
 
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-med mx-auto med:mx-0">
               Patient, age-appropriate guidance in a focused environment built for{" "}
               <span className="underline decoration-wavy decoration-primary/50 decoration-2 underline-offset-2">
-                confidence
+                confidence & mastery
               </span>{" "}
               and mastery.
             </p>
@@ -121,18 +123,14 @@ const ServicesSection = () => {
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${theme.iconBg}`}>
                     {service.icon}
                   </div>
-                  <div className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded ${theme.badge}`}>
-                    Grades K-8
-                  </div>
+                  <div className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded ${theme.badge}`}>Grades K-8</div>
                 </div>
 
                 {/* Content */}
                 <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-xs sm:text-sm">
-                  {service.description}
-                </p>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-xs sm:text-sm">{service.description}</p>
 
                 {/* Divider */}
                 <div className="h-px w-full bg-border mb-4" />
