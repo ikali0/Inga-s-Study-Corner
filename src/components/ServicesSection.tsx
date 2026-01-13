@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { BookOpen, CheckCircle2, Globe, Sigma, Sparkles, FlaskConical, ArrowRight } from "lucide-react";
 import QuestionOfTheDay from "./QuestionOfTheDay";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,10 @@ interface Service {
   color: ThemeColor;
   features: string[];
   longDescription: string;
-  detailedFeatures: { title: string; items: string[] }[];
+  detailedFeatures: {
+    title: string;
+    items: string[];
+  }[];
   approach: string;
   outcomes: string[];
 }
@@ -97,11 +100,7 @@ const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
 );
 
 // --- Main Component ---
-interface ServicesSectionProps {
-  services: Service[];
-}
-
-const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
+const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const handleBooking = () => {
@@ -119,12 +118,13 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
         }}
         aria-hidden="true"
       />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header + Quiz */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 mb-8 lg:mb-12">
           <div className="text-center lg:text-left flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-              <Sparkles className="w-3 h-3 text-primary fill-primary" /> Our Programs
+              <Sparkles className="w-3 h-3 text-primary fill-primary" />
+              Our Programs
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-foreground tracking-tight mb-3 lg:mb-4">
               Academic Excellence
@@ -144,7 +144,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
           </div>
         </div>
 
-        {/* Dynamic Cards */}
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service) => {
             const theme = themeConfig[service.color];
@@ -183,7 +182,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
         </div>
       </div>
 
-      {/* Dynamic Sheet */}
       <Sheet
         open={!!selectedService}
         onOpenChange={(open) => {
@@ -213,7 +211,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
                   </SheetDescription>
                 </SheetHeader>
 
-                {/* Approach */}
                 <section className="mb-6">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
                     Our Approach
@@ -223,7 +220,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
                   </div>
                 </section>
 
-                {/* Detailed Features */}
                 <section className="mb-6">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
                     What We Cover
@@ -234,7 +230,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
                   />
                 </section>
 
-                {/* Outcomes */}
                 <section className="mb-8">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
                     Expected Outcomes
@@ -242,7 +237,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
                   <OutcomesList outcomes={selectedService.outcomes} />
                 </section>
 
-                {/* Book Button */}
                 <Button
                   onClick={handleBooking}
                   className={`w-full py-6 text-base font-bold ${themeConfig[selectedService.color].button} text-white`}
