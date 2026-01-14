@@ -61,13 +61,13 @@ export function FlippingCard({
     }
   };
   return <div className="group/flipping-card [perspective:1000px] w-full cursor-pointer touch-pan-y" onClick={handleClick} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-      <div className={cn("relative rounded-xl border border-border bg-card shadow-lg transition-all duration-500 [transform-style:preserve-3d] group-hover/flipping-card:md:[transform:rotateY(180deg)] h-[180px] xs:h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full mx-auto border-solid", isFlipped && "[transform:rotateY(180deg)]", className)}>
+      <div className={cn("relative rounded-sm border border-border bg-card shadow-lg transition-all duration-500 [transform-style:preserve-3d] group-hover/flipping-card:md:[transform:rotateY(180deg)] h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full mx-auto border-solid", isFlipped && "[transform:rotateY(180deg)]", className)}>
         {/* Front Face */}
-        <div className="absolute inset-0 h-full w-full rounded-[inherit] bg-card text-foreground [backface-visibility:hidden] overflow-hidden">
+        <div className="absolute inset-0 h-full w-full rounded-sm bg-card text-foreground [backface-visibility:hidden] overflow-hidden">
           {frontContent}
         </div>
         {/* Back Face */}
-        <div className="absolute inset-0 h-full w-full rounded-[inherit] bg-card text-foreground [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+        <div className="absolute inset-0 h-full w-full rounded-sm bg-card text-foreground [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
           {backContent}
         </div>
       </div>
