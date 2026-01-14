@@ -1,12 +1,13 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, memo } from "react";
 import { cn } from "@/lib/utils";
+
 interface FlippingCardProps {
   className?: string;
   frontContent?: React.ReactNode;
   backContent?: React.ReactNode;
 }
 
-// Haptic feedback utility
+// Haptic feedback utility - debounced
 const triggerHaptic = (pattern: number | number[] = 10) => {
   if (typeof navigator !== "undefined" && "vibrate" in navigator) {
     try {
@@ -16,52 +17,81 @@ const triggerHaptic = (pattern: number | number[] = 10) => {
     }
   }
 };
-export function FlippingCard({
+
+export const FlippingCard = memo(function FlippingCard({
   className,
   frontContent,
   backContent
 }: FlippingCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-  const minSwipeDistance = 50;
+  const touchStartY = useRef<number | null>(null);
+  const isTap = useRef(true);
+  
   const flipCard = useCallback((newFlippedState: boolean) => {
-    if (isFlipped !== newFlippedState) {
-      setIsFlipped(newFlippedState);
-      triggerHaptic(15); // Short vibration on flip
-    }
-  }, [isFlipped]);
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchEndX.current = null;
-  };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const distance = touchStartX.current - touchEndX.current;
-    const isSwipe = Math.abs(distance) > minSwipeDistance;
-    if (isSwipe) {
-      // Swipe left (positive distance) = flip to back
-      // Swipe right (negative distance) = flip to front
-      if (distance > 0 && !isFlipped) {
-        flipCard(true);
-      } else if (distance < 0 && isFlipped) {
-        flipCard(false);
+    setIsFlipped(prev => {
+      if (prev !== newFlippedState) {
+        triggerHaptic(10);
+        return newFlippedState;
       }
+      return prev;
+    });
+  }, []);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    isTap.current = true;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!touchStartX.current || !touchStartY.current) return;
+    
+    const deltaX = Math.abs(e.touches[0].clientX - touchStartX.current);
+    const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current);
+    
+    // If moved more than 10px, it's not a tap
+    if (deltaX > 10 || deltaY > 10) {
+      isTap.current = false;
     }
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-  const handleClick = () => {
-    // Toggle flip on tap for touch devices
-    if (window.matchMedia("(hover: none)").matches) {
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (isTap.current) {
       flipCard(!isFlipped);
     }
-  };
-  return <div className="group/flipping-card [perspective:1000px] w-full cursor-pointer touch-pan-y" onClick={handleClick} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-      <div className={cn("relative rounded-sm border border-border bg-card shadow-lg transition-all duration-500 [transform-style:preserve-3d] group-hover/flipping-card:md:[transform:rotateY(180deg)] h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full mx-auto border-solid", isFlipped && "[transform:rotateY(180deg)]", className)}>
+    touchStartX.current = null;
+    touchStartY.current = null;
+    isTap.current = true;
+  }, [flipCard, isFlipped]);
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    // Only handle click on non-touch devices or if touch didn't handle it
+    if (window.matchMedia("(hover: hover)").matches) {
+      return; // Desktop uses hover, not click
+    }
+    e.preventDefault();
+  }, []);
+
+  return (
+    <div 
+      className="group/flipping-card [perspective:1000px] w-full cursor-pointer select-none"
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div 
+        className={cn(
+          "relative rounded-sm border border-border bg-card shadow-lg",
+          "transition-transform duration-300 ease-out will-change-transform",
+          "[transform-style:preserve-3d]",
+          "group-hover/flipping-card:md:[transform:rotateY(180deg)]",
+          "h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full",
+          isFlipped && "[transform:rotateY(180deg)]",
+          className
+        )}
+      >
         {/* Front Face */}
         <div className="absolute inset-0 h-full w-full rounded-sm bg-card text-foreground [backface-visibility:hidden] overflow-hidden">
           {frontContent}
@@ -71,5 +101,6 @@ export function FlippingCard({
           {backContent}
         </div>
       </div>
-    </div>;
-}
+    </div>
+  );
+});

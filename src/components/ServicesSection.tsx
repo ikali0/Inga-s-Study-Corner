@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, CheckCircle2, ArrowRight, Hand } from "lucide-react";
+import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import QuestionOfTheDay from "./QuestionOfTheDay";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "./ui/sheet";
 import { Button } from "./ui/button";
@@ -174,11 +174,10 @@ const CardFront = ({ service, theme }: CardFrontProps) => (
       ))}
     </ul>
     
-    {/* Hover/Tap hint */}
-    <div className="flex items-center justify-center gap-1 text-[8px] sm:text-[10px] text-muted-foreground mt-auto pt-1.5 border-t border-border/50">
-      <span className="hidden sm:inline font-body">Hover for more</span>
-      <span className="sm:hidden font-body">Tap to flip</span>
-      <ArrowRight className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
+    {/* Learn more hint - desktop only */}
+    <div className="hidden sm:flex items-center justify-center gap-1 text-[10px] text-muted-foreground mt-auto pt-1.5 border-t border-border/50">
+      <span className="font-body">Hover for more</span>
+      <ArrowRight className="w-2.5 h-2.5" />
     </div>
   </div>
 );
@@ -338,11 +337,6 @@ const ServicesSection: React.FC = () => {
           })}
         </div>
         
-        {/* Mobile tap hint - Only show on small screens */}
-        <div className="flex items-center justify-center gap-2 text-[10px] sm:text-xs text-muted-foreground/80 mt-4 sm:mt-6 md:hidden">
-          <Hand className="w-3.5 h-3.5" />
-          <span>Tap cards to see more details</span>
-        </div>
       </div>
 
       {/* Detail Sheet - Full width on mobile */}
