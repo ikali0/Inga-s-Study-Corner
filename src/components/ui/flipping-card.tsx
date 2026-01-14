@@ -66,12 +66,17 @@ export const FlippingCard = memo(function FlippingCard({
   }, [flipCard, isFlipped]);
 
   const handleClick = useCallback((e: React.MouseEvent) => {
-    // Only handle click on non-touch devices or if touch didn't handle it
-    if (window.matchMedia("(hover: hover)").matches) {
-      return; // Desktop uses hover, not click
+    // Don't flip if clicking on a button or interactive element
+    const target = e.target as HTMLElement;
+    if (target.closest('button, a, [role="button"]')) {
+      return; // Let button handle its own click
     }
-    e.preventDefault();
-  }, []);
+    
+    // Only handle click on non-touch/hover devices
+    if (!window.matchMedia("(hover: hover)").matches) {
+      flipCard(!isFlipped);
+    }
+  }, [flipCard, isFlipped]);
 
   return (
     <div 
