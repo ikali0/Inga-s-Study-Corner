@@ -39,6 +39,12 @@ export const FlippingCard = memo(function FlippingCard({
   }, []);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    // Don't track touch if it starts on a button
+    const target = e.target as HTMLElement;
+    if (target.closest('button, a, [role="button"]')) {
+      isTap.current = false;
+      return;
+    }
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
     isTap.current = true;
@@ -56,7 +62,15 @@ export const FlippingCard = memo(function FlippingCard({
     }
   }, []);
 
-  const handleTouchEnd = useCallback(() => {
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    // Don't flip if touch ended on a button
+    const target = e.target as HTMLElement;
+    if (target.closest('button, a, [role="button"]')) {
+      touchStartX.current = null;
+      touchStartY.current = null;
+      return;
+    }
+    
     if (isTap.current) {
       flipCard(!isFlipped);
     }
