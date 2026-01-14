@@ -11,20 +11,20 @@ const features: Feature[] = [{
   icon: <Smile className="w-5 h-5" />,
   iconBg: "bg-blue/10",
   iconColor: "text-blue",
-  title: "Builds Confidence, Not Pressure",
-  description: "A calm, encouraging space to grow. We tackle anxiety before algebra."
+  title: "Confidence First",
+  description: "Students learn best when relaxed. We create calm before curriculum."
 }, {
   icon: <Zap className="w-5 h-5" />,
   iconBg: "bg-purple/10",
   iconColor: "text-purple",
-  title: "Encourages Thinking, Not Memorization",
-  description: "Visual learner? We draw. Kinesthetic? We build. Adapted to YOUR child."
+  title: "Personalized Methods",
+  description: "Each student learns differently. Sessions adapt to their style."
 }, {
   icon: <Heart className="w-5 h-5" />,
   iconBg: "bg-primary/10",
   iconColor: "text-primary",
-  title: "Supports School Success",
-  description: "Library-based, distraction-free environment supporting success across STEM subjects."
+  title: "Focused Environment",
+  description: "Library-based sessions. Quiet, structured, results-driven."
 }];
 const AboutSection = forwardRef<HTMLElement>((_, ref) => {
   return <section ref={ref} id="about" className="py-8 sm:py-12 md:py-16 lg:py-20 relative z-10" aria-labelledby="about-heading">
