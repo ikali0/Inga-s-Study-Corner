@@ -148,41 +148,36 @@ const CardFront = ({ service, theme }: CardFrontProps) => (
   <div className="flex flex-col h-full p-3 sm:p-4">
     {/* Header with icon */}
     <div className="flex items-center gap-2 mb-2">
-      <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center ${theme.iconBg} shrink-0`}>
+      <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} shrink-0`}>
         {React.cloneElement(service.icon, { className: "w-4 h-4 sm:w-5 sm:h-5" })}
       </div>
-      <span className={`px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[9px] font-bold uppercase rounded-full ${theme.badge}`}>
+      <span className={`px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[10px] font-bold uppercase rounded-sm ${theme.badge}`}>
         K-8
       </span>
     </div>
     
     {/* Title & Description */}
-    <h3 className="font-bold text-foreground text-xs sm:text-sm md:text-base mb-1 leading-tight">
-      <span className="hidden sm:inline">{service.title}</span>
-      <span className="sm:hidden">{service.shortTitle}</span>
+    <h3 className="font-display font-bold text-foreground text-sm sm:text-base mb-1 leading-tight line-clamp-1">
+      {service.shortTitle}
     </h3>
-    <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed mb-2 line-clamp-2">
+    <p className="font-body text-muted-foreground text-[10px] sm:text-xs leading-snug mb-2 line-clamp-2">
       {service.description}
     </p>
     
-    {/* Features - show fewer on mobile */}
-    <ul className="space-y-1 mb-2 flex-grow">
-      {service.features.slice(0, 2).map((f, i) => (
+    {/* Features */}
+    <ul className="space-y-0.5 sm:space-y-1 mb-2 flex-grow min-h-0 overflow-hidden">
+      {service.features.slice(0, 3).map((f, i) => (
         <li key={i} className="flex items-center gap-1.5">
           <CheckCircle2 className={`w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0 ${theme.check}`} />
-          <span className="text-foreground text-[9px] sm:text-[11px] font-medium truncate">{f}</span>
+          <span className="font-body text-foreground text-[9px] sm:text-[11px] font-medium truncate">{f}</span>
         </li>
       ))}
-      <li className="hidden sm:flex items-center gap-1.5">
-        <CheckCircle2 className={`w-3 h-3 shrink-0 ${theme.check}`} />
-        <span className="text-foreground text-[11px] font-medium truncate">{service.features[2]}</span>
-      </li>
     </ul>
     
     {/* Hover/Tap hint */}
-    <div className="flex items-center justify-center gap-1 text-[9px] sm:text-[10px] text-muted-foreground mt-auto pt-2 border-t border-border/50">
-      <span className="hidden sm:inline">Hover for more</span>
-      <span className="sm:hidden">Tap to flip</span>
+    <div className="flex items-center justify-center gap-1 text-[8px] sm:text-[10px] text-muted-foreground mt-auto pt-1.5 border-t border-border/50">
+      <span className="hidden sm:inline font-body">Hover for more</span>
+      <span className="sm:hidden font-body">Tap to flip</span>
       <ArrowRight className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
     </div>
   </div>
@@ -197,22 +192,21 @@ interface CardBackProps {
 
 const CardBack = ({ service, theme, onLearnMore }: CardBackProps) => (
   <div className={`flex flex-col items-center justify-center h-full p-3 sm:p-4 bg-gradient-to-br ${theme.gradient}`}>
-    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${theme.iconBg} mb-2`}>
+    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} mb-2`}>
       {React.cloneElement(service.icon, { className: "w-4 h-4 sm:w-5 sm:h-5" })}
     </div>
     
-    <h4 className="font-bold text-foreground text-center mb-1.5 sm:mb-2 text-xs sm:text-sm">
-      <span className="hidden sm:inline">{service.title}</span>
-      <span className="sm:hidden">{service.shortTitle}</span>
+    <h4 className="font-display font-bold text-foreground text-center mb-1.5 text-sm sm:text-base line-clamp-1">
+      {service.shortTitle}
     </h4>
     
-    <p className="text-muted-foreground text-[9px] sm:text-[11px] text-center leading-relaxed mb-2 line-clamp-2 sm:line-clamp-3 px-1">
+    <p className="font-body text-muted-foreground text-[9px] sm:text-[11px] text-center leading-snug mb-2 line-clamp-2 px-1">
       {service.longDescription}
     </p>
     
-    <div className="text-center mb-2 sm:mb-3 hidden sm:block">
-      <p className="text-[9px] sm:text-[10px] font-semibold text-foreground mb-0.5">Our Approach:</p>
-      <p className="text-[9px] sm:text-[10px] text-muted-foreground line-clamp-2 px-1">{service.approach}</p>
+    <div className="text-center mb-2 hidden sm:block">
+      <p className="font-display text-[9px] sm:text-[10px] font-semibold text-foreground mb-0.5">Our Approach:</p>
+      <p className="font-body text-[9px] sm:text-[10px] text-muted-foreground line-clamp-2 px-1">{service.approach}</p>
     </div>
     
     <Button
@@ -220,7 +214,7 @@ const CardBack = ({ service, theme, onLearnMore }: CardBackProps) => (
         e.stopPropagation();
         onLearnMore();
       }}
-      className={`${theme.button} text-primary-foreground font-bold text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 h-6 sm:h-7`}
+      className={`${theme.button} text-primary-foreground font-display font-bold text-[10px] sm:text-xs px-3 py-1 h-6 sm:h-7 rounded-sm`}
     >
       View Details
     </Button>
