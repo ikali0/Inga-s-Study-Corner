@@ -10,53 +10,53 @@ interface Review {
   outcome?: string;
 }
 const reviews: Review[] = [{
-  quote: "Before working with Inga, math homework was a nightly battle. Now, my daughter actually looks forward to her sessions and her grade went from a C to an A-!",
+  quote: "Math homework used to be a struggle. After working with Inga, my daughter now completes assignments independently and her grades have improved significantly.",
   parent: "Sarah M.",
   subject: "Parent of 5th Grader",
   initial: "S",
-  outcome: "C → A- in 3 months"
+  outcome: "Grade improvement"
 }, {
-  quote: "Inga has a gift for making science concepts click. My son's confidence in physics has skyrocketed and he's now considering a STEM career.",
+  quote: "Inga explains science concepts in a way that really clicks. My son's understanding and confidence in the subject have grown considerably.",
   parent: "David K.",
   subject: "Parent of 8th Grader",
   initial: "D",
-  outcome: "Now loves science"
+  outcome: "Stronger foundation"
 }, {
-  quote: "The small group setting is perfect. Individual attention without the intimidation of 1-on-1 tutoring. My daughter's reading level jumped two grades!",
+  quote: "The small group format provides individual attention in a supportive environment. My daughter's reading comprehension has improved noticeably.",
   parent: "Jennifer L.",
   subject: "Parent of 6th Grader",
   initial: "J",
-  outcome: "+2 grade levels"
+  outcome: "Better comprehension"
 }, {
-  quote: "After just 6 weeks of test prep, my son improved his standardized test scores by 15 percentile points. Worth every penny!",
+  quote: "After focused test prep sessions, my son showed measurable improvement in his standardized test scores. Very pleased with the results.",
   parent: "Marcus T.",
   subject: "Parent of 7th Grader",
   initial: "M",
-  outcome: "+15 percentile points"
+  outcome: "Improved test scores"
 }, {
-  quote: "Homework time used to end in tears. Now my daughter finishes independently and even helps her younger brother. Inga taught her HOW to learn.",
+  quote: "My daughter now approaches homework with confidence and works through problems on her own. She's developed better study habits overall.",
   parent: "Lisa R.",
   subject: "Parent of 4th Grader",
   initial: "L",
   outcome: "Independent learner"
 }, {
-  quote: "We tried 3 other tutors before finding Inga. The difference? She actually makes learning fun. My son asks when his next session is!",
+  quote: "Inga makes learning engaging and accessible. My son looks forward to his sessions, which has made a real difference in his attitude toward school.",
   parent: "Anthony W.",
   subject: "Parent of 6th Grader",
   initial: "A",
-  outcome: "Loves learning now"
+  outcome: "Positive attitude"
 }, {
-  quote: "The online sessions work perfectly with our busy schedule. Inga is patient, encouraging, and knows exactly how to explain difficult concepts.",
+  quote: "Online sessions fit our schedule perfectly. Inga is patient and explains concepts clearly, adapting to my child's learning pace.",
   parent: "Michelle C.",
   subject: "Parent of 8th Grader",
   initial: "M",
-  outcome: "Flexible & effective"
+  outcome: "Flexible scheduling"
 }, {
-  quote: "My shy son now raises his hand in class and helps other students. Inga didn't just teach him math—she built his confidence.",
+  quote: "My son has become more confident participating in class. The tutoring has helped both his academic skills and self-assurance.",
   parent: "Robert H.",
   subject: "Parent of 5th Grader",
   initial: "R",
-  outcome: "Confident in class"
+  outcome: "Increased confidence"
 }];
 const avatarColors = ["bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground", "bg-purple text-primary-foreground", "bg-orange text-primary-foreground", "bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground"];
 const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
@@ -74,7 +74,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 sm:mb-8 md:mb-12">
-          Happy Parents & Kids 💛
+          What Parents Are Saying
         </h2>
 
         <Carousel plugins={[plugin.current]} opts={{
