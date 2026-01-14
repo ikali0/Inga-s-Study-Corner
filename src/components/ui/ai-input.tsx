@@ -1,5 +1,5 @@
 import { CornerRightUp, Loader2 } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
@@ -18,7 +18,7 @@ interface AIInputProps {
   onChange?: (value: string) => void;
 }
 
-export function AIInput({
+export const AIInput = forwardRef<HTMLDivElement, AIInputProps>(function AIInput({
   id = "ai-input",
   placeholder = "Type your message...",
   minHeight = 48,
@@ -30,7 +30,7 @@ export function AIInput({
   isLoading = false,
   value: controlledValue,
   onChange,
-}: AIInputProps) {
+}, ref) {
   const { textareaRef, adjustHeight } = useAutoResizeTextarea({
     minHeight,
     maxHeight,
@@ -65,7 +65,7 @@ export function AIInput({
   const isNearLimit = charCount > maxLength * 0.8;
 
   return (
-    <div className={cn("w-full", className)}>
+    <div ref={ref} className={cn("w-full", className)}>
       <div className="relative w-full">
         <Textarea
           id={id}
@@ -135,4 +135,6 @@ export function AIInput({
       </p>
     </div>
   );
-}
+});
+
+AIInput.displayName = "AIInput";

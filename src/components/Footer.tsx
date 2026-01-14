@@ -18,7 +18,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({
 
       {/* Main Footer Content - 3D Card Effect */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 p-4 sm:p-5 md:p-6 backdrop-blur-sm rounded-xl sm:rounded-2xl border-2 border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform-gpu hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-300 bg-white" style={{
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 p-4 sm:p-5 md:p-6 backdrop-blur-sm rounded-xl sm:rounded-2xl border-2 border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform-gpu hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-300 bg-card" style={{
         transformStyle: 'preserve-3d',
         perspective: '1000px'
       }}>
@@ -119,7 +119,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({
 
       {/* Copyright */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8 pt-3 sm:pt-4 border-t border-border/50 text-center">
-        <p className="text-[9px] sm:text-[10px] md:text-xs text-purple-950">
+        <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Inga's Study Corner. Passionately
           teaching since 2018. ✨
         </p>

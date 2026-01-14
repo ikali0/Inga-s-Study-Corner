@@ -189,7 +189,7 @@ const BookingSection = forwardRef<HTMLElement>((_, ref) => {
               role="status"
               aria-live="polite"
             >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green/10 text-green rounded-full flex items-center justify-center mx-auto mb-3">
                 <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1.5">

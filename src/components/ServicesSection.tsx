@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { Sigma, BookOpen, Globe, FlaskConical, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import QuestionOfTheDay from "./QuestionOfTheDay";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "./ui/sheet";
@@ -253,7 +253,7 @@ const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
 );
 
 // --- Main Component ---
-const ServicesSection: React.FC = () => {
+const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [gradientPhase, setGradientPhase] = useState(0);
 
@@ -278,7 +278,7 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" id="services">
+    <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" id="services">
       {/* Animated gradient background */}
       <div 
         className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[gradientPhase]} transition-all duration-[2000ms] ease-in-out`}
@@ -403,6 +403,8 @@ const ServicesSection: React.FC = () => {
       </Sheet>
     </section>
   );
-};
+});
+
+ServicesSection.displayName = "ServicesSection";
 
 export default ServicesSection;
