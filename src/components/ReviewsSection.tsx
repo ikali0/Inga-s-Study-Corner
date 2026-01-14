@@ -1,62 +1,72 @@
 import { forwardRef, useRef } from "react";
-import { MessageCircle, Star } from "lucide-react";
+import { BadgeCheck, Star } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+
 interface Review {
   quote: string;
   parent: string;
   subject: string;
   initial: string;
   outcome?: string;
+  date: string;
 }
 const reviews: Review[] = [{
   quote: "Math homework used to be a struggle. After working with Inga, my daughter now completes assignments independently and her grades have improved significantly.",
   parent: "Sarah M.",
   subject: "Parent of 5th Grader",
   initial: "S",
-  outcome: "Grade improvement"
+  outcome: "Grade improvement",
+  date: "Jan 2026"
 }, {
   quote: "Inga explains science concepts in a way that really clicks. My son's understanding and confidence in the subject have grown considerably.",
   parent: "David K.",
   subject: "Parent of 8th Grader",
   initial: "D",
-  outcome: "Stronger foundation"
+  outcome: "Stronger foundation",
+  date: "Dec 2025"
 }, {
   quote: "The small group format provides individual attention in a supportive environment. My daughter's reading comprehension has improved noticeably.",
   parent: "Jennifer L.",
   subject: "Parent of 6th Grader",
   initial: "J",
-  outcome: "Better comprehension"
+  outcome: "Better comprehension",
+  date: "Nov 2025"
 }, {
   quote: "After focused test prep sessions, my son showed measurable improvement in his standardized test scores. Very pleased with the results.",
   parent: "Marcus T.",
   subject: "Parent of 7th Grader",
   initial: "M",
-  outcome: "Improved test scores"
+  outcome: "Improved test scores",
+  date: "Oct 2025"
 }, {
   quote: "My daughter now approaches homework with confidence and works through problems on her own. She's developed better study habits overall.",
   parent: "Lisa R.",
   subject: "Parent of 4th Grader",
   initial: "L",
-  outcome: "Independent learner"
+  outcome: "Independent learner",
+  date: "Sep 2025"
 }, {
   quote: "Inga makes learning engaging and accessible. My son looks forward to his sessions, which has made a real difference in his attitude toward school.",
   parent: "Anthony W.",
   subject: "Parent of 6th Grader",
   initial: "A",
-  outcome: "Positive attitude"
+  outcome: "Positive attitude",
+  date: "Aug 2025"
 }, {
   quote: "Online sessions fit our schedule perfectly. Inga is patient and explains concepts clearly, adapting to my child's learning pace.",
   parent: "Michelle C.",
   subject: "Parent of 8th Grader",
   initial: "M",
-  outcome: "Flexible scheduling"
+  outcome: "Flexible scheduling",
+  date: "Jul 2025"
 }, {
   quote: "My son has become more confident participating in class. The tutoring has helped both his academic skills and self-assurance.",
   parent: "Robert H.",
   subject: "Parent of 5th Grader",
   initial: "R",
-  outcome: "Increased confidence"
+  outcome: "Increased confidence",
+  date: "Jun 2025"
 }];
 const avatarColors = ["bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground", "bg-purple text-primary-foreground", "bg-orange text-primary-foreground", "bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground"];
 const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
@@ -84,7 +94,14 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
           <CarouselContent className="-ml-2 md:-ml-4">
             {reviews.map((review, i) => <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                 <article className="p-4 sm:p-5 md:p-6 rounded-xl border border-border relative transition-all hover:shadow-lg h-full flex flex-col bg-card">
-                  <MessageCircle aria-hidden="true" className="absolute top-3 right-3 sm:top-4 sm:right-4 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground/30" />
+                  {/* Verified badge & date */}
+                  <div className="flex items-center justify-between mb-2 sm:mb-3">
+                    <div className="flex items-center gap-1 text-green text-[10px] sm:text-xs font-medium">
+                      <BadgeCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      <span>Verified</span>
+                    </div>
+                    <span className="text-muted-foreground text-[10px] sm:text-xs">{review.date}</span>
+                  </div>
 
                   {/* Stars */}
                   <div className="flex text-primary mb-2 sm:mb-3" aria-label="5 star rating">
