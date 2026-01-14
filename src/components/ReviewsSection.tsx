@@ -58,7 +58,7 @@ const reviews: Review[] = [{
   initial: "R",
   outcome: "Confident in class"
 }];
-const avatarColors = ["bg-primary text-primary-foreground", "bg-blue-500 text-white", "bg-green-500 text-white", "bg-purple-500 text-white", "bg-orange-500 text-white", "bg-pink-500 text-white", "bg-blue-600 text-white", "bg-green-600 text-white"];
+const avatarColors = ["bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground", "bg-purple text-primary-foreground", "bg-orange text-primary-foreground", "bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground"];
 const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
   const plugin = useRef(Autoplay({
     delay: 4000,
@@ -83,7 +83,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
       }} className="w-full">
           <CarouselContent className="-ml-2 md:-ml-4">
             {reviews.map((review, i) => <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                <article className="p-4 sm:p-5 md:p-6 rounded-xl border border-border relative transition-all hover:shadow-lg h-full flex flex-col bg-white">
+                <article className="p-4 sm:p-5 md:p-6 rounded-xl border border-border relative transition-all hover:shadow-lg h-full flex flex-col bg-card">
                   <MessageCircle aria-hidden="true" className="absolute top-3 right-3 sm:top-4 sm:right-4 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground/30" />
 
                   {/* Stars */}
