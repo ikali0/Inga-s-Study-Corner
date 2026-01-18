@@ -144,8 +144,8 @@ interface CardFrontProps {
   theme: typeof themeConfig.blue;
 }
 
-const CardFront = ({ service, theme }: CardFrontProps) => (
-  <div className="flex flex-col h-full p-3 sm:p-4">
+const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(({ service, theme }, ref) => (
+  <div ref={ref} className="flex flex-col h-full p-3 sm:p-4">
     {/* Header with icon */}
     <div className="flex items-center gap-2 mb-2">
       <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} shrink-0`}>
@@ -180,7 +180,9 @@ const CardFront = ({ service, theme }: CardFrontProps) => (
       <ArrowRight className="w-2.5 h-2.5" />
     </div>
   </div>
-);
+));
+
+CardFront.displayName = "CardFront";
 
 // --- Card Back Content ---
 interface CardBackProps {
@@ -189,8 +191,8 @@ interface CardBackProps {
   onLearnMore: () => void;
 }
 
-const CardBack = ({ service, theme, onLearnMore }: CardBackProps) => (
-  <div className={`flex flex-col items-center justify-center h-full p-3 sm:p-4 bg-gradient-to-br ${theme.gradient}`}>
+const CardBack = forwardRef<HTMLDivElement, CardBackProps>(({ service, theme, onLearnMore }, ref) => (
+  <div ref={ref} className={`flex flex-col items-center justify-center h-full p-3 sm:p-4 bg-gradient-to-br ${theme.gradient}`}>
     <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} mb-2`}>
       {React.cloneElement(service.icon, { className: "w-4 h-4 sm:w-5 sm:h-5" })}
     </div>
@@ -218,7 +220,9 @@ const CardBack = ({ service, theme, onLearnMore }: CardBackProps) => (
       View Details
     </Button>
   </div>
-);
+));
+
+CardBack.displayName = "CardBack";
 
 // --- Detailed Features (Sheet) ---
 const DetailedFeatures = ({ sections, checkClass }: { sections: Service["detailedFeatures"]; checkClass: string }) => (
