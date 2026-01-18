@@ -155,7 +155,7 @@ const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(({ service, theme }
         K-8
       </span>
     </div>
-    
+
     {/* Title & Description */}
     <h3 className="font-display font-bold text-foreground text-sm sm:text-base mb-1 leading-tight line-clamp-1">
       {service.shortTitle}
@@ -163,7 +163,7 @@ const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(({ service, theme }
     <p className="font-body text-muted-foreground text-[10px] sm:text-xs leading-snug mb-2 line-clamp-2">
       {service.description}
     </p>
-    
+
     {/* Features */}
     <ul className="space-y-0.5 sm:space-y-1 mb-2 flex-grow min-h-0 overflow-hidden">
       {service.features.slice(0, 3).map((f, i) => (
@@ -173,7 +173,7 @@ const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(({ service, theme }
         </li>
       ))}
     </ul>
-    
+
     {/* Learn more hint - desktop only */}
     <div className="hidden sm:flex items-center justify-center gap-1 text-[10px] text-muted-foreground mt-auto pt-1.5 border-t border-border/50">
       <span className="font-body">Hover for more</span>
@@ -192,24 +192,27 @@ interface CardBackProps {
 }
 
 const CardBack = forwardRef<HTMLDivElement, CardBackProps>(({ service, theme, onLearnMore }, ref) => (
-  <div ref={ref} className={`flex flex-col items-center justify-center h-full p-3 sm:p-4 bg-gradient-to-br ${theme.gradient}`}>
+  <div
+    ref={ref}
+    className={`flex flex-col items-center justify-center h-full p-3 sm:p-4 bg-gradient-to-br ${theme.gradient}`}
+  >
     <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} mb-2`}>
       {React.cloneElement(service.icon, { className: "w-4 h-4 sm:w-5 sm:h-5" })}
     </div>
-    
+
     <h4 className="font-display font-bold text-foreground text-center mb-1.5 text-sm sm:text-base line-clamp-1">
       {service.shortTitle}
     </h4>
-    
+
     <p className="font-body text-muted-foreground text-[9px] sm:text-[11px] text-center leading-snug mb-2 line-clamp-2 px-1">
       {service.longDescription}
     </p>
-    
+
     <div className="text-center mb-2 hidden sm:block">
       <p className="font-display text-[9px] sm:text-[10px] font-semibold text-foreground mb-0.5">Our Approach:</p>
       <p className="font-body text-[9px] sm:text-[10px] text-muted-foreground line-clamp-2 px-1">{service.approach}</p>
     </div>
-    
+
     <Button
       onClick={(e) => {
         e.stopPropagation();
@@ -246,7 +249,10 @@ const DetailedFeatures = ({ sections, checkClass }: { sections: Service["detaile
 const OutcomesList = ({ outcomes }: { outcomes: string[] }) => (
   <ul className="space-y-2 sm:space-y-3">
     {outcomes.map((outcome, i) => (
-      <li key={i} className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-primary/5 border border-primary/20">
+      <li
+        key={i}
+        className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-primary/5 border border-primary/20"
+      >
         <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
           <span className="text-[10px] sm:text-xs font-bold text-primary">{i + 1}</span>
         </div>
@@ -284,22 +290,22 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
   return (
     <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" id="services">
       {/* Animated gradient background */}
-      <div 
+      <div
         className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[gradientPhase]} transition-all duration-[2000ms] ease-in-out`}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/30" />
-      
+
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-40 h-40 sm:w-64 sm:h-64 bg-purple/5 rounded-full blur-3xl" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header - Centered with quiz below on mobile, side-by-side on desktop */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 lg:gap-16 mb-8 sm:mb-10 lg:mb-14">
           {/* Title section - Always centered on mobile */}
           <div className="text-center lg:text-left flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 shadow-lg">
-              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" /> 
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" />
               Our Programs
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-tight">
@@ -313,7 +319,7 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
               Personalized learning paths designed to unlock your child's full potential.
             </p>
           </div>
-          
+
           {/* Quiz section - Centered on mobile, right-aligned on desktop */}
           <div className="w-full max-w-sm lg:w-[340px] lg:shrink-0 mx-auto lg:mx-0">
             <QuestionOfTheDay />
@@ -330,17 +336,12 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
                 className={`${theme.card} shadow-lg hover:shadow-xl transition-shadow duration-300`}
                 frontContent={<CardFront service={service} theme={theme} />}
                 backContent={
-                  <CardBack
-                    service={service}
-                    theme={theme}
-                    onLearnMore={() => setSelectedService(service)}
-                  />
+                  <CardBack service={service} theme={theme} onLearnMore={() => setSelectedService(service)} />
                 }
               />
             );
           })}
         </div>
-        
       </div>
 
       {/* Detail Sheet - Full width on mobile */}
@@ -362,7 +363,9 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
                       Grades K-8
                     </div>
                   </div>
-                  <SheetTitle className="text-xl sm:text-2xl font-bold text-foreground">{selectedService.title}</SheetTitle>
+                  <SheetTitle className="text-xl sm:text-2xl font-bold text-foreground">
+                    {selectedService.title}
+                  </SheetTitle>
                   <SheetDescription className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {selectedService.longDescription}
                   </SheetDescription>
