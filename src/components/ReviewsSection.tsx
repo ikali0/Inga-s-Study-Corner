@@ -1,7 +1,8 @@
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, useState, useCallback, useEffect } from "react";
 import { BadgeCheck, Star } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+
 interface Review {
   quote: string;
   parent: string;
@@ -10,6 +11,7 @@ interface Review {
   outcome?: string;
   date: string;
 }
+
 const reviews: Review[] = [{
   quote: "Math homework used to be a struggle. After working with Inga, my daughter now completes assignments independently and her grades have improved significantly.",
   parent: "Sarah M.",
@@ -67,73 +69,134 @@ const reviews: Review[] = [{
   outcome: "Increased confidence",
   date: "Jun 2025"
 }];
-const avatarColors = ["bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground", "bg-purple text-primary-foreground", "bg-orange text-primary-foreground", "bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground"];
+
+const avatarColors = [
+  "bg-primary text-primary-foreground",
+  "bg-blue text-primary-foreground",
+  "bg-green text-primary-foreground",
+  "bg-purple text-primary-foreground",
+  "bg-orange text-primary-foreground",
+  "bg-primary text-primary-foreground",
+  "bg-blue text-primary-foreground",
+  "bg-green text-primary-foreground"
+];
+
 const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  
   const plugin = useRef(Autoplay({
-    delay: 4000,
+    delay: 3500,
     stopOnInteraction: false,
-    stopOnMouseEnter: true
+    stopOnMouseEnter: true,
+    playOnInit: true,
   }));
-  return <section ref={ref} id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
+
+  const onSelect = useCallback(() => {
+    if (!api) return;
+    setSelectedIndex(api.selectedScrollSnap());
+  }, [api]);
+
+  // Attach select listener when API is ready
+  useEffect(() => {
+    if (!api) return;
+    api.on("select", onSelect);
+    onSelect();
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api, onSelect]);
+  return (
+    <section ref={ref} id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-[22px]">
         <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 sm:mb-8 md:mb-12">
           What Parents Are Saying
         </h2>
 
-        <Carousel plugins={[plugin.current]} opts={{
-        align: "start",
-        loop: true
-      }} className="w-full">
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {reviews.map((review, i) => <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                <article className="p-4 sm:p-5 md:p-6 rounded-xl border border-border relative transition-all hover:shadow-lg h-full flex flex-col bg-card">
+        <Carousel 
+          plugins={[plugin.current]} 
+          opts={{
+            align: "start",
+            loop: true,
+            dragFree: true,
+          }} 
+          setApi={setApi}
+          className="w-full reviews-carousel"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4 reviews-carousel-track">
+            {reviews.map((review, i) => (
+              <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <article className="flex h-full flex-col rounded-xl border border-border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 hover:shadow-md">
                   {/* Verified badge & date */}
-                  <div className="flex items-center justify-between mb-2 sm:mb-3">
-                    <div className="text-green text-[10px] sm:text-xs font-medium gap-[2px] flex items-start justify-center border-0">
-                      <BadgeCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      <span>Verified</span>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1 text-green text-xs font-medium">
+                      <BadgeCheck className="h-4 w-4" />
+                      <span>Verified Parent</span>
                     </div>
-                    <span className="text-[8px] sm:text-xs text-white text-center bg-pink-700">{review.date}</span>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                      {review.date}
+                    </span>
                   </div>
 
                   {/* Stars */}
-                  <div className="flex text-primary mb-2 sm:mb-2" aria-label="5 star rating">
-                    {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="currentColor" />)}
+                  <div 
+                    className="flex text-primary mb-3" 
+                    role="img"
+                    aria-label="Rated 5 out of 5 stars"
+                  >
+                    {[1, 2, 3, 4, 5].map(s => (
+                      <Star key={s} className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" />
+                    ))}
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="text-muted-foreground mb-3 sm:mb-4 italic text-xs sm:text-sm leading-relaxed flex-grow">
+                  <blockquote className="flex-grow italic text-sm sm:text-sm md:text-base leading-relaxed text-muted-foreground mb-4">
                     "{review.quote}"
                   </blockquote>
 
                   {/* Outcome Badge */}
-                  {review.outcome && <div className="mb-3">
-                      <span className="inline-block bg-primary/10 text-primary text-[10px] sm:text-xs font-semibold py-0.5 rounded-full px-[6px]">
+                  {review.outcome && (
+                    <div className="mb-3">
+                      <span className="inline-block bg-primary/10 text-primary text-xs font-semibold py-1 rounded-full px-3">
                         ✓ {review.outcome}
                       </span>
-                    </div>}
+                    </div>
+                  )}
 
                   {/* Author */}
-                  <footer className="flex items-center gap-2 mt-auto sm:gap-[8px]">
-                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm ${avatarColors[i % avatarColors.length]}`}>
+                  <footer className="flex items-center gap-3 mt-auto">
+                    <div className={`flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full font-bold text-sm ${avatarColors[i % avatarColors.length]}`}>
                       {review.initial}
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-xs sm:text-xs">{review.parent}</p>
-                      <p className="text-muted-foreground text-[10px] sm:text-xs">{review.subject}</p>
+                      <p className="font-semibold text-foreground text-sm">{review.parent}</p>
+                      <p className="text-muted-foreground text-xs">{review.subject}</p>
                     </div>
                   </footer>
                 </article>
-              </CarouselItem>)}
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
 
-        {/* Carousel indicator dots */}
-        <div className="flex justify-center gap-1.5 mt-4 sm:mt-6 my-[22px]">
-          {[0, 1, 2].map((_, i) => <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-600" />)}
+        {/* Dynamic indicator dots */}
+        <div className="mt-6 flex justify-center gap-2">
+          {reviews.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                selectedIndex === i 
+                  ? "bg-primary scale-125" 
+                  : "bg-primary/30 hover:bg-primary/50"
+              }`}
+              aria-label={`Go to review ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 });
 ReviewsSection.displayName = "ReviewsSection";
 export default ReviewsSection;

@@ -268,3 +268,29 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary;
 }
+
+/* =========================================
+   7. REVIEWS CAROUSEL
+   ========================================= */
+.reviews-carousel-track {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Touch device: disable hover effects */
+@media (hover: none) {
+  .review-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reviews-carousel-track {
+    transition: none;
+  }
+  
+  .review-card {
+    transition: none;
+  }
+}
