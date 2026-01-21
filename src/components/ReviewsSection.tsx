@@ -2,7 +2,6 @@ import { forwardRef, useRef } from "react";
 import { BadgeCheck, Star } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-
 interface Review {
   quote: string;
   parent: string;
@@ -75,13 +74,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
     stopOnInteraction: false,
     stopOnMouseEnter: true
   }));
-
-  return (
-    <section
-      ref={ref}
-      id="reviews"
-      className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden"
-    >
+  return <section ref={ref} id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 sm:mb-8 md:mb-12">
           What Parents Are Saying
@@ -96,15 +89,15 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
                 <article className="p-4 sm:p-5 md:p-6 rounded-xl border border-border relative transition-all hover:shadow-lg h-full flex flex-col bg-card">
                   {/* Verified badge & date */}
                   <div className="flex items-center justify-between mb-2 sm:mb-3">
-                    <div className="flex items-center gap-1 text-green text-[10px] sm:text-xs font-medium">
+                    <div className="text-green text-[10px] sm:text-xs font-medium gap-[2px] flex items-start justify-center border-0">
                       <BadgeCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       <span>Verified</span>
                     </div>
-                    <span className="text-muted-foreground text-[10px] sm:text-xs">{review.date}</span>
+                    <span className="text-[8px] sm:text-xs text-white text-center bg-pink-700">{review.date}</span>
                   </div>
 
                   {/* Stars */}
-                  <div className="flex text-primary mb-2 sm:mb-3" aria-label="5 star rating">
+                  <div className="flex text-primary mb-2 sm:mb-2" aria-label="5 star rating">
                     {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="currentColor" />)}
                   </div>
 
@@ -115,18 +108,18 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
 
                   {/* Outcome Badge */}
                   {review.outcome && <div className="mb-3">
-                      <span className="inline-block bg-primary/10 text-primary text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full">
+                      <span className="inline-block bg-primary/10 text-primary text-[10px] sm:text-xs font-semibold py-0.5 rounded-full px-[6px]">
                         ✓ {review.outcome}
                       </span>
                     </div>}
 
                   {/* Author */}
-                  <footer className="flex items-center gap-2 sm:gap-2.5 mt-auto">
+                  <footer className="flex items-center gap-2 mt-auto sm:gap-[8px]">
                     <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm ${avatarColors[i % avatarColors.length]}`}>
                       {review.initial}
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-xs sm:text-sm">
+                      <p className="font-semibold text-foreground text-xs sm:text-xs">
                         {review.parent}
                       </p>
                       <p className="text-muted-foreground text-[10px] sm:text-xs">
@@ -144,10 +137,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
           {[0, 1, 2].map((_, i) => <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/30" />)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 });
-
 ReviewsSection.displayName = "ReviewsSection";
-
 export default ReviewsSection;
