@@ -8,7 +8,7 @@ interface Feature {
   description: string;
 }
 const features: Feature[] = [{
-  icon: <Smile className="w-5 h-5" />,
+  icon: <Smile className="h-[18px] w-[18px]" />,
   iconBg: "bg-blue/10",
   iconColor: "text-blue",
   title: "Confidence First",
