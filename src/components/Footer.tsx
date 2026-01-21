@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { Rocket, ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { ShieldCheck, GraduationCap, Clock, Mail, Phone, MapPin, Calendar, Heart } from "lucide-react";
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
@@ -25,8 +25,8 @@ const Footer = forwardRef<HTMLElement, FooterProps>(({
           {/* Brand & Mission */}
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-bold text-sm sm:text-base mb-2 flex items-center gap-2">
-              <div className="bg-primary/10 p-1.5 rounded-lg">
-                <Rocket className="text-primary w-4 h-4" />
+              <div className="p-1.5 text-pink bg-pink-700 rounded-sm">
+                <Heart className="text-blue-400 bg-pink-700 w-[12px] h-[12px]" />
               </div>
               <span className="text-foreground">Inga's Study Corner</span>
             </h3>

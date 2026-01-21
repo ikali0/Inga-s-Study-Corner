@@ -92,9 +92,9 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
     };
   }, [api, onSelect]);
   return <section ref={ref} id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-[22px]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-0 py-[22px]">
         <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 sm:mb-8 md:mb-12">
-          What Parents Are Saying
+          ​Verified Parent Reviews   
         </h2>
 
         <Carousel plugins={[plugin.current]} opts={{
@@ -104,13 +104,10 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
       }} setApi={setApi} className="w-full reviews-carousel">
           <CarouselContent className="-ml-2 md:-ml-4 reviews-carousel-track">
             {reviews.map((review, i) => <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                <article className="h-full flex-col border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 px-[18px] py-[18px] flex items-start justify-start border-fuchsia-500 border-solid rounded-sm shadow-sm">
+                <article className="h-full flex-col border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 flex items-start justify-start border-fuchsia-500 border-solid rounded-sm shadow-sm px-[20px] py-[20px]">
                   {/* Verified badge & date */}
                   <div className="mb-3 flex items-start justify-between">
-                    <div className="flex items-center gap-1 text-green text-xs font-medium">
-                      <BadgeCheck className="h-[12px] w-[12px]" />
-                      <span>Verified Parent</span>
-                    </div>
+                    
                     <span className="text-[10px] sm:text-xs text-muted-foreground py-0.5 rounded-full px-[2px] text-center bg-fuchsia-200">
                       {review.date}
                     </span>
@@ -128,7 +125,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
 
                   {/* Outcome Badge */}
                   {review.outcome && <div className="mb-3">
-                      <span className="inline-block bg-primary/10 text-primary text-xs font-semibold py-1 rounded-full px-[10px]">
+                      <span className="inline-block bg-primary/10 text-primary text-xs font-semibold py-1 rounded-full px-[6px]">
                         ✓ {review.outcome}
                       </span>
                     </div>}
