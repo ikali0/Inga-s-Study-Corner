@@ -48,7 +48,7 @@ const AboutSection = forwardRef<HTMLElement>((_, ref) => {
             </header>
 
             {/* Features Grid - Mobile First */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
               {features.map((feature, index) => <article key={index} className="flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-lg sm:rounded-xl border border-border/50 backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:border-border hover:-translate-y-0.5 active:translate-y-0 bg-card">
                   {/* Icon Container */}
                   <div className={`${feature.iconBg} ${feature.iconColor} p-2 sm:p-2.5 rounded-lg h-fit shrink-0 transition-transform duration-200 group-hover:scale-110`} aria-hidden="true">
