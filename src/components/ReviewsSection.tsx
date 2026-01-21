@@ -104,14 +104,14 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
       }} setApi={setApi} className="w-full reviews-carousel">
           <CarouselContent className="-ml-2 md:-ml-4 reviews-carousel-track">
             {reviews.map((review, i) => <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                <article className="h-full flex-col rounded-xl border border-border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 hover:shadow-md px-[18px] py-[18px] flex items-start justify-start">
+                <article className="h-full flex-col border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 px-[18px] py-[18px] flex items-start justify-start border-fuchsia-500 border-solid rounded-sm shadow-sm">
                   {/* Verified badge & date */}
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="mb-3 flex items-start justify-between">
                     <div className="flex items-center gap-1 text-green text-xs font-medium">
                       <BadgeCheck className="h-[12px] w-[12px]" />
                       <span>Verified Parent</span>
                     </div>
-                    <span className="text-[10px] sm:text-xs text-muted-foreground bg-muted py-0.5 rounded-full px-[6px] text-center">
+                    <span className="text-[10px] sm:text-xs text-muted-foreground py-0.5 rounded-full px-[2px] text-center bg-fuchsia-200">
                       {review.date}
                     </span>
                   </div>
@@ -128,7 +128,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
 
                   {/* Outcome Badge */}
                   {review.outcome && <div className="mb-3">
-                      <span className="inline-block bg-primary/10 text-primary text-xs font-semibold py-1 rounded-full px-3">
+                      <span className="inline-block bg-primary/10 text-primary text-xs font-semibold py-1 rounded-full px-[10px]">
                         ✓ {review.outcome}
                       </span>
                     </div>}
@@ -139,7 +139,7 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
                       {review.initial}
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-sm">{review.parent}</p>
+                      <p className="font-semibold text-foreground text-xs">{review.parent}</p>
                       <p className="text-muted-foreground text-xs">{review.subject}</p>
                     </div>
                   </footer>
