@@ -2,7 +2,6 @@ import { forwardRef, useRef, useState, useCallback, useEffect } from "react";
 import { BadgeCheck, Star } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-
 interface Review {
   quote: string;
   parent: string;
@@ -11,7 +10,6 @@ interface Review {
   outcome?: string;
   date: string;
 }
-
 const reviews: Review[] = [{
   quote: "Math homework used to be a struggle. After working with Inga, my daughter now completes assignments independently and her grades have improved significantly.",
   parent: "Sarah M.",
@@ -69,29 +67,16 @@ const reviews: Review[] = [{
   outcome: "Increased confidence",
   date: "Jun 2025"
 }];
-
-const avatarColors = [
-  "bg-primary text-primary-foreground",
-  "bg-blue text-primary-foreground",
-  "bg-green text-primary-foreground",
-  "bg-purple text-primary-foreground",
-  "bg-orange text-primary-foreground",
-  "bg-primary text-primary-foreground",
-  "bg-blue text-primary-foreground",
-  "bg-green text-primary-foreground"
-];
-
+const avatarColors = ["bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground", "bg-purple text-primary-foreground", "bg-orange text-primary-foreground", "bg-primary text-primary-foreground", "bg-blue text-primary-foreground", "bg-green text-primary-foreground"];
 const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
-  
   const plugin = useRef(Autoplay({
     delay: 3500,
     stopOnInteraction: false,
     stopOnMouseEnter: true,
-    playOnInit: true,
+    playOnInit: true
   }));
-
   const onSelect = useCallback(() => {
     if (!api) return;
     setSelectedIndex(api.selectedScrollSnap());
@@ -106,65 +91,50 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
       api.off("select", onSelect);
     };
   }, [api, onSelect]);
-  return (
-    <section ref={ref} id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
+  return <section ref={ref} id="reviews" className="py-10 sm:py-12 md:py-16 lg:py-20 relative z-10 bg-primary/5 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-[22px]">
         <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 sm:mb-8 md:mb-12">
           What Parents Are Saying
         </h2>
 
-        <Carousel 
-          plugins={[plugin.current]} 
-          opts={{
-            align: "start",
-            loop: true,
-            dragFree: true,
-          }} 
-          setApi={setApi}
-          className="w-full reviews-carousel"
-        >
+        <Carousel plugins={[plugin.current]} opts={{
+        align: "start",
+        loop: true,
+        dragFree: true
+      }} setApi={setApi} className="w-full reviews-carousel">
           <CarouselContent className="-ml-2 md:-ml-4 reviews-carousel-track">
-            {reviews.map((review, i) => (
-              <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                <article className="flex h-full flex-col rounded-xl border border-border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 hover:shadow-md">
+            {reviews.map((review, i) => <CarouselItem key={i} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <article className="h-full flex-col rounded-xl border border-border bg-card p-5 sm:p-6 transition-all review-card hover:-translate-y-0.5 hover:shadow-md px-[18px] py-[18px] flex items-start justify-start">
                   {/* Verified badge & date */}
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-1 text-green text-xs font-medium">
-                      <BadgeCheck className="h-4 w-4" />
+                      <BadgeCheck className="h-[12px] w-[12px]" />
                       <span>Verified Parent</span>
                     </div>
-                    <span className="text-[10px] sm:text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] sm:text-xs text-muted-foreground bg-muted py-0.5 rounded-full px-[6px] text-center">
                       {review.date}
                     </span>
                   </div>
 
                   {/* Stars */}
-                  <div 
-                    className="flex text-primary mb-3" 
-                    role="img"
-                    aria-label="Rated 5 out of 5 stars"
-                  >
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" />
-                    ))}
+                  <div className="flex text-primary mb-3" role="img" aria-label="Rated 5 out of 5 stars">
+                    {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-3.5 h-3.5 sm:h-[12px] sm:w-[12px]" fill="currentColor" />)}
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="flex-grow italic text-sm sm:text-sm md:text-base leading-relaxed text-muted-foreground mb-4">
+                  <blockquote className="flex-grow italic text-sm sm:text-sm sm:text-base leading-relaxed text-muted-foreground mb-3">
                     "{review.quote}"
                   </blockquote>
 
                   {/* Outcome Badge */}
-                  {review.outcome && (
-                    <div className="mb-3">
+                  {review.outcome && <div className="mb-3">
                       <span className="inline-block bg-primary/10 text-primary text-xs font-semibold py-1 rounded-full px-3">
                         ✓ {review.outcome}
                       </span>
-                    </div>
-                  )}
+                    </div>}
 
                   {/* Author */}
-                  <footer className="flex items-center gap-3 mt-auto">
+                  <footer className="flex items-center mt-auto gap-[10px]">
                     <div className={`flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full font-bold text-sm ${avatarColors[i % avatarColors.length]}`}>
                       {review.initial}
                     </div>
@@ -174,29 +144,16 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
                     </div>
                   </footer>
                 </article>
-              </CarouselItem>
-            ))}
+              </CarouselItem>)}
           </CarouselContent>
         </Carousel>
 
         {/* Dynamic indicator dots */}
         <div className="mt-6 flex justify-center gap-2">
-          {reviews.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => api?.scrollTo(i)}
-              className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                selectedIndex === i 
-                  ? "bg-primary scale-125" 
-                  : "bg-primary/30 hover:bg-primary/50"
-              }`}
-              aria-label={`Go to review ${i + 1}`}
-            />
-          ))}
+          {reviews.map((_, i) => <button key={i} onClick={() => api?.scrollTo(i)} className={`h-2 w-2 rounded-full transition-all duration-300 ${selectedIndex === i ? "bg-primary scale-125" : "bg-primary/30 hover:bg-primary/50"}`} aria-label={`Go to review ${i + 1}`} />)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 });
 ReviewsSection.displayName = "ReviewsSection";
 export default ReviewsSection;
