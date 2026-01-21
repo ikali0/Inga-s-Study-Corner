@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { TrustChip } from '@/components/ui/trust-chip';
 import { useMultipleParallax } from '@/hooks/use-parallax';
 import heroImage from '@/assets/hero-kids-learning.jpg';
-
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
 }
@@ -64,7 +63,7 @@ const HeroSection = ({
         {/* Text Content */}
         <div className="space-y-3 sm:space-y-4 lg:space-y-5 z-10 order-2 lg:order-1 text-center lg:text-left">
           {/* Badge with sparkle */}
-          <a href="tel:215-791-5906" className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-orange/15 text-primary py-1.5 sm:py-2 font-bold text-[11px] sm:text-xs tracking-wide border border-primary/25 shadow-sm sm:px-3 hover:from-primary/30 hover:to-orange/25 hover:shadow-md transition-all duration-200 active:scale-95 group rounded-sm opacity-80 border-dotted px-[8px]">
+          <a href="tel:215-791-5906" className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-orange/15 text-primary py-1.5 sm:py-2 font-bold text-[11px] sm:text-xs tracking-wide border border-primary/25 shadow-sm sm:px-3 hover:from-primary/30 hover:to-orange/25 hover:shadow-md transition-all duration-200 active:scale-95 group rounded-sm opacity-80 border-dotted px-[8px] text-center">
             <Sparkles size={12} className="text-orange animate-pulse" aria-hidden="true" />
             <span>📞 215-791-5906</span>
           </a>
@@ -88,21 +87,11 @@ const HeroSection = ({
 
           {/* CTA Buttons - Improved mobile layout with proper tap targets */}
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start pt-1 sm:pt-2">
-            <Button 
-              onClick={() => handleNavigate("book")} 
-              variant="cta"
-              size="touch"
-              className="bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 rounded-xl font-semibold text-sm shadow-lg shadow-blue/25 hover:shadow-xl hover:shadow-blue/35 flex items-center justify-center gap-2 w-full sm:w-auto border border-blue/40"
-            >
+            <Button onClick={() => handleNavigate("book")} variant="cta" size="touch" className="bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 rounded-xl font-semibold text-sm shadow-lg shadow-blue/25 hover:shadow-xl hover:shadow-blue/35 flex items-center justify-center gap-2 w-full sm:w-auto border border-blue/40">
               <Zap size={16} className="fill-current" aria-hidden="true" />
               Contact Now
             </Button>
-            <Button 
-              onClick={() => handleNavigate("reviews")} 
-              variant="outline" 
-              size="touch"
-              className="bg-card hover:bg-muted text-foreground border-2 border-border px-5 sm:px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 w-full sm:w-auto"
-            >
+            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="touch" className="bg-card hover:bg-muted text-foreground border-2 border-border px-5 sm:px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 w-full sm:w-auto">
               <Star size={16} className="text-primary fill-current" aria-hidden="true" />
               Parent Reviews
             </Button>
@@ -189,11 +178,11 @@ const HeroSection = ({
             </div>
 
             {/* Floating Badge - Enhanced 3D */}
-            <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 lg:-bottom-6 lg:-right-5 bg-card p-2 sm:p-2.5 lg:p-3 rounded-xl sm:rounded-2xl z-20 border-2 border-border/70 hover:border-green/50 transition-all duration-300 hover:scale-110 animate-float" style={{
+            <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 lg:-bottom-6 lg:-right-5 bg-card p-2 sm:p-2.5 lg:p-3 rounded-xl sm:rounded-2xl z-20 border-2 border-border/70 hover:border-green/50 transition-all duration-300 hover:scale-110 animate-float px-[10px] py-[10px]" style={{
             boxShadow: '0 15px 30px -8px hsl(var(--secondary)/0.4), 0 8px 16px -4px hsl(var(--green)/0.1)',
             transform: 'translateZ(40px)'
           }}>
-              <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-2.5">
+              <div className="gap-1.5 sm:gap-2 lg:gap-2.5 flex items-start justify-center">
                 <div className="bg-gradient-to-br from-green/30 to-green/10 p-1.5 sm:p-2 rounded-full border border-green/25 shadow-inner">
                   <ThumbsUp className="text-green w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" aria-hidden="true" />
                 </div>
@@ -201,7 +190,7 @@ const HeroSection = ({
                   <p className="font-bold text-foreground text-[10px] sm:text-xs lg:text-sm leading-tight">
                     Parents Love It
                   </p>
-                  <p className="text-[8px] sm:text-[9px] lg:text-[11px] text-muted-foreground font-semibold uppercase tracking-wider">
+                  <p className="text-[7px] sm:text-[9px] md:text-[9px] text-muted-foreground font-semibold uppercase tracking-wider">
                     100% Recommended
                   </p>
                 </div>
