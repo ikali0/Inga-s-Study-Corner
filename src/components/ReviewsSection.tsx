@@ -129,8 +129,8 @@ const ReviewsSection = forwardRef<HTMLElement>((_, ref) => {
         </Carousel>
 
         {/* Carousel indicator dots */}
-        <div className="flex justify-center gap-1.5 mt-4 sm:mt-6">
-          {[0, 1, 2].map((_, i) => <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/30" />)}
+        <div className="flex justify-center gap-1.5 mt-4 sm:mt-6 my-[22px]">
+          {[0, 1, 2].map((_, i) => <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-600" />)}
         </div>
       </div>
     </section>;
