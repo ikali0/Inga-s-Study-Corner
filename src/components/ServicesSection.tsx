@@ -293,7 +293,7 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 lg:gap-16 mb-8 sm:mb-10 lg:mb-14">
           {/* Title section - Always centered on mobile */}
           <div className="text-center lg:text-left flex-1">
-            <div className="inline-flex items-center gap-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 shadow-lg px-[4px] py-[4px]">
+            <div className="inline-flex items-center gap-2 bg-card/80 backdrop-blur-sm border border-border/50 text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 px-[4px] py-[4px] shadow-sm rounded-sm">
               <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" />
               Our Programs
             </div>
@@ -304,7 +304,7 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
                 For Every Student
               </span>
             </h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground max-w-md mx-auto lg:mx-0 my-[14px]">
+            <p className="mt-3 sm:mt-4 text-sm text-muted-foreground max-w-md mx-auto lg:mx-0 sm:text-sm my-[14px]">
               Personalized learning paths designed to unlock your child's full potential.
             </p>
           </div>

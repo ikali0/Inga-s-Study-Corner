@@ -53,19 +53,14 @@ const SuggestionChip = memo(forwardRef<HTMLButtonElement, {
   text: string;
   onClick: () => void;
   disabled: boolean;
-}>(({ text, onClick, disabled }, ref) => (
-  <button
-    ref={ref}
-    type="button"
-    onClick={onClick}
-    disabled={disabled}
-    className="px-2.5 py-1 text-[10px] sm:text-[11px] font-medium bg-card/80 backdrop-blur-sm border border-border/50 rounded-sm text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
-  >
+}>(({
+  text,
+  onClick,
+  disabled
+}, ref) => <button ref={ref} type="button" onClick={onClick} disabled={disabled} className="px-2.5 py-1 text-[10px] sm:text-[11px] font-medium bg-card/80 backdrop-blur-sm border border-border/50 rounded-sm text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95">
     {text}
-  </button>
-)));
+  </button>));
 SuggestionChip.displayName = "SuggestionChip";
-
 const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
   const [mode, setMode] = useState<AIMode>("explain");
   const [input, setInput] = useState("");
@@ -216,8 +211,7 @@ const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
     }
   }, [result]);
   const config = modeConfigs[mode];
-  return (
-    <section ref={ref} className="py-10 sm:py-14 md:py-20 lg:py-24 relative overflow-hidden" id="tools">
+  return <section ref={ref} className="py-10 sm:py-14 md:py-20 lg:py-24 relative overflow-hidden" id="tools">
       {/* Animated gradient background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[gradientPhase]} transition-all duration-[2000ms] ease-in-out`} />
       <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/40" />
@@ -233,7 +227,7 @@ const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
           
           {/* Left side - Header content */}
           <div className="text-center lg:text-left lg:flex-1 lg:pt-8 mb-6 sm:mb-8 lg:mb-0">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-card/80 backdrop-blur-sm border border-primary/20 text-primary text-[10px] sm:text-xs font-bold mb-3 sm:mb-4 shadow-lg">
+            <div className="inline-flex items-center gap-2 py-1.5 rounded-sm bg-card/80 backdrop-blur-sm border border-primary/20 text-primary text-[10px] sm:text-xs font-bold mb-3 sm:mb-4 shadow-lg px-[6px]">
               <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-primary" />
               AI Study Helper
             </div>
@@ -261,34 +255,22 @@ const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Right side - Main Card */}
           <div className="w-full max-w-md sm:max-w-lg lg:w-[480px] xl:w-[520px] mx-auto lg:mx-0 lg:shrink-0">
-            <div className="bg-card/95 backdrop-blur-sm rounded-sm sm:rounded-md border border-border/60 shadow-xl overflow-hidden">
+            <div className="bg-card/95 backdrop-blur-sm rounded-sm sm:rounded-md border shadow-xl overflow-hidden border-fuchsia-400 border-solid">
               {/* Mode Tabs */}
               <div className="flex border-b border-border/40 bg-muted/20">
                 {(Object.keys(modeConfigs) as AIMode[]).map(m => {
-                  const modeConfig = modeConfigs[m];
-                  return (
-                    <button
-                      key={m}
-                      onClick={() => handleModeChange(m)}
-                      disabled={isLoading}
-                      className={`flex-1 py-3 sm:py-3.5 px-2 text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1.5 disabled:opacity-50 ${
-                        mode === m
-                          ? `bg-card ${modeConfig.color} border-b-2 ${modeConfig.activeBorder} -mb-px`
-                          : "text-muted-foreground hover:bg-card/50 hover:text-foreground"
-                      }`}
-                      aria-current={mode === m ? "page" : undefined}
-                    >
+                const modeConfig = modeConfigs[m];
+                return <button key={m} onClick={() => handleModeChange(m)} disabled={isLoading} className={`flex-1 py-3 sm:py-3.5 px-2 text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1.5 disabled:opacity-50 ${mode === m ? `bg-card ${modeConfig.color} border-b-2 ${modeConfig.activeBorder} -mb-px` : "text-muted-foreground hover:bg-card/50 hover:text-foreground"}`} aria-current={mode === m ? "page" : undefined}>
                       <span className={mode === m ? modeConfig.iconBg + " p-1 rounded-sm" : ""}>
                         {modeConfig.icon}
                       </span>
                       {modeConfig.label}
-                    </button>
-                  );
-                })}
+                    </button>;
+              })}
               </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-5 md:p-6 space-y-4 bg-gradient-to-b from-card to-muted/20">
+              <div className="p-4 sm:p-5 md:p-6 space-y-4 bg-gradient-to-b from-card to-muted/20 border-0 border-fuchsia-500 border-solid">
                 {/* Description + Grade Row */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <p className={`text-[11px] sm:text-xs font-medium flex items-center gap-1.5 ${config.color}`}>
@@ -299,71 +281,34 @@ const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
                   </p>
                   
                   <div className="flex items-center gap-1 bg-muted/40 rounded-sm p-0.5">
-                    {gradeOptions.map(g => (
-                      <button
-                        key={g}
-                        onClick={() => setGrade(g)}
-                        disabled={isLoading}
-                        className={`px-2.5 py-1 text-[10px] sm:text-[11px] font-medium rounded-sm transition-all disabled:opacity-50 ${
-                          grade === g
-                            ? "bg-primary text-primary-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
+                    {gradeOptions.map(g => <button key={g} onClick={() => setGrade(g)} disabled={isLoading} className={`px-2.5 py-1 text-[10px] sm:text-[11px] font-medium rounded-sm transition-all disabled:opacity-50 ${grade === g ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
                         {g}
-                      </button>
-                    ))}
+                      </button>)}
                   </div>
                 </div>
 
                 {/* Quick Suggestions */}
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[10px] text-muted-foreground font-medium">Try:</span>
-                  {config.suggestions.map(s => (
-                    <SuggestionChip key={s} text={s} onClick={() => handleSuggestionClick(s)} disabled={isLoading} />
-                  ))}
+                  {config.suggestions.map(s => <SuggestionChip key={s} text={s} onClick={() => handleSuggestionClick(s)} disabled={isLoading} />)}
                 </div>
 
                 {/* AI Input */}
-                <AIInput
-                  id="study-input"
-                  placeholder={config.placeholder}
-                  value={input}
-                  onChange={setInput}
-                  onSubmit={handleSubmit}
-                  isLoading={isLoading}
-                  minHeight={52}
-                  maxHeight={140}
-                  maxLength={400}
-                />
+                <AIInput id="study-input" placeholder={config.placeholder} value={input} onChange={setInput} onSubmit={handleSubmit} isLoading={isLoading} minHeight={52} maxHeight={140} maxLength={400} />
 
                 {/* Submit Button */}
-                <Button
-                  onClick={() => handleSubmit()}
-                  disabled={isLoading || !input.trim()}
-                  size="default"
-                  className="w-full h-10 sm:h-11 text-xs sm:text-sm font-bold shadow-[0_4px_0_0_hsl(var(--primary)/0.3)] active:shadow-none active:translate-y-0.5 transition-all"
-                >
-                  {isLoading ? (
-                    <>
+                <Button onClick={() => handleSubmit()} disabled={isLoading || !input.trim()} size="default" className="w-full h-10 sm:h-11 text-xs sm:text-sm font-bold shadow-[0_4px_0_0_hsl(var(--primary)/0.3)] active:shadow-none active:translate-y-0.5 transition-all">
+                  {isLoading ? <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                       Thinking...
-                    </>
-                  ) : (
-                    <>
+                    </> : <>
                       <Sparkles className="w-4 h-4 mr-2" />
                       Get Help
-                    </>
-                  )}
+                    </>}
                 </Button>
 
                 {/* Result with streaming effect */}
-                {result && (
-                  <div
-                    className="p-4 bg-card rounded-sm border border-border/50 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300"
-                    role="region"
-                    aria-label="AI response"
-                  >
+                {result && <div className="p-4 bg-card rounded-sm border border-border/50 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300" role="region" aria-label="AI response">
                     <div className="flex items-center justify-between mb-3 pb-2 border-b border-border/30">
                       <div className="flex items-center gap-2">
                         <div className="p-1.5 rounded-sm bg-primary/10">
@@ -371,11 +316,7 @@ const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
                         </div>
                         <span className="text-xs font-semibold text-foreground">AI Response</span>
                       </div>
-                      <button
-                        onClick={handleCopy}
-                        className="p-1.5 rounded-sm hover:bg-muted transition-colors"
-                        aria-label="Copy response"
-                      >
+                      <button onClick={handleCopy} className="p-1.5 rounded-sm hover:bg-muted transition-colors" aria-label="Copy response">
                         {copied ? <Check className="w-4 h-4 text-green" /> : <Copy className="w-4 h-4 text-muted-foreground" />}
                       </button>
                     </div>
@@ -383,16 +324,13 @@ const AIStudyHelper = forwardRef<HTMLElement>((_, ref) => {
                       {result}
                       {isLoading && <span className="inline-block w-2 h-5 bg-primary/60 animate-pulse ml-0.5 align-middle rounded-sm" />}
                     </div>
-                  </div>
-                )}
+                  </div>}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 });
-
 AIStudyHelper.displayName = "AIStudyHelper";
 export default AIStudyHelper;
