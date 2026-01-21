@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
 /* =========================================
    1. FONTS
    Outfit = Body (Modern, Clean)
@@ -15,48 +19,48 @@
 @layer base {
   :root {
     /* --- Core Palette (Solarized Light) --- */
-    --background: 44 87% 98%;        /* #fdf6e3 - Solarized Base3 */
-    --foreground: 192 100% 14%;      /* #073642 - Solarized Base02 */
+    --background: 78 92% 95.098%;        /* #fdf6e3 - Solarized Base3 */
+    --foreground: 314 65% 20%;      /* #073642 - Solarized Base02 */
 
-    --card: 44 27% 92%;              /* #eee8d5 - Solarized Base2 */
-    --card-foreground: 192 100% 14%; /* #073642 */
+    --card: 270 100% 98.0392%;              /* #eee8d5 - Solarized Base2 */
+    --card-foreground: 0 0% 0%; /* #073642 */
 
-    --popover: 44 27% 92%;           /* #eee8d5 */
-    --popover-foreground: 192 100% 14%;
+    --popover: 314 41% 97%;           /* #eee8d5 */
+    --popover-foreground: 314 65% 20%;
 
-    --primary: 331 64% 52%;          /* #d33682 - Solarized Magenta */
-    --primary-foreground: 0 0% 100%; /* #ffffff */
+    --primary: 221 83.1933% 53.3333%;          /* #d33682 - Solarized Magenta */
+    --primary-foreground: 0 0% 0%; /* #ffffff */
 
-    --secondary: 175 59% 40%;        /* #2aa198 - Solarized Cyan */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 269 100% 91.7647%;        /* #2aa198 - Solarized Cyan */
+    --secondary-foreground: 272 71.6667% 47.0588%;
 
-    --muted: 186 8% 60%;             /* #93a1a1 - Solarized Base1 */
-    --muted-foreground: 192 100% 14%;
+    --muted: 134 47% 88%;             /* #93a1a1 - Solarized Base1 */
+    --muted-foreground: 314 25% 37%;
 
-    --accent: 18 89% 44%;            /* #cb4b16 - Solarized Orange */
-    --accent-foreground: 0 0% 100%;
+    --accent: 333 71.4286% 50.5882%;            /* #cb4b16 - Solarized Orange */
+    --accent-foreground: 293 69.4779% 48.8235%;
 
-    --destructive: 1 79% 52%;        /* #dc322f - Solarized Red */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 76% 90%;        /* #dc322f - Solarized Red */
+    --destructive-foreground: 0 63% 31%;
 
     /* --- Semantic State Colors --- */
     --success: 175 59% 40%;          /* #2aa198 - Teal for confirmations */
     --success-foreground: 0 0% 100%;
     --success-muted: 175 40% 92%;
-    
+
     --warning: 45 100% 51%;          /* #b58900 - Solarized Yellow */
     --warning-foreground: 192 100% 14%;
     --warning-muted: 45 60% 92%;
-    
+
     --info: 205 82% 49%;             /* #268bd2 - Solarized Blue */
     --info-foreground: 0 0% 100%;
     --info-muted: 205 60% 92%;
 
-    --border: 186 13% 55%;           /* #839496 - Solarized Base0 */
-    --input: 186 13% 55%;            /* #839496 */
-    --ring: 331 64% 52%;             /* #d33682 - Magenta */
+    --border: 134 37% 91%;           /* #839496 - Solarized Base0 */
+    --input: 134 37% 91%;            /* #839496 */
+    --ring: 314 65% 20%;             /* #d33682 - Magenta */
 
-    --radius: 0.25rem;
+    --radius: 1.25rem;
     --radius-soft: 0.5rem;           /* Softer edges for content cards */
 
     /* --- Service Card Colors --- */
@@ -72,21 +76,21 @@
     --pink-light: 331 64% 92%;
 
     /* --- Chart Colors --- */
-    --chart-1: 205 82% 49%;          /* #268bd2 */
-    --chart-2: 175 59% 40%;          /* #2aa198 */
-    --chart-3: 331 64% 52%;          /* #d33682 */
-    --chart-4: 18 89% 44%;           /* #cb4b16 */
-    --chart-5: 1 79% 52%;            /* #dc322f */
+    --chart-1: 314 58% 39%;          /* #268bd2 */
+    --chart-2: 344 76% 61%;          /* #2aa198 */
+    --chart-3: 14 37% 24%;          /* #d33682 */
+    --chart-4: 44 74% 66%;           /* #cb4b16 */
+    --chart-5: 74 87% 67%;            /* #dc322f */
 
     /* --- Sidebar --- */
-    --sidebar-background: 44 87% 98%;    /* #fdf6e3 */
-    --sidebar-foreground: 192 100% 14%;
-    --sidebar-primary: 331 64% 52%;      /* #d33682 */
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 175 59% 40%;       /* #2aa198 */
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 186 13% 55%;       /* #839496 */
-    --sidebar-ring: 331 64% 52%;
+    --sidebar-background: 314 41% 97%;    /* #fdf6e3 */
+    --sidebar-foreground: 314 65% 25%;
+    --sidebar-primary: 314 65% 20%;      /* #d33682 */
+    --sidebar-primary-foreground: 314 41% 97%;
+    --sidebar-accent: 134 57% 88%;       /* #2aa198 */
+    --sidebar-accent-foreground: 314 65% 20%;
+    --sidebar-border: 134 37% 91%;       /* #839496 */
+    --sidebar-ring: 134 27% 75%;
 
     /* --- Shadow Variables --- */
     --shadow-color: 192 100% 14%;
@@ -95,50 +99,64 @@
     --shadow-blur: 4px;
     --shadow-spread: 0px;
     --shadow-opacity: 0.15;
+    --sidebar: 248 0.3% 98.4%;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0px 1px 1.5px 0px hsla(293, 69%, 49%, 0.83);
+    --shadow: 0px 1px 3px 0px hsla(293, 69%, 49%, 0.83);
+    --shadow-md: 0px 1px 4.5px 0px hsla(293, 69%, 49%, 0.83);
+    --shadow-lg: 0px 1px 7.5px 0px hsla(293, 69%, 49%, 0.83);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
   }
 
   .dark {
     /* --- Dark Mode Core Palette (Solarized Dark) --- */
-    --background: 192 100% 11%;      /* #002b36 - Solarized Base03 */
-    --foreground: 44 27% 84%;        /* Softer: better reading contrast */
+    --background: 314 0% 12%;      /* #002b36 - Solarized Base03 */
+    --foreground: 314 45% 70%;        /* Softer: better reading contrast */
 
-    --card: 192 100% 14%;            /* #073642 - Solarized Base02 */
-    --card-foreground: 44 27% 84%;
+    --card: 314 0% 9%;            /* #073642 - Solarized Base02 */
+    --card-foreground: 314 45% 70%;
 
-    --popover: 192 100% 14%;
-    --popover-foreground: 44 27% 84%;
+    --popover: 314 0% 12%;
+    --popover-foreground: 314 45% 70%;
 
-    --primary: 331 64% 52%;          /* #d33682 - Magenta */
-    --primary-foreground: 0 0% 100%;
+    --primary: 314 45% 92%;          /* #d33682 - Magenta */
+    --primary-foreground: 314 0% 12%;
 
-    --secondary: 175 59% 40%;        /* #2aa198 - Cyan */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 134 27% 17%;        /* #2aa198 - Cyan */
+    --secondary-foreground: 314 45% 70%;
 
-    --muted: 186 13% 43%;            /* #586e75 - Base01 */
-    --muted-foreground: 186 8% 70%;  /* Softer for dark mode reading */
+    --muted: 134 22% 17%;            /* #586e75 - Base01 */
+    --muted-foreground: 134 27% 75%;  /* Softer for dark mode reading */
 
-    --accent: 18 89% 44%;            /* #cb4b16 - Orange */
-    --accent-foreground: 0 0% 100%;
+    --accent: 344 17% 20%;            /* #cb4b16 - Orange */
+    --accent-foreground: 344 57% 70%;
 
-    --destructive: 1 79% 52%;        /* #dc322f - Red */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 33% 20%;        /* #dc322f - Red */
+    --destructive-foreground: 0 91% 71%;
 
     /* --- Semantic State Colors (Dark) --- */
     --success: 175 59% 45%;          /* Slightly brighter for dark */
     --success-foreground: 0 0% 100%;
     --success-muted: 175 40% 18%;
-    
+
     --warning: 45 100% 55%;
     --warning-foreground: 192 100% 11%;
     --warning-muted: 45 40% 18%;
-    
+
     --info: 205 82% 55%;
     --info-foreground: 0 0% 100%;
     --info-muted: 205 40% 18%;
 
-    --border: 186 13% 43%;           /* #586e75 */
-    --input: 186 13% 43%;
-    --ring: 331 64% 52%;
+    --border: 134 22% 17%;           /* #586e75 */
+    --input: 134 17% 25%;
+    --ring: 134 27% 83%;
 
     /* Dark Mode Service Variations */
     --blue: 205 82% 49%;
@@ -153,24 +171,34 @@
     --pink-light: 331 40% 20%;
 
     /* --- Dark Chart Colors --- */
-    --chart-1: 205 82% 49%;
-    --chart-2: 175 59% 40%;
-    --chart-3: 331 64% 52%;
-    --chart-4: 18 89% 44%;
-    --chart-5: 1 79% 52%;
+    --chart-1: 314 70% 50%;
+    --chart-2: 74 75% 55%;
+    --chart-3: 344 80% 55%;
+    --chart-4: 234 65% 60%;
+    --chart-5: 114 60% 45%;
 
     /* --- Dark Sidebar --- */
-    --sidebar-background: 192 100% 11%;
-    --sidebar-foreground: 44 27% 84%;
-    --sidebar-primary: 331 64% 52%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 175 59% 40%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 186 13% 43%;
-    --sidebar-ring: 331 64% 52%;
+    --sidebar-background: 314 0% 12%;
+    --sidebar-foreground: 134 57% 95%;
+    --sidebar-primary: 344 57% 55%;
+    --sidebar-primary-foreground: 314 45% 70%;
+    --sidebar-accent: 134 22% 17%;
+    --sidebar-accent-foreground: 134 57% 95%;
+    --sidebar-border: 134 22% 17%;
+    --sidebar-ring: 134 27% 83%;
 
     /* --- Shadow Variables (Dark) --- */
     --shadow-color: 192 100% 10%;
+    --sidebar: 266 4% 20.8%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --radius: 1rem;
   }
 }
 
@@ -181,7 +209,7 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -224,7 +252,7 @@
    4. CUSTOM UTILITIES & ANIMATIONS
    ========================================= */
 @layer components {
-  
+
   /* --- 3D / Neo-Brutalist Cards (Softened) --- */
   .card-3d {
     @apply rounded-sm border border-border/50 bg-card transition-all duration-200;
@@ -235,7 +263,7 @@
       hsl(var(--card) / 0.95) 100%
     );
   }
-  
+
   .card-3d:hover {
     @apply border-primary/40;
     box-shadow: 4px 4px 0px 0px hsl(var(--primary) / 0.25);
@@ -460,7 +488,7 @@
   .reviews-carousel-track {
     transition: none;
   }
-  
+
   .review-card,
   .card-3d,
   .btn-3d,
