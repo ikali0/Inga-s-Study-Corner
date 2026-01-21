@@ -26,7 +26,7 @@ const Navbar = ({
           </button>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-6" aria-label="Main navigation">
+          <nav className="hidden gap-4 lg:gap-[22px] md:flex items-center justify-center" aria-label="Main navigation">
             {navItems.map(item => <button type="button" key={item} onClick={() => handleNavClick(item.toLowerCase())} className="relative text-muted-foreground hover:text-foreground font-semibold transition-colors text-xs lg:text-sm focus:outline-none focus-visible:text-primary group">
                 {item}
                 <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
