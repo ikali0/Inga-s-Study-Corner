@@ -62,7 +62,7 @@ const HeroSection = ({
         {/* Text Content */}
         <div className="space-y-3 sm:space-y-4 lg:space-y-5 z-10 order-2 lg:order-1 text-center lg:text-left">
           {/* Badge with sparkle */}
-          <a href="tel:215-791-5906" className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-orange/15 text-primary py-1.5 sm:py-2 font-bold text-[11px] sm:text-xs tracking-wide border border-primary/25 shadow-sm sm:px-3 hover:from-primary/30 hover:to-orange/25 hover:shadow-md transition-all duration-200 active:scale-95 group px-[8px] rounded-sm">
+          <a href="tel:215-791-5906" className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-orange/15 text-primary py-1.5 sm:py-2 font-bold text-[11px] sm:text-xs tracking-wide border border-primary/25 shadow-sm sm:px-3 hover:from-primary/30 hover:to-orange/25 hover:shadow-md transition-all duration-200 active:scale-95 group rounded-sm opacity-80 border-dotted px-[8px]">
             <Sparkles size={12} className="text-orange animate-pulse" aria-hidden="true" />
             <span>📞 215-791-5906</span>
           </a>
