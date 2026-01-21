@@ -1,56 +1,73 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Core -->
+    <!-- ===============================
+         CORE META
+    ================================ -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Inga's Study Corner | Interactive Tutoring for Ages 8–14</title>
+    <title>Inga’s Study Corner | Interactive Tutoring for Ages 8–14</title>
 
-    <!-- SEO -->
+    <!-- ===============================
+         SEO
+    ================================ -->
     <meta
       name="description"
-      content="Interactive after-school tutoring in Huntingdon Valley, PA. Build confidence in Math, Science, Reading &amp; Social Studies through guided practice. Small groups, Tue–Fri 3–9 PM."
+      content="Interactive after-school tutoring in Huntingdon Valley, PA for ages 8–14. Build confidence in Math, Science, Reading, and Social Studies through guided practice and small groups."
     />
     <meta
       name="keywords"
       content="after-school tutoring, math tutor, reading tutor, science help, homework help, ages 8-14, Huntingdon Valley PA"
     />
-    <meta name="author" content="Inga's Study Corner" />
+    <meta name="author" content="Inga’s Study Corner" />
     <link rel="canonical" href="https://ingastudycorner.lovable.app/" />
 
-    <!-- Favicon -->
+    <!-- ===============================
+         THEME + MOBILE POLISH
+    ================================ -->
+    <meta name="theme-color" content="#fdf6e3" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- ===============================
+         FAVICON
+    ================================ -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Open Graph -->
+    <!-- ===============================
+         OPEN GRAPH
+    ================================ -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Inga's Study Corner" />
+    <meta property="og:site_name" content="Inga’s Study Corner" />
+    <meta property="og:url" content="https://ingastudycorner.lovable.app/" />
+    <meta property="og:title" content="Inga’s Study Corner | Interactive Tutoring for Ages 8–14" />
+    <meta
+      property="og:description"
+      content="Interactive after-school tutoring in Huntingdon Valley, PA. Build confidence through guided learning in Math, Science, Reading, and Social Studies."
+    />
     <meta
       property="og:image"
       content="https://storage.googleapis.com/gpt-engineer-file-uploads/YBMHCQTAfgN4PtBynYQaHj0UGa02/social-images/social-1768274993158-iamgwe.png"
     />
-    <meta property="og:url" content="https://ingastudycorner.lovable.app/" />
-    <meta property="og:title" content="Inga's Study Corner | Interactive Tutoring for Ages 8–14" />
-    <meta
-      property="og:description"
-      content="Interactive after-school tutoring in Huntingdon Valley, PA. Build confidence in Math, Science, Reading &amp; Social Studies through guided practice. Small groups, Tue–Fri 3–9 PM."
-    />
 
-    <!-- Twitter -->
+    <!-- ===============================
+         TWITTER
+    ================================ -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Inga’s Study Corner | Interactive Tutoring for Ages 8–14" />
+    <meta
+      name="twitter:description"
+      content="Interactive after-school tutoring for ages 8–14 in Math, Science, Reading, and Social Studies."
+    />
     <meta
       name="twitter:image"
       content="https://storage.googleapis.com/gpt-engineer-file-uploads/YBMHCQTAfgN4PtBynYQaHj0UGa02/social-images/social-1768274993158-iamgwe.png"
     />
-    <meta name="twitter:site" content="@IngasStudyCorner" />
-    <meta name="twitter:title" content="Inga's Study Corner | Interactive Tutoring for Ages 8–14" />
-    <meta
-      name="twitter:description"
-      content="Interactive after-school tutoring in Huntingdon Valley, PA. Build confidence in Math, Science, Reading &amp; Social Studies through guided practice. Small groups, Tue–Fri 3–9 PM."
-    />
 
-    <!-- Fonts: Outfit, Space Mono -->
+    <!-- ===============================
+         FONTS (Optimized)
+    ================================ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -58,25 +75,63 @@
       rel="stylesheet"
     />
 
-    <!-- Structured Data -->
+    <!-- ===============================
+         BASE STYLES (Critical)
+    ================================ -->
+    <style>
+      :root {
+        font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #fdf6e3;
+        color: #073642;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      noscript {
+        display: block;
+        padding: 1rem;
+        background: #eee8d5;
+        color: #073642;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    </style>
+
+    <!-- ===============================
+         STRUCTURED DATA
+         (No UI email exposure)
+    ================================ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
-        "name": "Inga's Study Corner",
+        "name": "Inga’s Study Corner",
         "url": "https://ingastudycorner.lovable.app/",
         "logo": "https://ingastudycorner.lovable.app/favicon.png",
         "description": "Interactive after-school tutoring for ages 8–14 in Math, Science, Reading, and Social Studies.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "625 Red Lion Rd",
           "addressLocality": "Huntingdon Valley",
           "addressRegion": "PA",
-          "postalCode": "19006",
           "addressCountry": "US"
         },
-        "telephone": "+1-215-791-5906",
-        "email": "ingakaltak7@gmail.com",
         "openingHours": "Tu-Fr 15:00-21:00",
         "areaServed": {
           "@type": "Place",
@@ -87,13 +142,13 @@
   </head>
 
   <body>
-    <noscript>
-      <strong>This site works best with JavaScript enabled.</strong>
-    </noscript>
+    <noscript> This site works best with JavaScript enabled. </noscript>
 
-    <div id="root"></div>
+    <div id="root" role="application"></div>
 
-    <!-- App Entry -->
+    <!-- ===============================
+         APP ENTRY
+    ================================ -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
