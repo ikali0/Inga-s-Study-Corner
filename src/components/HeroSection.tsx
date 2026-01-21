@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Zap, Star, CheckCircle, ThumbsUp, Sparkles } from 'lucide-react';
+import { Zap, Star, CheckCircle, ThumbsUp, Sparkles, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { TrustChip } from '@/components/ui/trust-chip';
 import { useMultipleParallax } from '@/hooks/use-parallax';
 import heroImage from '@/assets/hero-kids-learning.jpg';
+
 interface HeroSectionProps {
   onNavigate: (id: string) => void;
 }
@@ -84,16 +86,36 @@ const HeroSection = ({
             through clear explanations, guided practice, and curiosity-driven learning.
           </p>
 
-          {/* CTA Buttons - Improved mobile layout */}
+          {/* CTA Buttons - Improved mobile layout with proper tap targets */}
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start pt-1 sm:pt-2">
-            <Button onClick={() => handleNavigate("book")} size="sm" className="bg-blue hover:bg-blue/90 text-primary-foreground px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm shadow-[0_4px_0_0_hsl(var(--blue)/0.6),0_6px_12px_-2px_hsl(var(--blue)/0.3)] flex items-center justify-center gap-1.5 w-full sm:w-auto border border-blue/40 transition-all duration-150 hover:shadow-[0_2px_0_0_hsl(var(--blue)/0.6),0_4px_8px_-2px_hsl(var(--blue)/0.3)] hover:translate-y-0.5 active:shadow-none active:translate-y-1">
-              <Zap size={14} className="fill-current" aria-hidden="true" />
-              Contact
+            <Button 
+              onClick={() => handleNavigate("book")} 
+              variant="cta"
+              size="touch"
+              className="bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 rounded-xl font-semibold text-sm shadow-lg shadow-blue/25 hover:shadow-xl hover:shadow-blue/35 flex items-center justify-center gap-2 w-full sm:w-auto border border-blue/40"
+            >
+              <Zap size={16} className="fill-current" aria-hidden="true" />
+              Contact Now
             </Button>
-            <Button onClick={() => handleNavigate("reviews")} variant="outline" size="sm" className="bg-card hover:bg-muted text-foreground border-2 border-border px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 w-full sm:w-auto shadow-[0_4px_0_0_hsl(var(--border)),0_6px_12px_-2px_hsl(var(--muted)/0.4)] transition-all duration-150 hover:shadow-[0_2px_0_0_hsl(var(--border)),0_4px_8px_-2px_hsl(var(--muted)/0.3)] hover:translate-y-0.5 active:shadow-none active:translate-y-1">
-              <Star size={14} className="text-primary fill-current" aria-hidden="true" />
+            <Button 
+              onClick={() => handleNavigate("reviews")} 
+              variant="outline" 
+              size="touch"
+              className="bg-card hover:bg-muted text-foreground border-2 border-border px-5 sm:px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
+              <Star size={16} className="text-primary fill-current" aria-hidden="true" />
               Parent Reviews
             </Button>
+          </div>
+
+          {/* Trust Chips Row */}
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-2">
+            <TrustChip variant="success" icon="shield">
+              Background Verified
+            </TrustChip>
+            <TrustChip variant="info" icon="award">
+              5+ Years Experience
+            </TrustChip>
           </div>
 
           {/* Feature Pills - Compact mobile layout */}

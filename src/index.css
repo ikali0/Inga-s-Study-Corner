@@ -39,11 +39,25 @@
     --destructive: 1 79% 52%;        /* #dc322f - Solarized Red */
     --destructive-foreground: 0 0% 100%;
 
+    /* --- Semantic State Colors --- */
+    --success: 175 59% 40%;          /* #2aa198 - Teal for confirmations */
+    --success-foreground: 0 0% 100%;
+    --success-muted: 175 40% 92%;
+    
+    --warning: 45 100% 51%;          /* #b58900 - Solarized Yellow */
+    --warning-foreground: 192 100% 14%;
+    --warning-muted: 45 60% 92%;
+    
+    --info: 205 82% 49%;             /* #268bd2 - Solarized Blue */
+    --info-foreground: 0 0% 100%;
+    --info-muted: 205 60% 92%;
+
     --border: 186 13% 55%;           /* #839496 - Solarized Base0 */
     --input: 186 13% 55%;            /* #839496 */
     --ring: 331 64% 52%;             /* #d33682 - Magenta */
 
     --radius: 0.25rem;
+    --radius-soft: 0.5rem;           /* Softer edges for content cards */
 
     /* --- Service Card Colors --- */
     --blue: 205 82% 49%;             /* #268bd2 - Solarized Blue */
@@ -86,13 +100,13 @@
   .dark {
     /* --- Dark Mode Core Palette (Solarized Dark) --- */
     --background: 192 100% 11%;      /* #002b36 - Solarized Base03 */
-    --foreground: 186 8% 60%;        /* #93a1a1 - Solarized Base1 */
+    --foreground: 44 27% 84%;        /* Softer: better reading contrast */
 
     --card: 192 100% 14%;            /* #073642 - Solarized Base02 */
-    --card-foreground: 186 8% 60%;
+    --card-foreground: 44 27% 84%;
 
     --popover: 192 100% 14%;
-    --popover-foreground: 186 8% 60%;
+    --popover-foreground: 44 27% 84%;
 
     --primary: 331 64% 52%;          /* #d33682 - Magenta */
     --primary-foreground: 0 0% 100%;
@@ -101,13 +115,26 @@
     --secondary-foreground: 0 0% 100%;
 
     --muted: 186 13% 43%;            /* #586e75 - Base01 */
-    --muted-foreground: 186 8% 60%;
+    --muted-foreground: 186 8% 70%;  /* Softer for dark mode reading */
 
     --accent: 18 89% 44%;            /* #cb4b16 - Orange */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 1 79% 52%;        /* #dc322f - Red */
     --destructive-foreground: 0 0% 100%;
+
+    /* --- Semantic State Colors (Dark) --- */
+    --success: 175 59% 45%;          /* Slightly brighter for dark */
+    --success-foreground: 0 0% 100%;
+    --success-muted: 175 40% 18%;
+    
+    --warning: 45 100% 55%;
+    --warning-foreground: 192 100% 11%;
+    --warning-muted: 45 40% 18%;
+    
+    --info: 205 82% 55%;
+    --info-foreground: 0 0% 100%;
+    --info-muted: 205 40% 18%;
 
     --border: 186 13% 43%;           /* #586e75 */
     --input: 186 13% 43%;
@@ -134,7 +161,7 @@
 
     /* --- Dark Sidebar --- */
     --sidebar-background: 192 100% 11%;
-    --sidebar-foreground: 186 8% 60%;
+    --sidebar-foreground: 44 27% 84%;
     --sidebar-primary: 331 64% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 175 59% 40%;
@@ -163,6 +190,9 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Outfit', sans-serif;
     font-weight: 400;
+    /* Fluid base font size: 15px at 320px → 18px at 1280px */
+    font-size: clamp(0.9375rem, 0.875rem + 0.25vw, 1.125rem);
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -178,6 +208,16 @@
   ::selection {
     @apply bg-primary/30 text-foreground;
   }
+
+  /* Focus-visible styling for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Remove default focus for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 /* =========================================
@@ -185,16 +225,21 @@
    ========================================= */
 @layer components {
   
-  /* --- 3D / Neo-Brutalist Cards --- */
+  /* --- 3D / Neo-Brutalist Cards (Softened) --- */
   .card-3d {
-    @apply rounded-sm border-2 border-primary/20 bg-card transition-all duration-200;
-    box-shadow: 4px 4px 0px 0px hsl(var(--primary) / 0.2);
+    @apply rounded-sm border border-border/50 bg-card transition-all duration-200;
+    box-shadow: 3px 3px 0px 0px hsl(var(--primary) / 0.15);
+    background: linear-gradient(
+      135deg, 
+      hsl(var(--card)) 0%, 
+      hsl(var(--card) / 0.95) 100%
+    );
   }
   
   .card-3d:hover {
-    @apply border-primary;
-    box-shadow: 6px 6px 0px 0px hsl(var(--primary));
-    transform: translate(-2px, -2px);
+    @apply border-primary/40;
+    box-shadow: 4px 4px 0px 0px hsl(var(--primary) / 0.25);
+    transform: translate(-1px, -1px);
   }
 
   /* --- 3D Buttons --- */
@@ -206,6 +251,80 @@
   .btn-3d:active {
     box-shadow: 0px 0px 0px 0px hsl(var(--foreground));
     transform: translate(4px, 4px);
+  }
+
+  /* --- Primary CTA Magnet (High Visual Gravity) --- */
+  .btn-cta-magnet {
+    @apply relative font-bold transition-all duration-300;
+    box-shadow: 
+      0 4px 14px 0 hsl(var(--primary) / 0.35),
+      0 0 0 0 hsl(var(--primary) / 0);
+  }
+
+  .btn-cta-magnet:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 20px 0 hsl(var(--primary) / 0.45),
+      0 0 0 4px hsl(var(--primary) / 0.1);
+  }
+
+  .btn-cta-magnet:active {
+    transform: translateY(0);
+    box-shadow: 
+      0 2px 8px 0 hsl(var(--primary) / 0.3),
+      0 0 0 0 hsl(var(--primary) / 0);
+  }
+
+  /* --- Trust Chips --- */
+  .trust-chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full;
+    @apply bg-success-muted text-success border border-success/20;
+  }
+
+  .trust-chip-info {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full;
+    @apply bg-info-muted text-info border border-info/20;
+  }
+
+  .trust-chip-warning {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full;
+    @apply bg-warning-muted text-warning border border-warning/20;
+  }
+
+  /* --- Minimum Tap Target (44x44px for accessibility) --- */
+  .tap-target {
+    @apply relative;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .tap-target-sm {
+    @apply relative;
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  /* --- Typography Intent Classes --- */
+  .text-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-wider text-muted-foreground;
+  }
+
+  .text-lead {
+    @apply text-lg sm:text-xl font-medium text-foreground/90 leading-relaxed;
+  }
+
+  .text-support {
+    @apply text-sm text-muted-foreground leading-relaxed;
+  }
+
+  /* --- Soft Card (Content-Heavy) --- */
+  .card-soft {
+    @apply rounded-lg border border-border/30 bg-card p-5;
+    background: linear-gradient(
+      180deg, 
+      hsl(var(--card)) 0%, 
+      hsl(var(--card) / 0.85) 100%
+    );
   }
 
   /* --- Animations --- */
@@ -221,6 +340,23 @@
   /* --- Text Effects --- */
   .text-gradient {
     @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  /* --- State Feedback --- */
+  .state-success {
+    @apply border-success bg-success-muted text-success;
+  }
+
+  .state-warning {
+    @apply border-warning bg-warning-muted text-warning;
+  }
+
+  .state-info {
+    @apply border-info bg-info-muted text-info;
+  }
+
+  .state-error {
+    @apply border-destructive bg-destructive/10 text-destructive;
   }
 }
 
@@ -276,21 +412,91 @@
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Touch device: disable hover effects */
+/* =========================================
+   8. TOUCH & MOBILE INTERACTIONS
+   ========================================= */
+
+/* Touch device: disable hover effects globally */
 @media (hover: none) {
-  .review-card:hover {
+  .review-card:hover,
+  .card-3d:hover,
+  .card-soft:hover {
     transform: none;
     box-shadow: none;
   }
+
+  /* Use active states instead of hover for touch */
+  .btn-cta-magnet:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px 0 hsl(var(--primary) / 0.3);
+  }
 }
+
+/* Enhanced active states for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  button:active,
+  a:active,
+  [role="button"]:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+/* =========================================
+   9. ACCESSIBILITY
+   ========================================= */
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .reviews-carousel-track {
     transition: none;
   }
   
-  .review-card {
+  .review-card,
+  .card-3d,
+  .btn-3d,
+  .btn-cta-magnet,
+  .animate-float,
+  .animate-fade-in-up {
+    animation: none;
     transition: none;
   }
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  @apply absolute -top-12 left-4 z-50 bg-background text-foreground px-4 py-2 rounded-sm;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 4px;
+}
+
+/* =========================================
+   10. SKELETON LOADERS
+   ========================================= */
+.skeleton {
+  @apply bg-muted/40 animate-pulse rounded;
+}
+
+.skeleton-text {
+  @apply h-4 w-full bg-muted/40 animate-pulse rounded;
+}
+
+.skeleton-avatar {
+  @apply w-10 h-10 bg-muted/40 animate-pulse rounded-full;
+}
+
+.skeleton-card {
+  @apply h-48 w-full bg-muted/40 animate-pulse rounded-lg;
 }

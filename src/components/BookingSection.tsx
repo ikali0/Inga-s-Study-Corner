@@ -1,8 +1,9 @@
 import { useState, forwardRef } from "react";
-import { CheckCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Loader2, ShieldCheck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { TrustChip } from "@/components/ui/trust-chip";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
 import { z } from "zod";
@@ -375,21 +376,33 @@ const BookingSection = forwardRef<HTMLElement>((_, ref) => {
                 </div>
               </div>
 
-              {/* Submit Button */}
+              {/* Submit Button - High conversion CTA */}
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-9 text-sm font-semibold btn-3d"
+                variant="cta"
+                size="touch"
+                className="w-full text-sm font-bold"
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" />
+                    <Loader2 className="mr-1.5 h-4 w-4 animate-spin" />
                     Sending...
                   </>
                 ) : (
                   "Book Free Consultation"
                 )}
               </Button>
+
+              {/* Trust reinforcement */}
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                <TrustChip variant="muted" icon="lock">
+                  Secure Form
+                </TrustChip>
+                <TrustChip variant="muted" icon="shield">
+                  No Spam
+                </TrustChip>
+              </div>
             </form>
           )}
         </div>
