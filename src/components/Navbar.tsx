@@ -19,8 +19,8 @@ const Navbar = ({
         <div className="h-12 sm:h-14 flex items-center justify-between">
           {/* Logo */}
           <button type="button" onClick={() => handleNavClick("hero")} className="flex items-center gap-1.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Go to homepage">
-            <div className="p-1 rotate-3 shadow-[0_2px_0_0_hsl(var(--orange)/0.6)] bg-gradient-to-br from-orange to-primary rounded-md px-[3px] py-[3px]">
-              <Rocket className="text-primary-foreground w-3.5 h-3.5 sm:h-[11px] sm:w-[11px]" />
+            <div className="p-1 rotate-3 shadow-[0_2px_0_0_hsl(var(--orange)/0.6)] bg-gradient-to-br from-orange to-primary rounded-md px-[4px] py-[4px] bg-fuchsia-300">
+              <Rocket className="w-3.5 h-3.5 sm:h-[11px] sm:w-[11px] text-fuchsia-300" />
             </div>
             <AnimatedText text="Inga's Study Corner" textClassName="text-xs sm:text-sm text-foreground" underlineClassName="text-primary" />
           </button>
