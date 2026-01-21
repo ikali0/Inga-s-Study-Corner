@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Zap, Star, CheckCircle, ThumbsUp, Sparkles, ShieldCheck } from 'lucide-react';
+import { Zap, Star, CheckCircle, ThumbsUp, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TrustChip } from '@/components/ui/trust-chip';
 import { useMultipleParallax } from '@/hooks/use-parallax';
@@ -63,8 +63,8 @@ const HeroSection = ({
         {/* Text Content */}
         <div className="space-y-3 sm:space-y-4 lg:space-y-5 z-10 order-2 lg:order-1 text-center lg:text-left">
           {/* Badge with sparkle */}
-          <a href="tel:215-791-5906" className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-orange/15 text-primary py-1.5 sm:py-2 font-bold text-[11px] sm:text-xs tracking-wide border border-primary/25 shadow-sm sm:px-3 hover:from-primary/30 hover:to-orange/25 hover:shadow-md transition-all duration-200 active:scale-95 group rounded-sm opacity-80 border-dotted px-[8px] text-center">
-            <Sparkles size={12} className="text-orange animate-pulse" aria-hidden="true" />
+          <a href="tel:215-791-5906" className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-orange/15 text-primary sm:py-2 font-bold text-[11px] sm:text-xs tracking-wide border border-primary/25 shadow-sm sm:px-3 hover:from-primary/30 hover:to-orange/25 hover:shadow-md transition-all duration-200 active:scale-95 group rounded-sm opacity-80 border-dotted text-center px-[6px] py-[6px]">
+            
             <span>📞 215-791-5906</span>
           </a>
 
@@ -86,7 +86,7 @@ const HeroSection = ({
           </p>
 
           {/* CTA Buttons - Improved mobile layout with proper tap targets */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start pt-1 sm:pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start pt-1 sm:pt-2 sm:gap-[6px]">
             <Button onClick={() => handleNavigate("book")} variant="cta" size="touch" className="bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 rounded-xl font-semibold text-sm shadow-lg shadow-blue/25 hover:shadow-xl hover:shadow-blue/35 flex items-center justify-center gap-2 w-full sm:w-auto border border-blue/40">
               <Zap size={16} className="fill-current" aria-hidden="true" />
               Contact Now
@@ -98,7 +98,7 @@ const HeroSection = ({
           </div>
 
           {/* Trust Chips Row */}
-          <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-2">
+          <div className="flex flex-wrap justify-center lg:justify-start pt-2 gap-[6px] py-[6px]">
             <TrustChip variant="success" icon="shield">
               Background Verified
             </TrustChip>
@@ -108,7 +108,7 @@ const HeroSection = ({
           </div>
 
           {/* Feature Pills - Compact mobile layout */}
-          <div className="flex flex-wrap gap-1.5 justify-center lg:justify-start pt-1">
+          <div className="flex flex-wrap justify-center lg:justify-start pt-1 py-[6px] gap-[4px]">
             {[{
             icon: <CheckCircle size={10} className="text-green shrink-0" />,
             text: "Ages 8-14",
