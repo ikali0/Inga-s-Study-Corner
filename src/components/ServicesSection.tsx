@@ -153,39 +153,39 @@ interface CardFrontProps {
 const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(({
   service,
   theme
-}, ref) => <div ref={ref} className="flex flex-col h-full p-3 sm:p-4">
+}, ref) => <div ref={ref} className="flex flex-col h-full p-2 sm:p-3">
     {/* Header with icon */}
-    <div className="flex items-center gap-2 mb-2">
-      <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} shrink-0`}>
+    <div className="flex items-center gap-1.5 mb-1.5">
+      <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-sm flex items-center justify-center ${theme.iconBg} shrink-0 icon-hover`}>
         {React.cloneElement(service.icon, {
-        className: "w-4 h-4 sm:w-5 sm:h-5"
+        className: "w-3 h-3 sm:w-4 sm:h-4 icon-bounce"
       })}
       </div>
-      <span className={`px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[10px] font-bold uppercase rounded-sm ${theme.badge}`}>
+      <span className={`px-1 sm:px-1.5 py-0.5 text-[7px] sm:text-[9px] font-bold uppercase rounded-sm ${theme.badge}`}>
         K-8
       </span>
     </div>
 
     {/* Title & Description */}
-    <h3 className="font-display font-bold text-foreground text-sm sm:text-base mb-1 leading-tight line-clamp-1">
+    <h3 className="font-display font-bold text-foreground text-xs sm:text-sm mb-0.5 leading-tight line-clamp-1">
       {service.shortTitle}
     </h3>
-    <p className="font-body text-muted-foreground text-[10px] sm:text-xs leading-snug mb-2 line-clamp-2">
+    <p className="font-body text-muted-foreground text-[9px] sm:text-[10px] leading-snug mb-1.5 line-clamp-2">
       {service.description}
     </p>
 
-    {/* Features */}
-    <ul className="space-y-0.5 sm:space-y-1 mb-2 flex-grow min-h-0 overflow-hidden">
-      {service.features.slice(0, 3).map((f, i) => <li key={i} className="flex items-center gap-1.5">
-          <CheckCircle2 className={`w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0 ${theme.check}`} />
-          <span className="font-body text-foreground text-[9px] sm:text-[11px] font-medium truncate">{f}</span>
+    {/* Features - Only show 2 on mobile */}
+    <ul className="space-y-0.5 mb-1.5 flex-grow min-h-0 overflow-hidden">
+      {service.features.slice(0, 2).map((f, i) => <li key={i} className="flex items-center gap-1">
+          <CheckCircle2 className={`w-2 h-2 sm:w-2.5 sm:h-2.5 shrink-0 ${theme.check} icon-pulse`} />
+          <span className="font-body text-foreground text-[8px] sm:text-[10px] font-medium truncate">{f}</span>
         </li>)}
     </ul>
 
     {/* Learn more hint - desktop only */}
-    <div className="hidden sm:flex items-center justify-center gap-1 text-[10px] text-muted-foreground mt-auto pt-1.5 border-t border-border/50">
+    <div className="hidden md:flex items-center justify-center gap-1 text-[9px] text-muted-foreground mt-auto pt-1 border-t border-border/50">
       <span className="font-body">Hover for more</span>
-      <ArrowRight className="w-2.5 h-2.5" />
+      <ArrowRight className="w-2 h-2 icon-slide-right" />
     </div>
   </div>);
 CardFront.displayName = "CardFront";
@@ -200,31 +200,27 @@ const CardBack = forwardRef<HTMLDivElement, CardBackProps>(({
   service,
   theme,
   onLearnMore
-}, ref) => <div ref={ref} className={`flex flex-col items-center justify-center h-full p-3 sm:p-4 bg-gradient-to-br ${theme.gradient}`}>
-    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center ${theme.iconBg} mb-2`}>
+}, ref) => <div ref={ref} className={`flex flex-col items-center justify-center h-full p-2 sm:p-3 bg-gradient-to-br ${theme.gradient}`}>
+    <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-sm flex items-center justify-center ${theme.iconBg} mb-1.5 icon-hover`}>
       {React.cloneElement(service.icon, {
-      className: "w-4 h-4 sm:w-5 sm:h-5"
+      className: "w-3 h-3 sm:w-4 sm:h-4 icon-spin-slow"
     })}
     </div>
 
-    <h4 className="font-display font-bold text-foreground text-center mb-1.5 text-sm sm:text-base line-clamp-1">
+    <h4 className="font-display font-bold text-foreground text-center mb-1 text-xs sm:text-sm line-clamp-1">
       {service.shortTitle}
     </h4>
 
-    <p className="font-body text-muted-foreground text-[9px] sm:text-[11px] text-center leading-snug mb-2 line-clamp-2 px-1">
+    <p className="font-body text-muted-foreground text-[8px] sm:text-[10px] text-center leading-snug mb-1.5 line-clamp-2 px-0.5">
       {service.longDescription}
     </p>
-
-    <div className="text-center mb-2 hidden sm:block">
-      <p className="font-display text-[9px] sm:text-[10px] font-semibold text-foreground mb-0.5">Our Approach:</p>
-      <p className="font-body text-[9px] sm:text-[10px] text-muted-foreground line-clamp-2 px-1">{service.approach}</p>
-    </div>
 
     <Button onClick={e => {
     e.stopPropagation();
     onLearnMore();
-  }} className={`${theme.button} text-primary-foreground font-display font-bold text-[10px] sm:text-xs px-3 py-1 h-6 sm:h-7 rounded-sm`}>
-      View Details
+  }} className={`${theme.button} text-primary-foreground font-display font-bold text-[9px] sm:text-[11px] px-2 py-0.5 h-5 sm:h-6 rounded-sm icon-hover`}>
+      <Sparkles className="w-2.5 h-2.5 mr-1 icon-pulse" />
+      Details
     </Button>
   </div>);
 CardBack.displayName = "CardBack";
@@ -279,7 +275,7 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
       behavior: "smooth"
     });
   };
-  return <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" id="services">
+  return <section ref={ref} className="py-8 sm:py-12 md:py-16 lg:py-20 relative overflow-hidden" id="services">
       {/* Animated gradient background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[gradientPhase]} transition-all duration-[2000ms] ease-in-out`} />
       <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/30" />
