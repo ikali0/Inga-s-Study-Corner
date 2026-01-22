@@ -38,7 +38,7 @@ const HeroSection = ({
 
   // Dynamic gradient classes based on phase
   const gradientClasses = ['from-primary/15 via-blue/10 to-orange/15', 'from-blue/15 via-orange/10 to-primary/15', 'from-orange/15 via-primary/10 to-blue/15', 'from-primary/10 via-green/10 to-blue/15'];
-  return <section id="hero" aria-labelledby="hero-heading" className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16 lg:pt-32 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+  return <section id="hero" aria-labelledby="hero-heading" className="relative pt-16 pb-6 sm:pt-20 sm:pb-10 md:pt-24 md:pb-12 lg:pt-28 lg:pb-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Animated Gradient Background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[gradientPhase]} transition-all duration-[2000ms] ease-in-out`} aria-hidden="true" />
       
@@ -69,7 +69,7 @@ const HeroSection = ({
           </a>
 
           {/* Heading - Improved mobile sizing */}
-          <h1 id="hero-heading" className="text-[1.625rem] leading-[1.2] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground">
+          <h1 id="hero-heading" className="text-xl leading-[1.2] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground">
             Build{" "}
             <span className="text-primary underline decoration-wavy decoration-accent underline-offset-4 decoration-2">
               Confidence
@@ -88,11 +88,11 @@ const HeroSection = ({
           {/* CTA Buttons - Improved mobile layout with proper tap targets */}
           <div className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start pt-1 sm:pt-2 sm:gap-[6px]">
             <Button onClick={() => handleNavigate("book")} variant="cta" size="touch" className="bg-blue hover:bg-blue/90 text-primary-foreground px-5 sm:px-6 rounded-xl font-semibold text-sm shadow-lg shadow-blue/25 hover:shadow-xl hover:shadow-blue/35 flex items-center justify-center gap-2 w-full sm:w-auto border border-blue/40">
-              <Zap size={16} className="fill-current" aria-hidden="true" />
+              <Zap size={16} className="fill-current icon-pulse" aria-hidden="true" />
               Contact Now
             </Button>
             <Button onClick={() => handleNavigate("reviews")} variant="outline" size="touch" className="bg-card hover:bg-muted text-foreground border-2 border-border px-5 sm:px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 w-full sm:w-auto">
-              <Star size={16} className="text-primary fill-current" aria-hidden="true" />
+              <Star size={16} className="text-primary fill-current icon-wiggle" aria-hidden="true" />
               Parent Reviews
             </Button>
           </div>

@@ -106,7 +106,7 @@ export const FlippingCard = memo(function FlippingCard({
           "transition-transform duration-300 ease-out will-change-transform",
           "[transform-style:preserve-3d]",
           "group-hover/flipping-card:md:[transform:rotateY(180deg)]",
-          "h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full",
+          "h-[160px] sm:h-[190px] md:h-[220px] lg:h-[250px] w-full",
           isFlipped && "[transform:rotateY(180deg)]",
           className
         )}

@@ -386,6 +386,104 @@
   .state-error {
     @apply border-destructive bg-destructive/10 text-destructive;
   }
+
+  /* =========================================
+     LUCIDE ICON ANIMATIONS & COMPONENT CSS
+     ========================================= */
+
+  /* Icon Bounce - Subtle attention grabber */
+  .icon-bounce {
+    @apply transition-transform duration-200;
+  }
+  .icon-hover:hover .icon-bounce,
+  .group:hover .icon-bounce {
+    animation: iconBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Icon Pulse - Gentle emphasis */
+  .icon-pulse {
+    @apply transition-all duration-300;
+  }
+  .icon-hover:hover .icon-pulse,
+  .group:hover .icon-pulse {
+    animation: iconPulse 0.6s ease-in-out;
+  }
+
+  /* Icon Slide Right - Arrow animations */
+  .icon-slide-right {
+    @apply transition-transform duration-200;
+  }
+  .icon-hover:hover .icon-slide-right,
+  .group:hover .icon-slide-right {
+    animation: iconSlideRight 0.3s ease-out forwards;
+  }
+
+  /* Icon Spin Slow - Subtle rotation */
+  .icon-spin-slow {
+    @apply transition-transform duration-500;
+  }
+  .icon-hover:hover .icon-spin-slow,
+  .group:hover .icon-spin-slow {
+    animation: iconSpinSlow 0.6s ease-in-out;
+  }
+
+  /* Icon Pop - Scale emphasis */
+  .icon-pop {
+    @apply transition-transform duration-150;
+  }
+  .icon-hover:hover .icon-pop,
+  .group:hover .icon-pop {
+    animation: iconPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Icon Shake - Attention/error */
+  .icon-shake {
+    @apply transition-transform duration-150;
+  }
+  .icon-shake-active,
+  .icon-hover:hover .icon-shake {
+    animation: iconShake 0.4s ease-in-out;
+  }
+
+  /* Icon Wiggle - Playful movement */
+  .icon-wiggle {
+    @apply transition-transform duration-200;
+  }
+  .icon-hover:hover .icon-wiggle,
+  .group:hover .icon-wiggle {
+    animation: iconWiggle 0.5s ease-in-out;
+  }
+
+  /* Icon Float - Gentle up/down */
+  .icon-float {
+    animation: iconFloat 2s ease-in-out infinite;
+  }
+
+  /* Icon Glow - Success/highlight state */
+  .icon-glow {
+    @apply transition-all duration-300;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  .icon-hover:hover .icon-glow,
+  .icon-glow-active {
+    filter: drop-shadow(0 0 6px hsl(var(--primary) / 0.5));
+  }
+
+  /* Component wrapper for icon containers */
+  .icon-container {
+    @apply inline-flex items-center justify-center transition-all duration-200;
+  }
+  .icon-container-sm { @apply w-6 h-6 p-1; }
+  .icon-container-md { @apply w-8 h-8 p-1.5; }
+  .icon-container-lg { @apply w-10 h-10 p-2; }
+  .icon-container-xl { @apply w-12 h-12 p-2.5; }
+
+  /* Icon with background variants */
+  .icon-bg-primary { @apply bg-primary/10 text-primary rounded-md; }
+  .icon-bg-success { @apply bg-success/10 text-success rounded-md; }
+  .icon-bg-warning { @apply bg-warning/10 text-warning rounded-md; }
+  .icon-bg-info { @apply bg-info/10 text-info rounded-md; }
+  .icon-bg-muted { @apply bg-muted text-muted-foreground rounded-md; }
 }
 
 /* =========================================
@@ -406,6 +504,53 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Lucide Icon Animation Keyframes */
+  @keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-4px); }
+    60% { transform: translateY(-2px); }
+  }
+
+  @keyframes iconPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.9; }
+  }
+
+  @keyframes iconSlideRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(3px); }
+  }
+
+  @keyframes iconSpinSlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes iconPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes iconShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+  }
+
+  @keyframes iconWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
   }
 
   /* Utility for text balancing */
